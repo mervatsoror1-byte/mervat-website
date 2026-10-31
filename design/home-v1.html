@@ -1,0 +1,464 @@
+<title>أكاديمية د. مرفت سرور</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="د. مرفت سرور، مدربة وعي وتشافي معتمدة من الاتحاد الدولي للكوتشينج ICF. كورسات صوتية، تمارين مرئية، كتب إلكترونية وجلسات فردية مباشرة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;600;700&family=Readex+Pro:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: RTL editorial pages; soft rose "breath" arches echo the logo's tulip/flame, gold used only as hairline accents */
+:root{
+  --plum:#5B2A4E; --plum-deep:#3E1C35; --gold:#C9A24A; --gold-soft:#E3C987; --rose:#E8B7C3; --ivory:#FBF7F0;
+  --bg:var(--ivory); --surface:#ffffff; --surface-2:#F6EDE6; --fg:#2E1828; --muted:#76606F; --line:#E9DCD3;
+  --btn:var(--plum); --btn-fg:#FBF7F0; --heading:var(--plum-deep); --tint:#F5E3E7; --accent:#A67F2C;
+  --display:"Reem Kufi","Noto Kufi Arabic",Tahoma,sans-serif;
+  --body:"Readex Pro","Segoe UI",Tahoma,sans-serif;
+  --r:18px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1F0F1A; --surface:#2A1624; --surface-2:#331B2C; --fg:#F3E9E4; --muted:#BFA9B6; --line:#45283B;
+  --btn:#C9A24A; --btn-fg:#2A1624; --heading:#F1DDB0; --tint:#3A1E33; --accent:#E3C987; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1F0F1A; --surface:#2A1624; --surface-2:#331B2C; --fg:#F3E9E4; --muted:#BFA9B6; --line:#45283B;
+  --btn:#C9A24A; --btn-fg:#2A1624; --heading:#F1DDB0; --tint:#3A1E33; --accent:#E3C987; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.85;direction:rtl}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+h1,h2,h3{font-family:var(--display);color:var(--heading);line-height:1.35;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(56px,8vw,96px)}
+.eyebrow{font-size:.82rem;letter-spacing:.04em;color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.sec-head{display:grid;gap:10px;max-width:640px;margin-bottom:36px}
+.sec-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem)}
+.sec-head p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:500 1rem var(--body);padding:13px 26px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform .2s,background .2s}
+.btn-primary{background:var(--btn);color:var(--btn-fg)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line);color:var(--fg);background:transparent}
+.btn-ghost:hover{border-color:var(--gold)}
+.demo{font-size:.72rem;color:var(--muted);border:1px dashed var(--line);border-radius:999px;padding:1px 10px;white-space:nowrap}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:20px;min-height:74px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{height:46px;width:auto}
+.brand span{font-family:var(--display);font-size:1.15rem;color:var(--heading)}
+.menu{display:flex;gap:22px;margin-inline-start:auto;list-style:none;padding:0;margin-block:0;font-size:.95rem}
+.menu a{text-decoration:none;color:var(--fg);opacity:.85}
+.menu a:hover{color:var(--accent);opacity:1}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.lang{font-size:.85rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:none;cursor:pointer;font-family:var(--body)}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:12px;width:44px;height:44px;cursor:pointer;color:var(--fg);font-size:1.2rem}
+@media (max-width:980px){
+  .menu{display:none;position:absolute;top:74px;inset-inline:0;flex-direction:column;background:var(--bg);padding:16px max(16px,env(safe-area-inset-right,0px)) 24px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);gap:14px}
+  .menu.open{display:flex}
+  .burger{display:inline-block;margin-inline-start:auto}
+  .nav-actions .btn-ghost,.lang{display:none}
+}
+
+/* hero */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding-block:clamp(40px,6vw,80px)}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.6rem);font-weight:600}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.hero-copy p{font-size:1.1rem;color:var(--muted);max-width:52ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.cred{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.88rem;color:var(--muted);padding-top:8px;border-top:1px solid var(--line)}
+.cred b{color:var(--fg);font-weight:500}
+.arch{position:relative;justify-self:center;width:min(420px,100%);aspect-ratio:4/5;max-width:100%}
+.arch::before{content:"";position:absolute;inset:-14px -14px 0 -14px;border:1px solid var(--gold);border-radius:999px 999px 26px 26px;opacity:.7}
+.arch .photo{position:absolute;inset:0;border-radius:999px 999px 22px 22px;overflow:hidden;background:var(--rose)}
+.arch img{width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+.badge{position:absolute;bottom:22px;inset-inline-end:-18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px 16px;display:grid;gap:2px;box-shadow:0 14px 30px -18px rgba(62,28,53,.45);font-size:.82rem}
+.badge strong{font-family:var(--display);color:var(--heading);font-size:1.05rem}
+.glow{position:absolute;inset-inline-start:-180px;top:-140px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,var(--tint),transparent 65%);z-index:-1}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.arch{width:min(320px,86%)}.badge{inset-inline-end:-6px}}
+
+/* paths */
+.paths{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.path{background:var(--surface);padding:28px 24px;display:grid;gap:12px;align-content:start;text-decoration:none;transition:background .2s}
+.path:hover{background:var(--surface-2)}
+.path svg{width:34px;height:34px;stroke:var(--accent);fill:none;stroke-width:1.4}
+.path h3{font-size:1.2rem}
+.path p{color:var(--muted);font-size:.93rem}
+.path .more{font-size:.88rem;color:var(--accent);margin-top:auto}
+@media (max-width:900px){.paths{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.paths{grid-template-columns:1fr}}
+
+/* courses */
+.courses{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.course{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.cover{aspect-ratio:16/10;position:relative;display:grid;place-items:center;max-width:100%}
+.cover span{font-family:var(--display);font-size:1.5rem;color:#FBF7F0;text-align:center;padding:0 20px;position:relative}
+.c1{background:linear-gradient(150deg,#5B2A4E,#3E1C35)}
+.c2{background:linear-gradient(150deg,#8E5373,#5B2A4E)}
+.c3{background:linear-gradient(150deg,#A8834A,#6B4A3A)}
+.cover::after{content:"";position:absolute;width:62%;aspect-ratio:1;border:1px solid rgba(227,201,135,.45);border-radius:50% 50% 0 50%;transform:rotate(45deg)}
+.course-body{padding:22px;display:grid;gap:10px;flex:1}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.82rem;color:var(--muted)}
+.course-body p{color:var(--muted);font-size:.93rem}
+.price-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+.price{font-family:var(--display);font-size:1.25rem;color:var(--heading);font-variant-numeric:tabular-nums}
+.price small{font-family:var(--body);font-size:.78rem;color:var(--muted);margin-inline-start:6px}
+.link{color:var(--accent);text-decoration:none;font-weight:500;font-size:.92rem}
+@media (max-width:900px){.courses{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.courses{grid-template-columns:1fr}}
+
+/* coach */
+.coach{background:var(--surface-2)}
+.coach .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.coach-img{width:min(340px,100%);aspect-ratio:1;border-radius:50%;overflow:hidden;justify-self:center;border:6px solid var(--bg);outline:1px solid var(--gold);max-width:100%}
+.coach-img img{width:100%;height:100%;object-fit:cover}
+.coach-copy{display:grid;gap:18px;min-width:0}
+.coach-copy blockquote{margin:0;font-family:var(--display);font-size:clamp(1.3rem,2.6vw,1.75rem);color:var(--heading);line-height:1.6}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;list-style:none;padding:0;margin:0}
+.facts li{border-top:1px solid var(--gold);padding-top:10px;font-size:.9rem;color:var(--muted)}
+.facts b{display:block;color:var(--fg);font-weight:500}
+@media (max-width:820px){.coach .wrap{grid-template-columns:1fr}.facts{grid-template-columns:1fr}}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.plan{border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;display:flex;flex-direction:column;gap:16px;background:var(--surface)}
+.plan.featured{background:var(--plum-deep);border-color:var(--plum-deep);color:#F3E9E4}
+.plan.featured h3,.plan.featured .price{color:#F1DDB0}
+.plan.featured .price small,.plan.featured li{color:#D9C6CF}
+.plan.featured .btn-primary{background:var(--gold);color:#2A1624}
+.plan h3{font-size:1.3rem}
+.plan ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.93rem;color:var(--muted)}
+.plan li::before{content:"✦";color:var(--gold);margin-inline-end:8px;font-size:.75rem}
+.plan .btn{margin-top:auto}
+.tag{align-self:flex-start;background:var(--gold);color:#2A1624;font-size:.75rem;border-radius:999px;padding:2px 12px}
+@media (max-width:900px){.plans{grid-template-columns:1fr}}
+
+/* sessions */
+.sessions{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.sessions-copy{display:grid;gap:16px;min-width:0}
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;color:var(--muted);font-size:.95rem}
+.steps li::before{counter-increment:s;content:counter(s);width:36px;height:36px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--display);color:var(--accent)}
+.steps b{color:var(--fg);font-weight:500;display:block}
+.cal{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:16px;min-width:0}
+.cal-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cal-head h3{font-size:1.1rem}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.day{border:1px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center;font-size:.8rem;cursor:pointer;background:none;color:var(--fg);font-family:var(--body)}
+.day b{display:block;font-family:var(--display);font-size:1.15rem;color:var(--heading)}
+.day[aria-pressed="true"]{background:var(--btn);color:var(--btn-fg);border-color:var(--btn)}
+.day[aria-pressed="true"] b{color:var(--btn-fg)}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slot{border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.85rem;background:none;color:var(--fg);cursor:pointer;font-family:var(--body);font-variant-numeric:tabular-nums}
+.slot[aria-pressed="true"]{border-color:var(--gold);background:var(--tint)}
+.cal-note{font-size:.82rem;color:var(--muted)}
+@media (max-width:860px){.sessions{grid-template-columns:1fr}}
+
+/* free book */
+.gift{background:linear-gradient(120deg,var(--plum),var(--plum-deep));color:#F3E9E4;border-radius:28px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.gift h2{color:#F1DDB0;font-size:clamp(1.5rem,3vw,2.1rem)}
+.gift p{color:#D9C6CF}
+.book{width:150px;aspect-ratio:3/4.3;border-radius:4px 14px 14px 4px;background:linear-gradient(160deg,#F1DDB0,#C9A24A);box-shadow:-10px 18px 30px -12px rgba(0,0,0,.5);display:grid;place-items:center;padding:16px;text-align:center;font-family:var(--display);color:#3E1C35;font-size:1.05rem;transform:rotate(-4deg);max-width:100%}
+.gift form{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.gift input{flex:1 1 220px;min-width:0;border-radius:999px;border:1px solid rgba(227,201,135,.5);background:rgba(255,255,255,.08);color:#FBF7F0;padding:12px 18px;font:400 1rem var(--body)}
+.gift input::placeholder{color:#C4AEBB}
+.gift .btn-primary{background:var(--gold);color:#2A1624}
+.gift .ok{font-size:.9rem;color:#F1DDB0;margin-top:10px}
+.gift-copy{display:grid;gap:10px;min-width:0}
+@media (max-width:700px){.gift{grid-template-columns:1fr}.book{width:120px}}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:820px}
+details{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:4px 20px}
+summary{cursor:pointer;padding:14px 0;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--accent);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);padding-bottom:16px}
+
+/* footer */
+footer{background:var(--plum-deep);color:#D9C6CF;margin-top:clamp(56px,8vw,96px)}
+footer .wrap{padding-block:56px 28px;display:grid;gap:36px}
+.f-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px}
+.f-grid h4{font-family:var(--display);color:#F1DDB0;margin:0 0 12px;font-weight:500;font-size:1rem}
+.f-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.92rem}
+.f-grid a{text-decoration:none;color:#D9C6CF}
+.f-grid a:hover{color:#F1DDB0}
+.f-brand img{height:96px;width:auto}
+.f-brand p{font-size:.9rem;max-width:34ch;margin-top:10px}
+.pay{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid rgba(227,201,135,.25);padding-top:22px;font-size:.82rem;justify-content:space-between}
+.pay-logos{display:flex;flex-wrap:wrap;gap:8px}
+.pay-logos span{border:1px solid rgba(227,201,135,.35);border-radius:8px;padding:3px 10px;color:#F1DDB0}
+@media (max-width:820px){.f-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.f-grid{grid-template-columns:1fr}}
+
+.reveal{animation:rise .8s ease both}
+.reveal.d2{animation-delay:.12s}.reveal.d3{animation-delay:.24s}
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="الصفحة الرئيسية">
+      <img src="assets/brand/logo-icon-gold.webp" alt="شعار د. مرفت سرور" width="37" height="46">
+      <span>د. مرفت سرور</span>
+    </a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu" aria-label="القائمة">☰</button>
+    <ul class="menu" id="menu">
+      <li><a href="#courses">الكورسات</a></li>
+      <li><a href="#paths">التمارين المرئية</a></li>
+      <li><a href="#gift">الكتب</a></li>
+      <li><a href="#sessions">الجلسات الفردية</a></li>
+      <li><a href="#plans">العضوية</a></li>
+      <li><a href="#coach">عن د. مرفت</a></li>
+      <li><a href="#faq">الأسئلة الشائعة</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="lang" type="button" title="اللغات الأخرى تُضاف لاحقاً">EN</button>
+      <a class="btn btn-ghost" href="#login">دخول</a>
+      <a class="btn btn-primary" href="#plans">ابدئي رحلتك</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow reveal">مدربة وعي وتشافي · معتمدة من ICF</span>
+        <h1 class="reveal d2">حين تهدأ من الداخل، <em>يتغيّر</em> كل ما حولك</h1>
+        <p class="reveal d3">كورسات صوتية تسمعها في وقتك، تمارين مرئية تمارسها بخطوات واضحة، وجلسات فردية مباشرة. مساحة آمنة تعود فيها إلى نفسك بهدوء وبلا استعجال.</p>
+        <div class="hero-ctas reveal d3">
+          <a class="btn btn-primary" href="#courses">تصفّح الكورسات</a>
+          <a class="btn btn-ghost" href="#sessions">احجز جلسة فردية</a>
+        </div>
+        <div class="cred">
+          <span><b>ICF</b> الاتحاد الدولي للكوتشينج</span>
+          <span><b>عربي</b> بلغة قريبة منك</span>
+          <span><b>مدى الحياة</b> وصول للكورس بعد الشراء</span>
+        </div>
+      </div>
+      <div class="arch reveal d2">
+        <div class="photo"><img src="assets/img/marvat-hero.webp" alt="د. مرفت سرور" width="900" height="1080"></div>
+        <div class="badge"><strong>د. مرفت سرور</strong><span>كوتش معتمدة دولياً</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="paths">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">أربعة طرق للبدء</span>
+        <h2>اختر الطريقة التي تناسب يومك</h2>
+      </div>
+      <div class="paths">
+        <a class="path" href="#courses">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 18v-2a10 10 0 0 1 20 0v2"/><rect x="4" y="18" width="6" height="9" rx="2"/><rect x="22" y="18" width="6" height="9" rx="2"/></svg>
+          <h3>كورسات صوتية</h3>
+          <p>وحدات ودروس قصيرة، تكمل من حيث توقفت ونحفظ لك تقدّمك.</p>
+          <span class="more">تصفّح الكورسات ←</span>
+        </a>
+        <a class="path" href="#courses">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="7" width="20" height="18" rx="3"/><path d="M23 13l6-4v14l-6-4"/></svg>
+          <h3>تمارين مرئية</h3>
+          <p>تمارين تنفّس وتأمّل وتحرير مشاعر مسجّلة بالفيديو.</p>
+          <span class="more">شاهد التمارين ←</span>
+        </a>
+        <a class="path" href="#gift">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 8c-3-2-7-3-12-2v19c5-1 9 0 12 2 3-2 7-3 12-2V6c-5-1-9 0-12 2z"/><path d="M16 8v19"/></svg>
+          <h3>كتب إلكترونية</h3>
+          <p>تقرأها داخل حسابك على أي جهاز، ومنها كتب مجانية.</p>
+          <span class="more">مكتبة الكتب ←</span>
+        </a>
+        <a class="path" href="#sessions">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="6" width="24" height="22" rx="3"/><path d="M4 12h24M10 3v6M22 3v6"/><circle cx="16" cy="20" r="3"/></svg>
+          <h3>جلسات مباشرة</h3>
+          <p>اختر موعداً يناسبك، وتصلك رسالة التأكيد ورابط الجلسة.</p>
+          <span class="more">احجز موعدك ←</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="courses" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">الكورسات</span>
+        <h2>ابدأ بكورس واحد، وامشِ بخطوتك</h2>
+        <p>كل كورس يُشترى منفصلاً ويُفتح في حسابك فور إتمام الدفع. <span class="demo">الأسماء والأسعار هنا للعرض فقط</span></p>
+      </div>
+      <div class="courses">
+        <article class="course">
+          <div class="cover c1"><span>التصالح مع الذات</span></div>
+          <div class="course-body">
+            <div class="meta"><span>كورس صوتي</span><span>٥ وحدات · ٢٢ درساً</span><span>٤ ساعات</span></div>
+            <h3>التصالح مع الذات</h3>
+            <p>رحلة هادئة لفهم صوتك الداخلي وتحويل جلد الذات إلى رحمة ووعي.</p>
+            <div class="price-row"><span class="price">١٢٠٠ ج.م<small>أو $39</small></span><a class="link" href="#course">التفاصيل ←</a></div>
+          </div>
+        </article>
+        <article class="course">
+          <div class="cover c2"><span>تحرير المشاعر العالقة</span></div>
+          <div class="course-body">
+            <div class="meta"><span>صوتي + تمارين فيديو</span><span>٤ وحدات</span><span>٣ ساعات</span></div>
+            <h3>تحرير المشاعر العالقة</h3>
+            <p>أدوات عملية للتعامل مع الحزن والغضب والخوف دون كبت أو انفجار.</p>
+            <div class="price-row"><span class="price">٩٥٠ ج.م<small>أو $29</small></span><a class="link" href="#course">التفاصيل ←</a></div>
+          </div>
+        </article>
+        <article class="course">
+          <div class="cover c3"><span>وعي الوفرة</span></div>
+          <div class="course-body">
+            <div class="meta"><span>كورس صوتي</span><span>٦ وحدات</span><span>٥ ساعات</span></div>
+            <h3>وعي الوفرة</h3>
+            <p>كيف تؤثر قناعاتك عن الاستحقاق والمال في قراراتك اليومية.</p>
+            <div class="price-row"><span class="price">١٤٠٠ ج.م<small>أو $45</small></span><a class="link" href="#course">التفاصيل ←</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band coach" id="coach">
+    <div class="wrap">
+      <div class="coach-img"><img src="assets/img/marvat-portrait.webp" alt="صورة د. مرفت سرور" width="480" height="480" loading="lazy"></div>
+      <div class="coach-copy">
+        <span class="eyebrow">عن المدربة</span>
+        <blockquote>«التشافي ليس أن تصبح شخصاً آخر، بل أن تعود إلى نفسك التي نسيتها.»</blockquote>
+        <p>د. مرفت سرور، كوتش وعي وتشافي معتمدة من الاتحاد الدولي للكوتشينج ICF. ترافق السيدات والرجال في رحلات التصالح مع الذات وتحرير المشاعر وبناء علاقات أكثر هدوءاً. <span class="demo">نص تعريفي مبدئي يُستبدل بنصّك</span></p>
+        <ul class="facts">
+          <li><b>اعتماد دولي</b>الاتحاد الدولي للكوتشينج ICF</li>
+          <li><b>منهج</b>وعي، تشافٍ، تطبيق يومي</li>
+          <li><b>لغة</b>عربية بلهجة قريبة</li>
+        </ul>
+        <div><a class="btn btn-ghost" href="#about">اعرف قصتها كاملة</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="plans">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">العضوية</span>
+        <h2>اشترِ كورساً واحداً، أو افتح المكتبة كلها</h2>
+        <p>الأسعار تظهر بالجنيه داخل مصر وبالدولار خارجها. <span class="demo">أسعار للعرض فقط</span></p>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <h3>كورس منفرد</h3>
+          <div class="price">من ٩٥٠ ج.م<small>دفعة واحدة</small></div>
+          <ul><li>وصول مدى الحياة للكورس</li><li>متابعة التقدّم بين الدروس</li><li>شهادة إتمام</li></ul>
+          <a class="btn btn-ghost" href="#courses">اختر كورساً</a>
+        </div>
+        <div class="plan featured">
+          <span class="tag">الأوفر</span>
+          <h3>العضوية السنوية</h3>
+          <div class="price">٦٩٠٠ ج.م<small>سنوياً · أو $199</small></div>
+          <ul><li>كل الكورسات والتمارين المرئية</li><li>كل الكتب المدفوعة</li><li>جلسة جماعية مباشرة شهرياً</li><li>خصم على الجلسات الفردية</li></ul>
+          <a class="btn btn-primary" href="#checkout">اشترك سنوياً</a>
+        </div>
+        <div class="plan">
+          <h3>العضوية الشهرية</h3>
+          <div class="price">٧٩٠ ج.م<small>شهرياً · أو $24</small></div>
+          <ul><li>كل الكورسات والتمارين المرئية</li><li>تجدّد تلقائي وإلغاء في أي وقت</li><li>كتاب جديد كل فصل</li></ul>
+          <a class="btn btn-ghost" href="#checkout">اشترك شهرياً</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="sessions" style="padding-top:0">
+    <div class="wrap sessions">
+      <div class="sessions-copy">
+        <span class="eyebrow">الجلسات الفردية</span>
+        <h2 style="font-size:clamp(1.6rem,3.4vw,2.3rem)">جلسة خاصة معك، في موعد تختاره</h2>
+        <p style="color:var(--muted)">جلسات كوتشينج فردية أونلاين مدتها ٦٠ دقيقة. يظهر الموعد بتوقيت بلدك تلقائياً.</p>
+        <ol class="steps">
+          <li><span><b>اختر اليوم والساعة</b>من المواعيد المتاحة في الجدول.</span></li>
+          <li><span><b>ادفع بالطريقة التي تناسبك</b>بطاقة، محفظة إلكترونية، أو PayPal.</span></li>
+          <li><span><b>يصلك التأكيد والرابط</b>على بريدك، مع تذكير قبل الجلسة بيوم وبساعة.</span></li>
+        </ol>
+      </div>
+      <div class="cal" aria-label="مثال على جدول الحجز">
+        <div class="cal-head"><h3>نوفمبر ٢٠٢٦</h3><span class="demo">مثال</span></div>
+        <div class="days" id="days">
+          <button class="day" type="button" aria-pressed="true">الأحد<b>٨</b></button>
+          <button class="day" type="button" aria-pressed="false">الاثنين<b>٩</b></button>
+          <button class="day" type="button" aria-pressed="false">الثلاثاء<b>١٠</b></button>
+          <button class="day" type="button" aria-pressed="false">الأربعاء<b>١١</b></button>
+          <button class="day" type="button" aria-pressed="false">الخميس<b>١٢</b></button>
+        </div>
+        <div class="slots" id="slots">
+          <button class="slot" type="button" aria-pressed="false">١١:٠٠ ص</button>
+          <button class="slot" type="button" aria-pressed="true">١:٠٠ م</button>
+          <button class="slot" type="button" aria-pressed="false">٥:٠٠ م</button>
+          <button class="slot" type="button" aria-pressed="false">٨:٣٠ م</button>
+        </div>
+        <p class="cal-note">التوقيت: القاهرة (GMT+2). الجلسة عبر Zoom أو Google Meet.</p>
+        <a class="btn btn-primary" href="#checkout">تأكيد الموعد والدفع</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="gift">
+    <div class="gift">
+      <div class="book" aria-hidden="true">٧ أيام<br>للعودة إلى نفسك</div>
+      <div class="gift-copy">
+        <span class="eyebrow" style="color:#E3C987">كتاب مجاني</span>
+        <h2>هديتك الأولى: كتاب تقرأه الآن داخل حسابك</h2>
+        <p>أنشئ حساباً مجانياً ببريدك الإلكتروني، ويُفتح لك الكتاب فوراً في مكتبتك.</p>
+        <form id="giftForm">
+          <label for="giftEmail" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">بريدك الإلكتروني</label>
+          <input id="giftEmail" type="email" required placeholder="بريدك الإلكتروني" autocomplete="email">
+          <button class="btn btn-primary" type="submit">أرسل لي الكتاب</button>
+        </form>
+        <p class="ok" id="giftOk" hidden>هذا نموذج تصميم. في الموقع الفعلي سيُنشأ حسابك ويُفتح الكتاب مباشرة.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="faq">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">الأسئلة الشائعة</span><h2>قبل أن تبدأ</h2></div>
+      <div class="faq">
+        <details><summary>متى أحصل على الكورس بعد الدفع؟</summary><p>فوراً. بمجرد تأكيد الدفع يُفتح الكورس في حسابك وتصلك رسالة على بريدك بتفاصيل الدخول.</p></details>
+        <details><summary>ما طرق الدفع المتاحة؟</summary><p>داخل مصر: بطاقات ميزة وفيزا وماستركارد، المحافظ الإلكترونية، وفوري. من خارج مصر: البطاقات الدولية وPayPal.</p></details>
+        <details><summary>هل يمكنني تحميل الكتب؟</summary><p>الكتب تُقرأ داخل حسابك على الموقع من أي جهاز، ولا تتوفر للتحميل حفاظاً على حقوق المحتوى.</p></details>
+        <details><summary>كيف ألغي اشتراكي الشهري؟</summary><p>من لوحة حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول متاحاً حتى نهاية الفترة المدفوعة.</p></details>
+        <details><summary>ماذا لو لم أستطع حضور الجلسة؟</summary><p>يمكنك تغيير الموعد حتى ٢٤ ساعة قبل الجلسة من لوحة حسابك دون أي رسوم.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="128" height="96" loading="lazy">
+        <p>مدربة وعي وتشافي معتمدة من الاتحاد الدولي للكوتشينج ICF.</p>
+      </div>
+      <div><h4>المحتوى</h4><ul><li><a href="#courses">الكورسات</a></li><li><a href="#paths">التمارين المرئية</a></li><li><a href="#gift">الكتب</a></li><li><a href="#sessions">الجلسات الفردية</a></li><li><a href="#plans">العضوية</a></li></ul></div>
+      <div><h4>عن المنصة</h4><ul><li><a href="#coach">عن د. مرفت</a></li><li><a href="#faq">الأسئلة الشائعة</a></li><li><a href="#contact">تواصل معنا</a></li><li><a href="#blog">المدونة</a></li></ul></div>
+      <div><h4>السياسات</h4><ul><li><a href="#terms">الشروط والأحكام</a></li><li><a href="#privacy">سياسة الخصوصية</a></li><li><a href="#refund">سياسة الاسترداد</a></li><li><a href="#delivery">سياسة تقديم الخدمة</a></li></ul></div>
+    </div>
+    <div class="pay">
+      <span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة.</span>
+      <div class="pay-logos" aria-label="طرق الدفع"><span>Visa</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>PayPal</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+menu.addEventListener('click',e=>{if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false')}});
+function group(id){const el=document.getElementById(id);el.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b))})}
+group('days');group('slots');
+document.getElementById('giftForm').addEventListener('submit',e=>{e.preventDefault();document.getElementById('giftOk').hidden=false});
+</script>
