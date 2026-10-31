@@ -158,8 +158,8 @@ def header(active):
 
 FOOTER = f'''<footer class="site-footer"><div class="wrap">
   <div class="f-grid">
-    <div class="f-brand"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="158" height="118" loading="lazy">
-      <p>برامج وتمارين للوعي والتشافي، تعيدك إلى نسختك الأصلية بهدوء.</p>
+    <div class="f-brand"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="158" height="118" loading="lazy" style="filter:drop-shadow(0 6px 18px rgba(0,0,0,.35))">
+      <p>برامج وتمارين للوعي والتشافي، تعيدك إلى نسختك الأصلية بهدوء.</p><div class="f-news" style="margin-top:14px"><b style="color:#F1DDB0">انضم إلى مجتمع مرفت</b><form data-simple="تم اشتراكك في النشرة."><label class="sr" for="fnEmail">بريدك</label><input id="fnEmail" type="email" required placeholder="بريدك الإلكتروني"><button class="btn btn-pill btn-sm" type="submit">اشترك</button></form><div class="alert" hidden></div></div>
       <div class="social"><a href="#" aria-label="إنستغرام"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></a><a href="#" aria-label="يوتيوب"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10.5 9.5v5l4-2.5z"/></svg></a><a href="#" aria-label="تيك توك"><svg class="icon" viewBox="0 0 24 24"><path d="M14 4v10.5a3.5 3.5 0 1 1-3-3.4M14 4c.4 2.4 2 4 4.5 4.2"/></svg></a><a href="#" aria-label="فيسبوك"><svg class="icon" viewBox="0 0 24 24"><path d="M14 8h2.5V4.5H14A3.5 3.5 0 0 0 10.5 8v2.5H8V14h2.5v6H14v-6h2.5l.5-3.5h-3V8z"/></svg></a></div>
     </div>
     <div><h4>البرامج</h4><ul><li><a href="vip.html">استيقظ VIP</a></li><li><a href="course-ain-sahia.html">عين صاحية</a></li><li><a href="library.html">مكتبة التمارين</a></li><li><a href="bundles.html">الباقات</a></li><li><a href="books.html">الكتب</a></li><li><a href="sessions.html">الجلسات الفردية</a></li></ul></div>
@@ -169,7 +169,7 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
   <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة.</span><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
 </div></footer>'''
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&display=swap">'
+FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&display=swap">'
 
 def page(file, title, desc, body, active="", schema=None, noindex=False, bare=False):
     full_title = title if NAME in title else f"{title} | {NAME}"
@@ -226,6 +226,7 @@ def vip_card():
 
 # ------------------------------------------------------------------ pages
 PAGES = []
+HOME = ''
 def build():
     if OUT.exists(): shutil.rmtree(OUT)
     shutil.copytree(SRC, OUT)
@@ -239,44 +240,12 @@ def build():
     (OUT/"assets/js/data.js").write_text("window.SITE_DATA=" + json.dumps(DATA, ensure_ascii=False) + ";\n", encoding="utf-8")
 
     # ---------- home
+    global HOME
+    HOME = home_body()
     course = BY["ain-sahia"]
     mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"]))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
     page("index.html", f"{NAME} | كوتش وعي وتشافي معتمدة من ICF",
-         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين ديكودنج وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، كوتش وعي وتشافي معتمدة من ICF.", f'''
-<section class="hero"><canvas class="sparkle" aria-hidden="true"></canvas><div class="wrap">
-  <div class="hero-copy"><span class="eyebrow">كوتش وعي وتشافي معتمدة من ICF</span>
-    <h1>استيقظ على<br><span class="foil-text">نسختك الأصلية</span></h1>
-    <p class="lead">برامج وتمارين صوتية ومرئية تمشي معك خطوة بخطوة: تفكّ التعلّق، وتتصالح مع طفلك الداخلي، وتعود إلى سكينتك. بلغة قريبة، وفي الوقت الذي يناسبك.</p>
-    <div class="ctas"><a class="btn btn-gold" href="vip.html">{ic("crown")}ابدأ مع استيقظ VIP</a><a class="btn btn-line" href="library.html">تصفّح التمارين</a></div>
-    <div class="pillars"><span>{ic("path")}برنامج تدريبي متكامل</span><span>{ic("play")}تمارين مسجّلة بالصوت والصورة</span><span>{ic("live")}جلسات فردية مباشرة</span></div></div>
-  {stage("assets/img/coach-white-cut.webp")}
-</div></section>
-{MARQUEE}
-<section class="band"><div class="wrap">{vip_card()}</div></section>
-<section class="wrap" style="padding-bottom:clamp(56px,8vw,110px)"><div class="head center"><span class="eyebrow center">من أين أبدأ؟</span><h2 class="title">ثلاث خطوات لرحلتك</h2></div>
-  <div class="steps"><div class="step"><h3>جرّب مجاناً</h3><p>أنشئ حسابك واحصل على هدية: مقدمة تأمل السكينة وفصل من الكتاب.</p></div><div class="step"><h3>اختر تمرينك</h3><p>ابدأ بالتمرين الأقرب لما تمر به الآن، ويبقى في حسابك دائماً.</p></div><div class="step"><h3>انضم إلى استيقظ VIP</h3><p>حين تكون جاهزاً للعمق: برنامج متكامل ومتابعة مستمرة.</p></div></div></section>
-<section class="wrap"><div class="split"><div class="portal-img"><div class="img"><img src="{course["img"]}" alt="" width="600" height="800" loading="lazy"></div><div class="float"><b>كورس صوتي</b>تسمعه في أي وقت ومن أي جهاز</div></div>
-  <div class="split-body"><span class="eyebrow">الكورس</span><h2>عين صاحية</h2><p class="lead">{course["short"]} كورس صوتي مقسّم إلى وحدات، يحفظ لك تقدّمك وتكمل من حيث توقفت.</p>
-    <ul class="mods">{mods}</ul>
-    <div class="buy">{price("ain-sahia")}<button class="btn btn-plum" type="button" data-add="ain-sahia">{ic("bag")}<span>أضف للسلة</span></button><a class="btn btn-line" href="{course["page"]}">تفاصيل الكورس</a></div></div></div></section>
-<section class="band tint-blush" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap">
-  <div class="head center"><span class="eyebrow center">مكتبة التمارين</span><h2 class="title">تمرين لكل ما تمر به</h2><p class="lead">تشتري كل تمرين منفصلاً ويبقى في حسابك، أو تفتحها كلها مع استيقظ VIP.</p></div>
-  {tabs()}<div class="shelf" data-shelf="home"></div><div class="center-cta"><a class="btn btn-line" href="library.html">عرض كل التمارين</a></div></div></section>
-<section class="band" style="padding-top:clamp(20px,3vw,40px)"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر أهدأ</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
-<section class="band book-band"><div class="wrap split">{book3d()}
-  <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]} <span class="demo">نبذة مؤقتة</span></p>
-    {book_feats()}<div class="buy">{price("book-ghosts")}<button class="btn btn-plum" type="button" data-add="book-ghosts">{ic("bag")}<span>اشترِ الكتاب</span></button><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
-<section class="band"><div class="wrap split rev">
-  <div class="portal-img"><div class="img"><img src="assets/img/coach-navy.webp" alt="د. مرفت سرور" width="900" height="1125" loading="lazy"></div><div class="float"><b>٦٠ دقيقة</b>أونلاين بتوقيت بلدك</div></div>
-  <div class="split-body"><span class="eyebrow">الجلسات الفردية</span><h2>مساحة خاصة لك مع د. مرفت</h2><p class="lead">جلسة كوتشينج فردية أونلاين، تختار موعدها من الجدول، ويصلك التأكيد والرابط والتذكير تلقائياً.</p>
-    <div class="chips"><span>{ic("cal")}حجز فوري</span><span>{ic("globe")}بتوقيت بلدك</span><span>{ic("bell")}تذكير قبلها بيوم وبساعة</span></div>
-    <div class="ctas"><a class="btn btn-gold" href="sessions.html">{ic("cal")}احجز موعدك</a></div></div></div></section>
-{voices()}
-<section class="band"><div class="wrap split"><div class="round-ph"><div class="img"><img src="assets/img/coach-white-square.webp" alt="د. مرفت سرور" width="900" height="900" loading="lazy"></div></div>
-  <div class="split-body"><span class="eyebrow">عن د. مرفت</span><h2>د. مرفت سرور</h2><blockquote class="big">«التشافي ليس أن تصبح شخصاً آخر، بل أن تعود إلى نفسك التي نسيتها.»</blockquote>
-    <p class="lead">كوتش وعي وتشافي معتمدة من الاتحاد الدولي للكوتشينج ICF. <span class="demo">نبذة مؤقتة</span></p>
-    <div class="chips"><span>{ic("award")}معتمدة من ICF</span><span>{ic("path")}كوتش وعي وتشافي</span></div><div><a class="btn btn-line" href="about.html">اقرأ القصة كاملة</a></div></div></div></section>
-{GIFT}''', schema=[ORG, PERSON])
+         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين ديكودنج وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، كوتش وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
 
     # ---------- VIP
     plans = f'''<div class="plan-grid">
@@ -478,6 +447,63 @@ LEGAL = [
  ("refund.html","سياسة الاسترداد والإلغاء","شروط الاسترداد وإلغاء الاشتراكات والجلسات.",[("المحتوى الرقمي","نظراً لإتاحة المحتوى فور الشراء، يمكن طلب الاسترداد خلال ٧ أيام إذا لم يُفتح أكثر من الدرس الأول."),("الاشتراكات","يمكن إلغاء التجديد في أي وقت، ويبقى الوصول حتى نهاية الفترة المدفوعة."),("الجلسات","يُسترد المبلغ أو يُعاد جدولة الجلسة إذا أُلغيت قبل ٢٤ ساعة على الأقل."),("طريقة الطلب","من صفحة التواصل مع ذكر رقم الطلب.")]),
  ("delivery.html","سياسة تقديم الخدمة","كيف ومتى تحصل على المحتوى والخدمات.",[("المحتوى الرقمي","يُتاح فوراً في حسابك بعد تأكيد الدفع، ويصلك بريد بالتأكيد."),("الدفع عبر فوري","يُتاح المحتوى بعد إتمام السداد في المنفذ وتأكيده من البوابة."),("الجلسات","يصلك رابط الجلسة على البريد قبل موعدها، مع تذكيرين."),("لا يوجد شحن","كل المنتجات رقمية، ولا توجد منتجات تُشحن.")]),
 ]
+
+def home_body():
+    course = BY["ain-sahia"]
+    mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"]))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
+    voices_list = [("س","مكان رأي حقيقي لمشتركة عن تجربتها مع تمرين فك التعلّق، وما تغيّر بعده في علاقاتها.","اسم المشتركة · تمرين فك التعلّق"),
+                   ("ن","مكان رأي عضوة في استيقظ VIP: كيف تغيّر يومها بعد شهر من الالتزام والخطة اليومية.","اسم العضوة · استيقظ VIP"),
+                   ("ه","مكان رأي عن كورس عين صاحية وكيف ساعدها على ملاحظة أنماطها قبل أن تتصرف.","اسم المشتركة · عين صاحية"),
+                   ("م","مكان رأي عن تنفّس الاتساق القلبي قبل النوم وفي المواقف الصعبة.","اسم المشترك · الاتساق القلبي"),
+                   ("ر","مكان رأي عن جلسة فردية مع د. مرفت وما خرجت به منها.","اسم المشتركة · جلسة فردية")]
+    reel = "".join(f'<div class="voice {"hl" if i==1 else ""}"><span class="av">{a}</span><span class="qm">“</span><p>{E(t)}</p><b>{E(n)}</b></div>' for i,(a,t,n) in enumerate(voices_list))
+    return f'''
+<section class="cine"><canvas class="sparkle" aria-hidden="true"></canvas><span class="wm script" aria-hidden="true">Mervat Sorour</span><div class="wrap">
+  <div class="copy"><span class="eyebrow">كوتش وعي وتشافي معتمدة من ICF</span>
+    <h1>أؤمن أن بداخلك <span class="foil-text">نسخة أصلية</span> تنتظر أن تستيقظ</h1>
+    <span class="sig script">Mervat</span></div>
+  <div class="who-img"><img src="assets/img/coach-white-cut.webp" alt="د. مرفت سرور" width="600" height="900"></div>
+  <div class="act"><p class="note">برامج وتمارين صوتية ومرئية وجلسات فردية، بلغة قريبة وفي الوقت الذي يناسبك.</p>
+    <a class="btn btn-pill" href="vip.html">{ic("crown")}ابدأ رحلتك مع استيقظ VIP</a><a class="btn btn-line btn-sm" href="library.html">تصفّح التمارين</a></div>
+</div></section>
+<section class="band"><div class="wrap statement"><span class="eyebrow center">أهلاً بك</span>
+  <h2>صوت هادئ يوقظ فيك <em>ما نسيته عن نفسك</em></h2>
+  <p class="lead">إن كنت تبحث عن مساحة آمنة تفهم فيها مشاعرك، وتفكّ تعلّقك، وتعود إلى سكينتك، فأنت في المكان الصحيح.</p></div></section>
+<section class="glow-band"><div class="corner c1"><img src="assets/img/coach-green.webp" alt="" loading="lazy"></div><div class="corner c2"><img src="assets/img/coach-navy.webp" alt="" loading="lazy"></div>
+  <div class="wrap"><h2>أنا مرفت،</h2><p>وأعدك أن دخولك هنا ليس كخروجك. ما تبحث عنه من هدوء ووضوح ومعنى، يبدأ من الداخل.</p><span class="gold">أمسك يدي، ولنبدأ معاً…</span></div></section>
+{MARQUEE}
+<section class="band"><div class="wrap whois">
+  <div class="framed"><div class="img"><img src="assets/img/coach-white-square.webp" alt="د. مرفت سرور" width="900" height="900" loading="lazy"></div></div>
+  <div class="split-body"><span class="eyebrow">من هي مرفت سرور؟</span><h2 style="font-family:var(--display);font-size:clamp(1.9rem,3.8vw,2.8rem)">كوتش وعي وتشافي، ورفيقة رحلة العودة إلى الذات</h2>
+    <p class="lead">معتمدة من الاتحاد الدولي للكوتشينج ICF. تجمع بين الكوتشينج والديكودنج وتمارين التشافي، لترافقك من الفهم إلى التطبيق اليومي. <span class="demo">نبذة مؤقتة</span></p>
+    <div class="stats3"><div><b>—</b>سنوات خبرة</div><div><b>—</b>ساعة تدريبية</div><div><b>—</b>متدرّب</div></div><span class="demo" style="justify-self:start">تُكتب أرقامك الفعلية هنا</span>
+    <div><a class="btn btn-pill" href="about.html">تعرّف على مرفت</a></div></div></div></section>
+<section class="band tint-blush"><div class="wrap vip2">
+  <div class="copy"><span class="eyebrow">البرنامج التدريبي الأساسي</span><h2><span class="foil-text">استيقظ VIP</span></h2>
+    <p class="lead">رحلة شهرية متدرّجة مع د. مرفت، تجمع الوعي والتطبيق اليومي والمتابعة. هنا يبدأ التغيير الذي يستمر.</p>
+    <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · وفّر شهرين</button></div>
+      <div class="amount" id="vipAmount">١٢٠٠ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-add="vip-m">انضم الآن</a></div>
+    <a class="btn btn-line btn-sm" href="vip.html" style="justify-self:start">كل تفاصيل البرنامج</a></div>
+  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","لقاءات شهرية مباشرة","لقاء جماعي مع د. مرفت للإجابة عن أسئلتك والتعمق في رحلتك."),("lib","المكتبة كاملة","كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك."),("path","خطة يومية ومتابعة","تطبيق واضح أسبوعاً بأسبوع، وتتابع تقدّمك من حسابك."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
+</div></section>
+<section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">ابدأ من هنا</span><h2 class="title">لكل طريق قوته في التحوّل من الداخل</h2></div>
+  <div class="tiles"><a class="tile" href="library.html"><img src="assets/art/attach.webp" alt="" loading="lazy"><span><b>التمارين المسجّلة</b><small>ديكودنج، فك تعلّق، تشافٍ وتأمل</small></span></a>
+  <a class="tile" href="vip.html"><img src="assets/img/coach-green.webp" alt="" loading="lazy"><span><b>استيقظ VIP</b><small>البرنامج التدريبي المتكامل</small></span></a>
+  <a class="tile" href="sessions.html"><img src="assets/img/coach-navy.webp" alt="" loading="lazy"><span><b>الجلسات الفردية</b><small>مساحة خاصة مع د. مرفت</small></span></a></div></div></section>
+<section class="wrap"><div class="split"><div class="portal-img"><div class="img"><img src="{course["img"]}" alt="" width="600" height="800" loading="lazy"></div><div class="float"><b>كورس صوتي</b>تسمعه في أي وقت ومن أي جهاز</div></div>
+  <div class="split-body"><span class="eyebrow">الكورس</span><h2>عين صاحية</h2><p class="lead">{course["short"]} كورس صوتي مقسّم إلى وحدات، يحفظ لك تقدّمك وتكمل من حيث توقفت.</p>
+    <ul class="mods">{mods}</ul>
+    <div class="buy">{price("ain-sahia")}<button class="btn btn-plum" type="button" data-add="ain-sahia">{ic("bag")}<span>أضف للسلة</span></button><a class="btn btn-line" href="{course["page"]}">تفاصيل الكورس</a></div></div></div></section>
+<section class="band tint-blush" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap">
+  <div class="head center"><span class="eyebrow center">المكتبة</span><h2 class="title">تمرين لكل ما تمر به</h2><p class="lead">تشتري كل تمرين منفصلاً ويبقى في حسابك، أو تفتحها كلها مع استيقظ VIP.</p></div>
+  {tabs()}<div class="shelf" data-shelf="home"></div><div class="center-cta"><a class="btn btn-pill" href="library.html">عرض كل التمارين</a></div></div></section>
+<section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">قصص من عاشوا التحوّل</span><h2 class="title">بكلماتهم</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء المشتركين الحقيقية</span></div><div class="reel" tabindex="0" aria-label="آراء المشتركين">{reel}</div></div></section>
+<section class="banner"><div class="tx"><span class="eyebrow">الجلسات الفردية</span><h2>عمل مباشر مع مرفت، في مساحة خاصة بك</h2><p class="lead">جلسة كوتشينج أونلاين تختار موعدها بتوقيت بلدك، ويصلك التأكيد والرابط والتذكير تلقائياً.</p><div class="ctas"><a class="btn btn-plum" href="sessions.html">{ic("cal")}احجز جلستك</a></div></div><div class="ph"><img src="assets/img/coach-navy.webp" alt="د. مرفت سرور" loading="lazy"></div></section>
+<section class="band" style="padding-bottom:0"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر أهدأ</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
+<section class="band book-band" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap split">{book3d()}
+  <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]} <span class="demo">نبذة مؤقتة</span></p>
+    {book_feats()}<div class="buy">{price("book-ghosts")}<button class="btn btn-plum" type="button" data-add="book-ghosts">{ic("bag")}<span>اشترِ الكتاب</span></button><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
+<section class="finale"><div class="wrap"><span class="eyebrow center">هديتك الأولى</span><h2>رحلتك تبدأ <span class="foil-text">بقرار واحد</span></h2><p class="lead">أنشئ حسابك المجاني، واستلم مقدمة تأمل السكينة والفصل الأول من الكتاب فوراً.</p><a class="btn btn-pill" href="register.html">{ic("gift")}ابدأ الآن</a></div></section>'''
 
 if __name__ == "__main__":
     build()
