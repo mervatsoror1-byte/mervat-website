@@ -139,7 +139,7 @@ SPRITE = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"
 def ic(n, cls="icon"): return f'<svg class="{cls}"><use href="#i-{n}"/></svg>'
 
 # ------------------------------------------------------------------ layout
-NAV = [("vip.html","استيقظ VIP","vip"),("course-ain-sahia.html","عين صاحية",""),("library.html","مكتبة التمارين",""),("books.html","الكتب",""),("sessions.html","الجلسات",""),("about.html","عن د. مرفت",""),("contact.html","تواصل","")]
+NAV = [("vip.html","استيقظ VIP","vip"),("course-ain-sahia.html","عين صاحية",""),("library.html","مكتبة التمارين",""),("books.html","الكتب",""),("sessions.html","الجلسات",""),("about.html","عن د. مرفت",""),("contact.html","تواصل",""),("policies.html","السياسات","")]
 
 def header(active):
     items = "".join(f'<li><a href="{h}" class="{c}" {"aria-current=page" if h==active else ""}>{t}</a></li>' for h,t,c in NAV)
@@ -164,9 +164,9 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
     </div>
     <div><h4>البرامج</h4><ul><li><a href="vip.html">استيقظ VIP</a></li><li><a href="course-ain-sahia.html">عين صاحية</a></li><li><a href="library.html">مكتبة التمارين</a></li><li><a href="bundles.html">الباقات</a></li><li><a href="books.html">الكتب</a></li><li><a href="sessions.html">الجلسات الفردية</a></li></ul></div>
     <div><h4>المساعدة</h4><ul><li><a href="about.html">عن د. مرفت</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="contact.html">تواصل معنا</a></li><li><a href="account.html">حسابي</a></li><li><a href="cart.html">السلة</a></li></ul></div>
-    <div><h4>السياسات</h4><ul><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
+    <div><h4>السياسات</h4><ul><li><a href="policies.html">كل السياسات</a></li><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
   </div>
-  <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة.</span><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
+  <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة. · <a href="terms.html" style="color:inherit">الشروط</a> · <a href="privacy.html" style="color:inherit">الخصوصية</a> · <a href="refund.html" style="color:inherit">الاسترداد</a> · <a href="delivery.html" style="color:inherit">تقديم الخدمة</a></span><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
 </div></footer>'''
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&display=swap">'
@@ -376,8 +376,16 @@ def build():
   <p class="muted" style="font-size:.85rem">جرّب طريقة دفع أخرى: إن كنت خارج مصر استخدم PayPal، وداخل مصر جرّب المحفظة أو فوري.</p></div></div></section>''', noindex=True)
 
     # ---------- legal
+    ltabs = lambda cur: '<nav class="ltabs" aria-label="السياسات">' + "".join(f'<a href="{f}" {"aria-current=page" if f==cur else ""}>{t}</a>' for f,t,_,_ in LEGAL) + '</nav>'
     for f, t, d, secs in LEGAL:
-        page(f, t, d, page_hero(t, "آخر تحديث: نوفمبر ٢٠٢٦") + f'<section class="band-sm"><div class="wrap"><div class="prose card"><div class="alert info" style="margin-bottom:12px">نص مبدئي يُراجع قانونياً قبل الإطلاق.</div>{"".join(f"<h2>{h}</h2><p>{b}</p>" for h,b in secs)}</div></div></section>')
+        toc = "".join(f'<li><a href="#s{i}">{h}</a></li>' for i,(h,_) in enumerate(secs))
+        body = "".join(f'<section id="s{i}"><h2>{h}</h2>{b}</section>' for i,(h,b) in enumerate(secs))
+        page(f, t, d, page_hero(t, "آخر تحديث: نوفمبر ٢٠٢٦", ("السياسات","policies.html"), (t, None)) + f'''<section class="band-sm"><div class="wrap">{ltabs(f)}<div class="legal">
+  <aside class="toc"><b>محتويات الصفحة</b><ol>{toc}</ol><a class="btn btn-line btn-sm" href="contact.html">لديك سؤال؟ تواصل معنا</a></aside>
+  <article class="prose card"><div class="alert info" style="margin-bottom:8px">يُرجى استكمال البيانات بين الأقواس [ ] ومراجعة النص مع مستشار قانوني قبل الإطلاق.</div>{body}</article></div></div></section>''', active="policies.html")
+    cards = "".join(f'<a class="pcard" href="{f}"><span class="ico">{ic(i)}</span><b>{t}</b><span class="muted">{d}</span><span class="link">اقرأ السياسة ←</span></a>' for (f,t,d,_),i in zip(LEGAL,["receipt","shield","infinity","devices"]))
+    page("policies.html", "السياسات والشروط", "الشروط والأحكام، سياسة الخصوصية، سياسة الاسترداد والإلغاء، وسياسة تقديم الخدمة لمنصة د. مرفت سرور.", page_hero("السياسات والشروط", "كل ما تحتاج معرفته قبل الشراء، بوضوح.") + f'''<section class="band-sm"><div class="wrap"><div class="pgrid">{cards}</div>
+  <div class="card" style="margin-top:24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between"><span><b style="color:var(--ink)">لم تجد إجابتك؟</b> <span class="muted">راجع الأسئلة الشائعة أو راسلنا مباشرة.</span></span><span class="ctas"><a class="btn btn-line btn-sm" href="faq.html">الأسئلة الشائعة</a><a class="btn btn-plum btn-sm" href="contact.html">تواصل معنا</a></span></div></div></section>''', active="policies.html")
 
     page("404.html", "الصفحة غير موجودة", "الصفحة غير موجودة.", f'<section class="band"><div class="wrap notfound"><span class="num foil-text">٤٠٤</span><h1 class="title">هذه الصفحة غير موجودة</h1><p class="lead">ربما تغيّر الرابط. جرّب البدء من هنا:</p><div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="index.html">الرئيسية</a><a class="btn btn-line" href="library.html">مكتبة التمارين</a></div></div></section>', noindex=True)
 
@@ -441,12 +449,8 @@ FAQ = {
  "sessions":[("كيف تتم الجلسة؟","أونلاين عبر Zoom أو Google Meet، ويصلك الرابط على بريدك."),("هل يمكن تغيير الموعد؟","نعم، حتى ٢٤ ساعة قبل الجلسة من حسابك دون رسوم."),("بأي توقيت تظهر المواعيد؟","تظهر بتوقيت القاهرة مع تحويلها تلقائياً لتوقيت بلدك في الموقع الفعلي.")],
  "books":[("هل يمكن تحميل الكتاب؟","لا، يُقرأ داخل حسابك فقط حفاظاً على حقوق المحتوى، بنسخة تحمل اسمك."),("هل أستطيع القراءة دون إنترنت؟","القراءة تحتاج اتصالاً بالإنترنت لأن الكتاب محفوظ في حسابك.")],
 }
-LEGAL = [
- ("terms.html","الشروط والأحكام","شروط استخدام موقع د. مرفت سرور وشراء المحتوى الرقمي.",[("التعريف","يقدّم الموقع محتوى رقمياً (كورسات صوتية وتمارين مرئية وكتباً إلكترونية) واشتراكات وجلسات فردية أونلاين."),("الحساب","المستخدم مسؤول عن سرية بيانات دخوله، ولا يجوز مشاركة الحساب مع آخرين."),("الأسعار","الأسعار بالجنيه المصري للمقيمين في مصر وبالدولار الأمريكي لباقي الدول، ويُحدَّد السعر حسب بلد الفاتورة."),("حقوق الملكية","كل المحتوى مملوك لـ د. مرفت سرور، ويُمنع نسخه أو تسجيله أو إعادة نشره."),("المحتوى ليس بديلاً طبياً","المحتوى لا يغني عن الاستشارة الطبية أو النفسية المتخصصة.")]),
- ("privacy.html","سياسة الخصوصية","كيف نجمع بياناتك ونحميها.",[("البيانات التي نجمعها","الاسم والبريد الإلكتروني وبيانات الطلبات وتقدّمك في المحتوى."),("بيانات الدفع","لا نحفظ بيانات البطاقات؛ تتم المعالجة لدى بوابات الدفع المعتمدة (Paymob، البنك الأهلي، PayPal)."),("الاستخدام","نستخدم البيانات لتقديم الخدمة وإرسال التأكيدات والتذكيرات، ولا نبيعها لأي طرف."),("حقوقك","يمكنك طلب تعديل بياناتك أو حذف حسابك في أي وقت.")]),
- ("refund.html","سياسة الاسترداد والإلغاء","شروط الاسترداد وإلغاء الاشتراكات والجلسات.",[("المحتوى الرقمي","نظراً لإتاحة المحتوى فور الشراء، يمكن طلب الاسترداد خلال ٧ أيام إذا لم يُفتح أكثر من الدرس الأول."),("الاشتراكات","يمكن إلغاء التجديد في أي وقت، ويبقى الوصول حتى نهاية الفترة المدفوعة."),("الجلسات","يُسترد المبلغ أو يُعاد جدولة الجلسة إذا أُلغيت قبل ٢٤ ساعة على الأقل."),("طريقة الطلب","من صفحة التواصل مع ذكر رقم الطلب.")]),
- ("delivery.html","سياسة تقديم الخدمة","كيف ومتى تحصل على المحتوى والخدمات.",[("المحتوى الرقمي","يُتاح فوراً في حسابك بعد تأكيد الدفع، ويصلك بريد بالتأكيد."),("الدفع عبر فوري","يُتاح المحتوى بعد إتمام السداد في المنفذ وتأكيده من البوابة."),("الجلسات","يصلك رابط الجلسة على البريد قبل موعدها، مع تذكيرين."),("لا يوجد شحن","كل المنتجات رقمية، ولا توجد منتجات تُشحن.")]),
-]
+import sys; sys.path.insert(0, str(Path(__file__).resolve().parent))
+from legal_content import LEGAL
 
 def home_body():
     course = BY["ain-sahia"]
