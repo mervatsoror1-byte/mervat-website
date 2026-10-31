@@ -138,7 +138,7 @@ function lineHTML(c, i, compact){
 function renderCart(){
   const box = $("#cartPage"), t = totals();
   if (!S.cart.length){ box.innerHTML = `<div class="result"><div class="badge" style="background:var(--blush);color:var(--plum)">${icon("bag")}</div><h2>سلتك فارغة</h2><p class="lead">ابدأ بتمرين قصير، أو انضم إلى استيقظ VIP لتفتح المكتبة كلها.</p><div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="vip.html">استيقظ VIP</a><a class="btn btn-line" href="library.html">تصفّح التمارين</a></div></div>`; return; }
-  box.innerHTML = `<div class="cart-grid"><div class="lines">${S.cart.map((c,i)=>lineHTML(c,i)).join("")}</div>
+  box.innerHTML = `<div class="cart-grid"><div class="lines">${S.cart.map((c,i)=>lineHTML(c,i)).join("")}${upsellHTML()}</div>
     <aside class="card summary"><h3>ملخص الطلب</h3>
       <div class="sumrow"><span>المجموع</span><span>${fmt(t.sub)}</span></div>
       ${t.disc ? `<div class="sumrow" style="color:var(--ok)"><span>خصم ${esc(t.code)}</span><span>− ${fmt(t.disc)}</span></div>` : ""}
@@ -147,6 +147,20 @@ function renderCart(){
       <a class="btn btn-gold btn-block" href="checkout.html">إتمام الشراء</a>
       <p class="secure">${icon("lock")}دفع آمن ومشفّر · وصول فوري بعد الدفع</p>
     </aside></div>`;
+}
+
+function upsellHTML(){
+  const ids = S.cart.map(c => c.id), hasVip = ids.some(i => P[i].kind === "vip") || S.vip;
+  // 1) a bundle that contains something in the cart
+  const b = D.bundles.find(b => !ids.includes(b.id) && b.items.some(i => ids.includes(i)) && !b.items.every(i => hasAccess(i)));
+  let h = "";
+  if (b){ const p = P[b.id], full = b.items.reduce((s,i)=>s+priceOf(P[i]),0);
+    h += `<div class="upsell"><span class="ico">${icon("layers")}</span><div><b>أكمل المسار: ${esc(p.title)}</b><p>${b.items.map(i=>esc(P[i].title)).join(" · ")}، بسعر ${money(p.eg,p.us)} بدلاً من ${fmt(full)}.</p></div><button class="btn btn-plum btn-sm" type="button" data-swap="${b.id}">استبدل بالباقة</button></div>`; }
+  // 2) VIP when the cart holds 2+ paid items
+  const paid = S.cart.filter(c => ["exercise","course","bundle"].includes(P[c.id].kind));
+  if (!hasVip && paid.length){ const v = P["vip-m"];
+    h += `<div class="upsell"><span class="ico">${icon("crown")}</span><div><b>كل المكتبة مع استيقظ VIP</b><p>بدلاً من الشراء واحداً واحداً: كل التمارين وعين صاحية ولقاءات مباشرة بـ ${money(v.eg,v.us)} شهرياً.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>`; }
+  return h;
 }
 
 /* ---------- checkout ---------- */
@@ -396,6 +410,8 @@ document.addEventListener("click", e => {
   if (add){ e.preventDefault(); const id = add.dataset.add; if (S.cart.some(c => c.id === id) && !add.classList.contains("add") && P[id].kind !== "session"){ location.href = "cart.html"; return; } addToCart(id); return; }
   const fav = e.target.closest("[data-fav]");
   if (fav){ e.preventDefault(); const id = fav.dataset.fav; S.favs = S.favs.includes(id) ? S.favs.filter(x => x !== id) : S.favs.concat(id); save(); fav.setAttribute("aria-pressed", S.favs.includes(id)); toast(S.favs.includes(id) ? "حُفظت في المفضلة" : "أُزيلت من المفضلة"); return; }
+  const sw = e.target.closest("[data-swap]");
+  if (sw){ const b = D.bundles.find(x => x.id === sw.dataset.swap); S.cart = S.cart.filter(c => !b.items.includes(c.id)); S.cart.push({id:b.id}); save(); paintAll(); toast("تم الاستبدال بالباقة ووفّرت"); return; }
   const rm = e.target.closest("[data-rm]");
   if (rm){ S.cart.splice(+rm.dataset.rm, 1); save(); paintAll(); return; }
   const rg = e.target.closest(".region button");
@@ -415,6 +431,15 @@ document.addEventListener("click", e => {
 document.addEventListener("input", e => { if (e.target.id === "q"){ shelfQuery = e.target.value.trim(); renderDynamic(); } });
 window.addEventListener("hashchange", () => { if ($("#accountPage")) renderAccount(); });
 
+/* ---------- mega menu ---------- */
+const megaBtn = $("#megaBtn");
+if (megaBtn){
+  const li = megaBtn.parentElement;
+  megaBtn.addEventListener("click", e => { e.stopPropagation(); const o = li.classList.toggle("open"); megaBtn.setAttribute("aria-expanded", o); });
+  document.addEventListener("click", e => { if (!li.contains(e.target)){ li.classList.remove("open"); megaBtn.setAttribute("aria-expanded", "false"); } });
+  document.addEventListener("keydown", e => { if (e.key === "Escape"){ li.classList.remove("open"); megaBtn.setAttribute("aria-expanded", "false"); } });
+}
+
 /* ---------- menu ---------- */
 const burger = $("#burger"), menu = $("#menu");
 if (burger) burger.addEventListener("click", () => { const o = menu.classList.toggle("open"); burger.setAttribute("aria-expanded", o); });
@@ -422,6 +447,7 @@ if (burger) burger.addEventListener("click", () => { const o = menu.classList.to
 /* ---------- success page ---------- */
 const sx = $("#successBox");
 if (sx){ let o = null; try { o = JSON.parse(ss("lastOrder") || "null"); } catch(e){}
+  const up = $("#successUpsell"); if (up && S.vip) up.hidden = true;
   if (o){ $("#oNo").textContent = o.no; $("#oTotal").textContent = o.total; $("#oEmail").textContent = o.email; $("#oItems").innerHTML = o.items.map(i => `<li>${esc(i)}</li>`).join(""); } }
 
 /* ---------- gold dust ---------- */
