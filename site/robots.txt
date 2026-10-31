@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /account.html
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /learn.html
+Disallow: /reader.html
+Sitemap: https://mervatsoror.com/sitemap.xml
