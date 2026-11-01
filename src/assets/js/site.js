@@ -74,17 +74,17 @@ function addToCart(id, extra){
 
 /* ---------- product card ---------- */
 function card(p){
-  const owned = hasAccess(p.id);
-  return `<article class="item" data-cat="${p.cat}">
-    <a class="pic" href="${p.page}"><img src="${p.img}" alt="" width="600" height="800" loading="lazy">
-      ${p.isNew ? '<span class="new">جديد</span>' : ''}${owned ? '<span class="owned">في مكتبتك</span>' : ''}
-      <span class="listen">${icon("play")}معاينة مجانية</span></a>
-    <button class="fav" type="button" data-fav="${p.id}" aria-pressed="false" aria-label="احفظ في المفضلة">${icon("heart")}</button>
-    <span class="cat">${esc(p.catLabel)}</span>
+  const owned = hasAccess(p.id), lessons = p.lessonsCount || 1;
+  const kind = p.kind === "course" ? "كورس" : p.kind === "book" ? "كتاب" : "تمرين";
+  return `<article class="scard" data-cat="${p.cat}">
+    <div class="sc-img"><a class="ph" href="${p.page}" aria-label="${esc(p.title)}"><img src="assets/brand/logo-icon-gold.webp" alt="" loading="lazy"></a>
+      <button class="sc-fav" type="button" data-fav="${p.id}" aria-pressed="false" aria-label="احفظ في المفضلة">${icon("heart")}</button>
+      ${p.isNew ? '<span class="sc-new">جديد</span>' : ''}${owned ? '<span class="sc-own">في مكتبتك</span>' : ''}</div>
+    <div class="sc-tags"><span>${kind}</span><span>${esc(p.catLabel)}</span><span>Online</span></div>
     <h3><a href="${p.page}">${esc(p.title)}</a></h3>
-    <span class="meta">${esc(p.meta)}</span>
-    <div class="row"><span class="price" data-price="${p.id}">${money(p.eg,p.us)}</span>
-      ${owned ? `<a class="add in" href="${p.learn}" aria-label="ابدأ ${esc(p.title)}">${icon("play")}</a>` : `<button class="add" type="button" data-add="${p.id}" aria-label="أضف ${esc(p.title)} للسلة">${icon("plus")}</button>`}</div>
+    <span class="sc-meta">${icon("lessons")}${ar(lessons)} ${lessons > 2 ? "دروس" : "درس"}</span>
+    <span class="sc-price" data-price="${p.id}">${money(p.eg,p.us)}</span>
+    <div class="sc-act">${owned ? `<a class="btn btn-gold btn-sm" href="${p.learn}">ابدأ الآن</a>` : `<a class="btn btn-gold btn-sm" href="${p.page}">عرض التفاصيل</a><button class="add" type="button" data-add="${p.id}" aria-label="أضف ${esc(p.title)} للسلة">${icon("plus")}</button>`}</div>
   </article>`;
 }
 function bundleCard(b){
@@ -99,13 +99,15 @@ function bundleCard(b){
 }
 
 /* ---------- dynamic regions ---------- */
-let shelfFilter = "all", shelfQuery = "";
+let shelfFilter = "all", shelfQuery = "", shelfSort = "new";
 function renderDynamic(){
   $$("[data-shelf]").forEach(el => {
     const mode = el.dataset.shelf;
-    let list = D.products.filter(p => p.kind === "exercise");
-    if (mode === "home") list = list.slice(0, 8);
-    if (mode === "related"){ const cur = el.dataset.current; list = list.filter(p => p.id !== cur).slice(0, 4); }
+    let list = D.products.filter(p => p.kind === "exercise" || p.kind === "course");
+    if (shelfSort === "low") list = list.slice().sort((a,b) => a.eg - b.eg);
+    if (shelfSort === "high") list = list.slice().sort((a,b) => b.eg - a.eg);
+    if (mode === "home") list = list.slice(0, 9);
+    if (mode === "related"){ const cur = el.dataset.current; list = list.filter(p => p.id !== cur).slice(0, 3); }
     if (mode === "favs") list = D.products.filter(p => S.favs.includes(p.id));
     if (mode === "library" || mode === "home"){
       if (shelfFilter !== "all") list = list.filter(p => p.cat === shelfFilter);
@@ -143,6 +145,7 @@ function renderCart(){
   if (!S.cart.length){ box.innerHTML = `<div class="result"><div class="badge" style="background:var(--blush);color:var(--plum)">${icon("bag")}</div><h2>سلتك فارغة</h2><p class="lead">ابدأ بتمرين قصير، أو انضم إلى استيقظ VIP لتفتح المكتبة كلها.</p><div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="vip.html">استيقظ VIP</a><a class="btn btn-line" href="library.html">تصفّح التمارين</a></div></div>`; return; }
   box.innerHTML = `<div class="cart-grid"><div class="lines">${S.cart.map((c,i)=>lineHTML(c,i)).join("")}${upsellHTML()}</div>
     <aside class="card summary"><h3>ملخص الطلب</h3>
+      <div class="cur-switch"><span>عملة الدفع</span><div class="region" role="group" aria-label="عملة الدفع"><button type="button" data-region="eg" aria-pressed="${S.region==="eg"}">جنيه مصري</button><button type="button" data-region="intl" aria-pressed="${S.region!=="eg"}">دولار</button></div></div>
       <div class="sumrow"><span>المجموع</span><span>${fmt(t.sub)}</span></div>
       ${t.disc ? `<div class="sumrow" style="color:var(--ok)"><span>خصم ${esc(t.code)}</span><span>− ${fmt(t.disc)}</span></div>` : ""}
       <div class="sumrow total"><span>الإجمالي</span><span>${fmt(t.total)}</span></div>
@@ -204,7 +207,8 @@ function renderCheckout(){
       <p class="secure">نموذج تجريبي: لن يُخصم أي مبلغ. <a href="failed.html">شاهد صفحة فشل الدفع</a></p>
     </div>
    </form>
-   <aside class="card summary"><h3>طلبك</h3><div class="lines">${S.cart.map((c,i)=>lineHTML(c,i,true)).join("")}</div>
+   <aside class="card summary"><h3>طلبك</h3>
+     <div class="cur-switch"><span>عملة الدفع</span><div class="region" role="group" aria-label="عملة الدفع"><button type="button" data-region="eg" aria-pressed="${S.region==="eg"}">جنيه مصري</button><button type="button" data-region="intl" aria-pressed="${S.region!=="eg"}">دولار</button></div></div><div class="lines">${S.cart.map((c,i)=>lineHTML(c,i,true)).join("")}</div>
      <div class="sumrow"><span>المجموع</span><span>${fmt(t.sub)}</span></div>
      ${t.disc ? `<div class="sumrow" style="color:var(--ok)"><span>خصم</span><span>− ${fmt(t.disc)}</span></div>` : ""}
      <div class="sumrow total"><span>الإجمالي</span><span>${fmt(t.total)}</span></div></aside>
@@ -418,7 +422,7 @@ document.addEventListener("click", e => {
   const rm = e.target.closest("[data-rm]");
   if (rm){ S.cart.splice(+rm.dataset.rm, 1); save(); paintAll(); return; }
   const rg = e.target.closest(".region button");
-  if (rg){ S.region = rg.dataset.region; save(); paintAll(); if ($("#checkoutPage")) renderCheckout(); return; }
+  if (rg){ S.region = rg.dataset.region; save(); paintAll(); return; }
   const tab = e.target.closest("[data-filter]");
   if (tab){ shelfFilter = tab.dataset.filter; $$("[data-filter]").forEach(t => t.setAttribute("aria-pressed", t === tab)); renderDynamic(); return; }
   const plan = e.target.closest("[data-plan]");
@@ -431,6 +435,7 @@ document.addEventListener("click", e => {
   if (prev){ location.href = "learn.html#" + prev.dataset.preview; return; }
   if (e.target.closest(".js-demo-login")){ S.user = {name:"مشتركة تجريبية", email:"demo@example.com", since:new Date().toISOString()}; if (!S.owned.length) S.owned = ["ain-sahia","attach","breath"]; save(); location.href = "account.html"; return; }
 });
+document.addEventListener("change", e => { if (e.target.id === "sortSel"){ shelfSort = e.target.value; renderDynamic(); } });
 document.addEventListener("input", e => { if (e.target.id === "q"){ shelfQuery = e.target.value.trim(); renderDynamic(); } });
 window.addEventListener("hashchange", () => { if ($("#accountPage")) renderAccount(); });
 
@@ -446,6 +451,16 @@ if (megaBtn){
 /* ---------- header on hero: becomes a pill after scrolling ---------- */
 const hh = $(".site-header.on-hero");
 if (hh){ const onS = () => hh.classList.toggle("scrolled", scrollY > 40); addEventListener("scroll", onS, {passive:true}); onS(); }
+
+/* ---------- VIP popup (home, once per visit) ---------- */
+const pop = $("#vipPop");
+if (pop && !ss("popSeen")){
+  setTimeout(() => { pop.hidden = false; ss("popSeen", "1"); }, 1800);
+  const close = () => pop.hidden = true;
+  $("#popClose").addEventListener("click", close);
+  pop.addEventListener("click", e => { if (e.target === pop) close(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+}
 
 /* ---------- floating help ---------- */
 const helpBtn = $("#helpBtn"), helpPanel = $("#helpPanel");
@@ -483,7 +498,7 @@ if (sx){ let o = null; try { o = JSON.parse(ss("lastOrder") || "null"); } catch(
 $$("canvas.sparkle").forEach(c => {
   const x = c.getContext("2d"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; let w, h, dots = [];
   function size(){ const r = c.getBoundingClientRect(), d = Math.min(devicePixelRatio||1, 2); w = r.width; h = r.height; c.width = w*d; c.height = h*d; x.setTransform(d,0,0,d,0,0);
-    dots = Array.from({length: Math.round(w*h/9000)}, () => ({x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.6+.4, p:Math.random()*6.28, s:Math.random()*.25+.05})); }
+    dots = Array.from({length: Math.round(w*h/(+c.dataset.density || 9000))}, () => ({x:Math.random()*w, y:Math.random()*h, r:Math.random()*1.6+.4, p:Math.random()*6.28, s:Math.random()*.25+.05})); }
   function draw(t){ x.clearRect(0,0,w,h);
     for (const d of dots){ const a = .35 + .65*Math.abs(Math.sin(d.p + t/1400));
       if (!reduce){ d.y -= d.s; if (d.y < -4){ d.y = h + 4; d.x = Math.random()*w; } }

@@ -9,7 +9,7 @@ def waves(w,h,bg_top,bg_bot,line_rgb,seed,glow_alpha,n=70,dark=True):
     t=(y/h)[...,None]; base=np.array(bg_top)*(1-t)+np.array(bg_bot)*t
     # radial light
     cx,cy=w*.62,h*.45; r=np.sqrt(((x-cx)/(w*.6))**2+((y-cy)/(h*.8))**2)[...,None]
-    base=base+np.clip(1-r,0,1)**2*np.array([60,30,40] if dark else [10,8,0])
+    base=base+np.clip(1-r,0,1)**2*np.array([30,40,60] if dark else [10,8,0])
     img=Image.fromarray(np.clip(base,0,255).astype(np.uint8)).convert('RGBA')
     S=2; L=Image.new('L',(w*S,h*S),0); d=ImageDraw.Draw(L)
     for k in range(n):
@@ -28,6 +28,6 @@ def waves(w,h,bg_top,bg_bot,line_rgb,seed,glow_alpha,n=70,dark=True):
         sd.ellipse((xx-rr,yy-rr,xx+rr,yy+rr),fill=(255,232,170,rnd.randint(90,230)))
     img.alpha_composite(sp.filter(ImageFilter.GaussianBlur(2))); img.alpha_composite(sp)
     return img.convert('RGB')
-waves(1800,760,(62,28,53),(40,16,34),(232,192,105),1,.9).save(f"{OUT}/waves-plum.webp",'WEBP',quality=84,method=6)
-waves(1800,1000,(253,249,242),(248,236,238),(214,170,80),2,.55,n=60,dark=False).save(f"{OUT}/waves-light.webp",'WEBP',quality=84,method=6)
+waves(1800,760,(40,77,146),(24,48,100),(214,180,110),1,.9).save(f"{OUT}/waves-plum.webp",'WEBP',quality=84,method=6)
+waves(1800,1000,(253,249,242),(248,236,238),(197,160,89),2,.55,n=60,dark=False).save(f"{OUT}/waves-light.webp",'WEBP',quality=84,method=6)
 print('ok')

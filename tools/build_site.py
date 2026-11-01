@@ -34,16 +34,16 @@ PRODUCTS = [
        desc=["التعلّق يجعل سلامك الداخلي مرهوناً بشيء خارجك. في هذا التمرين المرئي تمشي مع د. مرفت خطوة بخطوة لتلاحظ التعلّق، وتفهم ما يحاول أن يحميه، ثم تحرّره بهدوء.","يُطبّق يومياً لمدة ٢١ يوماً، ومعه خطة تطبيق قصيرة."],
        forWho=["تعلّق بعلاقة انتهت أو لم تبدأ","قلق دائم من فقدان شخص أو شيء","صعوبة في ترك النتائج لله","تفكير متكرر لا يتوقف"],
        modules=lessons_ex("تمرين فك التعلّق كاملاً","20:15")),
-  dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="ديكودنج النسخة الأصلية", cat="decode", catLabel="ديكودنج", img="assets/art/decode.webp", eg=420, us=16, isNew=True, vipIncluded=True,
+  dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="Decoding النسخة الأصلية", cat="decode", catLabel="Decoding", img="assets/art/decode.webp", eg=420, us=16, isNew=True, vipIncluded=True,
        meta="٤ دروس · ٣٥ دقيقة", short="فكّ الشيفرات التي غطّت نسختك الأصلية، لتتذكّر من أنت قبل البرمجة.",
-       desc=["نحمل منذ الطفولة رسائل وقناعات ليست لنا. «ديكودنج النسخة الأصلية» يساعدك على تمييز هذه البرمجة وفكّها، والاتصال بنسختك الأصلية الحرة.","يتكون من تمهيد وتمرين رئيسي وتطبيق يومي."],
+       desc=["نحمل منذ الطفولة رسائل وقناعات ليست لنا. «Decoding النسخة الأصلية» يساعدك على تمييز هذه البرمجة وفكّها، والاتصال بنسختك الأصلية الحرة.","يتكون من تمهيد وتمرين رئيسي وتطبيق يومي."],
        forWho=["تشعر أنك لا تعيش حياتك أنت","تحمل قناعات قاسية عن نفسك","تريد أن تعرف ماذا تريد فعلاً","تبحث عن هوية أهدأ وأصدق"],
-       modules=[{"title":"الديكودنج","lessons":[["ما هي النسخة الأصلية؟","6:40",True],["رصد البرمجة","9:20"],["تمرين الديكودنج","14:30"],["التثبيت اليومي","5:10"]]}]),
-  dict(id="decode-acceptance", kind="exercise", slug="decoding-light-of-acceptance", title="ديكودنج نور القبول", cat="decode", catLabel="ديكودنج", img="assets/art/light.webp", eg=340, us=14, vipIncluded=True,
+       modules=[{"title":"الـ Decoding","lessons":[["ما هي النسخة الأصلية؟","6:40",True],["رصد البرمجة","9:20"],["تمرين الـ Decoding","14:30"],["التثبيت اليومي","5:10"]]}]),
+  dict(id="decode-acceptance", kind="exercise", slug="decoding-light-of-acceptance", title="Decoding نور القبول", cat="decode", catLabel="Decoding", img="assets/art/light.webp", eg=340, us=14, vipIncluded=True,
        meta="٣ دروس · ٣٠ دقيقة", short="أن تقبل نفسك وما حدث لك، فيتسع داخلك للنور والسكينة.",
-       desc=["القبول ليس استسلاماً، بل توقف عن مقاومة ما هو موجود حتى تستطيع تغييره. في هذا الديكودنج تفكّ شيفرة الرفض وتسمح لنور القبول أن يدخل.","يُستخدم بعد «النسخة الأصلية» أو وحده."],
+       desc=["القبول ليس استسلاماً، بل توقف عن مقاومة ما هو موجود حتى تستطيع تغييره. في هذا الـ Decoding تفكّ شيفرة الرفض وتسمح لنور القبول أن يدخل.","يُستخدم بعد «النسخة الأصلية» أو وحده."],
        forWho=["رفض لجسدك أو ماضيك أو ظروفك","صراع داخلي مستمر","لوم متكرر للنفس أو للآخرين","رغبة في سلام حقيقي"],
-       modules=lessons_ex("ديكودنج نور القبول","18:45")),
+       modules=lessons_ex("Decoding نور القبول","18:45")),
   dict(id="inner-child", kind="exercise", slug="inner-child-healing", title="تمرين تشافي الطفل الداخلي", cat="heal", catLabel="التشافي", img="assets/art/child.webp", eg=320, us=12, vipIncluded=True,
        meta="تمرين مرئي · ٢٥ دقيقة", short="تحتضن طفلك الداخلي وتعطيه ما احتاجه ولم يجده.",
        desc=["الطفل الذي كنته ما زال يعيش داخلك، ويتأثر حين يُرفض أو يُهمل. هذا التمرين المرئي يعيد الاتصال به ويمنحه الأمان والحب.","يُنصح به لمن يلاحظ ردود فعل عاطفية أكبر من الموقف."],
@@ -54,11 +54,11 @@ PRODUCTS = [
        desc=["تقنية تنفّس بسيطة وعميقة تُهدّئ الجهاز العصبي وتعيد الاتساق بين إيقاع القلب والتنفس.","مناسب قبل النوم، وقبل المواقف الصعبة، وفي بداية اليوم."],
        forWho=["توتر وقلق يومي","صعوبة في النوم","تشتت وكثرة تفكير","رغبة في عادة يومية قصيرة"],
        modules=lessons_ex("تنفّس الاتساق القلبي","11:40")),
-  dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين برايمنج الصباح", cat="daily", catLabel="روتين يومي", img="assets/art/morning.webp", eg=200, us=8, vipIncluded=True,
+  dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/art/morning.webp", eg=200, us=8, vipIncluded=True,
        meta="صوتي · ١٠ دقائق", short="عشر دقائق كل صباح تهيّئ عقلك وقلبك ليوم أوضح وأخف.",
-       desc=["البرايمنج يضبط حالتك الداخلية قبل أن يبدأ اليوم: امتنان، ونية، وتصوّر لما تريد أن تعيشه.","يُسمع كل صباح، ويصبح عادة خلال أسابيع."],
+       desc=["الـ Priming يضبط حالتك الداخلية قبل أن يبدأ اليوم: امتنان، ونية، وتصوّر لما تريد أن تعيشه.","يُسمع كل صباح، ويصبح عادة خلال أسابيع."],
        forWho=["تبدأ يومك بقلق أو ثقل","تريد روتيناً صباحياً قصيراً","تحب أن تحدد نيتك لليوم","تبحث عن طاقة أهدأ"],
-       modules=lessons_ex("برايمنج الصباح","10:05")),
+       modules=lessons_ex("Priming الصباح","10:05")),
   dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي الروحي", cat="heal", catLabel="التشافي", img="assets/art/peace.webp", eg=180, us=7, vipIncluded=True,
        meta="صوتي · ١٥ دقيقة", short="توكيدات مختارة بصوت د. مرفت تزرع السلام في العقل الباطن.",
        desc=["توكيدات صوتية هادئة تُسمع بتركيز أو قبل النوم، تساعد على استبدال الحديث الداخلي القاسي بلغة سلام ورحمة.","يمكن تكرارها يومياً."],
@@ -71,7 +71,7 @@ PRODUCTS = [
        modules=lessons_ex("تأمل السكينة والتنظيف","19:30")),
   dict(id="book-ghosts", kind="book", slug="book-ghosts", title="عندما تولد في عائلة من الأشباح", cat="book", catLabel="كتاب إلكتروني", img="assets/art/book.webp", eg=350, us=14, vipIncluded=False,
        meta="كتاب · يُقرأ داخل الموقع", short="عن الموروث العائلي الذي نحمله دون أن نراه، وكيف نتحرر منه بوعي ورحمة.", learn="reader.html"),
-  dict(id="b-decode", kind="bundle", title="مسار الديكودنج", catLabel="باقة", img="assets/art/decode.webp", eg=650, us=25, page="bundles.html"),
+  dict(id="b-decode", kind="bundle", title="مسار Decoding", catLabel="باقة", img="assets/art/decode.webp", eg=650, us=25, page="bundles.html"),
   dict(id="b-free", kind="bundle", title="مسار التحرّر", catLabel="باقة", img="assets/art/attach.webp", eg=640, us=24, page="bundles.html"),
   dict(id="b-calm", kind="bundle", title="مسار السكينة اليومية", catLabel="باقة", img="assets/art/morning.webp", eg=590, us=22, page="bundles.html"),
   dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-navy.webp", eg=600, us=25, page="sessions.html"),
@@ -91,7 +91,7 @@ BUNDLES = [
 ]
 BY = {p["id"]: p for p in PRODUCTS}
 EXERCISES = [p for p in PRODUCTS if p["kind"] == "exercise"]
-CATS = [("all","الكل"),("decode","ديكودنج"),("free","فك التعلّق"),("heal","التشافي"),("breath","تنفّس وتأمل"),("daily","روتين يومي")]
+CATS = [("all","الكل"),("course","الكورسات"),("decode","Decoding"),("priming","Priming"),("free","فك التعلّق"),("heal","التشافي"),("breath","تنفّس وتأمل")]
 COUNTRIES = [("EG","مصر"),("SA","السعودية"),("AE","الإمارات"),("KW","الكويت"),("QA","قطر"),("BH","البحرين"),("OM","عُمان"),("JO","الأردن"),("LB","لبنان"),("MA","المغرب"),("DZ","الجزائر"),("TN","تونس"),("US","الولايات المتحدة"),("GB","المملكة المتحدة"),("CA","كندا"),("DE","ألمانيا"),("XX","دولة أخرى")]
 BOOK_PAGES = [
   "<h2>المقدمة</h2><p>هذه صفحة نموذجية لقارئ الكتاب. في الموقع الفعلي تظهر هنا صفحات كتاب «عندما تولد في عائلة من الأشباح» من ملف PDF، صفحةً بعد صفحة، دون أي إمكانية للتحميل.</p><p>لاحظ العلامة المائية الخفيفة باسم حسابك على الصفحة: هي ما يحمي الكتاب من النسخ والمشاركة.</p>",
@@ -105,7 +105,10 @@ DATA = {"products": PRODUCTS, "bundles": BUNDLES, "countries": COUNTRIES, "bookP
 
 # ------------------------------------------------------------------ icons
 ICONS = {
- "bag":'<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
+ "bag":'<circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/><path d="M2.5 4h2.4l2.4 11h10.6L20.5 7.5H6.2"/>',
+ "share":'<circle cx="17.5" cy="5.5" r="2.3"/><circle cx="6.5" cy="12" r="2.3"/><circle cx="17.5" cy="18.5" r="2.3"/><path d="M8.6 10.9l6.8-4.1M8.6 13.1l6.8 4.1"/>',
+ "sort":'<path d="M4 7h16M7 12h10M10 17h4"/>',
+ "lessons":'<rect x="4" y="4" width="13" height="16" rx="2"/><path d="M8 9h5M8 13h5M20 7v12"/>',
  "plus":'<path d="M12 5v14M5 12h14"/>', "check":'<path d="M5 12.5l4.2 4.2L19 7"/>',
  "heart":'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
  "user":'<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.4-3.6 4.2-5.2 7.5-5.2s6.1 1.6 7.5 5.2"/>',
@@ -147,24 +150,24 @@ def mega():
     ex = lambda cat: [(p["page"], p["title"], p["meta"]) for p in EXERCISES if p["cat"] in cat]
     return f'''<div class="mega" id="mega"><div class="mega-in">
       {col("البرامج", [("vip.html","استيقظ VIP","البرنامج التدريبي · اشتراك"),("course-ain-sahia.html","عين صاحية","كورس صوتي · ٣ وحدات"),("bundles.html","الباقات","مسارات بسعر أقل")])}
-      {col("ديكودنج وتحرّر", ex(("decode","free")))}
-      {col("تشافٍ وسكينة", ex(("heal","breath","daily")))}
-      <div class="mcol mfeat"><a class="mcard" href="library.html"><img src="assets/art/decode.webp" alt="" loading="lazy"><span><b>كل المواد</b><small>تصفّح المكتبة كاملة</small></span></a>
+      {col("Decoding وتحرّر", ex(("decode","free")))}
+      {col("تشافٍ وسكينة و Priming", ex(("heal","breath","priming")))}
+      <div class="mcol mfeat"><a class="mcard" href="library.html"><img src="assets/art/decode.webp" alt="" loading="lazy"><span><b>كل الأدوات</b><small>تصفّح الأدوات كاملة</small></span></a>
         <a class="mlink" href="book-ghosts.html">{ic("book","icon icon-sm")}كتاب: عندما تولد في عائلة من الأشباح</a><a class="mlink" href="register.html">{ic("gift","icon icon-sm")}ابدأ بهدية مجانية</a></div>
     </div></div>'''
 
 
-NAV2 = [("index.html","الرئيسية",""),("MEGA","المواد",""),("sessions.html","الاستشارات",""),("vip.html","أكاديمية استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","")]
+NAV2 = [("index.html","الرئيسية",""),("MEGA","الأدوات",""),("sessions.html","الاستشارات",""),("vip.html","برنامج استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","")]
 
 def header(active, hero=False):
     def item(h,t,c):
         if h == "MEGA":
-            return f'<li class="has-mega"><button class="mega-btn" id="megaBtn" type="button" aria-expanded="false" aria-controls="mega" {"data-current=1" if active in MEGA_PAGES else ""}>المواد<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>{mega()}</li>'
+            return f'<li class="has-mega"><button class="mega-btn" id="megaBtn" type="button" aria-expanded="false" aria-controls="mega" {"data-current=1" if active in MEGA_PAGES else ""}>الأدوات<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>{mega()}</li>'
         return f'<li><a href="{h}" class="{c}" {"aria-current=page" if h==active else ""}>{t}</a></li>'
     items = "".join(item(*n) for n in NAV2)
     return f'''<header class="site-header {"on-hero" if hero else "pill"}"><div class="nav">
-  <a class="brand" href="index.html" aria-label="الصفحة الرئيسية"><img src="assets/brand/logo-icon-gold.webp" alt="" width="38" height="48"><span><b>مرفت سرور</b><small>Mervat Sorour</small></span></a>
-  <ul class="menu" id="menu">{items}<li class="menu-region"><span class="muted">عملة الأسعار</span><div class="region" role="group" aria-label="عملة الأسعار"><button type="button" data-region="eg" aria-pressed="true">ج.م</button><button type="button" data-region="intl" aria-pressed="false">USD</button></div></li></ul>
+  <a class="brand" href="index.html" aria-label="الصفحة الرئيسية"><img src="assets/brand/logo-icon-gold.webp" alt="" width="38" height="48"><span><b>مرفت سرور</b><small>Mervat Soror</small></span></a>
+  <ul class="menu" id="menu">{items}</ul>
   <div class="tools">
     <a class="login-link js-user-text" href="login.html">تسجيل الدخول</a>
     <a class="iconbtn" href="cart.html" aria-label="السلة">{ic("bag")}<span class="count js-cart-count">٠</span></a>
@@ -172,11 +175,11 @@ def header(active, hero=False):
     <button class="iconbtn burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="القائمة"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M7 12h13M10 17h10"/></svg></button>
   </div>
 </div></header>
-<div class="search-ov" id="searchOv" hidden><div class="search-box"><div class="search">{ic("search")}<label class="sr" for="sq">ابحث في المواد</label><input id="sq" type="text" placeholder="ابحث: فك التعلّق، ديكودنج، تنفّس، كتاب…" autocomplete="off"><button class="iconbtn" type="button" id="searchClose" aria-label="إغلاق">{ic("x")}</button></div><div class="search-res" id="searchRes"></div></div></div>
+<div class="search-ov" id="searchOv" hidden><div class="search-box"><div class="search">{ic("search")}<label class="sr" for="sq">ابحث في المواد</label><input id="sq" type="text" placeholder="ابحث: فك التعلّق، Decoding، تنفّس، كتاب…" autocomplete="off"><button class="iconbtn" type="button" id="searchClose" aria-label="إغلاق">{ic("x")}</button></div><div class="search-res" id="searchRes"></div></div></div>
 <div class="help" id="help"><div class="help-panel" id="helpPanel" hidden><b>كيف يمكننا خدمتك؟</b><span class="muted">نرد عادةً خلال ساعات العمل.</span>
-  <a href="https://wa.me/200000000000" target="_blank" rel="noopener">{ic("chat")}واتساب</a><a href="contact.html">{ic("mail")}راسلنا</a><a href="faq.html">{ic("book")}الأسئلة الشائعة</a><a href="sessions.html">{ic("cal")}احجز استشارة</a></div>
+  <a href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat")}واتساب</a><a href="contact.html">{ic("mail")}راسلنا</a><a href="faq.html">{ic("book")}الأسئلة الشائعة</a><a href="sessions.html">{ic("cal")}احجز استشارة</a></div>
   <button class="help-btn" id="helpBtn" type="button" aria-expanded="false" aria-controls="helpPanel"><span class="help-logo"><img src="assets/brand/logo-icon-gold.webp" alt="" width="26" height="32"></span><span class="help-txt">كيف يمكننا خدمتك؟</span></button></div>
-<nav class="tabbar" aria-label="تنقل سريع"><a href="index.html">{ic("home")}<span>الرئيسية</span></a><a href="library.html">{ic("lib")}<span>المواد</span></a><a href="vip.html" class="tb-vip">{ic("crown")}<span>VIP</span></a><a href="cart.html">{ic("bag")}<span>السلة</span><i class="count js-cart-count">٠</i></a><a href="account.html">{ic("user")}<span>حسابي</span></a></nav>'''
+<nav class="tabbar" aria-label="تنقل سريع"><a href="index.html">{ic("home")}<span>الرئيسية</span></a><a href="library.html">{ic("lib")}<span>الأدوات</span></a><a href="vip.html" class="tb-vip">{ic("crown")}<span>VIP</span></a><a href="cart.html">{ic("bag")}<span>السلة</span><i class="count js-cart-count">٠</i></a><a href="account.html">{ic("user")}<span>حسابي</span></a></nav>'''
 
 FOOTER = f'''<footer class="site-footer"><div class="wrap">
   <div class="f-grid">
@@ -184,14 +187,14 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
       <p>برامج وتمارين للوعي والتشافي، تعيدك إلى نسختك الأصلية بهدوء.</p><div class="f-news" style="margin-top:14px"><b style="color:#F1DDB0">انضم إلى مجتمع مرفت</b><form data-simple="تم اشتراكك في النشرة."><label class="sr" for="fnEmail">بريدك</label><input id="fnEmail" type="email" required placeholder="بريدك الإلكتروني"><button class="btn btn-pill btn-sm" type="submit">اشترك</button></form><div class="alert" hidden></div></div>
       <div class="social"><a href="#" aria-label="إنستغرام"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></a><a href="#" aria-label="يوتيوب"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10.5 9.5v5l4-2.5z"/></svg></a><a href="#" aria-label="تيك توك"><svg class="icon" viewBox="0 0 24 24"><path d="M14 4v10.5a3.5 3.5 0 1 1-3-3.4M14 4c.4 2.4 2 4 4.5 4.2"/></svg></a><a href="#" aria-label="فيسبوك"><svg class="icon" viewBox="0 0 24 24"><path d="M14 8h2.5V4.5H14A3.5 3.5 0 0 0 10.5 8v2.5H8V14h2.5v6H14v-6h2.5l.5-3.5h-3V8z"/></svg></a></div>
     </div>
-    <div><h4>البرامج</h4><ul><li><a href="vip.html">استيقظ VIP</a></li><li><a href="course-ain-sahia.html">عين صاحية</a></li><li><a href="library.html">مكتبة التمارين</a></li><li><a href="bundles.html">الباقات</a></li><li><a href="books.html">الكتب</a></li><li><a href="sessions.html">الجلسات الفردية</a></li></ul></div>
-    <div><h4>المساعدة</h4><ul><li><a href="about.html">عن د. مرفت</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="contact.html">تواصل معنا</a></li><li><a href="account.html">حسابي</a></li><li><a href="cart.html">السلة</a></li></ul></div>
-    <div><h4>السياسات</h4><ul><li><a href="policies.html">كل السياسات</a></li><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
+    <div><h4>البرامج</h4><ul><li><a href="vip.html">استيقظ VIP</a></li><li><a href="course-ain-sahia.html">عين صاحية</a></li><li><a href="library.html">مكتبة الأدوات</a></li><li><a href="bundles.html">الباقات</a></li><li><a href="books.html">الكتب</a></li><li><a href="sessions.html">الجلسات الفردية</a></li></ul></div>
+    <div><h4>المساعدة</h4><ul><li><a href="about.html">عن مرفت</a></li><li><a href="articles.html">المقالات</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="contact.html">تواصل معنا</a></li><li><a href="account.html">حسابي</a></li><li><a href="cart.html">السلة</a></li></ul></div>
+    <div><h4>تواصل</h4><ul class="f-contact"><li><a href="https://wa.me/201095292748">{ic("chat","icon icon-sm")}01095292748</a></li><li><a href="contact.html">{ic("mail","icon icon-sm")}support@mervatsoror.com</a></li><li><span>{ic("pin","icon icon-sm")}القاهرة، مصر</span></li></ul><h4 style="margin-top:18px">السياسات</h4><ul><li><a href="policies.html">كل السياسات</a></li><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
   </div>
   <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة. · <a href="terms.html" style="color:inherit">الشروط</a> · <a href="privacy.html" style="color:inherit">الخصوصية</a> · <a href="refund.html" style="color:inherit">الاسترداد</a> · <a href="delivery.html" style="color:inherit">تقديم الخدمة</a></span><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
 </div></footer>'''
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@500;700&family=Cormorant+Garamond:wght@300&display=swap">'
+FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Almarai:wght@400;700&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@500;700&family=Cormorant+Garamond:wght@300&display=swap">'
 
 def page(file, title, desc, body, active="", schema=None, noindex=False, bare=False):
     full_title = title if NAME in title else f"{title} | {NAME}"
@@ -267,7 +270,7 @@ def build():
     course = BY["ain-sahia"]
     mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"]))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
     page("index.html", f"{NAME} | كوتش وعي وتشافي معتمدة من ICF",
-         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين ديكودنج وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، كوتش وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
+         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، كوتش وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
 
     # ---------- VIP
     plans = f'''<div class="plan-grid">
@@ -290,12 +293,12 @@ def build():
          active="vip.html", schema=[{"@context":"https://schema.org","@type":"Product","name":"استيقظ VIP","description":"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور","brand":NAME,"offers":[{"@type":"Offer","price":BY["vip-m"]["eg"],"priceCurrency":"EGP"},{"@type":"Offer","price":BY["vip-m"]["us"],"priceCurrency":"USD"}]}])
 
     # ---------- library
-    page("library.html", "مكتبة التمارين", "تمارين ديكودنج، فك التعلق، تشافي الطفل الداخلي، تنفس الاتساق القلبي، برايمنج الصباح، توكيدات السلام وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة التمارين","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
+    page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفس الاتساق القلبي، Priming الصباح، توكيدات السلام وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
 <section class="band-sm"><div class="wrap"><div class="search">{ic("search")}<label class="sr" for="q">ابحث في التمارين</label><input id="q" type="search" placeholder="ابحث: تعلّق، تنفّس، طفل داخلي…"></div>{tabs()}<div class="shelf" data-shelf="library"></div></div></section>
 <section class="band" style="padding-top:0"><div class="wrap"><div class="vip-card" style="grid-template-columns:1fr"><div class="vip-body" style="text-align:center;justify-items:center"><h2 style="font-size:clamp(1.6rem,3vw,2.4rem)">كل هذه التمارين مفتوحة مع <span class="foil-text">استيقظ VIP</span></h2><p class="lead">بدلاً من الشراء واحداً واحداً، افتح المكتبة كاملة مع البرنامج.</p><a class="btn btn-gold" href="vip.html">اعرف البرنامج</a></div></div></div></section>''', active="library.html")
 
     # ---------- bundles
-    page("bundles.html", "الباقات", "باقات تمارين مترابطة بسعر أقل: مسار الديكودنج، مسار التحرّر، ومسار السكينة اليومية.", page_hero("الباقات","تمارين مترابطة في مسار واحد، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + GIFT)
+    page("bundles.html", "الباقات", "باقات تمارين مترابطة بسعر أقل: مسار Decoding، مسار التحرّر، ومسار السكينة اليومية.", page_hero("الباقات","تمارين مترابطة في مسار واحد، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + GIFT)
 
     # ---------- products
     for p in PRODUCTS:
@@ -326,9 +329,9 @@ def build():
   <div class="prose"><p>هنا تُكتب قصتك بصوتك: البداية، واللحظة التي غيّرت مسارك، ولماذا اخترتِ طريق الوعي والتشافي. <span class="demo">نص مؤقت</span></p><p>القصة الشخصية هي أكثر ما يقرّب الزائر منك، ويُفضّل أن تكون صادقة وقصيرة ومحددة.</p></div>
   <div class="chips"><span>{ic("award")}معتمدة من ICF</span><span>{ic("path")}كوتش وعي وتشافي</span><span>{ic("globe")}عملاء من مصر والخليج والعالم</span></div></div></div></section>
 <section class="band tint-blush"><div class="wrap split rev" style="align-items:start"><div class="split-body"><span class="eyebrow">المنهج</span><h2>كيف أعمل؟</h2>
-  <ol class="timeline"><li><b>الوعي</b><span class="muted">أن ترى ما يحدث داخلك دون حكم.</span></li><li><b>الديكودنج</b><span class="muted">فكّ البرمجة والقناعات التي ليست لك.</span></li><li><b>التشافي</b><span class="muted">تحرير المشاعر العالقة واحتضان الطفل الداخلي.</span></li><li><b>التطبيق</b><span class="muted">عادات يومية صغيرة تثبّت التغيير.</span></li></ol></div>
+  <ol class="timeline"><li><b>الوعي</b><span class="muted">أن ترى ما يحدث داخلك دون حكم.</span></li><li><b>الـ Decoding</b><span class="muted">فكّ البرمجة والقناعات التي ليست لك.</span></li><li><b>التشافي</b><span class="muted">تحرير المشاعر العالقة واحتضان الطفل الداخلي.</span></li><li><b>التطبيق</b><span class="muted">عادات يومية صغيرة تثبّت التغيير.</span></li></ol></div>
   <div class="split-body"><span class="eyebrow">المؤهلات</span><h2>الاعتماد والخبرة</h2><div class="c-info">
-  {"".join(f'<div class="c-item"><span class="ico">{ic(i)}</span><span><b>{t}</b><span class="muted">{d}</span></span></div>' for i,t,d in [("award","اعتماد الاتحاد الدولي للكوتشينج ICF","يُكتب هنا مستوى الاعتماد وسنته."),("book","الدراسة الأكاديمية","يُكتب هنا المؤهل العلمي."),("layers","شهادات التخصص","الشهادات في الوعي والتشافي والديكودنج.")])}
+  {"".join(f'<div class="c-item"><span class="ico">{ic(i)}</span><span><b>{t}</b><span class="muted">{d}</span></span></div>' for i,t,d in [("award","اعتماد الاتحاد الدولي للكوتشينج ICF","يُكتب هنا مستوى الاعتماد وسنته."),("book","الدراسة الأكاديمية","يُكتب هنا المؤهل العلمي."),("layers","شهادات التخصص","الشهادات في الوعي والتشافي والـ Decoding.")])}
   <span class="demo">بيانات مؤقتة</span></div></div></div></section>
 <section class="band"><div class="wrap"><div class="gallery"><figure><img src="assets/img/coach-green.webp" alt="د. مرفت سرور" loading="lazy"></figure><figure><img src="assets/img/coach-white.webp" alt="د. مرفت سرور" loading="lazy"></figure><figure><img src="assets/img/coach-navy.webp" alt="د. مرفت سرور" loading="lazy"></figure></div>
   <div class="center-cta"><a class="btn btn-gold" href="vip.html">ابدأ معي في استيقظ VIP</a></div></div></section>''', active="about.html", schema=[PERSON])
@@ -341,7 +344,7 @@ def build():
     # ---------- contact
     page("contact.html", "تواصل معنا", "تواصل مع فريق د. مرفت سرور للاستفسارات والدعم الفني والتعاون.", page_hero("تواصل معنا","نرد خلال يوم عمل واحد.") + f'''
 <section class="band-sm"><div class="wrap contact-grid">
-  <div class="c-info">{"".join(f'<div class="c-item"><span class="ico">{ic(i)}</span><span><b>{t}</b><span class="copyable muted">{v}</span></span></div>' for i,t,v in [("mail","البريد الإلكتروني","support@mervatsoror.com"),("chat","واتساب","+20 100 000 0000"),("clock","مواعيد الدعم","الأحد إلى الخميس · ١٠ ص حتى ٦ م بتوقيت القاهرة"),("pin","العنوان","القاهرة، مصر")])}<span class="demo">بيانات تواصل مؤقتة</span></div>
+  <div class="c-info">{"".join(f'<div class="c-item"><span class="ico">{ic(i)}</span><span><b>{t}</b><span class="copyable muted">{v}</span></span></div>' for i,t,v in [("mail","البريد الإلكتروني","support@mervatsoror.com"),("chat","واتساب","01095292748"),("clock","مواعيد الدعم","الأحد إلى الخميس · ١٠ ص حتى ٦ م بتوقيت القاهرة"),("pin","العنوان","القاهرة، مصر")])}<span class="demo">بيانات تواصل مؤقتة</span></div>
   <form class="card form" data-simple="وصلتنا رسالتك، وسنرد عليك على بريدك خلال يوم عمل.">
     <div class="row2"><div class="field"><label for="ctName">الاسم</label><input id="ctName" required></div><div class="field"><label for="ctEmail">البريد الإلكتروني</label><input id="ctEmail" type="email" required></div></div>
     <div class="field"><label for="ctTopic">الموضوع</label><select id="ctTopic"><option>استفسار عن البرامج</option><option>مشكلة في الدفع</option><option>الوصول إلى مادة اشتريتها</option><option>الجلسات الفردية</option><option>تعاون وإعلام</option></select></div>
@@ -410,10 +413,13 @@ def build():
     page("policies.html", "السياسات والشروط", "الشروط والأحكام، سياسة الخصوصية، سياسة الاسترداد والإلغاء، وسياسة تقديم الخدمة لمنصة د. مرفت سرور.", page_hero("السياسات والشروط", "كل ما تحتاج معرفته قبل الشراء، بوضوح.") + f'''<section class="band-sm"><div class="wrap"><div class="pgrid">{cards}</div>
   <div class="card" style="margin-top:24px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between"><span><b style="color:var(--ink)">لم تجد إجابتك؟</b> <span class="muted">راجع الأسئلة الشائعة أو راسلنا مباشرة.</span></span><span class="ctas"><a class="btn btn-line btn-sm" href="faq.html">الأسئلة الشائعة</a><a class="btn btn-plum btn-sm" href="contact.html">تواصل معنا</a></span></div></div></section>''', active="policies.html")
 
-    page("404.html", "الصفحة غير موجودة", "الصفحة غير موجودة.", f'<section class="band"><div class="wrap notfound"><span class="num foil-text">٤٠٤</span><h1 class="title">هذه الصفحة غير موجودة</h1><p class="lead">ربما تغيّر الرابط. جرّب البدء من هنا:</p><div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="index.html">الرئيسية</a><a class="btn btn-line" href="library.html">مكتبة التمارين</a></div></div></section>', noindex=True)
+    page("404.html", "الصفحة غير موجودة", "الصفحة غير موجودة.", f'<section class="band"><div class="wrap notfound"><span class="num foil-text">٤٠٤</span><h1 class="title">هذه الصفحة غير موجودة</h1><p class="lead">ربما تغيّر الرابط. جرّب البدء من هنا:</p><div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="index.html">الرئيسية</a><a class="btn btn-line" href="library.html">مكتبة الأدوات</a></div></div></section>', noindex=True)
+
+    # ---------- pages rebuilt on the reference layouts (overwrite earlier versions)
+    import pages_v7; pages_v7.init(globals()); pages_v7.build_v7()
 
     # ---------- seo files
-    urls = "".join(f"<url><loc>{SITE_URL}/{'' if f=='index.html' else f}</loc></url>" for f, ni in PAGES if not ni)
+    urls = "".join(f"<url><loc>{SITE_URL}/{'' if f=='index.html' else f}</loc></url>" for f, ni in dict(PAGES).items() if not ni)
     (OUT/"sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n', encoding="utf-8")
     (OUT/"robots.txt").write_text(f"User-agent: *\nDisallow: /account.html\nDisallow: /cart.html\nDisallow: /checkout.html\nDisallow: /learn.html\nDisallow: /reader.html\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
     print(f"built {len(PAGES)} pages into {OUT}")
@@ -432,7 +438,7 @@ def faq_items(items): return "".join(f"<details><summary>{E(q)}</summary><p>{E(a
 def product_page(p):
     lessons = "".join(f'''<details {"open" if i==0 else ""}><summary>{E(m["title"])} <small>{len(m["lessons"])} دروس</small></summary>{"".join(f'<div class="lesson">{ic("play" if l[2:] else "lock", "icon icon-sm")}<span>{E(l[0])}</span>{f"<a href=learn.html#{p[chr(105)+chr(100)]}>معاينة مجانية</a>" if l[2:] else f"<small class=muted>{l[1]}</small>"}</div>' for l in m["lessons"])}</details>''' for i, m in enumerate(p["modules"]))
     is_course = p["kind"] == "course"
-    trail = [("كورس عين صاحية", None)] if is_course else [("مكتبة التمارين","library.html"), (p["title"], None)]
+    trail = [("كورس عين صاحية", None)] if is_course else [("مكتبة الأدوات","library.html"), (p["title"], None)]
     page(p["page"], f'{p["title"]} · {p["catLabel"]}', p["short"] + f' {p["catLabel"]} مع د. مرفت سرور.', f'''
 <section class="page-hero"><div class="wrap">{crumbs(*trail)}<span class="eyebrow">{E(p["catLabel"])}</span><h1 class="display">{E(p["title"])}</h1><p class="lead">{E(p["short"])}</p></div></section>
 <section class="band-sm"><div class="wrap pd">
@@ -485,18 +491,19 @@ def home_body():
                    ("ر","مكان رأي عن جلسة فردية مع د. مرفت وما خرجت به منها.","اسم المشتركة · جلسة فردية")]
     reel = "".join(f'<div class="voice {"hl" if i==1 else ""}"><span class="av">{a}</span><span class="qm">“</span><p>{E(t)}</p><b>{E(n)}</b></div>' for i,(a,t,n) in enumerate(voices_list))
     return f'''
-<section class="hero-s"><canvas class="sparkle" aria-hidden="true"></canvas>
-  <div class="hs-wm" aria-hidden="true"><span class="script">Mervat</span><span class="serif">Sorour</span></div>
+<div class="popup" id="vipPop" hidden role="dialog" aria-modal="true" aria-labelledby="popT"><div class="pop-card"><button class="pop-close" type="button" id="popClose" aria-label="إغلاق">✕</button>
+  <div class="pop-art"><img src="assets/img/coach-seated-cut.webp" alt=""><div class="txt"><h2 id="popT">البرنامج التدريبي استيقظ VIP</h2><p>ليس مجرد رحلة من الوعي، بل رحلة عميقة لتغيير نسخة لم تعد تمثلك.</p><a class="btn btn-gold" href="vip.html">احجز الآن</a></div></div></div></div>
+<section class="hero-s"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas>
   <div class="hs-in">
-    <div class="hs-copy"><h1>لديك الآن رفيق حقيقي في الرحلة، <span class="gold">يحمل شعلة نور</span> ويمسك بيدك حتى تصل للجانب الآخر</h1>
-      <span class="hs-sig script">Mervat</span>
-      <a class="btn-safia" href="vip.html">ابدأ الرحلة</a></div>
-    <div class="hs-photo"><img src="assets/img/coach-seated.webp" alt="د. مرفت سرور" width="1254" height="1254" fetchpriority="high"></div>
+    <div class="hs-photo"><img src="assets/img/coach-seated-cut.webp" alt="د. مرفت سرور" width="839" height="1129" fetchpriority="high"></div>
+    <div class="hs-copy"><div class="hs-wm" aria-hidden="true"><span class="script">Mervat</span><span class="serif">Soror</span></div>
+      <h1>لديك الآن رفيق حقيقي في الرحلة، <span class="gold">يحمل شعلة نور</span> ويمسك بيدك حتى تصل للجانب الآخر</h1>
+      <a class="btn-safia" href="vip.html">نوّر</a></div>
   </div>
 </section>
 <section class="band tint-blush"><div class="wrap">
-  <div class="head center"><span class="eyebrow center">ابدأ اليوم</span><h2 class="title">اختر تمرينك، وابدأ خلال دقيقة</h2><p class="lead">كل تمرين يُشترى منفصلاً ويُفتح فوراً في حسابك، ومعه معاينة مجانية. أو افتحها كلها مع استيقظ VIP.</p></div>
-  {tabs()}<div class="shelf" data-shelf="home"></div><div class="center-cta"><a class="btn btn-pill" href="library.html">عرض كل التمارين</a></div></div></section>
+  <div class="head center"><span class="eyebrow center">ابدأ اليوم</span><h2 class="title">اختر أداتك، وابدأ خلال دقيقة</h2><p class="lead">كل أداة تُشترى منفصلة وتُفتح فوراً في حسابك، أو افتحها كلها مع برنامج استيقظ VIP.</p></div>
+  {tabs()}<div class="shelf" data-shelf="home"></div><div class="center-cta"><a class="btn btn-gold" href="library.html">عرض كل الأدوات</a></div></div></section>
 <section class="band"><div class="wrap statement"><span class="eyebrow center">أهلاً بك</span>
   <h2>صوت هادئ يوقظ فيك <em>ما نسيته عن نفسك</em></h2>
   <p class="lead">إن كنت تبحث عن مساحة آمنة تفهم فيها مشاعرك، وتفكّ تعلّقك، وتعود إلى سكينتك، فأنت في المكان الصحيح.</p></div></section>
@@ -506,7 +513,7 @@ def home_body():
 <section class="band"><div class="wrap whois">
   <div class="framed"><div class="img"><img src="assets/img/coach-white-square.webp" alt="د. مرفت سرور" width="900" height="900" loading="lazy"></div></div>
   <div class="split-body"><span class="eyebrow">من هي مرفت سرور؟</span><h2 style="font-family:var(--display);font-size:clamp(1.9rem,3.8vw,2.8rem)">كوتش وعي وتشافي، ورفيقة رحلة العودة إلى الذات</h2>
-    <p class="lead">معتمدة من الاتحاد الدولي للكوتشينج ICF. تجمع بين الكوتشينج والديكودنج وتمارين التشافي، لترافقك من الفهم إلى التطبيق اليومي. <span class="demo">نبذة مؤقتة</span></p>
+    <p class="lead">معتمدة من الاتحاد الدولي للكوتشينج ICF. تجمع بين الكوتشينج والـ Decoding وتمارين التشافي، لترافقك من الفهم إلى التطبيق اليومي. <span class="demo">نبذة مؤقتة</span></p>
     <div class="stats3"><div><b>—</b>سنوات خبرة</div><div><b>—</b>ساعة تدريبية</div><div><b>—</b>متدرّب</div></div><span class="demo" style="justify-self:start">تُكتب أرقامك الفعلية هنا</span>
     <div><a class="btn btn-pill" href="about.html">تعرّف على مرفت</a></div></div></div></section>
 <section class="band tint-blush"><div class="wrap vip2">
@@ -518,7 +525,7 @@ def home_body():
   <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","لقاءات شهرية مباشرة","لقاء جماعي مع د. مرفت للإجابة عن أسئلتك والتعمق في رحلتك."),("lib","المكتبة كاملة","كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك."),("path","خطة يومية ومتابعة","تطبيق واضح أسبوعاً بأسبوع، وتتابع تقدّمك من حسابك."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
 </div></section>
 <section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">ابدأ من هنا</span><h2 class="title">لكل طريق قوته في التحوّل من الداخل</h2></div>
-  <div class="tiles"><a class="tile" href="library.html"><img src="assets/art/attach.webp" alt="" loading="lazy"><span><b>التمارين المسجّلة</b><small>ديكودنج، فك تعلّق، تشافٍ وتأمل</small></span></a>
+  <div class="tiles"><a class="tile" href="library.html"><img src="assets/art/attach.webp" alt="" loading="lazy"><span><b>التمارين المسجّلة</b><small>Decoding، فك تعلّق، تشافٍ وتأمل</small></span></a>
   <a class="tile" href="vip.html"><img src="assets/img/coach-green.webp" alt="" loading="lazy"><span><b>استيقظ VIP</b><small>البرنامج التدريبي المتكامل</small></span></a>
   <a class="tile" href="sessions.html"><img src="assets/img/coach-navy.webp" alt="" loading="lazy"><span><b>الجلسات الفردية</b><small>مساحة خاصة مع د. مرفت</small></span></a></div></div></section>
 <section class="wrap" style="padding-bottom:clamp(56px,8vw,110px)"><div class="split"><div class="portal-img"><div class="img"><img src="{course["img"]}" alt="" width="600" height="800" loading="lazy"></div><div class="float"><b>كورس صوتي</b>تسمعه في أي وقت ومن أي جهاز</div></div>
