@@ -154,20 +154,28 @@ def mega():
     </div></div>'''
 
 
-def header(active):
-    items = f'<li class="has-mega"><button class="mega-btn" id="megaBtn" type="button" aria-expanded="false" aria-controls="mega" {"data-current=1" if active in MEGA_PAGES else ""}>المواد<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>{mega()}</li>' + "".join(f'<li><a href="{h}" class="{c}" {"aria-current=page" if h==active else ""}>{t}</a></li>' for h,t,c in NAV)
-    return f'''<div class="ribbon"><span class="star"></span> برنامج <b>استيقظ VIP</b> مفتوح للتسجيل الآن <a href="vip.html">اعرف التفاصيل ←</a></div>
-<header class="site-header"><div class="wrap nav">
-  <button class="iconbtn burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="القائمة"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M7 12h13M10 17h10"/></svg></button>
-  <a class="brand" href="index.html" aria-label="الصفحة الرئيسية"><img src="assets/brand/logo-icon-gold.webp" alt="شعار د. مرفت سرور" width="38" height="48"><span><b>د. مرفت سرور</b><small>كوتش وعي وتشافي · ICF</small></span></a>
-  <ul class="menu" id="menu">{items}</ul>
+NAV2 = [("index.html","الرئيسية",""),("MEGA","المواد",""),("sessions.html","الاستشارات",""),("vip.html","أكاديمية استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","")]
+
+def header(active, hero=False):
+    def item(h,t,c):
+        if h == "MEGA":
+            return f'<li class="has-mega"><button class="mega-btn" id="megaBtn" type="button" aria-expanded="false" aria-controls="mega" {"data-current=1" if active in MEGA_PAGES else ""}>المواد<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>{mega()}</li>'
+        return f'<li><a href="{h}" class="{c}" {"aria-current=page" if h==active else ""}>{t}</a></li>'
+    items = "".join(item(*n) for n in NAV2)
+    return f'''<header class="site-header {"on-hero" if hero else "pill"}"><div class="nav">
+  <a class="brand" href="index.html" aria-label="الصفحة الرئيسية"><img src="assets/brand/logo-icon-gold.webp" alt="" width="38" height="48"><span><b>مرفت سرور</b><small>Mervat Sorour</small></span></a>
+  <ul class="menu" id="menu">{items}<li class="menu-region"><span class="muted">عملة الأسعار</span><div class="region" role="group" aria-label="عملة الأسعار"><button type="button" data-region="eg" aria-pressed="true">ج.م</button><button type="button" data-region="intl" aria-pressed="false">USD</button></div></li></ul>
   <div class="tools">
-    <div class="region" role="group" aria-label="عملة الأسعار"><button type="button" data-region="eg" aria-pressed="true">ج.م</button><button type="button" data-region="intl" aria-pressed="false">USD</button></div>
-    <a class="iconbtn js-user" href="login.html" aria-label="تسجيل الدخول">{ic("user")}</a>
+    <a class="login-link js-user-text" href="login.html">تسجيل الدخول</a>
     <a class="iconbtn" href="cart.html" aria-label="السلة">{ic("bag")}<span class="count js-cart-count">٠</span></a>
-    <a class="btn btn-gold btn-sm hide-lg" href="vip.html">انضم إلى استيقظ</a>
+    <button class="iconbtn" type="button" id="searchBtn" aria-label="بحث">{ic("search")}</button>
+    <button class="iconbtn burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="القائمة"><svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M7 12h13M10 17h10"/></svg></button>
   </div>
 </div></header>
+<div class="search-ov" id="searchOv" hidden><div class="search-box"><div class="search">{ic("search")}<label class="sr" for="sq">ابحث في المواد</label><input id="sq" type="text" placeholder="ابحث: فك التعلّق، ديكودنج، تنفّس، كتاب…" autocomplete="off"><button class="iconbtn" type="button" id="searchClose" aria-label="إغلاق">{ic("x")}</button></div><div class="search-res" id="searchRes"></div></div></div>
+<div class="help" id="help"><div class="help-panel" id="helpPanel" hidden><b>كيف يمكننا خدمتك؟</b><span class="muted">نرد عادةً خلال ساعات العمل.</span>
+  <a href="https://wa.me/200000000000" target="_blank" rel="noopener">{ic("chat")}واتساب</a><a href="contact.html">{ic("mail")}راسلنا</a><a href="faq.html">{ic("book")}الأسئلة الشائعة</a><a href="sessions.html">{ic("cal")}احجز استشارة</a></div>
+  <button class="help-btn" id="helpBtn" type="button" aria-expanded="false" aria-controls="helpPanel"><span class="help-logo"><img src="assets/brand/logo-icon-gold.webp" alt="" width="26" height="32"></span><span class="help-txt">كيف يمكننا خدمتك؟</span></button></div>
 <nav class="tabbar" aria-label="تنقل سريع"><a href="index.html">{ic("home")}<span>الرئيسية</span></a><a href="library.html">{ic("lib")}<span>المواد</span></a><a href="vip.html" class="tb-vip">{ic("crown")}<span>VIP</span></a><a href="cart.html">{ic("bag")}<span>السلة</span><i class="count js-cart-count">٠</i></a><a href="account.html">{ic("user")}<span>حسابي</span></a></nav>'''
 
 FOOTER = f'''<footer class="site-footer"><div class="wrap">
@@ -183,7 +191,7 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
   <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة. · <a href="terms.html" style="color:inherit">الشروط</a> · <a href="privacy.html" style="color:inherit">الخصوصية</a> · <a href="refund.html" style="color:inherit">الاسترداد</a> · <a href="delivery.html" style="color:inherit">تقديم الخدمة</a></span><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
 </div></footer>'''
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&display=swap">'
+FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@500;700&family=Cormorant+Garamond:wght@300&display=swap">'
 
 def page(file, title, desc, body, active="", schema=None, noindex=False, bare=False):
     full_title = title if NAME in title else f"{title} | {NAME}"
@@ -197,7 +205,7 @@ def page(file, title, desc, body, active="", schema=None, noindex=False, bare=Fa
 <meta name="theme-color" content="#FDFAF5"><link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="assets/brand/favicon-192.png">
 {FONTS}<link rel="stylesheet" href="assets/css/site.css">{ld}'''
     content = f'''{SPRITE}
-{'' if bare else header(active)}
+{'' if bare else header(active, hero=(file=='index.html'))}
 <main id="main">{body}</main>
 {'' if bare else FOOTER}
 <script src="assets/js/data.js"></script><script src="assets/js/site.js"></script>'''
@@ -477,14 +485,15 @@ def home_body():
                    ("ر","مكان رأي عن جلسة فردية مع د. مرفت وما خرجت به منها.","اسم المشتركة · جلسة فردية")]
     reel = "".join(f'<div class="voice {"hl" if i==1 else ""}"><span class="av">{a}</span><span class="qm">“</span><p>{E(t)}</p><b>{E(n)}</b></div>' for i,(a,t,n) in enumerate(voices_list))
     return f'''
-<section class="cine"><canvas class="sparkle" aria-hidden="true"></canvas><span class="wm script" aria-hidden="true">Mervat Sorour</span><div class="wrap">
-  <div class="copy"><span class="eyebrow">كوتش وعي وتشافي معتمدة من ICF</span>
-    <h1>أؤمن أن بداخلك <span class="foil-text">نسخة أصلية</span> تنتظر أن تستيقظ</h1>
-    <span class="sig script">Mervat</span></div>
-  <div class="who-img"><img src="assets/img/coach-white-cut.webp" alt="د. مرفت سرور" width="600" height="900"></div>
-  <div class="act"><p class="note">برامج وتمارين صوتية ومرئية وجلسات فردية، بلغة قريبة وفي الوقت الذي يناسبك.</p>
-    <a class="btn btn-pill" href="vip.html">{ic("crown")}ابدأ رحلتك مع استيقظ VIP</a><a class="btn btn-line btn-sm" href="library.html">تصفّح التمارين</a></div>
-</div></section>
+<section class="hero-s"><canvas class="sparkle" aria-hidden="true"></canvas>
+  <div class="hs-wm" aria-hidden="true"><span class="script">Mervat</span><span class="serif">Sorour</span></div>
+  <div class="hs-in">
+    <div class="hs-copy"><h1>لديك الآن رفيق حقيقي في الرحلة، <span class="gold">يحمل شعلة نور</span> ويمسك بيدك حتى تصل للجانب الآخر</h1>
+      <span class="hs-sig script">Mervat</span>
+      <a class="btn-safia" href="vip.html">ابدأ الرحلة</a></div>
+    <div class="hs-photo"><img src="assets/img/coach-seated-cut.webp" alt="د. مرفت سرور" width="839" height="1129" fetchpriority="high"></div>
+  </div>
+</section>
 <section class="band tint-blush"><div class="wrap">
   <div class="head center"><span class="eyebrow center">ابدأ اليوم</span><h2 class="title">اختر تمرينك، وابدأ خلال دقيقة</h2><p class="lead">كل تمرين يُشترى منفصلاً ويُفتح فوراً في حسابك، ومعه معاينة مجانية. أو افتحها كلها مع استيقظ VIP.</p></div>
   {tabs()}<div class="shelf" data-shelf="home"></div><div class="center-cta"><a class="btn btn-pill" href="library.html">عرض كل التمارين</a></div></div></section>

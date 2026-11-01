@@ -12,8 +12,10 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">"
 /* ---------- state ---------- */
 const KEY = "ms_state_v1";
 const blank = {region:"eg", cart:[], favs:[], user:null, owned:[], vip:null, progress:{}, orders:[], bookings:[], page:{}};
-let S;
-try { S = Object.assign({}, blank, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch(e) { S = Object.assign({}, blank); }
+let S, fresh = false;
+try { const raw = localStorage.getItem(KEY); fresh = !raw; S = Object.assign({}, blank, JSON.parse(raw || "{}")); } catch(e) { S = Object.assign({}, blank); fresh = true; }
+// first visit: choose currency from the visitor's time zone (Egypt → EGP, elsewhere → USD)
+if (fresh){ try { S.region = Intl.DateTimeFormat().resolvedOptions().timeZone === "Africa/Cairo" ? "eg" : "intl"; } catch(e){} }
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
 function ss(k, v){ try { if (v === undefined) return sessionStorage.getItem(k); if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch(e){ return null; } }
 
@@ -36,6 +38,7 @@ function toast(msg, link){
 function paintHeader(){
   $$(".js-cart-count").forEach(e => e.textContent = ar(S.cart.length));
   $$(".region button").forEach(b => b.setAttribute("aria-pressed", b.dataset.region === S.region));
+  $$(".js-user-text").forEach(a => { a.href = S.user ? "account.html" : "login.html"; a.textContent = S.user ? "حسابي" : "تسجيل الدخول"; });
   $$(".js-user").forEach(a => {
     if (S.user){ a.href = "account.html"; a.innerHTML = `<span class="avatar">${esc(S.user.name.trim()[0]||"م")}</span>`; a.setAttribute("aria-label","حسابي"); }
     else { a.href = "login.html"; a.innerHTML = icon("user"); a.setAttribute("aria-label","تسجيل الدخول"); }
@@ -438,6 +441,32 @@ if (megaBtn){
   megaBtn.addEventListener("click", e => { e.stopPropagation(); const o = li.classList.toggle("open"); megaBtn.setAttribute("aria-expanded", o); });
   document.addEventListener("click", e => { if (!li.contains(e.target)){ li.classList.remove("open"); megaBtn.setAttribute("aria-expanded", "false"); } });
   document.addEventListener("keydown", e => { if (e.key === "Escape"){ li.classList.remove("open"); megaBtn.setAttribute("aria-expanded", "false"); } });
+}
+
+/* ---------- header on hero: becomes a pill after scrolling ---------- */
+const hh = $(".site-header.on-hero");
+if (hh){ const onS = () => hh.classList.toggle("scrolled", scrollY > 40); addEventListener("scroll", onS, {passive:true}); onS(); }
+
+/* ---------- floating help ---------- */
+const helpBtn = $("#helpBtn"), helpPanel = $("#helpPanel");
+if (helpBtn){
+  helpBtn.addEventListener("click", e => { e.stopPropagation(); helpPanel.hidden = !helpPanel.hidden; helpBtn.setAttribute("aria-expanded", !helpPanel.hidden); });
+  document.addEventListener("click", e => { if (!$("#help").contains(e.target)){ helpPanel.hidden = true; helpBtn.setAttribute("aria-expanded","false"); } });
+}
+
+/* ---------- search ---------- */
+const sOv = $("#searchOv"), sq = $("#sq"), sRes = $("#searchRes");
+function searchDraw(){
+  const q = (sq.value || "").trim();
+  const list = D.products.filter(p => p.page && !["gift","session"].includes(p.kind) && p.id !== "vip-y" && (!q || (p.title + " " + (p.catLabel||"") + " " + (p.short||"")).includes(q)));
+  sRes.innerHTML = list.length ? list.map(p => `<a href="${p.page}"><img src="${p.img}" alt=""><span><b>${esc(p.title)}</b><br><small>${esc(p.catLabel||"")}</small></span><small>${p.eg ? money(p.eg,p.us) : ""}</small></a>`).join("") : `<p class="empty">لا توجد نتائج. جرّب كلمة أخرى.</p>`;
+}
+if (sOv){
+  $("#searchBtn").addEventListener("click", () => { sOv.hidden = false; searchDraw(); setTimeout(() => sq.focus(), 50); });
+  $("#searchClose").addEventListener("click", () => sOv.hidden = true);
+  sOv.addEventListener("click", e => { if (e.target === sOv) sOv.hidden = true; });
+  sq.addEventListener("input", searchDraw);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") sOv.hidden = true; });
 }
 
 /* ---------- menu ---------- */
