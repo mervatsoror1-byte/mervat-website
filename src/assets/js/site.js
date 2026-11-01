@@ -38,7 +38,7 @@ function toast(msg, link){
 function paintHeader(){
   $$(".js-cart-count").forEach(e => e.textContent = ar(S.cart.length));
   $$(".region button").forEach(b => b.setAttribute("aria-pressed", b.dataset.region === S.region));
-  $$(".js-user-text").forEach(a => { a.href = S.user ? "account.html" : "login.html"; a.textContent = S.user ? "حسابي" : "تسجيل الدخول"; });
+  $$(".js-user-text").forEach(a => { a.href = S.user ? "account.html#mine" : "login.html"; a.textContent = S.user ? "اشتراكاتي" : "تسجيل الدخول"; });
   $$(".js-user").forEach(a => {
     if (S.user){ a.href = "account.html"; a.innerHTML = `<span class="avatar">${esc(S.user.name.trim()[0]||"م")}</span>`; a.setAttribute("aria-label","حسابي"); }
     else { a.href = "login.html"; a.innerHTML = icon("user"); a.setAttribute("aria-label","تسجيل الدخول"); }
@@ -127,8 +127,11 @@ function renderDynamic(){
 function paintPricesOnly(){ $$("[data-price]").forEach(e => { const p = P[e.dataset.price]; if (p) e.textContent = money(p.eg, p.us); }); }
 
 /* ---------- cart page ---------- */
-function totals(){
-  const sub = S.cart.reduce((s,c) => s + priceOf(P[c.id]), 0);
+function buyNow(){ try { return JSON.parse(ss("buynow") || "null"); } catch(e){ return null; } }
+function payItems(){ const b = buyNow(); return b ? [b] : S.cart; }
+function totals(list){
+  list = list || S.cart;
+  const sub = list.reduce((s,c) => s + priceOf(P[c.id]), 0);
   const code = ss("coupon"); const disc = code === "WELCOME10" ? sub * .10 : 0;
   return {sub, disc, total: sub - disc, code};
 }
@@ -150,7 +153,7 @@ function renderCart(){
       ${t.disc ? `<div class="sumrow" style="color:var(--ok)"><span>خصم ${esc(t.code)}</span><span>− ${fmt(t.disc)}</span></div>` : ""}
       <div class="sumrow total"><span>الإجمالي</span><span>${fmt(t.total)}</span></div>
       <form class="coupon" id="couponForm"><label class="sr" for="coupon">كود الخصم</label><input id="coupon" placeholder="كود الخصم (جرّب WELCOME10)" value="${esc(t.code||"")}"><button class="btn btn-ghost btn-sm" type="submit">تطبيق</button></form>
-      <a class="btn btn-gold btn-block" href="checkout.html">إتمام الشراء</a>
+      <a class="btn btn-gold btn-block" href="checkout.html" id="toCheckout">إتمام الشراء</a>
       <p class="secure">${icon("lock")}دفع آمن ومشفّر · وصول فوري بعد الدفع</p>
     </aside></div>`;
 }
@@ -181,59 +184,58 @@ const GATEWAYS = {
     {id:"paypal", t:"PayPal", s:"ادفع من رصيدك أو بطاقتك عبر PayPal", l:["PayPal"]}]
 };
 function renderCheckout(){
-  const box = $("#checkoutPage");
-  if (!S.cart.length){ box.innerHTML = `<div class="result"><h2>لا يوجد ما تدفعه الآن</h2><a class="btn btn-gold" href="library.html">تصفّح التمارين</a></div>`; return; }
-  const t = totals(), recurring = S.cart.some(c => P[c.id].kind === "vip");
+  const box = $("#checkoutPage"), items = payItems(), single = !!buyNow();
+  if (!S.user){ ss("next", "checkout.html"); location.replace("login.html"); return; }
+  if (!items.length){ box.innerHTML = `<div class="result"><h2>لا يوجد ما تدفعه الآن</h2><a class="btn btn-gold" href="library.html">تصفّح الأدوات</a></div>`; return; }
+  const t = totals(items), recurring = items.some(c => P[c.id].kind === "vip");
   const gws = GATEWAYS[S.region].filter(g => !recurring || ["paymob-card","nbe-card","paypal"].includes(g.id));
+  const last = S.lastGw && gws.some(g => g.id === S.lastGw) ? S.lastGw : gws[0].id;
   box.innerHTML = `<div class="cart-grid">
    <form class="form" id="payForm" novalidate>
     <div class="card form">
-      <h3>١. بياناتك</h3>
-      ${S.user ? `<div class="alert info">ستُضاف المشتريات إلى حساب <b>${esc(S.user.email)}</b></div>` :
-      `<p class="muted" style="font-size:.9rem">سننشئ حسابك تلقائياً لتصلك المواد. لديك حساب؟ <a href="login.html" data-next="checkout.html">سجّل الدخول</a></p>
-       <div class="row2"><div class="field"><label for="cName">الاسم</label><input id="cName" required autocomplete="name"></div>
-       <div class="field"><label for="cEmail">البريد الإلكتروني</label><input id="cEmail" type="email" required autocomplete="email"></div></div>
-       <div class="field"><label for="cPass">كلمة المرور لحسابك</label><input id="cPass" type="password" minlength="6" required autocomplete="new-password"><span class="hint">٦ أحرف على الأقل</span></div>`}
-      <div class="row2"><div class="field"><label for="cCountry">بلد الفاتورة</label><select id="cCountry">${D.countries.map(c=>`<option value="${c[0]}" ${(S.region==="eg")===(c[0]==="EG")&&(c[0]==="EG"||c[0]==="SA")?"selected":""}>${c[1]}</option>`).join("")}</select><span class="hint">السعر يُحسب حسب بلد الفاتورة</span></div>
-      <div class="field"><label for="cPhone">رقم الهاتف</label><input id="cPhone" type="tel" autocomplete="tel" placeholder="اختياري"></div></div>
-    </div>
-    <div class="card form">
-      <h3>٢. طريقة الدفع</h3>
-      ${recurring ? `<div class="alert info">اشتراك متجدد تلقائياً، ويمكنك إلغاؤه في أي وقت من حسابك.</div>` : ""}
-      <div class="pay-opts">${gws.map((g,i)=>`<label class="pay-opt"><input type="radio" name="gw" value="${g.id}" ${i?"":"checked"}><span><b>${g.t}</b><small>${g.s}</small></span><span class="logos">${g.l.map(x=>`<span>${x}</span>`).join("")}</span></label>`).join("")}</div>
-      <label class="check"><input type="checkbox" id="cTerms" required><span>أوافق على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>، وأفهم أن المحتوى الرقمي يُتاح فور الدفع.</span></label>
+      <div class="alert info">تشتري باسم <b>${esc(S.user.name)}</b> · ${esc(S.user.email)}</div>
+      <h3>طريقة الدفع</h3>
+      ${recurring ? `<div class="alert info">اشتراك متجدد تلقائياً، ويمكنك إلغاء التجديد في أي وقت من «حسابي ← اشتراكاتي».</div>` : ""}
+      <div class="pay-opts">${gws.map(g=>`<label class="pay-opt"><input type="radio" name="gw" value="${g.id}" ${g.id===last?"checked":""}><span><b>${g.t}</b><small>${g.s}</small></span><span class="logos">${g.l.map(x=>`<span>${x}</span>`).join("")}</span></label>`).join("")}</div>
       <div class="alert err" id="payErr" hidden></div>
       <button class="btn btn-gold btn-block" type="submit">${icon("lock")}ادفع ${fmt(t.total)}</button>
+      <p class="secure" style="text-align:center">بالضغط على «ادفع» أنت توافق على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>، والشراء نهائي.</p>
       <p class="secure">نموذج تجريبي: لن يُخصم أي مبلغ. <a href="failed.html">شاهد صفحة فشل الدفع</a></p>
     </div>
    </form>
    <aside class="card summary"><h3>طلبك</h3>
-     <div class="cur-switch"><span>عملة الدفع</span><div class="region" role="group" aria-label="عملة الدفع"><button type="button" data-region="eg" aria-pressed="${S.region==="eg"}">جنيه مصري</button><button type="button" data-region="intl" aria-pressed="${S.region!=="eg"}">دولار</button></div></div><div class="lines">${S.cart.map((c,i)=>lineHTML(c,i,true)).join("")}</div>
+     <div class="cur-switch"><span>عملة الدفع</span><div class="region" role="group" aria-label="عملة الدفع"><button type="button" data-region="eg" aria-pressed="${S.region==="eg"}">جنيه مصري</button><button type="button" data-region="intl" aria-pressed="${S.region!=="eg"}">دولار</button></div></div>
+     <div class="lines">${items.map((c,i)=>lineHTML(c,i,true)).join("")}</div>
      <div class="sumrow"><span>المجموع</span><span>${fmt(t.sub)}</span></div>
      ${t.disc ? `<div class="sumrow" style="color:var(--ok)"><span>خصم</span><span>− ${fmt(t.disc)}</span></div>` : ""}
-     <div class="sumrow total"><span>الإجمالي</span><span>${fmt(t.total)}</span></div></aside>
+     <div class="sumrow total"><span>الإجمالي</span><span>${fmt(t.total)}</span></div>
+     ${single ? `<button class="btn btn-line btn-sm" type="button" id="addInstead">أريد إضافة أدوات أخرى · انقل إلى السلة</button>` : ""}</aside>
   </div>`;
 }
 function submitPay(f){
-  const err = $("#payErr"); err.hidden = true;
-  if (!S.user){
-    const n = $("#cName").value.trim(), e = $("#cEmail").value.trim(), pw = $("#cPass").value;
-    if (!n || !/^\S+@\S+\.\S+$/.test(e) || pw.length < 6){ err.textContent = "أكمل الاسم وبريداً صحيحاً وكلمة مرور من ٦ أحرف."; err.hidden = false; return; }
-    S.user = {name:n, email:e, since:new Date().toISOString()};
-  }
-  if (!$("#cTerms").checked){ err.textContent = "يجب الموافقة على الشروط والأحكام قبل الدفع."; err.hidden = false; return; }
-  const t = totals(), gw = (f.querySelector("input[name=gw]:checked")||{}).value, no = "MS-" + (10240 + S.orders.length + 1);
-  S.cart.forEach(c => {
+  const items = payItems(), single = !!buyNow();
+  const t = totals(items), gw = (f.querySelector("input[name=gw]:checked")||{}).value, no = "MS-" + (10240 + S.orders.length + 1);
+  items.forEach(c => {
     const p = P[c.id];
     if (p.kind === "vip") S.vip = {plan:p.id, since:new Date().toISOString()};
     else if (p.kind === "bundle") D.bundles.find(b => b.id === p.id).items.forEach(i => S.owned.includes(i) || S.owned.push(i));
     else if (p.kind === "session") S.bookings.push({type:p.title, when:c.when, link:"يُرسل قبل الجلسة"});
     else if (!S.owned.includes(p.id)) S.owned.push(p.id);
   });
-  S.orders.unshift({no, date:new Date().toLocaleDateString("ar-EG"), items:S.cart.map(c=>P[c.id].title), total:fmt(t.total), gw, status:"مكتمل"});
-  ss("lastOrder", JSON.stringify({no, total:fmt(t.total), items:S.cart.map(c=>P[c.id].title), email:S.user.email, gw}));
-  S.cart = []; ss("coupon", null); save();
+  S.lastGw = gw;
+  S.orders.unshift({no, date:new Date().toLocaleDateString("ar-EG"), items:items.map(c=>P[c.id].title), total:fmt(t.total), gw, status:"مكتمل"});
+  ss("lastOrder", JSON.stringify({no, total:fmt(t.total), items:items.map(c=>P[c.id].title), email:S.user.email, gw}));
+  if (single){ S.cart = S.cart.filter(c => c.id !== items[0].id || P[c.id].kind === "session"); ss("buynow", null); }
+  else { S.cart = []; }
+  ss("coupon", null); save();
   location.href = "success.html";
+}
+function startBuy(id, extra){
+  const p = P[id]; if (!p) return;
+  if (hasAccess(id) && p.learn){ location.href = p.learn; return; }
+  ss("buynow", JSON.stringify(Object.assign({id}, extra||{})));
+  if (!S.user){ ss("next", "checkout.html"); location.href = "login.html"; return; }
+  location.href = "checkout.html";
 }
 
 /* ---------- VIP bar ---------- */
@@ -241,7 +243,7 @@ let vipPlan = "vip-m";
 function renderVipBar(){
   const p = P[vipPlan];
   $("#vipAmount").innerHTML = money(p.eg, p.us) + ` <small>/ ${p.id === "vip-m" ? "شهرياً" : "سنوياً"}</small>`;
-  const b = $("#vipJoin"); if (b){ b.dataset.add = vipPlan; }
+  const b = $("#vipJoin"); if (b){ b.dataset.buy = vipPlan; b.removeAttribute("data-add"); }
   if (S.vip && b){ b.textContent = "أنت عضو في استيقظ VIP"; b.removeAttribute("data-add"); b.href = "account.html#subscription"; }
 }
 
@@ -249,7 +251,7 @@ function renderVipBar(){
 function renderAccount(){
   const box = $("#accountPage");
   if (!S.user){ ss("next","account.html"); location.replace("login.html"); return; }
-  const tab = (location.hash || "#overview").slice(1);
+  let tab = (location.hash || "#overview").slice(1); if (["courses","books","subscription"].includes(tab)) tab = "mine";
   $$(".acc-nav a").forEach(a => a.setAttribute("aria-current", a.getAttribute("href") === "#" + tab));
   $$(".js-uname").forEach(e => e.textContent = S.user.name); $$(".js-uemail").forEach(e => e.textContent = S.user.email);
   const learnables = D.products.filter(p => p.learn && hasAccess(p.id) && p.kind !== "book");
@@ -261,10 +263,15 @@ function renderAccount(){
     overview: `<h1 class="title">أهلاً ${esc(S.user.name.split(" ")[0])}</h1>
       <div class="stats"><div class="stat"><b>${ar(learnables.length)}</b><span>مواد في مكتبتك</span></div><div class="stat"><b>${ar(S.bookings.length)}</b><span>جلسات محجوزة</span></div><div class="stat"><b>${S.vip ? "فعّالة" : "—"}</b><span>عضوية استيقظ VIP</span></div></div>
       <h2 style="font-size:1.25rem">أكمل من حيث توقفت</h2>${mine(learnables.slice(0,3))}`,
-    courses: `<h1 class="title">كورساتي وتمارينـي</h1>${mine(learnables)}`,
+    mine: `<h1 class="title">اشتراكاتي</h1>
+      <div class="card form" style="gap:10px"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center"><span><b style="color:var(--ink)">برنامج استيقظ VIP</b><br><small class="muted">${S.vip ? (S.vip.cancelled ? "أُلغي التجديد · الوصول متاح حتى نهاية الفترة" : "فعّال · " + esc(P[S.vip.plan].title) + " · يتجدد تلقائياً") : "غير مشترك"}</small></span>
+        ${S.vip ? (S.vip.cancelled ? `<span class="pill wait">ينتهي بنهاية الفترة</span>` : `<button class="btn btn-line btn-sm" type="button" id="cancelVip">إلغاء التجديد التلقائي</button>`) : `<a class="btn btn-gold btn-sm" href="vip.html">اشترك الآن</a>`}</div></div>
+      <h2 style="font-size:1.25rem">الأدوات (${ar(learnables.length)})</h2>${mine(learnables)}
+      ${books.length ? `<h2 style="font-size:1.25rem">الكتب</h2><div class="mine">${books.map(p=>`<div class="mine-item"><img src="${p.img}" alt=""><div><h3>${esc(p.title)}</h3><small class="muted">آخر صفحة: ${ar((S.page[p.id]||0)+1)}</small></div><a class="btn btn-plum btn-sm" href="reader.html">اقرأ</a></div>`).join("")}</div>` : ""}
+      ${S.bookings.length ? `<h2 style="font-size:1.25rem">الجلسات</h2><div class="scroll-x"><table class="table"><thead><tr><th>الجلسة</th><th>الموعد</th><th>الرابط</th></tr></thead><tbody>${S.bookings.map(b=>`<tr><td>${esc(b.type)}</td><td>${esc(b.when)}</td><td><span class="pill wait">${esc(b.link)}</span></td></tr>`).join("")}</tbody></table></div>` : ""}`,
     books: `<h1 class="title">مكتبة الكتب</h1>${books.length ? `<div class="mine">${books.map(p=>`<div class="mine-item"><img src="${p.img}" alt=""><div><h3>${esc(p.title)}</h3><small class="muted">آخر صفحة: ${ar((S.page[p.id]||0)+1)}</small></div><a class="btn btn-plum btn-sm" href="reader.html">اقرأ</a></div>`).join("")}</div>` : `<div class="card" style="text-align:center"><p class="muted">لم تشترِ كتباً بعد. يمكنك قراءة الفصل الأول مجاناً.</p><div class="ctas" style="justify-content:center;margin-top:12px"><a class="btn btn-line btn-sm" href="reader.html">اقرأ الفصل الأول</a><a class="btn btn-gold btn-sm" href="book-ghosts.html">صفحة الكتاب</a></div></div>`}`,
     sessions: `<h1 class="title">جلساتي</h1>${S.bookings.length ? `<div class="scroll-x"><table class="table"><thead><tr><th>الجلسة</th><th>الموعد</th><th>الرابط</th></tr></thead><tbody>${S.bookings.map(b=>`<tr><td>${esc(b.type)}</td><td>${esc(b.when)}</td><td><span class="pill wait">${esc(b.link)}</span></td></tr>`).join("")}</tbody></table></div>` : `<div class="card" style="text-align:center"><p class="muted">لا توجد جلسات محجوزة.</p><a class="btn btn-gold btn-sm" style="margin-top:12px" href="sessions.html">احجز جلسة</a></div>`}`,
-    subscription: `<h1 class="title">اشتراكي</h1>${S.vip ? `<div class="card form"><div class="alert ok">عضويتك في استيقظ VIP فعّالة (${P[S.vip.plan].title}).</div><p class="muted">التجديد التالي تلقائي. يمكنك الإلغاء في أي وقت ويبقى الوصول حتى نهاية الفترة المدفوعة.</p><div class="ctas"><button class="btn btn-line btn-sm" type="button" id="cancelVip">إلغاء التجديد التلقائي</button><a class="btn btn-ghost btn-sm" href="#payment">تغيير بطاقة الدفع</a></div></div>` : `<div class="card" style="text-align:center"><p class="muted">لست مشتركاً في استيقظ VIP بعد.</p><a class="btn btn-gold btn-sm" style="margin-top:12px" href="vip.html">اعرف البرنامج</a></div>`}`,
+    _old_subscription: `<h1 class="title">اشتراكي</h1>${S.vip ? `<div class="card form"><div class="alert ok">عضويتك في استيقظ VIP فعّالة (${P[S.vip.plan].title}).</div><p class="muted">التجديد التالي تلقائي. يمكنك الإلغاء في أي وقت ويبقى الوصول حتى نهاية الفترة المدفوعة.</p><div class="ctas"><button class="btn btn-line btn-sm" type="button" id="cancelVip">إلغاء التجديد التلقائي</button><a class="btn btn-ghost btn-sm" href="#payment">تغيير بطاقة الدفع</a></div></div>` : `<div class="card" style="text-align:center"><p class="muted">لست مشتركاً في استيقظ VIP بعد.</p><a class="btn btn-gold btn-sm" style="margin-top:12px" href="vip.html">اعرف البرنامج</a></div>`}`,
     orders: `<h1 class="title">الطلبات والفواتير</h1>${S.orders.length ? `<div class="scroll-x"><table class="table"><thead><tr><th>رقم الطلب</th><th>التاريخ</th><th>المحتوى</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody>${S.orders.map(o=>`<tr><td>${o.no}</td><td>${o.date}</td><td>${o.items.map(esc).join("، ")}</td><td>${o.total}</td><td><span class="pill ok">${o.status}</span></td></tr>`).join("")}</tbody></table></div>` : `<p class="muted">لا توجد طلبات بعد.</p>`}`,
     favorites: `<h1 class="title">المفضلة</h1><div class="shelf three" data-shelf="favs"></div>`,
     profile: `<h1 class="title">بياناتي</h1><form class="card form" id="profileForm"><div class="row2"><div class="field"><label for="pName">الاسم</label><input id="pName" value="${esc(S.user.name)}"></div><div class="field"><label for="pEmail">البريد الإلكتروني</label><input id="pEmail" type="email" value="${esc(S.user.email)}"></div></div><div class="field"><label for="pLang">لغة الموقع</label><select id="pLang"><option>العربية</option><option disabled>English (قريباً)</option></select></div><label class="check"><input type="checkbox" checked><span>أرسل لي تذكيرات الجلسات والجديد على البريد</span></label><button class="btn btn-plum" type="submit">حفظ</button></form><button class="btn btn-line btn-sm" type="button" id="logout" style="justify-self:start">تسجيل الخروج</button>`
@@ -379,11 +386,26 @@ function initBooking(){
       const type = (root.querySelector("input[name=stype]:checked")||{}).value;
       if (!sel || !slot){ toast("اختر اليوم والوقت أولاً"); return; }
       const d = new Date(sel); const when = `${names[d.getDay()]} ${ar(d.getDate())} ${months[d.getMonth()]} · ${slot} (بتوقيت القاهرة)`;
-      S.cart.push({id:type, when}); save(); paintAll(); location.href = "cart.html";
+      startBuy(type, {when});
     }
   });
   drawDays(); drawSlots();
 }
+
+/* ---------- login note when coming from a purchase ---------- */
+const lf = $("#loginForm") || $("#registerForm");
+if (lf && ss("next") === "checkout.html"){ const b = buyNow(); const n = document.createElement("div"); n.className = "alert info";
+  n.innerHTML = b ? `سجّل دخولك لإتمام شراء <b>${esc(P[b.id].title)}</b> بضغطة واحدة.` : "سجّل دخولك لإتمام الشراء."; lf.prepend(n); }
+
+/* ---------- password eye ---------- */
+$$('input[type="password"]').forEach(inp => {
+  const w = document.createElement("span"); w.className = "pw-wrap"; inp.parentNode.insertBefore(w, inp); w.appendChild(inp);
+  const b = document.createElement("button"); b.type = "button"; b.className = "pw-eye"; b.setAttribute("aria-label", "إظهار كلمة المرور");
+  const eye = '<svg class="icon" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const off = '<svg class="icon" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/><path d="M4 4l16 16"/></svg>';
+  b.innerHTML = eye; w.appendChild(b);
+  b.addEventListener("click", () => { const show = inp.type === "password"; inp.type = show ? "text" : "password"; b.innerHTML = show ? off : eye; b.setAttribute("aria-label", show ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"); });
+});
 
 /* ---------- forms ---------- */
 function initForms(){
@@ -413,6 +435,10 @@ function initForms(){
 
 /* ---------- clicks ---------- */
 document.addEventListener("click", e => {
+  const buy = e.target.closest("[data-buy]");
+  if (buy){ e.preventDefault(); startBuy(buy.dataset.buy); return; }
+  if (e.target.closest("#addInstead")){ const b = buyNow(); if (b && !S.cart.some(c => c.id === b.id)) S.cart.push(b); ss("buynow", null); save(); location.href = "cart.html"; return; }
+  if (e.target.closest("#toCheckout")){ ss("buynow", null); if (!S.user){ e.preventDefault(); ss("next","checkout.html"); location.href = "login.html"; } return; }
   const add = e.target.closest("[data-add]");
   if (add){ e.preventDefault(); const id = add.dataset.add; if (S.cart.some(c => c.id === id) && !add.classList.contains("add") && P[id].kind !== "session"){ location.href = "cart.html"; return; } addToCart(id); return; }
   const fav = e.target.closest("[data-fav]");
@@ -430,7 +456,7 @@ document.addEventListener("click", e => {
   const nx = e.target.closest("[data-next]");
   if (nx){ ss("next", nx.dataset.next); return; }
   if (e.target.closest("#logout")){ S.user = null; save(); location.href = "index.html"; return; }
-  if (e.target.closest("#cancelVip")){ toast("أُلغي التجديد التلقائي. يبقى وصولك حتى نهاية الفترة."); return; }
+  if (e.target.closest("#cancelVip")){ if (S.vip){ S.vip.cancelled = true; save(); renderAccount(); } toast("أُلغي التجديد التلقائي. يبقى وصولك حتى نهاية الفترة."); return; }
   const prev = e.target.closest("[data-preview]");
   if (prev){ location.href = "learn.html#" + prev.dataset.preview; return; }
   if (e.target.closest(".js-demo-login")){ S.user = {name:"مشتركة تجريبية", email:"demo@example.com", since:new Date().toISOString()}; if (!S.owned.length) S.owned = ["ain-sahia","attach","breath"]; save(); location.href = "account.html"; return; }

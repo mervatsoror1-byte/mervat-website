@@ -62,7 +62,8 @@ def product(p):
       <span class="sc-price" style="padding:0" data-price="{p["id"]}">{p["eg"]} ج.م</span>
       <small class="muted">وصول مدى الحياة</small>
       <div class="buy2-meta"><span>{ic("lessons","icon icon-sm")}{total} {"دروس" if total > 2 else "درس"}</span><span>{ic("clock","icon icon-sm")}{dur}</span></div>
-      <button class="btn btn-gold btn-block" type="button" data-add="{p["id"]}">{ic("bag")}<span>إضافة إلى السلة</span></button>
+      <button class="btn btn-gold btn-block" type="button" data-buy="{p["id"]}"><span>اشترك الآن</span></button>
+      <button class="btn btn-line btn-block" type="button" data-add="{p["id"]}">{ic("bag")}<span>إضافة إلى السلة</span></button>
       <a class="gift-link" href="contact.html">{ic("gift","icon icon-sm")}إهداء هذه الأداة</a>
       <div class="incl"><b>هذه الأداة تشمل:</b><span>{total} {"دروس صوتية ومرئية" if total > 2 else "درس"} عالية الجودة</span><span>وصول كامل مدى الحياة</span><span>مشمولة في برنامج استيقظ VIP</span></div>
     </div></aside>

@@ -1021,3 +1021,12 @@ body:has(.on-hero)::before{background:#284D92}
 .cur-switch{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#F5F5DC;border-radius:16px;padding:10px 14px;font-size:.88rem}
 .site-header{display:block;width:100%}
 .ct-list a:nth-child(-n+2){grid-column:1/-1;justify-content:center}
+/* all light text on dark (blue / purple) surfaces uses Silk Cream #F5F5DC */
+.glow-band h2,.glow-band p,.site-footer,.site-footer .f-grid ul a,.site-footer .f-brand p,.site-footer .bottom,.site-footer .f-news input::placeholder,
+.ct-card p,.au-in>p,.au-panel .check,.au-panel .or,.pop-art p,.voice.hl p,.tile span,.tile small,.au-panel,.help-btn,.f-contact a,.f-contact span{color:#F5F5DC}
+.site-footer .f-grid ul a:hover{color:#C5A059}
+.site-footer .f-news input{color:#F5F5DC}
+.pw-wrap{position:relative;display:block}
+.pw-wrap input{padding-inline-end:46px}
+.pw-eye{position:absolute;inset-inline-end:8px;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;background:none;color:#7A7390;cursor:pointer;display:grid;place-items:center;border-radius:50%}
+.pw-eye:hover{background:#F5F5DC;color:#3A1A5E}

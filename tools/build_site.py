@@ -246,7 +246,7 @@ def vip_card():
       <li><span class="ico">{ic("path")}</span><span><b>خطة يومية</b>تطبيق واضح ومتابعة لتقدّمك</span></li>
       <li><span class="ico">{ic("crown")}</span><span><b>مزايا الأعضاء</b>أولوية وخصم على الجلسات الفردية</span></li></ul>
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · وفّر شهرين</button></div>
-      <div class="amount" id="vipAmount">١٢٠٠ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-add="vip-m">اشترك الآن</a></div>
+      <div class="amount" id="vipAmount">١٢٠٠ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">اشترك الآن</a></div>
     <span class="demo" style="justify-self:start">الأسعار والمزايا للعرض حتى تعتمديها</span></div></div>'''
 
 # ------------------------------------------------------------------ pages
@@ -274,8 +274,8 @@ def build():
 
     # ---------- VIP
     plans = f'''<div class="plan-grid">
-  <div class="plan"><h3>الاشتراك الشهري</h3>{price("vip-m")}<span class="muted">يتجدد شهرياً · ألغِ متى شئت</span><ul>{li(["كل التمارين وكورس عين صاحية","لقاء جماعي مباشر شهرياً","خطة تطبيق ومتابعة التقدّم"])}</ul><button class="btn btn-line" type="button" data-add="vip-m"><span>اشترك شهرياً</span></button></div>
-  <div class="plan best"><span class="tag">الأوفر</span><h3>الاشتراك السنوي</h3>{price("vip-y")}<span class="muted">وفّر ما يعادل شهرين</span><ul>{li(["كل مزايا الشهري","أولوية في حجز الجلسات الفردية","خصم ٢٠٪ على الجلسات","ملفات وتمارين حصرية للأعضاء"])}</ul><button class="btn btn-gold" type="button" data-add="vip-y"><span>اشترك سنوياً</span></button></div>
+  <div class="plan"><h3>الاشتراك الشهري</h3>{price("vip-m")}<span class="muted">يتجدد شهرياً · ألغِ متى شئت</span><ul>{li(["كل التمارين وكورس عين صاحية","لقاء جماعي مباشر شهرياً","خطة تطبيق ومتابعة التقدّم"])}</ul><button class="btn btn-line" type="button" data-buy="vip-m"><span>اشترك شهرياً</span></button></div>
+  <div class="plan best"><span class="tag">الأوفر</span><h3>الاشتراك السنوي</h3>{price("vip-y")}<span class="muted">وفّر ما يعادل شهرين</span><ul>{li(["كل مزايا الشهري","أولوية في حجز الجلسات الفردية","خصم ٢٠٪ على الجلسات","ملفات وتمارين حصرية للأعضاء"])}</ul><button class="btn btn-gold" type="button" data-buy="vip-y"><span>اشترك سنوياً</span></button></div>
   <div class="plan"><h3>جرّب قبل الاشتراك</h3><span class="price">مجاناً</span><span class="muted">أنشئ حساباً واستلم هدية</span><ul>{li(["مقدمة تأمل السكينة","الفصل الأول من الكتاب","معاينة أول درس في كل تمرين"])}</ul><a class="btn btn-line" href="register.html">أنشئ حساباً مجانياً</a></div></div>'''
     page("vip.html", "برنامج استيقظ VIP", "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. لقاءات مباشرة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.", f'''
 <section class="hero"><canvas class="sparkle" aria-hidden="true"></canvas><div class="wrap">
@@ -319,7 +319,7 @@ def build():
     <ul class="facts" style="margin-top:10px"><li>{ic("live")}أونلاين عبر Zoom أو Google Meet</li><li>{ic("globe")}يظهر الموعد بتوقيت بلدك</li><li>{ic("bell")}تذكير قبل الجلسة بيوم وبساعة</li><li>{ic("cal")}تغيير الموعد مجاناً حتى ٢٤ ساعة قبله</li></ul></div>
   <div class="cal"><div class="cal-head"><h3>٢. اختر الموعد · <span id="bkMonth"></span></h3><div class="cal-nav"><button class="iconbtn" id="bkPrev" type="button" aria-label="الأسبوع السابق">{ic("fwd")}</button><button class="iconbtn" id="bkNext" type="button" aria-label="الأسبوع التالي">{ic("back")}</button></div></div>
     <div class="days" id="bkDays"></div><div class="slots" id="bkSlots"></div><small class="muted">المواعيد بتوقيت القاهرة (GMT+2). المواعيد هنا للعرض.</small>
-    <button class="btn btn-gold btn-block" id="bkGo" type="button">{ic("lock")}تأكيد الموعد والانتقال للدفع</button></div></div></section>
+    <button class="btn btn-gold btn-block" id="bkGo" type="button">{ic("lock")}تأكيد الموعد والدفع</button></div></div></section>
 <section class="band"><div class="wrap narrow"><div class="head center"><h2 class="title">أسئلة عن الجلسات</h2></div><div class="faq">{faq_items(FAQ["sessions"])}</div></div></section>''', active="sessions.html")
 
     # ---------- about
@@ -378,12 +378,12 @@ def build():
   <a href="login.html" class="muted" style="text-align:center">العودة لتسجيل الدخول</a></div></div></div>''', bare=True, noindex=True)
 
     # ---------- account
-    nav = "".join(f'<a href="#{k}">{ic(i)}{t}</a>' for k,i,t in [("overview","home","نظرة عامة"),("courses","headphones","كورساتي وتمارينـي"),("books","book","الكتب"),("sessions","cal","جلساتي"),("subscription","crown","اشتراكي"),("orders","receipt","الطلبات والفواتير"),("favorites","heart","المفضلة"),("profile","user","بياناتي")])
+    nav = "".join(f'<a href="#{k}">{ic(i)}{t}</a>' for k,i,t in [("overview","home","نظرة عامة"),("mine","crown","اشتراكاتي"),("sessions","cal","جلساتي"),("orders","receipt","الطلبات والفواتير"),("favorites","heart","المفضلة"),("profile","user","بياناتي")])
     page("account.html", "حسابي", "لوحة حسابك.", f'''<section class="band-sm"><div class="wrap acc"><nav class="acc-nav" aria-label="أقسام الحساب"><div class="acc-user"><span class="avatar">م</span><span><b class="js-uname" style="color:var(--ink)"></b><br><small class="muted js-uemail"></small></span></div>{nav}<a href="#" id="logout">{ic("logout")}تسجيل الخروج</a></nav>
   <div class="panel" id="accountPage"></div></div></section>''', noindex=True)
 
     # ---------- learn / reader
-    page("learn.html", "مشغّل الدروس", "مشغّل الدروس.", f'<section class="page-hero"><div class="wrap">{crumbs(("حسابي","account.html#courses"),("الدروس",None))}<h1 class="display js-learn-title" style="font-size:clamp(1.6rem,3.6vw,2.4rem)"></h1></div></section><section class="band-sm"><div class="wrap" id="playerPage"></div></section>', noindex=True)
+    page("learn.html", "مشغّل الدروس", "مشغّل الدروس.", f'<section class="page-hero"><div class="wrap">{crumbs(("حسابي","account.html#mine"),("الدروس",None))}<h1 class="display js-learn-title" style="font-size:clamp(1.6rem,3.6vw,2.4rem)"></h1></div></section><section class="band-sm"><div class="wrap" id="playerPage"></div></section>', noindex=True)
     page("reader.html", "قارئ الكتاب", "قراءة الكتاب داخل الموقع.", f'<section class="page-hero"><div class="wrap">{crumbs(("الكتب","books.html"),("القراءة",None))}<h1 class="display" style="font-size:clamp(1.6rem,3.6vw,2.4rem)">عندما تولد في عائلة من الأشباح</h1></div></section><section class="band-sm"><div class="wrap narrow" id="readerPage" style="display:grid;gap:18px"></div></section>', noindex=True)
 
     # ---------- cart / checkout / results
@@ -393,7 +393,7 @@ def build():
     page("success.html", "تم الدفع بنجاح", "تم الدفع بنجاح.", f'''<section class="band"><div class="wrap">{stepper(2)}<div class="result" id="successBox"><div class="badge">{ic("check")}</div><h1 class="title">شكراً لك، تم الدفع بنجاح</h1>
   <p class="lead">رقم طلبك <b id="oNo">MS-10241</b> بقيمة <b id="oTotal">—</b>. أرسلنا تأكيد الطلب وبيانات الدخول إلى <b id="oEmail">بريدك</b>.</p>
   <ul class="facts" id="oItems" style="justify-items:center"></ul>
-  <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="account.html#courses">{ic("play")}ابدأ الآن</a><a class="btn btn-line" href="account.html#orders">عرض الفاتورة</a></div>
+  <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="account.html#mine">{ic("play")}ابدأ الآن</a><a class="btn btn-line" href="account.html#orders">عرض الفاتورة</a></div>
   <div class="upsell" id="successUpsell" style="text-align:start"><span class="ico">{ic("crown")}</span><div><b>خطوتك التالية: استيقظ VIP</b><p>افتح كل التمارين وعين صاحية، وانضم للقاءات المباشرة مع د. مرفت.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>
   <p class="muted" style="font-size:.85rem">لم تصلك الرسالة؟ راجع مجلد الرسائل غير المرغوبة أو <a href="contact.html">تواصل معنا</a>.</p></div></div></section>''', noindex=True)
     page("failed.html", "لم يكتمل الدفع", "لم يكتمل الدفع.", f'''<section class="band"><div class="wrap"><div class="result"><div class="badge err">{ic("x")}</div><h1 class="title">لم يكتمل الدفع</h1>
@@ -468,13 +468,13 @@ def book_page():
     page("book-ghosts.html", b["title"], b["short"], page_hero(b["title"], b["short"], ("الكتب","books.html"), (b["title"], None), eyebrow="كتاب إلكتروني") + f'''
 <section class="band-sm"><div class="wrap pd"><div class="pd-main"><div class="split" style="grid-template-columns:auto 1fr">{book3d()}<div class="prose"><h2 class="section-title">عن الكتاب</h2><p>نبذة الكتاب تُكتب هنا: لمن كُتب، وما الذي سيفهمه القارئ عن نفسه وعائلته بعد قراءته. <span class="demo">نص مؤقت</span></p><h3>ستقرأ في هذا الكتاب</h3><ul><li>كيف ننتقل ما لم يُقل في العائلة إلى الأبناء</li><li>علامات الأشباح العائلية في حياتك اليومية</li><li>تمارين قصيرة للتحرر بوعي ورحمة</li></ul></div></div>{book_feats()}</div>
   <aside class="pd-side"><div class="buybox">{price("book-ghosts")}<ul class="facts"><li>{ic("book")}يُقرأ داخل الموقع</li><li>{ic("lock")}نسخة محمية باسمك</li><li>{ic("devices")}هاتف وكمبيوتر</li></ul>
-  <button class="btn btn-gold btn-block" type="button" data-add="book-ghosts">{ic("bag")}<span>اشترِ الكتاب</span></button><a class="btn btn-line btn-block" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></aside></div></section>''',
+  <button class="btn btn-gold btn-block" type="button" data-buy="book-ghosts"><span>اشترِ الكتاب الآن</span></button><button class="btn btn-line btn-block" type="button" data-add="book-ghosts">{ic("bag")}<span>أضف للسلة</span></button><a class="btn btn-line btn-block" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></aside></div></section>''',
          active="books.html", schema=[{"@context":"https://schema.org","@type":"Book","name":b["title"],"author":{"@type":"Person","name":"مرفت سرور"},"inLanguage":"ar","bookFormat":"https://schema.org/EBook","offers":{"@type":"Offer","price":b["eg"],"priceCurrency":"EGP"}}])
 
 FAQ = {
  "general":[("هل أحتاج خبرة سابقة في الوعي؟","لا. كل مادة تبدأ بمقدمة وإرشادات واضحة، ويمكنك البدء بأي تمرين."),("هل المحتوى باللغة العربية؟","نعم، كل المحتوى بالعربية، وسنضيف لغات أخرى لاحقاً."),("هل يمكنني الاستماع من الهاتف؟","نعم، الموقع يعمل على الهاتف والكمبيوتر، ويحفظ تقدّمك على كل الأجهزة.")],
- "pay":[("لماذا يختلف السعر داخل مصر عن خارجها؟","نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة."),("ما طرق الدفع المتاحة؟","داخل مصر: البطاقات البنكية وميزة والمحافظ الإلكترونية وفوري والتقسيط. من خارج مصر: البطاقات الدولية وPayPal."),("متى أحصل على المادة بعد الدفع؟","فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول."),("هل يمكنني استرداد المبلغ؟","راجع سياسة الاسترداد. المحتوى الرقمي يُتاح فور الشراء، ولذلك للاسترداد شروط محددة.")],
- "vip":[("ماذا يشمل استيقظ VIP؟","لقاءات مباشرة شهرية، وكل التمارين وكورس عين صاحية، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالتمارين بعد الإلغاء؟","التمارين المفتوحة بالاشتراك تتوقف بعد انتهائه، أما ما اشتريته منفصلاً فيبقى لك.")],
+ "pay":[("لماذا يختلف السعر داخل مصر عن خارجها؟","نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة."),("ما طرق الدفع المتاحة؟","داخل مصر: البطاقات البنكية وميزة والمحافظ الإلكترونية وفوري والتقسيط. من خارج مصر: البطاقات الدولية وPayPal."),("متى أحصل على المادة بعد الدفع؟","فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول."),("هل يمكنني استرداد المبلغ؟","كل عمليات الشراء نهائية لأن الأدوات تُفتح فور الدفع. نرد المبلغ فقط في حالة الخصم المزدوج أو الخطأ التقني الذي لم يُحل، كما في سياسة الاسترداد والإلغاء.")],
+ "vip":[("ماذا يشمل استيقظ VIP؟","لقاءات مباشرة شهرية، وكل التمارين وكورس عين صاحية، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالأدوات بعد الإلغاء؟","الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى لك."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
  "sessions":[("كيف تتم الجلسة؟","أونلاين عبر Zoom أو Google Meet، ويصلك الرابط على بريدك."),("هل يمكن تغيير الموعد؟","نعم، حتى ٢٤ ساعة قبل الجلسة من حسابك دون رسوم."),("بأي توقيت تظهر المواعيد؟","تظهر بتوقيت القاهرة مع تحويلها تلقائياً لتوقيت بلدك في الموقع الفعلي.")],
  "books":[("هل يمكن تحميل الكتاب؟","لا، يُقرأ داخل حسابك فقط حفاظاً على حقوق المحتوى، بنسخة تحمل اسمك."),("هل أستطيع القراءة دون إنترنت؟","القراءة تحتاج اتصالاً بالإنترنت لأن الكتاب محفوظ في حسابك.")],
 }
@@ -520,7 +520,7 @@ def home_body():
   <div class="copy"><span class="eyebrow">البرنامج التدريبي الأساسي</span><h2><span class="foil-text">استيقظ VIP</span></h2>
     <p class="lead">رحلة شهرية متدرّجة مع د. مرفت، تجمع الوعي والتطبيق اليومي والمتابعة. هنا يبدأ التغيير الذي يستمر.</p>
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · وفّر شهرين</button></div>
-      <div class="amount" id="vipAmount">١٢٠٠ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-add="vip-m">انضم الآن</a></div>
+      <div class="amount" id="vipAmount">١٢٠٠ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">انضم الآن</a></div>
     <a class="btn btn-line btn-sm" href="vip.html" style="justify-self:start">كل تفاصيل البرنامج</a></div>
   <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","لقاءات شهرية مباشرة","لقاء جماعي مع د. مرفت للإجابة عن أسئلتك والتعمق في رحلتك."),("lib","المكتبة كاملة","كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك."),("path","خطة يومية ومتابعة","تطبيق واضح أسبوعاً بأسبوع، وتتابع تقدّمك من حسابك."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
 </div></section>
@@ -538,7 +538,7 @@ def home_body():
 <section class="band" style="padding-bottom:0"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر أهدأ</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
 <section class="band book-band" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap split">{book3d()}
   <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]} <span class="demo">نبذة مؤقتة</span></p>
-    {book_feats()}<div class="buy">{price("book-ghosts")}<button class="btn btn-plum" type="button" data-add="book-ghosts">{ic("bag")}<span>اشترِ الكتاب</span></button><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
+    {book_feats()}<div class="buy">{price("book-ghosts")}<button class="btn btn-plum" type="button" data-buy="book-ghosts"><span>اشترِ الكتاب</span></button><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
 <section class="finale"><div class="wrap"><span class="eyebrow center">هديتك الأولى</span><h2>رحلتك تبدأ <span class="foil-text">بقرار واحد</span></h2><p class="lead">أنشئ حسابك المجاني، واستلم مقدمة تأمل السكينة والفصل الأول من الكتاب فوراً.</p><a class="btn btn-pill" href="register.html">{ic("gift")}ابدأ الآن</a></div></section>'''
 
 if __name__ == "__main__":
