@@ -48,13 +48,13 @@ soft warm golden light, serene spiritual luminous atmosphere, color palette of r
 - **الحجاب:** نفس اللفّة الحقيقية، وطرف طويل ينسدل على الكتف.
 - **العباءة:** دائماً على الكتفين (كاب قصير، أو كاب طويل حتى الأرض، أو عباءة مفتوحة).
 - **القفاز:** أبيض قصير حتى الرسغ، في اليد اليسرى فقط، وفوقه سوار ذهبي رفيع.
-- **الستايل:** كلاسيكي. **لا فساتين أبداً.** بنطلونات كلاسيكية مضبوطة (مستقيم، قماش، سيجارة) — ليست واسعة. بلوزات وقمصان بياقة عالية، أحزمة بالخصر، أقمشة أنيقة.
+- **الستايل:** كلاسيكي. **لا فساتين أبداً.** بنطلونات بأشكال متنوعة (مستقيم، سيجارة، واسع أنيق) — التنوع مطلوب. بلوزات وقمصان بياقة عالية، أحزمة بالخصر، أقمشة أنيقة.
 
 عبارة الملابس الثابتة في البرومبت:
 ```
-classic elegant style: tailored straight-leg classic trousers (not wide-leg, not a dress, not a skirt), a refined high-neck blouse with a tied waist belt, a flowing cape-style abaya resting on both shoulders
+classic elegant style: tailored straight-leg classic trousers (not a dress, not a skirt), a refined high-neck blouse with a tied waist belt, a flowing cape-style abaya resting on both shoulders
 ```
-وفي الـ Negative: `dress, skirt, gown, wide-leg palazzo pants`
+وفي الـ Negative: `dress, skirt, gown`
 
 ## أداة التوليد المعتمدة
 بعد مقارنة Leonardo وGemini وChatGPT: **ChatGPT (إنشاء صورة) هو الأفضل** في الالتزام بالمظهر والتفاصيل والتعديل بالحوار.
