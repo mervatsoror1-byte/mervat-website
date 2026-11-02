@@ -42,3 +42,16 @@
 ```
 soft warm golden light, serene spiritual luminous atmosphere, color palette of royal blue #284D92, burnished gold #C5A059, silk cream #F5F5DC, lavender #D1A7E2 and orchid purple accents, a small glowing golden flame or candle as light source, fresh lavender flowers, delicate thin golden light thread, arched window or arch shape, clean elegant composition, high detail, photorealistic, no text, no letters, no watermark
 ```
+
+## مظهر مرفت (ثوابت الصور الشخصية)
+- **الجسم والوجه:** كما في صورة الصدارة الجالسة (المرجع الأساسي). وجه ممتلئ وجسم ممتلئ حقيقي، غير نحيف.
+- **الحجاب:** نفس اللفّة الحقيقية، وطرف طويل ينسدل على الكتف.
+- **العباءة:** دائماً على الكتفين (كاب قصير، أو كاب طويل حتى الأرض، أو عباءة مفتوحة).
+- **القفاز:** أبيض قصير حتى الرسغ، في اليد اليسرى فقط، وفوقه سوار ذهبي رفيع.
+- **الستايل:** كلاسيكي. **لا فساتين أبداً.** بنطلونات كلاسيكية مضبوطة (مستقيم، قماش، سيجارة) — ليست واسعة. بلوزات وقمصان بياقة عالية، أحزمة بالخصر، أقمشة أنيقة.
+
+عبارة الملابس الثابتة في البرومبت:
+```
+classic elegant style: tailored straight-leg classic trousers (not wide-leg, not a dress, not a skirt), a refined high-neck blouse with a tied waist belt, a flowing cape-style abaya resting on both shoulders
+```
+وفي الـ Negative: `dress, skirt, gown, wide-leg palazzo pants`
