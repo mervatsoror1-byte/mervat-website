@@ -1044,3 +1044,11 @@ body:has(.on-hero)::before{background:#284D92}
   .vb-img{overflow:hidden;direction:ltr}
   .vb-copy{position:static;width:auto;padding:26px max(18px,env(safe-area-inset-right,0px)) 34px max(18px,env(safe-area-inset-left,0px));background:linear-gradient(180deg,#F3E3C3,#FBF3E4)}
 }
+/* sessions banner: photo full width, copy over the empty left side */
+.ses-banner{position:relative;overflow:hidden;background:#F7F6F2}
+.ses-banner>img{width:100%;height:auto;display:block}
+.sb-copy{position:absolute;inset:0 auto 0 0;width:44%;display:grid;align-content:center;justify-items:start;gap:14px;padding:0 max(24px,4vw);background:linear-gradient(90deg,rgba(252,252,247,.92),rgba(252,252,247,.6) 70%,transparent)}
+.ses-banner h2{font-family:var(--display);font-size:clamp(1.8rem,3.4vw,3rem);line-height:1.4;color:#2A1245}
+.ses-banner p{color:#5A4E6E;font-size:clamp(.95rem,1.2vw,1.1rem);max-width:34ch}
+.tile-ses img{object-position:82% 30%}
+@media (max-width:820px){.ses-banner>img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:80% 20%}.sb-copy{position:static;width:auto;background:#FCFCF7;padding:26px max(18px,env(safe-area-inset-right,0px)) 34px max(18px,env(safe-area-inset-left,0px))}}
