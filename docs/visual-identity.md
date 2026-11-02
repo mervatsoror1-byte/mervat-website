@@ -55,3 +55,8 @@ soft warm golden light, serene spiritual luminous atmosphere, color palette of r
 classic elegant style: tailored straight-leg classic trousers (not wide-leg, not a dress, not a skirt), a refined high-neck blouse with a tied waist belt, a flowing cape-style abaya resting on both shoulders
 ```
 وفي الـ Negative: `dress, skirt, gown, wide-leg palazzo pants`
+
+## أداة التوليد المعتمدة
+بعد مقارنة Leonardo وGemini وChatGPT: **ChatGPT (إنشاء صورة) هو الأفضل** في الالتزام بالمظهر والتفاصيل والتعديل بالحوار.
+- المرجع الثابت للوزن والجسم: صورة الصدارة الجالسة (لا أنحف ولا أثقل منها).
+- التعديل يتم في نفس المحادثة خطوة واحدة في كل مرة (الوزن أولاً، ثم الوضعية).
