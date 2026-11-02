@@ -507,7 +507,7 @@ def home_body():
 <section class="band"><div class="wrap statement"><span class="eyebrow center">أهلاً بك</span>
   <h2>صوت هادئ يوقظ فيك <em>ما نسيته عن نفسك</em></h2>
   <p class="lead">إن كنت تبحث عن مساحة آمنة تفهم فيها مشاعرك، وتفكّ تعلّقك، وتعود إلى سكينتك، فأنت في المكان الصحيح.</p></div></section>
-<section class="glow-band"><div class="corner c1"><img src="assets/img/coach-green.webp" alt="" loading="lazy"></div><div class="corner c2"><img src="assets/img/coach-navy.webp" alt="" loading="lazy"></div>
+<section class="glow-band"><div class="corner c1"><img src="assets/img/mervat-iam-1.webp" alt="" loading="lazy"></div><div class="corner c2"><img src="assets/img/coach-navy.webp" alt="" loading="lazy"></div>
   <div class="wrap"><h2>أنا مرفت،</h2><p>وأعدك أن دخولك هنا ليس كخروجك. ما تبحث عنه من هدوء ووضوح ومعنى، يبدأ من الداخل.</p><span class="gold">أمسك يدي، ولنبدأ معاً…</span></div></section>
 {MARQUEE}
 <section class="band"><div class="wrap whois">
