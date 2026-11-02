@@ -511,7 +511,7 @@ def home_body():
   <div class="wrap"><h2>أنا مرفت،</h2><p>وأعدك أن دخولك هنا ليس كخروجك. ما تبحث عنه من هدوء ووضوح ومعنى، يبدأ من الداخل.</p><span class="gold">أمسك يدي، ولنبدأ معاً…</span></div></section>
 {MARQUEE}
 <section class="band"><div class="wrap whois">
-  <div class="framed"><div class="img"><img src="assets/img/coach-white-square.webp" alt="د. مرفت سرور" width="900" height="900" loading="lazy"></div></div>
+  <div class="framed"><div class="img"><img src="assets/img/mervat-whois.webp" alt="د. مرفت سرور" width="900" height="1125" loading="lazy"></div></div>
   <div class="split-body"><span class="eyebrow">من هي مرفت سرور؟</span><h2 style="font-family:var(--display);font-size:clamp(1.9rem,3.8vw,2.8rem)">كوتش وعي وتشافي، ورفيقة رحلة العودة إلى الذات</h2>
     <p class="lead">معتمدة من الاتحاد الدولي للكوتشينج ICF. تجمع بين الكوتشينج والـ Decoding وتمارين التشافي، لترافقك من الفهم إلى التطبيق اليومي. <span class="demo">نبذة مؤقتة</span></p>
     <div class="stats3"><div><b>—</b>سنوات خبرة</div><div><b>—</b>ساعة تدريبية</div><div><b>—</b>متدرّب</div></div><span class="demo" style="justify-self:start">تُكتب أرقامك الفعلية هنا</span>
