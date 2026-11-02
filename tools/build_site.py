@@ -241,7 +241,7 @@ def vip_card():
   <div class="vip-body"><span class="eyebrow">البرنامج التدريبي الأساسي</span><h2><span class="foil-text">استيقظ VIP</span></h2>
     <p class="lead">رحلة شهرية متدرّجة مع د. مرفت، تجمع الوعي والتطبيق اليومي والمتابعة. هنا يبدأ التغيير الذي يستمر.</p>
     <ul class="inc">
-      <li><span class="ico">{ic("live")}</span><span><b>لقاءات مباشرة</b>جلسات جماعية مع د. مرفت كل شهر</span></li>
+      <li><span class="ico">{ic("live")}</span><span><b>جلسات خاصة</b>جلسات فردية بينك وبين د. مرفت فقط</span></li>
       <li><span class="ico">{ic("lib")}</span><span><b>المكتبة كاملة</b>كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك</span></li>
       <li><span class="ico">{ic("path")}</span><span><b>خطة يومية</b>تطبيق واضح ومتابعة لتقدّمك</span></li>
       <li><span class="ico">{ic("crown")}</span><span><b>مزايا الأعضاء</b>أولوية وخصم على الجلسات الفردية</span></li></ul>
@@ -274,10 +274,10 @@ def build():
 
     # ---------- VIP
     plans = f'''<div class="plan-grid">
-  <div class="plan"><h3>الاشتراك الشهري</h3>{price("vip-m")}<span class="muted">يتجدد شهرياً · ألغِ متى شئت</span><ul>{li(["كل التمارين وكورس عين صاحية","لقاء جماعي مباشر شهرياً","خطة تطبيق ومتابعة التقدّم"])}</ul><button class="btn btn-line" type="button" data-buy="vip-m"><span>اشترك شهرياً</span></button></div>
+  <div class="plan"><h3>الاشتراك الشهري</h3>{price("vip-m")}<span class="muted">يتجدد شهرياً · ألغِ متى شئت</span><ul>{li(["كل التمارين وكورس عين صاحية","جلسات فردية خاصة مع د. مرفت","خطة تطبيق ومتابعة التقدّم"])}</ul><button class="btn btn-line" type="button" data-buy="vip-m"><span>اشترك شهرياً</span></button></div>
   <div class="plan best"><span class="tag">الأوفر</span><h3>الاشتراك السنوي</h3>{price("vip-y")}<span class="muted">وفّر ما يعادل شهرين</span><ul>{li(["كل مزايا الشهري","أولوية في حجز الجلسات الفردية","خصم ٢٠٪ على الجلسات","ملفات وتمارين حصرية للأعضاء"])}</ul><button class="btn btn-gold" type="button" data-buy="vip-y"><span>اشترك سنوياً</span></button></div>
   <div class="plan"><h3>جرّب قبل الاشتراك</h3><span class="price">مجاناً</span><span class="muted">أنشئ حساباً واستلم هدية</span><ul>{li(["مقدمة تأمل السكينة","الفصل الأول من الكتاب","معاينة أول درس في كل تمرين"])}</ul><a class="btn btn-line" href="register.html">أنشئ حساباً مجانياً</a></div></div>'''
-    page("vip.html", "برنامج استيقظ VIP", "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. لقاءات مباشرة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.", f'''
+    page("vip.html", "برنامج استيقظ VIP", "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. جلسات فردية خاصة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.", f'''
 <section class="hero"><canvas class="sparkle" aria-hidden="true"></canvas><div class="wrap">
   <div class="hero-copy">{crumbs(("استيقظ VIP", None))}<span class="eyebrow">البرنامج التدريبي الأساسي</span><h1><span class="foil-text">استيقظ VIP</span></h1>
     <p class="lead">البرنامج الذي تبدأ منه الرحلة كلها. تدريب متدرّج مع د. مرفت، يجمع الوعي والتطبيق اليومي والمتابعة، لتستيقظ على نسختك الأصلية وتعيش بها.</p>
@@ -285,7 +285,7 @@ def build():
   {stage("assets/img/coach-green-cut.webp", False)}</div></section>
 {MARQUEE}
 <section class="band" id="inside"><div class="wrap"><div class="head center"><span class="eyebrow center">داخل البرنامج</span><h2 class="title">ماذا تحصل عليه كعضو؟</h2></div>
-  <div class="steps" style="counter-reset:none">{"".join(f'<div class="step" style="--x:0"><span class="ico">{ic(i)}</span><h3>{t}</h3><p>{d}</p></div>' for i,t,d in [("live","لقاءات مباشرة","لقاء جماعي شهري مع د. مرفت عبر Zoom، مع تسجيل متاح لمن فاته."),("lib","المكتبة كاملة","كل التمارين الحالية والجديدة، وكورس عين صاحية، مفتوحة طوال اشتراكك."),("path","خطة يومية","رحلة متدرجة أسبوعاً بأسبوع، وتتابع تقدّمك من لوحة حسابك."),("chat","مساحة الأعضاء","أسئلتك تُجمع ويُجاب عنها في اللقاء الشهري."),("crown","أولوية وخصم","أولوية في حجز الجلسات الفردية وخصم عليها."),("gift","مفاجآت شهرية","تمارين وملفات حصرية للأعضاء.")])}</div>
+  <div class="steps" style="counter-reset:none">{"".join(f'<div class="step" style="--x:0"><span class="ico">{ic(i)}</span><h3>{t}</h3><p>{d}</p></div>' for i,t,d in [("live","جلسات خاصة","رحلة فردية بينك وبين د. مرفت فقط، أونلاين عبر Zoom، في سرية تامة."),("lib","المكتبة كاملة","كل التمارين الحالية والجديدة، وكورس عين صاحية، مفتوحة طوال اشتراكك."),("path","خطة يومية","رحلة متدرجة أسبوعاً بأسبوع، وتتابع تقدّمك من لوحة حسابك."),("chat","متابعة شخصية","متابعة مباشرة لرحلتك وأسئلتك بينك وبين د. مرفت."),("crown","أولوية وخصم","أولوية في حجز الجلسات الفردية وخصم عليها."),("gift","مفاجآت شهرية","تمارين وملفات حصرية للأعضاء.")])}</div>
   <p class="muted" style="text-align:center;margin-top:16px"><span class="demo">المزايا مقترحة، تُعدّل حسب تفاصيل برنامجك الفعلية</span></p></div></section>
 <style>.step .ico{{margin-bottom:6px}} .steps .step::before{{content:none}}</style>
 <section class="band tint-blush" id="plans"><div class="wrap"><div class="head center"><span class="eyebrow center">الاشتراك</span><h2 class="title">اختر ما يناسبك</h2><p class="lead">الأسعار بالجنيه داخل مصر وبالدولار خارجها. يمكنك الإلغاء في أي وقت من حسابك.</p></div>{plans}</div></section>
@@ -394,7 +394,7 @@ def build():
   <p class="lead">رقم طلبك <b id="oNo">MS-10241</b> بقيمة <b id="oTotal">—</b>. أرسلنا تأكيد الطلب وبيانات الدخول إلى <b id="oEmail">بريدك</b>.</p>
   <ul class="facts" id="oItems" style="justify-items:center"></ul>
   <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="account.html#mine">{ic("play")}ابدأ الآن</a><a class="btn btn-line" href="account.html#orders">عرض الفاتورة</a></div>
-  <div class="upsell" id="successUpsell" style="text-align:start"><span class="ico">{ic("crown")}</span><div><b>خطوتك التالية: استيقظ VIP</b><p>افتح كل التمارين وعين صاحية، وانضم للقاءات المباشرة مع د. مرفت.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>
+  <div class="upsell" id="successUpsell" style="text-align:start"><span class="ico">{ic("crown")}</span><div><b>خطوتك التالية: استيقظ VIP</b><p>افتح كل التمارين وعين صاحية، وابدأ رحلتك الخاصة مع د. مرفت.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>
   <p class="muted" style="font-size:.85rem">لم تصلك الرسالة؟ راجع مجلد الرسائل غير المرغوبة أو <a href="contact.html">تواصل معنا</a>.</p></div></div></section>''', noindex=True)
     page("failed.html", "لم يكتمل الدفع", "لم يكتمل الدفع.", f'''<section class="band"><div class="wrap"><div class="result"><div class="badge err">{ic("x")}</div><h1 class="title">لم يكتمل الدفع</h1>
   <p class="lead">لم يُخصم أي مبلغ من حسابك. قد يكون السبب رفض البنك، أو رصيداً غير كافٍ، أو انتهاء مهلة الصفحة.</p>
@@ -474,7 +474,7 @@ def book_page():
 FAQ = {
  "general":[("هل أحتاج خبرة سابقة في الوعي؟","لا. كل مادة تبدأ بمقدمة وإرشادات واضحة، ويمكنك البدء بأي تمرين."),("هل المحتوى باللغة العربية؟","نعم، كل المحتوى بالعربية، وسنضيف لغات أخرى لاحقاً."),("هل يمكنني الاستماع من الهاتف؟","نعم، الموقع يعمل على الهاتف والكمبيوتر، ويحفظ تقدّمك على كل الأجهزة.")],
  "pay":[("لماذا يختلف السعر داخل مصر عن خارجها؟","نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة."),("ما طرق الدفع المتاحة؟","داخل مصر: البطاقات البنكية وميزة والمحافظ الإلكترونية وفوري والتقسيط. من خارج مصر: البطاقات الدولية وPayPal."),("متى أحصل على المادة بعد الدفع؟","فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول."),("هل يمكنني استرداد المبلغ؟","كل عمليات الشراء نهائية لأن الأدوات تُفتح فور الدفع. نرد المبلغ فقط في حالة الخصم المزدوج أو الخطأ التقني الذي لم يُحل، كما في سياسة الاسترداد والإلغاء.")],
- "vip":[("ماذا يشمل استيقظ VIP؟","لقاءات مباشرة شهرية، وكل التمارين وكورس عين صاحية، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالأدوات بعد الإلغاء؟","الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى لك."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
+ "vip":[("ماذا يشمل استيقظ VIP؟","جلسات فردية خاصة بينك وبين د. مرفت فقط، وكل التمارين وكورس عين صاحية، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالأدوات بعد الإلغاء؟","الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى لك."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
  "sessions":[("كيف تتم الجلسة؟","أونلاين عبر Zoom أو Google Meet، ويصلك الرابط على بريدك."),("هل يمكن تغيير الموعد؟","نعم، حتى ٢٤ ساعة قبل الجلسة من حسابك دون رسوم."),("بأي توقيت تظهر المواعيد؟","تظهر بتوقيت القاهرة مع تحويلها تلقائياً لتوقيت بلدك في الموقع الفعلي.")],
  "books":[("هل يمكن تحميل الكتاب؟","لا، يُقرأ داخل حسابك فقط حفاظاً على حقوق المحتوى، بنسخة تحمل اسمك."),("هل أستطيع القراءة دون إنترنت؟","القراءة تحتاج اتصالاً بالإنترنت لأن الكتاب محفوظ في حسابك.")],
 }
@@ -522,7 +522,7 @@ def home_body():
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · وفّر شهرين</button></div>
       <div class="amount" id="vipAmount">١٢٠٠ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">انضم الآن</a></div>
     <a class="btn btn-line btn-sm" href="vip.html" style="justify-self:start">كل تفاصيل البرنامج</a></div>
-  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","لقاءات شهرية مباشرة","لقاء جماعي مع د. مرفت للإجابة عن أسئلتك والتعمق في رحلتك."),("lib","المكتبة كاملة","كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك."),("path","خطة يومية ومتابعة","تطبيق واضح أسبوعاً بأسبوع، وتتابع تقدّمك من حسابك."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
+  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات الشفاء، وتفكّ البرمجات اللاواعية."),("lib","المكتبة كاملة","كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك."),("path","خطة يومية ومتابعة","تطبيق واضح أسبوعاً بأسبوع، وتتابع تقدّمك من حسابك."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
 </div></section>
 <section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">ابدأ من هنا</span><h2 class="title">لكل طريق قوته في التحوّل من الداخل</h2></div>
   <div class="tiles"><a class="tile" href="library.html"><img src="assets/art/attach.webp" alt="" loading="lazy"><span><b>التمارين المسجّلة</b><small>Decoding، فك تعلّق، تشافٍ وتأمل</small></span></a>

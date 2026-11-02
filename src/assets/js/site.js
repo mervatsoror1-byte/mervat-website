@@ -168,7 +168,7 @@ function upsellHTML(){
   // 2) VIP when the cart holds 2+ paid items
   const paid = S.cart.filter(c => ["exercise","course","bundle"].includes(P[c.id].kind));
   if (!hasVip && paid.length){ const v = P["vip-m"];
-    h += `<div class="upsell"><span class="ico">${icon("crown")}</span><div><b>كل المكتبة مع استيقظ VIP</b><p>بدلاً من الشراء واحداً واحداً: كل التمارين وعين صاحية ولقاءات مباشرة بـ ${money(v.eg,v.us)} شهرياً.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>`; }
+    h += `<div class="upsell"><span class="ico">${icon("crown")}</span><div><b>كل المكتبة مع استيقظ VIP</b><p>بدلاً من الشراء واحداً واحداً: كل التمارين وعين صاحية وجلسات فردية خاصة بـ ${money(v.eg,v.us)} شهرياً.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>`; }
   return h;
 }
 
