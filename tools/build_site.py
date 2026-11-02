@@ -492,7 +492,7 @@ def home_body():
     reel = "".join(f'<div class="voice {"hl" if i==1 else ""}"><span class="av">{a}</span><span class="qm">“</span><p>{E(t)}</p><b>{E(n)}</b></div>' for i,(a,t,n) in enumerate(voices_list))
     return f'''
 <div class="popup" id="vipPop" hidden role="dialog" aria-modal="true" aria-labelledby="popT"><div class="pop-card"><button class="pop-close" type="button" id="popClose" aria-label="إغلاق">✕</button>
-  <div class="pop-art"><img src="assets/img/coach-seated-cut.webp" alt=""><div class="txt"><h2 id="popT">البرنامج التدريبي استيقظ VIP</h2><p>ليس مجرد رحلة من الوعي، بل رحلة عميقة لتغيير نسخة لم تعد تمثلك.</p><a class="btn btn-gold" href="vip.html">احجز الآن</a></div></div></div></div>
+  <div class="pop-art pop-sq"><img src="assets/img/popup-vip.webp" alt="د. مرفت سرور" width="900" height="900"><div class="txt"><h2 id="popT">اتخذي الآن الخطوة التي تستحقينها</h2><a class="btn btn-gold" href="vip.html">استيقظ VIP</a></div></div></div></div>
 <section class="hero-s"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas>
   <div class="hs-in">
     <div class="hs-photo"><img src="assets/img/coach-seated-cut.webp" alt="د. مرفت سرور" width="839" height="1129" fetchpriority="high"></div>
