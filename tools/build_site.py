@@ -20,7 +20,7 @@ PRODUCTS = [
   dict(id="vip-m", kind="vip", title="استيقظ VIP · شهري", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=2999, us=149, page="vip.html"),
   dict(id="vip-q", kind="vip", title="استيقظ VIP · ٣ أشهر", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=7999, us=399, page="vip.html"),
   dict(id="vip-y", kind="vip", title="استيقظ VIP · سنوي", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=29999, us=1499, page="vip.html"),
-  dict(id="ain-sahia", kind="course", slug="course-ain-sahia", title="عين صاحية", cat="course", catLabel="كورس صوتي", img="assets/art/course.webp", eg=990, us=49,
+  dict(id="ain-sahia", kind="course", slug="course-ain-sahia", title="عين صاحية", cat="course", catLabel="كورس صوتي", img="assets/art/course.webp", eg=989, us=49,
        meta="٣ وحدات · ١٤ درساً · ٤ ساعات", vipIncluded=True,
        short="أن ترى ما يحدث داخلك وحولك بوضوح، قبل أن تتصرف من الجرح أو العادة.",
        desc=["«عين صاحية» كورس صوتي يدرّبك على الانتباه: للجسد، وللمشاعر، وللأنماط التي تتكرر في حياتك دون أن تلاحظها.",
@@ -30,59 +30,59 @@ PRODUCTS = [
                 {"title":"الوحدة الأولى: الانتباه للجسد والمشاعر","lessons":[["الجسد يتكلم أولاً","14:05"],["خريطة المشاعر","16:40"],["تمرين الملاحظة اليومي","9:30"],["أسئلة التأمل","7:15"]]},
                 {"title":"الوحدة الثانية: الأنماط المتكررة","lessons":[["من أين تأتي الأنماط؟","15:20"],["النمط في العلاقات","18:10"],["النمط مع المال والعمل","13:45"],["كسر الحلقة","12:30"]]},
                 {"title":"الوحدة الثالثة: الاختيار الواعي","lessons":[["المسافة بين الشعور والفعل","14:00"],["قرار من مكان هادئ","11:25"],["خطة ٣٠ يوماً","9:50"],["الختام","6:00"]]}]),
-  dict(id="attach", kind="exercise", slug="exercise-detachment", title="تمرين فك التعلّق", cat="free", catLabel="فك التعلّق", img="assets/art/attach.webp", eg=690, us=35, isNew=True, vipIncluded=True,
+  dict(id="attach", kind="exercise", slug="exercise-detachment", title="تمرين فك التعلّق", cat="free", catLabel="فك التعلّق", img="assets/art/attach.webp", eg=689, us=35, isNew=True, vipIncluded=True,
        meta="تمرين مرئي · ٢٠ دقيقة", short="تمرين مرئي يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.",
        desc=["التعلّق يجعل سلامك الداخلي مرهوناً بشيء خارجك. في هذا التمرين المرئي تمشي مع د. مرفت خطوة بخطوة لتلاحظ التعلّق، وتفهم ما يحاول أن يحميه، ثم تحرّره بهدوء.","يُطبّق يومياً لمدة ٢١ يوماً، ومعه خطة تطبيق قصيرة."],
        forWho=["تعلّق بعلاقة انتهت أو لم تبدأ","قلق دائم من فقدان شخص أو شيء","صعوبة في ترك النتائج لله","تفكير متكرر لا يتوقف"],
        modules=lessons_ex("تمرين فك التعلّق كاملاً","20:15")),
-  dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="Decoding النسخة الأصلية", cat="decode", catLabel="Decoding", img="assets/art/decode.webp", eg=890, us=45, isNew=True, vipIncluded=True,
+  dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="Decoding النسخة الأصلية", cat="decode", catLabel="Decoding", img="assets/art/decode.webp", eg=889, us=45, isNew=True, vipIncluded=True,
        meta="٤ دروس · ٣٥ دقيقة", short="عملية تشريحية للاوعي تفكّ الشيفرات التي غطّت نسختك الأصلية، وتطبيقها يومياً يحقق تحولاً عميقاً.",
        desc=["نحمل منذ الطفولة رسائل وقناعات ليست لنا. «Decoding النسخة الأصلية» يساعدك على تمييز هذه البرمجة وفكّها، والاتصال بنسختك الأصلية الحرة.","يتكون من تمهيد وتمرين رئيسي وتطبيق يومي."],
        forWho=["تشعر أنك لا تعيش حياتك أنت","تحمل قناعات قاسية عن نفسك","تريد أن تعرف ماذا تريد فعلاً","تبحث عن هوية أهدأ وأصدق"],
        modules=[{"title":"الـ Decoding","lessons":[["ما هي النسخة الأصلية؟","6:40",True],["رصد البرمجة","9:20"],["تمرين الـ Decoding","14:30"],["التثبيت اليومي","5:10"]]}]),
-  dict(id="decode-acceptance", kind="exercise", slug="decoding-light-of-acceptance", title="Decoding نور القبول", cat="decode", catLabel="Decoding", img="assets/art/light.webp", eg=890, us=45, vipIncluded=True,
+  dict(id="decode-acceptance", kind="exercise", slug="decoding-light-of-acceptance", title="Decoding نور القبول", cat="decode", catLabel="Decoding", img="assets/art/light.webp", eg=889, us=45, vipIncluded=True,
        meta="٣ دروس · ٣٠ دقيقة", short="أن تقبل نفسك وما حدث لك، فيتسع داخلك للنور والسكينة.",
        desc=["القبول ليس استسلاماً، بل توقف عن مقاومة ما هو موجود حتى تستطيع تغييره. في هذا الـ Decoding تفكّ شيفرة الرفض وتسمح لنور القبول أن يدخل.","يُستخدم بعد «النسخة الأصلية» أو وحده."],
        forWho=["رفض لجسدك أو ماضيك أو ظروفك","صراع داخلي مستمر","لوم متكرر للنفس أو للآخرين","رغبة في سلام حقيقي"],
        modules=lessons_ex("Decoding نور القبول","18:45")),
-  dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود الطاقي", cat="decode", catLabel="Decoding", img="assets/art/decode.webp", eg=890, us=45, isNew=True, vipIncluded=True,
+  dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود الطاقي", cat="decode", catLabel="Decoding", img="assets/art/decode.webp", eg=889, us=45, isNew=True, vipIncluded=True,
        meta="تمرين Decoding عميق", short="عملية تشريحية للاوعي تفكّ أسباب الركود الطاقي وتعيد تدفق الطاقة والحركة في حياتك.",
        desc=["الـ Decoding عملية تشريحية للاوعي: تصل إلى جذور البرمجة التي تسبب الركود الطاقي وتفكّها خطوة بخطوة.","تطبيقه يومياً يحقق تحولاً عميقاً. <span class='demo'>وصف مؤقت</span>"],
        forWho=["تشعر بثقل وركود في حياتك","تبدأ ولا تكمل","طاقة منخفضة دون سبب واضح","رغبة في الحركة والتدفق من جديد"],
        modules=lessons_ex("Decoding الركود الطاقي","20:00")),
-  dict(id="inner-child", kind="exercise", slug="inner-child-healing", title="تمرين تشافي الطفل الداخلي", cat="heal", catLabel="التشافي", img="assets/art/child.webp", eg=690, us=35, vipIncluded=True,
+  dict(id="inner-child", kind="exercise", slug="inner-child-healing", title="تمرين تشافي الطفل الداخلي", cat="heal", catLabel="التشافي", img="assets/art/child.webp", eg=689, us=35, vipIncluded=True,
        meta="تمرين مرئي · ٢٥ دقيقة", short="تحتضن طفلك الداخلي وتعطيه ما احتاجه ولم يجده.",
        desc=["الطفل الذي كنته ما زال يعيش داخلك، ويتأثر حين يُرفض أو يُهمل. هذا التمرين المرئي يعيد الاتصال به ويمنحه الأمان والحب.","يُنصح به لمن يلاحظ ردود فعل عاطفية أكبر من الموقف."],
        forWho=["ردود فعل عاطفية قوية ومفاجئة","احتياج دائم للقبول","صعوبة في وضع الحدود","ذكريات طفولة مؤلمة"],
        modules=lessons_ex("تمرين تشافي الطفل الداخلي","24:30")),
-  dict(id="heart-coherence", kind="exercise", slug="heart-coherence-breathing", title="تنفّس الاتساق القلبي", cat="breath", catLabel="تنفّس", img="assets/art/breath.webp", eg=240, us=12, vipIncluded=True,
+  dict(id="heart-coherence", kind="exercise", slug="heart-coherence-breathing", title="تنفّس الاتساق القلبي", cat="breath", catLabel="تنفّس", img="assets/art/breath.webp", eg=239, us=12, vipIncluded=True,
        meta="تمرين تنفّس · ١٢ دقيقة", short="تنفّس منتظم يعيد التوازن بين القلب والعقل خلال دقائق.",
        desc=["تقنية تنفّس بسيطة وعميقة تُهدّئ الجهاز العصبي وتعيد الاتساق بين إيقاع القلب والتنفس.","مناسب قبل النوم، وقبل المواقف الصعبة، وفي بداية اليوم."],
        forWho=["توتر وقلق يومي","صعوبة في النوم","تشتت وكثرة تفكير","رغبة في عادة يومية قصيرة"],
        modules=lessons_ex("تنفّس الاتساق القلبي","11:40")),
-  dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/art/morning.webp", eg=290, us=15, vipIncluded=True,
+  dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/art/morning.webp", eg=289, us=15, vipIncluded=True,
        meta="صوتي · ١٠ دقائق", short="عشر دقائق كل صباح تهيّئ عقلك وقلبك ليوم أوضح وأخف.",
        desc=["الـ Priming يضبط حالتك الداخلية قبل أن يبدأ اليوم: امتنان، ونية، وتصوّر لما تريد أن تعيشه.","يُسمع كل صباح، ويصبح عادة خلال أسابيع."],
        forWho=["تبدأ يومك بقلق أو ثقل","تريد روتيناً صباحياً قصيراً","تحب أن تحدد نيتك لليوم","تبحث عن طاقة أهدأ"],
        modules=lessons_ex("Priming الصباح","10:05")),
-  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي الروحي", cat="heal", catLabel="التشافي", img="assets/art/peace.webp", eg=290, us=15, vipIncluded=True,
+  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي الروحي", cat="heal", catLabel="التشافي", img="assets/art/peace.webp", eg=289, us=15, vipIncluded=True,
        meta="صوتي · ١٥ دقيقة", short="توكيدات مختارة بصوت د. مرفت تزرع السلام في العقل الباطن.",
        desc=["توكيدات صوتية هادئة تُسمع بتركيز أو قبل النوم، تساعد على استبدال الحديث الداخلي القاسي بلغة سلام ورحمة.","يمكن تكرارها يومياً."],
        forWho=["حديث داخلي قاسٍ","قلق قبل النوم","رغبة في تهدئة روحية","دعم لرحلة التشافي"],
        modules=lessons_ex("توكيدات السلام","14:50")),
-  dict(id="serenity", kind="exercise", slug="serenity-cleansing-meditation", title="تأمل السكينة والتنظيف", cat="breath", catLabel="تأمل", img="assets/art/calm.webp", eg=690, us=35, vipIncluded=True,
+  dict(id="serenity", kind="exercise", slug="serenity-cleansing-meditation", title="تأمل السكينة والتنظيف", cat="breath", catLabel="تأمل", img="assets/art/calm.webp", eg=689, us=35, vipIncluded=True,
        meta="تأمل موجّه · ٢٠ دقيقة", short="تأمل موجّه ينظّف ما تراكم من مشاعر ويعيدك إلى السكينة.",
        desc=["تأمل موجّه بصوت د. مرفت، يأخذك في رحلة تنظيف للمشاعر العالقة والأفكار الثقيلة، ثم يتركك في سكينة.","مناسب أسبوعياً أو عند الشعور بالثقل."],
        forWho=["ثقل عاطفي متراكم","إرهاق ذهني","حاجة إلى هدوء عميق","بداية جيدة لمن لم يجرّب التأمل"],
        modules=lessons_ex("تأمل السكينة والتنظيف","19:30")),
-  dict(id="book-ghosts", kind="book", slug="book-ghosts", title="عندما تولد في عائلة من الأشباح", cat="book", catLabel="كتاب إلكتروني", img="assets/art/book.webp", eg=350, us=14, vipIncluded=False,
+  dict(id="book-ghosts", kind="book", slug="book-ghosts", title="عندما تولد في عائلة من الأشباح", cat="book", catLabel="كتاب إلكتروني", img="assets/art/book.webp", eg=349, us=14, vipIncluded=False,
        meta="كتاب · يُقرأ داخل الموقع", short="عن الموروث العائلي الذي نحمله دون أن نراه، وكيف نتحرر منه بوعي ورحمة.", learn="reader.html"),
-  dict(id="b-decode", kind="bundle", title="مسار Decoding", catLabel="باقة", img="assets/art/decode.webp", eg=2140, us=108, page="bundles.html"),
-  dict(id="b-free", kind="bundle", title="مسار التنظيف", catLabel="باقة", img="assets/art/attach.webp", eg=1650, us=84, page="bundles.html"),
-  dict(id="b-calm", kind="bundle", title="البرمجة اليومية", catLabel="باقة", img="assets/art/morning.webp", eg=650, us=34, page="bundles.html"),
-  dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-navy.webp", eg=600, us=25, page="sessions.html"),
-  dict(id="s-single", kind="session", title="جلسة كوتشينج فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-green.webp", eg=1500, us=60, page="sessions.html"),
-  dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/coach-white.webp", eg=5200, us=210, page="sessions.html"),
+  dict(id="b-decode", kind="bundle", title="مسار Decoding", catLabel="باقة", img="assets/art/decode.webp", eg=2139, us=109, page="bundles.html"),
+  dict(id="b-free", kind="bundle", title="مسار التنظيف", catLabel="باقة", img="assets/art/attach.webp", eg=1649, us=85, page="bundles.html"),
+  dict(id="b-calm", kind="bundle", title="البرمجة اليومية", catLabel="باقة", img="assets/art/morning.webp", eg=649, us=35, page="bundles.html"),
+  dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-navy.webp", eg=599, us=25, page="sessions.html"),
+  dict(id="s-single", kind="session", title="جلسة كوتشينج فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-green.webp", eg=1499, us=59, page="sessions.html"),
+  dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/coach-white.webp", eg=5199, us=209, page="sessions.html"),
   dict(id="serenity-gift", kind="gift", title="هدية: مقدمة تأمل السكينة", catLabel="هدية", img="assets/art/calm.webp", eg=0, us=0, page="index.html", learn="learn.html#serenity"),
 ]
 for p in PRODUCTS:
@@ -197,7 +197,7 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
     <div><h4>المساعدة</h4><ul><li><a href="about.html">عن مرفت</a></li><li><a href="articles.html">المقالات</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="contact.html">تواصل معنا</a></li><li><a href="account.html">حسابي</a></li><li><a href="cart.html">السلة</a></li></ul></div>
     <div><h4>تواصل</h4><ul class="f-contact"><li><a href="https://wa.me/201095292748">{ic("chat","icon icon-sm")}01095292748</a></li><li><a href="contact.html">{ic("mail","icon icon-sm")}support@mervatsoror.com</a></li><li><span>{ic("pin","icon icon-sm")}القاهرة، مصر</span></li></ul><h4 style="margin-top:18px">السياسات</h4><ul><li><a href="policies.html">كل السياسات</a></li><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
   </div>
-  <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة. · <a href="terms.html" style="color:inherit">الشروط</a> · <a href="privacy.html" style="color:inherit">الخصوصية</a> · <a href="refund.html" style="color:inherit">الاسترداد</a> · <a href="delivery.html" style="color:inherit">تقديم الخدمة</a></span><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
+  <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة. · <a href="terms.html" style="color:inherit">الشروط</a> · <a href="privacy.html" style="color:inherit">الخصوصية</a> · <a href="refund.html" style="color:inherit">الاسترداد</a> · <a href="delivery.html" style="color:inherit">تقديم الخدمة</a></span><div class="region foot-cur" role="group" aria-label="عرض الأسعار بـ"><button type="button" data-region="eg">جنيه مصري</button><button type="button" data-region="intl">دولار $</button></div><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
 </div></footer>'''
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Almarai:wght@400;700&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@500;700&family=Cormorant+Garamond:wght@300&display=swap">'
@@ -284,11 +284,11 @@ def build():
   <div class="plan best"><span class="tag">الأكثر اختياراً</span><h3>اشتراك ٣ أشهر</h3>{price("vip-q")}<span class="muted">كل ٣ أشهر · توفّرين ما يقارب ١٠٪</span><ul>{li(["كل مزايا الاشتراك الشهري","المدة الأنسب لتحوّل عميق ومستقر","متابعة متصلة لرحلتك دون انقطاع"])}</ul><button class="btn btn-gold" type="button" data-buy="vip-q"><span>اشترك ٣ أشهر</span></button></div>
   <div class="plan"><span class="tag">الأوفر · شهران مجاناً</span><h3>الاشتراك السنوي</h3>{price("vip-y")}<span class="muted">سنوياً · تدفعين ما يقارب ١٠ أشهر وتحصلين على ١٢</span><ul>{li(["كل مزايا الاشتراك الشهري","شهران مجاناً","أولوية في حجز المواعيد","هدايا وتمارين حصرية للمشتركات السنويات"])}</ul><button class="btn btn-line" type="button" data-buy="vip-y"><span>اشترك سنوياً</span></button></div></div></div>'''
     page("vip.html", "برنامج استيقظ VIP", "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. جلسات فردية خاصة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.", f'''
-<section class="hero"><canvas class="sparkle" aria-hidden="true"></canvas><div class="wrap">
+<section class="hero vip-hero"><canvas class="sparkle" data-density="1500" aria-hidden="true"></canvas><div class="wrap">
   <div class="hero-copy">{crumbs(("استيقظ VIP", None))}<span class="eyebrow">البرنامج التدريبي الأساسي</span><h1><span class="foil-text">استيقظ VIP</span></h1>
     <p class="lead">البرنامج الذي تبدأ منه الرحلة كلها. تدريب متدرّج مع د. مرفت، يجمع الوعي والتطبيق اليومي والمتابعة، لتستيقظ على نسختك الأصلية وتعيش بها.</p>
     <div class="ctas"><a class="btn btn-gold" href="#plans">{ic("crown")}اختر اشتراكك</a><a class="btn btn-line" href="#inside">ماذا يشمل البرنامج؟</a></div></div>
-  {stage("assets/img/coach-green-cut.webp", False)}</div></section>
+  <figure class="vip-photo"><img src="assets/img/vip-zoom.webp" alt="د. مرفت سرور في جلسة خاصة أونلاين" width="1600" height="900"></figure></div></section>
 {MARQUEE}
 <section class="band" id="inside"><div class="wrap"><div class="head center"><span class="eyebrow center">داخل البرنامج</span><h2 class="title">ماذا تحصل عليه كعضو؟</h2></div>
   <div class="steps" style="counter-reset:none">{"".join(f'<div class="step" style="--x:0"><span class="ico">{ic(i)}</span><h3>{t}</h3><p>{d}</p></div>' for i,t,d in [("live","جلسات خاصة","رحلة فردية بينك وبين د. مرفت فقط، أونلاين عبر Zoom، في سرية تامة."),("lib","المكتبة كاملة","كل التمارين الحالية والجديدة، وكورس عين صاحية، مفتوحة طوال اشتراكك."),("path","خطة يومية","رحلة متدرجة أسبوعاً بأسبوع، وتتابع تقدّمك من لوحة حسابك."),("chat","متابعة شخصية","متابعة مباشرة لرحلتك وأسئلتك بينك وبين د. مرفت."),("crown","أولوية وخصم","أولوية في حجز الجلسات الفردية وخصم عليها."),("gift","مفاجآت شهرية","تمارين وملفات حصرية للأعضاء.")])}</div>
