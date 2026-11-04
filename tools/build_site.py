@@ -546,7 +546,7 @@ def home_body():
   <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]} <span class="demo">نبذة مؤقتة</span></p>
     {book_feats()}<div class="buy">{price("book-ghosts")}<button class="btn btn-plum" type="button" data-buy="book-ghosts"><span>اشترِ الكتاب</span></button><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
 <section class="journey" aria-label="رحلتك تبدأ بقرار واحد"><img src="assets/img/journey.webp" alt="د. مرفت سرور على شرفة عند الشروق" width="1914" height="822" loading="lazy">
-  <div class="jr-copy"><h2>رحلتك تبدأ <span class="gold">بقرار واحد</span></h2><p>أنشئ حسابك المجاني واستلم هديتك الأولى فوراً</p><a class="btn btn-gold" href="register.html">{ic("gift")}ابدأ الآن</a></div></section>'''
+  <div class="jr-copy"><h2>رحلتك تبدأ <span class="gold">بقرار واحد</span></h2><p>أنشئ حسابك المجاني واستلم هديتك الأولى فوراً</p></div><div class="jr-cta"><a class="btn btn-gold" href="register.html">{ic("gift")}ابدأ الآن</a></div></section>'''
 
 if __name__ == "__main__":
     build()
