@@ -242,7 +242,7 @@ function startBuy(id, extra){
 let vipPlan = "vip-m";
 function renderVipBar(){
   const p = P[vipPlan];
-  $("#vipAmount").innerHTML = money(p.eg, p.us) + ` <small>/ ${p.id === "vip-m" ? "شهرياً" : "سنوياً"}</small>`;
+  $("#vipAmount").innerHTML = money(p.eg, p.us) + ` <small>/ ${({"vip-m":"شهرياً","vip-q":"كل ٣ أشهر","vip-y":"سنوياً"})[p.id]}</small>`;
   const b = $("#vipJoin"); if (b){ b.dataset.buy = vipPlan; b.removeAttribute("data-add"); }
   if (S.vip && b){ b.textContent = "أنت عضو في استيقظ VIP"; b.removeAttribute("data-add"); b.href = "account.html#subscription"; }
 }

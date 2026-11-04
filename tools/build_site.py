@@ -17,8 +17,9 @@ def lessons_ex(main_title, dur):
     return [{"title": "التمرين", "lessons": [["مقدمة وإرشادات قبل البدء", "3:10", True], [main_title, dur], ["خطة التطبيق اليومي (٢١ يوماً)", "4:30"]]}]
 
 PRODUCTS = [
-  dict(id="vip-m", kind="vip", title="استيقظ VIP · شهري", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=3000, us=150, page="vip.html"),
-  dict(id="vip-y", kind="vip", title="استيقظ VIP · سنوي", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=30000, us=1500, page="vip.html"),
+  dict(id="vip-m", kind="vip", title="استيقظ VIP · شهري", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=2999, us=149, page="vip.html"),
+  dict(id="vip-q", kind="vip", title="استيقظ VIP · ٣ أشهر", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=7999, us=399, page="vip.html"),
+  dict(id="vip-y", kind="vip", title="استيقظ VIP · سنوي", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=29999, us=1499, page="vip.html"),
   dict(id="ain-sahia", kind="course", slug="course-ain-sahia", title="عين صاحية", cat="course", catLabel="كورس صوتي", img="assets/art/course.webp", eg=990, us=49,
        meta="٣ وحدات · ١٤ درساً · ٤ ساعات", vipIncluded=True,
        short="أن ترى ما يحدث داخلك وحولك بوضوح، قبل أن تتصرف من الجرح أو العادة.",
@@ -250,8 +251,8 @@ def vip_card():
       <li><span class="ico">{ic("lib")}</span><span><b>المكتبة كاملة</b>كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك</span></li>
       <li><span class="ico">{ic("path")}</span><span><b>خطة يومية</b>تطبيق واضح ومتابعة لتقدّمك</span></li>
       <li><span class="ico">{ic("crown")}</span><span><b>مزايا الأعضاء</b>أولوية وخصم على الجلسات الفردية</span></li></ul>
-    <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · وفّر شهرين</button></div>
-      <div class="amount" id="vipAmount">٣٠٠٠ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">اشترك الآن</a></div>
+    <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-q" aria-pressed="false">٣ أشهر</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · شهران مجاناً</button></div>
+      <div class="amount" id="vipAmount">٢٩٩٩ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">اشترك الآن</a></div>
     <span class="demo" style="justify-self:start">الأسعار والمزايا للعرض حتى تعتمديها</span></div></div>'''
 
 # ------------------------------------------------------------------ pages
@@ -278,9 +279,10 @@ def build():
          "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، كوتش وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
 
     # ---------- VIP
-    plans = f'''<div class="plan-grid two">
+    plans = f'''<div class="plan-grid">
   <div class="plan"><h3>الاشتراك الشهري</h3>{price("vip-m")}<span class="muted">شهرياً · يتجدد تلقائياً وتلغينه متى شئت</span><ul>{li(["جلسات فردية خاصة بينك وبين د. مرفت","كل أدوات الموقع مفتوحة طوال الاشتراك","خطة تطبيق يومية ومتابعة التقدّم"])}</ul><button class="btn btn-line" type="button" data-buy="vip-m"><span>اشترك شهرياً</span></button></div>
-  <div class="plan best"><span class="tag">الأوفر · شهران مجاناً</span><h3>الاشتراك السنوي</h3>{price("vip-y")}<span class="muted">سنوياً · تدفعين ١٠ أشهر وتحصلين على ١٢</span><ul>{li(["كل مزايا الاشتراك الشهري","شهران مجاناً","أولوية في حجز المواعيد","هدايا وتمارين حصرية للمشتركات السنويات"])}</ul><button class="btn btn-gold" type="button" data-buy="vip-y"><span>اشترك سنوياً</span></button></div></div>'''
+  <div class="plan best"><span class="tag">الأكثر اختياراً</span><h3>اشتراك ٣ أشهر</h3>{price("vip-q")}<span class="muted">كل ٣ أشهر · توفّرين ما يقارب ١٠٪</span><ul>{li(["كل مزايا الاشتراك الشهري","المدة الأنسب لتحوّل عميق ومستقر","متابعة متصلة لرحلتك دون انقطاع"])}</ul><button class="btn btn-gold" type="button" data-buy="vip-q"><span>اشترك ٣ أشهر</span></button></div>
+  <div class="plan"><span class="tag">الأوفر · شهران مجاناً</span><h3>الاشتراك السنوي</h3>{price("vip-y")}<span class="muted">سنوياً · تدفعين ما يقارب ١٠ أشهر وتحصلين على ١٢</span><ul>{li(["كل مزايا الاشتراك الشهري","شهران مجاناً","أولوية في حجز المواعيد","هدايا وتمارين حصرية للمشتركات السنويات"])}</ul><button class="btn btn-line" type="button" data-buy="vip-y"><span>اشترك سنوياً</span></button></div></div></div>'''
     page("vip.html", "برنامج استيقظ VIP", "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. جلسات فردية خاصة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.", f'''
 <section class="hero"><canvas class="sparkle" aria-hidden="true"></canvas><div class="wrap">
   <div class="hero-copy">{crumbs(("استيقظ VIP", None))}<span class="eyebrow">البرنامج التدريبي الأساسي</span><h1><span class="foil-text">استيقظ VIP</span></h1>
@@ -528,8 +530,8 @@ def home_body():
 <section class="band tint-blush"><div class="wrap vip2">
   <div class="copy"><span class="eyebrow">البرنامج التدريبي الأساسي</span><h2><span class="foil-text">استيقظ VIP</span></h2>
     <p class="lead">رحلة شهرية متدرّجة مع د. مرفت، تجمع الوعي والتطبيق اليومي والمتابعة. هنا يبدأ التغيير الذي يستمر.</p>
-    <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · وفّر شهرين</button></div>
-      <div class="amount" id="vipAmount">٣٠٠٠ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">انضم الآن</a></div>
+    <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-q" aria-pressed="false">٣ أشهر</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · شهران مجاناً</button></div>
+      <div class="amount" id="vipAmount">٢٩٩٩ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">انضم الآن</a></div>
     <a class="btn btn-line btn-sm" href="vip.html" style="justify-self:start">كل تفاصيل البرنامج</a></div>
   <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات الشفاء، وتفكّ البرمجات اللاواعية."),("lib","المكتبة كاملة","كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك."),("path","خطة يومية ومتابعة","تطبيق واضح أسبوعاً بأسبوع، وتتابع تقدّمك من حسابك."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
 </div></section>
