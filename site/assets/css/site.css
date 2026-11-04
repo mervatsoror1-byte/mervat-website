@@ -1106,3 +1106,5 @@ main:has(> .journey:last-child)+.site-footer{margin-top:0}
 .hs-wm .serif{font-size:clamp(3rem,5.4vw,5rem);margin:-.12em 0 0}
 .hs-copy{padding-top:70px}
 @media (max-width:980px){.hs-wm{display:grid}.hs-wm .script{font-size:3.2rem}.hs-wm .serif{font-size:2.7rem}}
+.plan-grid.two{grid-template-columns:repeat(2,minmax(0,420px));justify-content:center}
+@media (max-width:900px){.plan-grid.two{grid-template-columns:1fr}}
