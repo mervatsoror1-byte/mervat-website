@@ -288,7 +288,7 @@ def build():
   <div class="vs-copy">{crumbs(("استيقظ VIP", None))}<span class="vs-eyebrow">البرنامج التدريبي الخاص</span><h1>استيقظ <span>VIP</span></h1>
     <p>البرنامج الذي تبدأ منه الرحلة كلها. جلسات فردية خاصة مع د. مرفت أونلاين، تجمع الوعي والتطبيق اليومي والمتابعة، لتستيقظ على نسختك الأصلية وتعيش بها.</p>
     <div class="ctas"><a class="btn-safia" href="#plans">اختر اشتراكك</a><a class="vs-link" href="#inside">ماذا يشمل البرنامج؟</a></div></div>
-  <figure class="vs-photo"><img src="assets/img/vip-zoom.webp" alt="د. مرفت سرور في جلسة خاصة أونلاين" width="1600" height="900" fetchpriority="high"></figure></section>
+  <figure class="vs-photo"><img src="assets/img/vip-zoom.webp" alt="د. مرفت سرور في جلسة خاصة أونلاين" width="1200" height="1500" fetchpriority="high"></figure></section>
 {MARQUEE}
 <section class="band" id="inside"><div class="wrap"><div class="head center"><span class="eyebrow center">داخل البرنامج</span><h2 class="title">ماذا تحصل عليه كعضو؟</h2></div>
   <div class="steps" style="counter-reset:none">{"".join(f'<div class="step" style="--x:0"><span class="ico">{ic(i)}</span><h3>{t}</h3><p>{d}</p></div>' for i,t,d in [("live","جلسات خاصة","رحلة فردية بينك وبين د. مرفت فقط، أونلاين عبر Zoom، في سرية تامة."),("lib","المكتبة كاملة","كل التمارين الحالية والجديدة، وكورس عين صاحية، مفتوحة طوال اشتراكك."),("path","خطة يومية","رحلة متدرجة أسبوعاً بأسبوع، وتتابع تقدّمك من لوحة حسابك."),("chat","متابعة شخصية","متابعة مباشرة لرحلتك وأسئلتك بينك وبين د. مرفت."),("crown","أولوية وخصم","أولوية في حجز الجلسات الفردية وخصم عليها."),("gift","مفاجآت شهرية","تمارين وملفات حصرية للأعضاء.")])}</div>

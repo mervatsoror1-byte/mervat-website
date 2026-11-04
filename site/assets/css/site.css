@@ -1120,11 +1120,11 @@ main:has(> .journey:last-child)+.site-footer{margin-top:0}
 .vs-copy .ctas{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
 .vs-link{color:#F5F5DC;font-weight:700;text-decoration:underline;text-underline-offset:6px;text-decoration-color:#C5A059}
 .vs-photo{margin:0;position:relative;z-index:1}
-.vs-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 45%;display:block}
+.vs-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:45% 38%;display:block}
 .vs-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,#1F3F7C 0%,rgba(31,63,124,.55) 9%,transparent 24%)}
 @media (max-width:900px){
   .vip-split{grid-template-columns:1fr;min-height:auto}
-  .vs-photo{order:-1;height:62vw;min-height:280px}
+  .vs-photo{order:-1;height:96vw;min-height:340px}
   .vs-photo::after{background:linear-gradient(to top,#1F3F7C 0%,rgba(31,63,124,.4) 14%,transparent 34%)}
   .vs-copy{padding:8px 20px 44px;justify-self:stretch;max-width:none}
   .vip-split .crumbs{display:none}
