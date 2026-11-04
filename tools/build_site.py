@@ -279,23 +279,30 @@ def build():
          "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، كوتش وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
 
     # ---------- VIP
-    plans = f'''<div class="plan-grid">
-  <div class="plan"><h3>الاشتراك الشهري</h3>{price("vip-m")}<span class="muted">شهرياً · يتجدد تلقائياً وتلغينه متى شئت</span><ul>{li(["جلسات فردية خاصة بينك وبين د. مرفت","كل أدوات الموقع مفتوحة طوال الاشتراك","خطة تطبيق يومية ومتابعة التقدّم"])}</ul><button class="btn btn-line" type="button" data-buy="vip-m"><span>اشترك شهرياً</span></button></div>
-  <div class="plan best"><span class="tag">الأكثر اختياراً</span><h3>اشتراك ٣ أشهر</h3>{price("vip-q")}<span class="muted">كل ٣ أشهر · توفّرين ما يقارب ١٠٪</span><ul>{li(["كل مزايا الاشتراك الشهري","المدة الأنسب لتحوّل عميق ومستقر","متابعة متصلة لرحلتك دون انقطاع"])}</ul><button class="btn btn-gold" type="button" data-buy="vip-q"><span>اشترك ٣ أشهر</span></button></div>
-  <div class="plan"><span class="tag">الأوفر · شهران مجاناً</span><h3>الاشتراك السنوي</h3>{price("vip-y")}<span class="muted">سنوياً · تدفعين ما يقارب ١٠ أشهر وتحصلين على ١٢</span><ul>{li(["كل مزايا الاشتراك الشهري","شهران مجاناً","أولوية في حجز المواعيد","هدايا وتمارين حصرية للمشتركات السنويات"])}</ul><button class="btn btn-line" type="button" data-buy="vip-y"><span>اشترك سنوياً</span></button></div></div></div>'''
+    def vplan(pid, name, note, feats, tag="", best=False, cta=""):
+        return (f'<article class="vp-plan{" is-best" if best else ""}">' + (f'<span class="vp-tag">{tag}</span>' if tag else '') +
+                f'<h3>{name}</h3><div class="vp-price">{price(pid)}</div><p class="vp-note">{note}</p><span class="vp-rule" aria-hidden="true"></span>' +
+                f'<ul>{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in feats)}</ul>' +
+                f'<button class="{"btn-safia" if best else "vp-btn"}" type="button" data-buy="{pid}"><span>{cta}</span></button></article>')
+    plans = '<div class="vp-plans">' + vplan("vip-m","الاشتراك الشهري","يتجدد شهرياً وتلغينه متى شئت",["جلسات فردية خاصة بينك وبين د. مرفت","كل أدوات الموقع مفتوحة طوال الاشتراك","خطة تطبيق يومية ومتابعة التقدّم"],cta="اشتركي شهرياً") + \
+        vplan("vip-q","اشتراك ٣ أشهر","كل ٣ أشهر · توفّرين ما يقارب ١٠٪",["كل مزايا الاشتراك الشهري","المدة الأنسب لتحوّل عميق ومستقر","متابعة متصلة لرحلتك دون انقطاع"],tag="الأكثر اختياراً",best=True,cta="اشتركي ٣ أشهر") + \
+        vplan("vip-y","الاشتراك السنوي","تدفعين ما يقارب ١٠ أشهر وتحصلين على ١٢",["كل مزايا الاشتراك الشهري","شهران مجاناً","أولوية في حجز المواعيد","هدايا وتمارين حصرية للمشتركات السنويات"],tag="الأوفر · شهران مجاناً",cta="اشتركي سنوياً") + '</div>'
     page("vip.html", "برنامج استيقظ VIP", "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. جلسات فردية خاصة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.", f'''
 <section class="vip-split"><canvas class="sparkle" data-density="1500" aria-hidden="true"></canvas>
   <div class="vs-copy">{crumbs(("استيقظ VIP", None))}<span class="vs-eyebrow">البرنامج التدريبي الخاص</span><h1>استيقظ <span>VIP</span></h1>
     <p>البرنامج الذي تبدأ منه الرحلة كلها. جلسات فردية خاصة مع د. مرفت أونلاين، تجمع الوعي والتطبيق اليومي والمتابعة، لتستيقظ على نسختك الأصلية وتعيش بها.</p>
     <div class="ctas"><a class="btn-safia" href="#plans">اختر اشتراكك</a><a class="vs-link" href="#inside">ماذا يشمل البرنامج؟</a></div></div>
   <figure class="vs-photo"><img src="assets/img/vip-zoom.webp" alt="د. مرفت سرور في جلسة خاصة أونلاين" width="1200" height="1500" fetchpriority="high"></figure></section>
-{MARQUEE}
-<section class="band" id="inside"><div class="wrap"><div class="head center"><span class="eyebrow center">داخل البرنامج</span><h2 class="title">ماذا تحصل عليه كعضو؟</h2></div>
-  <div class="steps" style="counter-reset:none">{"".join(f'<div class="step" style="--x:0"><span class="ico">{ic(i)}</span><h3>{t}</h3><p>{d}</p></div>' for i,t,d in [("live","جلسات خاصة","رحلة فردية بينك وبين د. مرفت فقط، أونلاين عبر Zoom، في سرية تامة."),("lib","المكتبة كاملة","كل التمارين الحالية والجديدة، وكورس عين صاحية، مفتوحة طوال اشتراكك."),("path","خطة يومية","رحلة متدرجة أسبوعاً بأسبوع، وتتابع تقدّمك من لوحة حسابك."),("chat","متابعة شخصية","متابعة مباشرة لرحلتك وأسئلتك بينك وبين د. مرفت."),("crown","أولوية وخصم","أولوية في حجز الجلسات الفردية وخصم عليها."),("gift","مفاجآت شهرية","تمارين وملفات حصرية للأعضاء.")])}</div>
-  <p class="muted" style="text-align:center;margin-top:16px"><span class="demo">المزايا مقترحة، تُعدّل حسب تفاصيل برنامجك الفعلية</span></p></div></section>
-<style>.step .ico{{margin-bottom:6px}} .steps .step::before{{content:none}}</style>
-<section class="band tint-blush" id="plans"><div class="wrap"><div class="head center"><span class="eyebrow center">الاشتراك</span><h2 class="title">اختر ما يناسبك</h2><p class="lead">الأسعار بالجنيه داخل مصر وبالدولار خارجها. يمكنك الإلغاء في أي وقت من حسابك.</p></div>{plans}</div></section>
-<section class="band"><div class="wrap narrow"><div class="head center"><h2 class="title">أسئلة عن البرنامج</h2></div><div class="faq">{faq_items(FAQ["vip"])}</div></div></section>''',
+<div class="vp-strip" aria-hidden="true"><div class="track"><span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span><span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span></div></div>
+<section class="vp-sec vp-ivory" id="inside"><div class="vp-wrap">
+  <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>ماذا تحصلين عليه كعضوة؟</h2><p>كل ما تحتاجينه لرحلتك في مكان واحد، بينك وبين د. مرفت.</p></header>
+  <div class="vp-feats"><div class="vp-feat"><span class="vp-ico">{ic("live")}</span><h3>جلسات خاصة</h3><p>رحلة فردية بينك وبين د. مرفت فقط، أونلاين عبر Zoom، في سرية تامة.</p></div><div class="vp-feat"><span class="vp-ico">{ic("lib")}</span><h3>المكتبة كاملة</h3><p>كل التمارين الحالية والجديدة، وكورس عين صاحية، مفتوحة طوال اشتراكك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("path")}</span><h3>خطة يومية</h3><p>رحلة متدرجة أسبوعاً بأسبوع، وتتابعين تقدّمك من لوحة حسابك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("chat")}</span><h3>متابعة شخصية</h3><p>متابعة مباشرة لرحلتك وأسئلتك بينك وبين د. مرفت.</p></div><div class="vp-feat"><span class="vp-ico">{ic("crown")}</span><h3>أولوية وخصم</h3><p>أولوية في حجز الجلسات الفردية وخصم عليها.</p></div><div class="vp-feat"><span class="vp-ico">{ic("gift")}</span><h3>مفاجآت شهرية</h3><p>تمارين وملفات حصرية للعضوات.</p></div></div>
+  <p class="vp-small">المزايا مقترحة، تُعدّل حسب تفاصيل برنامجك الفعلية</p></div></section>
+<section class="vp-sec vp-royal" id="plans"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap">
+  <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>اختاري ما يناسبك</h2><p>الأسعار بالجنيه داخل مصر وبالدولار خارجها. يمكنك الإلغاء في أي وقت من حسابك.</p></header>
+  {plans}</div></section>
+<section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة عن البرنامج</h2></header><div class="vp-faq">{faq_items(FAQ["vip"])}</div></div></section>
+<section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>اتخذي الآن الخطوة التي تستحقينها</h2><a class="btn-safia" href="#plans">استيقظ VIP</a></div></section>''',
          active="vip.html", schema=[{"@context":"https://schema.org","@type":"Product","name":"استيقظ VIP","description":"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور","brand":NAME,"offers":[{"@type":"Offer","price":BY["vip-m"]["eg"],"priceCurrency":"EGP"},{"@type":"Offer","price":BY["vip-m"]["us"],"priceCurrency":"USD"}]}])
 
     # ---------- library
