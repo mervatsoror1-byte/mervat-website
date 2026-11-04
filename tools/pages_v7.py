@@ -78,16 +78,20 @@ def product(p):
 
 
 def about():
-    blocks = [("assets/img/coach-white-square.webp", "الهوية والرسالة", "<p>د. مرفت سرور، كوتش وعي وتشافي معتمدة من الاتحاد الدولي للكوتشينج ICF. تحمل رسالة بسيطة وعميقة: أن تعود إلى نسختك الأصلية، وأن تعيش منها بهدوء ووضوح. <span class='demo'>نص مؤقت</span></p>"),
-              ("assets/img/coach-green.webp", "الأثر والإنجازات", "<ul><li>كوتش معتمدة من ICF.</li><li>مؤسسة برنامج استيقظ VIP.</li><li>مؤلفة كتاب «عندما تولد في عائلة من الأشباح».</li><li>صاحبة كورس «عين صاحية» وأدوات Decoding وPriming.</li></ul><span class='demo'>تُستكمل بإنجازاتك الفعلية</span>"),
-              ("assets/img/coach-navy.webp", "المنهج", "<p>الوعي، ثم Decoding لفكّ البرمجة القديمة، ثم التشافي وتحرير المشاعر، ثم التطبيق اليومي الذي يثبّت التغيير.</p>")]
-    rows = "".join(f'<div class="ab-row {"rev" if i%2 else ""}"><div class="ab-ph"><img src="{img}" alt="د. مرفت سرور" loading="lazy"></div><div class="ab-tx"><h2>{t}</h2>{body}</div></div>' for i, (img, t, body) in enumerate(blocks))
-    page("about.html", "عن مرفت", "تعرّف على د. مرفت سرور، كوتش وعي وتشافي معتمدة من ICF، ورسالتها ومنهجها.", f'''
+    bio = ("<p>مرفت سرور مدربة وعي وكوتش معتمد من الاتحاد الدولي للكوتشينج <b>ICF</b> بدرجة <b>PCC</b> "
+           "<span class='en'>(Professional Certified Coach)</span>.</p>"
+           "<p>بدأت مرفت مسيرتها منذ عام 2019 بدراسة علوم الوعي على يد كبار المعلمين، وعزّزت ذلك بالدراسة في عدة جامعات، "
+           "منها جامعة بنسلفانيا حيث درست على يد الأب الروحي لعلم النفس الإيجابي مارتن سليجمان، "
+           "كما درست اليقظة الذهنية في جامعة لايدن الهولندية على يد المدرب الكبير كريس غوتو-جونز.</p>"
+           "<p>ونتيجةً لهذه الدراسات، ومع التطبيق على نفسها أولاً ثم على أكثر من 100 عميل، بدأت في تطبيق برنامجها الخاص للتشافي: "
+           "برنامج <b>استيقظ VIP</b>. يتميّز البرنامج بأنه يجمع بين هذه التقنيات جميعاً، ليوفّر طريقاً للتشافي بخطوات عملية وعلمية مرتبة، "
+           "ويعمل على عدة مستويات ليصل بالعميل في النهاية إلى التشافي، وتغيير نسخته القديمة، وبناء الهوية الجديدة التي طالما طمح إليها.</p>")
+    page("about.html", "عن مرفت", "مرفت سرور مدربة وعي وكوتش معتمد من ICF بدرجة PCC، ومؤسسة برنامج استيقظ VIP للتشافي.", f'''
 <section class="pg"><div class="wrap">
-  <h1 class="pg-title">عن مرفت</h1>
-  <div class="vid-ph"><button type="button" aria-label="تشغيل الفيديو التعريفي" onclick="this.parentElement.querySelector('small').hidden=false">{ic("play")}</button><small hidden>يُضاف هنا الفيديو التعريفي من Bunny Stream</small></div>
   <h2 class="gold-h">من هي مرفت سرور</h2>
-  {rows}
+  <div class="ab-row ab-main"><div class="ab-ph"><img src="assets/img/mervat-about.webp" alt="مرفت سرور" width="900" height="1012"></div>
+    <div class="ab-tx"><h2>مرفت سرور</h2>{bio}
+      <div class="icf-badge" title="يوضع هنا شعار اعتماد ICF الرسمي"><span>ICF</span><small>PCC</small></div></div></div>
   <div class="center-cta"><a class="btn btn-gold" href="vip.html">ابدأ معي في برنامج استيقظ VIP</a></div>
 </div></section>''', active="about.html", schema=[B.PERSON])
 

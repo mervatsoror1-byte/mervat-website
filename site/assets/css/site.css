@@ -1089,3 +1089,14 @@ main:has(> .journey:last-child)+.site-footer{margin-top:0}
 .jr-cta{position:absolute;bottom:7%;inset-inline-start:7%}
 @media (max-width:820px){.jr-cta{position:static;display:flex;justify-content:center;padding:18px;background:#F2D9C9}}
 @media (max-width:980px){.hs-wm{display:none}}
+/* about: Safia's body face and weight (Tajawal 500, large) */
+.ab-main{grid-template-columns:.85fr 1.15fr;align-items:start}
+.ab-main .ab-ph{aspect-ratio:auto;order:-1}
+.ab-main .ab-ph img{height:auto}
+.ab-main .ab-tx p{font-family:"Tajawal",sans-serif;font-weight:500;font-size:clamp(1.25rem,1.9vw,1.75rem);line-height:1.55;color:#2A1245}
+.ab-main .ab-tx p+p{margin-top:14px}
+.ab-main .ab-tx b{color:#A8843F;font-weight:800}
+.ab-main .en{direction:ltr;unicode-bidi:isolate;font-size:.8em}
+.icf-badge{justify-self:start;display:inline-grid;place-items:center;width:96px;height:96px;border-radius:50%;border:2px solid #C5A059;color:#2A1245;margin-top:10px}
+.icf-badge span{font-weight:800;font-size:1.4rem;line-height:1}.icf-badge small{font-weight:800;color:#A8843F}
+@media (max-width:820px){.ab-main{grid-template-columns:1fr}}
