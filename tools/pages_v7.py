@@ -78,7 +78,7 @@ def product(p):
 
 
 def about():
-    bio = ("<p>مرفت سرور مدربة وعي وكوتش معتمد من الاتحاد الدولي للكوتشينج <b>ICF</b> بدرجة <b>PCC</b> "
+    bio = ("<p>مرفت سرور مدربة وعي وكوتش معتمد من الاتحاد الدولي للتدريب <b>ICF</b> بدرجة <b>PCC</b> "
            "<span class='en'>(Professional Certified Coach)</span>.</p>"
            "<p>بدأت مرفت مسيرتها منذ عام 2019 بدراسة علوم الوعي على يد كبار المعلمين، وعزّزت ذلك بالدراسة في عدة جامعات، "
            "منها جامعة بنسلفانيا حيث درست على يد الأب الروحي لعلم النفس الإيجابي مارتن سليجمان، "
@@ -91,7 +91,7 @@ def about():
   <h2 class="gold-h">من هي مرفت سرور</h2>
   <div class="ab-row ab-main"><div class="ab-ph"><img src="assets/img/mervat-about.webp" alt="مرفت سرور" width="900" height="1012"></div>
     <div class="ab-tx"><h2>مرفت سرور</h2>{bio}
-      <div class="icf-badge" title="يوضع هنا شعار اعتماد ICF الرسمي"><span>ICF</span><small>PCC</small></div></div></div>
+      </div></div>
   <div class="center-cta"><a class="btn btn-gold" href="vip.html">ابدأ معي في برنامج استيقظ VIP</a></div>
 </div></section>''', active="about.html", schema=[B.PERSON])
 

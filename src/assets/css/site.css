@@ -1100,3 +1100,9 @@ main:has(> .journey:last-child)+.site-footer{margin-top:0}
 .icf-badge{justify-self:start;display:inline-grid;place-items:center;width:96px;height:96px;border-radius:50%;border:2px solid #C5A059;color:#2A1245;margin-top:10px}
 .icf-badge span{font-weight:800;font-size:1.4rem;line-height:1}.icf-badge small{font-weight:800;color:#A8843F}
 @media (max-width:820px){.ab-main{grid-template-columns:1fr}}
+/* hero watermark: in flow, directly above the Arabic headline, centred on it */
+.hs-wm{position:static;transform:none;display:grid;justify-items:center;text-align:center;width:100%;margin:0 0 -6px;left:auto;bottom:auto;top:auto;line-height:.82;z-index:0;color:rgba(245,245,220,.13)}
+.hs-wm .script{font-size:clamp(3.6rem,6.4vw,6rem);margin:0}
+.hs-wm .serif{font-size:clamp(3rem,5.4vw,5rem);margin:-.12em 0 0}
+.hs-copy{padding-top:70px}
+@media (max-width:980px){.hs-wm{display:grid}.hs-wm .script{font-size:3.2rem}.hs-wm .serif{font-size:2.7rem}}
