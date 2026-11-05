@@ -21,7 +21,7 @@ PRODUCTS = [
   dict(id="vip-q", kind="vip", title="استيقظ VIP · ٣ أشهر", catLabel="برنامج تدريبي", img="assets/img/thumb-vip.webp", eg=7999, us=399, page="vip.html"),
   dict(id="vip-y", kind="vip", title="استيقظ VIP · سنوي", catLabel="برنامج تدريبي", img="assets/img/thumb-vip.webp", eg=29999, us=1499, page="vip.html"),
   dict(id="ain-sahia", kind="course", slug="course-ain-sahia", title="عين صاحية", cat="course", catLabel="كورس صوتي", img="assets/art/course.webp", eg=989, us=49,
-       meta="٣ وحدات · ١٤ درساً · ٤ ساعات", vipIncluded=True,
+       meta="٣ وحدات · ١٤ درساً · ٤ ساعات", vipIncluded=False,
        short="أن ترى ما يحدث داخلك وحولك بوضوح، قبل أن تتصرف من الجرح أو العادة.",
        desc=["«عين صاحية» كورس صوتي يدرّبك على الانتباه: للجسد، وللمشاعر، وللأنماط التي تتكرر في حياتك دون أن تلاحظها.",
              "تسمعه في وقتك وبالترتيب، ومع كل درس تطبيق قصير يحوّل الفهم إلى عادة يومية. الموقع يحفظ تقدّمك وتكمل من حيث توقفت."],
@@ -233,14 +233,14 @@ def price(pid): p = BY[pid]; return f'<span class="price" data-price="{pid}">{p[
 def tabs(): return '<div class="tabs" role="group" aria-label="تصنيف التمارين">' + "".join(f'<button class="tab" type="button" data-filter="{k}" aria-pressed="{str(k=="all").lower()}">{v}</button>' for k, v in CATS) + "</div>"
 def stage(img, f1=True):
     return f'''<div class="stage"><div class="arch"></div><img class="cut" src="{img}" alt="د. مرفت سرور" width="600" height="900">
-      {'<div class="float f2"><span><span class="dot"></span>التسجيل مفتوح</span><b>استيقظ VIP</b></div><div class="float f1"><b>د. مرفت سرور</b>معتمدة من الاتحاد الدولي للكوتشينج</div>' if f1 else ''}</div>'''
+      {'<div class="float f2"><span><span class="dot"></span>التسجيل مفتوح</span><b>استيقظ VIP</b></div><div class="float f1"><b>د. مرفت سرور</b>معتمدة من الاتحاد الدولي للتدريب</div>' if f1 else ''}</div>'''
 GIFT = f'''<section class="wrap"><div class="gift"><div class="gift-copy"><span class="eyebrow">هدية لك</span><h2>ابدأ بهدية: مقدمة تأمل السكينة وفصل من الكتاب</h2>
   <p class="lead">أنشئ حسابك المجاني ببريدك، وتُفتح لك الهدية فوراً في مكتبتك.</p>
   <div class="ctas"><a class="btn btn-gold" href="register.html">{ic("gift")}أنشئ حسابي واستلم الهدية</a></div></div>
   <div class="fan" aria-hidden="true"><img src="assets/art/calm.webp" alt=""><img src="assets/art/book.webp" alt=""><img src="assets/art/morning.webp" alt=""></div></div></section>'''
-MARQUEE = '<div class="marquee" aria-hidden="true"><div class="track">' + ('<span>الوعي <i class="star"></i> التشافي <i class="star"></i> السكينة <i class="star"></i> القبول <i class="star"></i> التحرّر من التعلّق <i class="star"></i> الطفل الداخلي <i class="star"></i> النسخة الأصلية <i class="star"></i></span>' * 2) + '</div></div>'
+MARQUEE = '<div class="vp-strip" aria-hidden="true"><div class="track">' + ('<span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span>' * 2) + '</div></div>'
 ORG = {"@context":"https://schema.org","@type":"Organization","name":NAME,"url":SITE_URL,"logo":f"{SITE_URL}/assets/brand/logo-gold-transparent.png"}
-PERSON = {"@context":"https://schema.org","@type":"Person","name":"مرفت سرور","jobTitle":"كوتش وعي وتشافي معتمدة من ICF","url":f"{SITE_URL}/about.html","image":f"{SITE_URL}/assets/img/coach-white.webp","memberOf":{"@type":"Organization","name":"International Coaching Federation (ICF)"}}
+PERSON = {"@context":"https://schema.org","@type":"Person","name":"مرفت سرور","jobTitle":"مدربة وعي وتشافي معتمدة من ICF","url":f"{SITE_URL}/about.html","image":f"{SITE_URL}/assets/img/coach-white.webp","memberOf":{"@type":"Organization","name":"International Coaching Federation (ICF)"}}
 
 def vip_card():
     return f'''<div class="vip-card"><div class="vip-art"><div class="arch-img"><img src="assets/img/coach-green.webp" alt="د. مرفت سرور" width="900" height="1125" loading="lazy"></div></div>
@@ -248,7 +248,7 @@ def vip_card():
     <p class="lead">رحلة شهرية متدرّجة مع د. مرفت، تجمع الوعي والتطبيق اليومي والمتابعة. هنا يبدأ التغيير الذي يستمر.</p>
     <ul class="inc">
       <li><span class="ico">{ic("live")}</span><span><b>جلسات خاصة</b>جلسات فردية بينك وبين د. مرفت فقط</span></li>
-      <li><span class="ico">{ic("lib")}</span><span><b>المكتبة كاملة</b>كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك</span></li>
+      <li><span class="ico">{ic("lib")}</span><span><b>المكتبة كاملة</b>كل التمارين مفتوحة طوال اشتراكك</span></li>
       <li><span class="ico">{ic("path")}</span><span><b>خطة يومية</b>تطبيق واضح ومتابعة لتقدّمك</span></li>
       <li><span class="ico">{ic("crown")}</span><span><b>مزايا الأعضاء</b>أولوية وخصم على الجلسات الفردية</span></li></ul>
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-q" aria-pressed="false">٣ أشهر</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · شهران مجاناً</button></div>
@@ -275,8 +275,8 @@ def build():
     HOME = home_body()
     course = BY["ain-sahia"]
     mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"]))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
-    page("index.html", f"{NAME} | كوتش وعي وتشافي معتمدة من ICF",
-         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، كوتش وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
+    page("index.html", f"{NAME} | مدربة وعي وتشافي معتمدة من ICF",
+         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، مدربة وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
 
     # ---------- VIP
     def vplan(pid, name, note, feats, tag="", best=False, cta=""):
@@ -296,7 +296,7 @@ def build():
 <div class="vp-strip" aria-hidden="true"><div class="track"><span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span><span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span></div></div>
 <section class="vp-sec vp-ivory" id="inside"><div class="vp-wrap">
   <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>ماذا تحصلين عليه كعضوة؟</h2><p>كل ما تحتاجينه لرحلتك في مكان واحد، بينك وبين د. مرفت.</p></header>
-  <div class="vp-feats"><div class="vp-feat"><span class="vp-ico">{ic("live")}</span><h3>جلسات خاصة</h3><p>رحلة فردية بينك وبين د. مرفت فقط، أونلاين عبر Zoom، في سرية تامة.</p></div><div class="vp-feat"><span class="vp-ico">{ic("lib")}</span><h3>المكتبة كاملة</h3><p>كل التمارين الحالية والجديدة، وكورس عين صاحية، مفتوحة طوال اشتراكك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("path")}</span><h3>خطة يومية</h3><p>رحلة متدرجة أسبوعاً بأسبوع، وتتابعين تقدّمك من لوحة حسابك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("chat")}</span><h3>متابعة شخصية</h3><p>متابعة مباشرة لرحلتك وأسئلتك بينك وبين د. مرفت.</p></div><div class="vp-feat"><span class="vp-ico">{ic("crown")}</span><h3>أولوية وخصم</h3><p>أولوية في حجز الجلسات الفردية وخصم عليها.</p></div><div class="vp-feat"><span class="vp-ico">{ic("gift")}</span><h3>مفاجآت شهرية</h3><p>تمارين وملفات حصرية للعضوات.</p></div></div>
+  <div class="vp-feats"><div class="vp-feat"><span class="vp-ico">{ic("live")}</span><h3>جلسات خاصة</h3><p>رحلة فردية بينك وبين د. مرفت فقط، أونلاين عبر Zoom، في سرية تامة.</p></div><div class="vp-feat"><span class="vp-ico">{ic("lib")}</span><h3>المكتبة كاملة</h3><p>كل التمارين الحالية والجديدة مفتوحة طوال اشتراكك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("path")}</span><h3>خطة يومية</h3><p>رحلة متدرجة يوماً بيوم، وتتابعين تقدّمك من لوحة حسابك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("chat")}</span><h3>متابعة شخصية</h3><p>متابعة مباشرة لرحلتك وأسئلتك بينك وبين د. مرفت.</p></div><div class="vp-feat"><span class="vp-ico">{ic("crown")}</span><h3>أولوية وخصم</h3><p>أولوية في حجز الجلسات الفردية وخصم عليها.</p></div><div class="vp-feat"><span class="vp-ico">{ic("gift")}</span><h3>مفاجآت شهرية</h3><p>تمارين وملفات حصرية للعضوات.</p></div></div>
   <p class="vp-small">المزايا مقترحة، تُعدّل حسب تفاصيل برنامجك الفعلية</p></div></section>
 <section class="vp-sec vp-royal" id="plans"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap">
   <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>اختاري ما يناسبك</h2><p>الأسعار بالجنيه داخل مصر وبالدولار خارجها. يمكنك الإلغاء في أي وقت من حسابك.</p></header>
@@ -336,15 +336,15 @@ def build():
 <section class="band"><div class="wrap narrow"><div class="head center"><h2 class="title">أسئلة عن الجلسات</h2></div><div class="faq">{faq_items(FAQ["sessions"])}</div></div></section>''', active="sessions.html")
 
     # ---------- about
-    page("about.html", "عن د. مرفت سرور", "تعرّف على د. مرفت سرور، كوتش وعي وتشافي معتمدة من الاتحاد الدولي للكوتشينج ICF، ومنهجها في الوعي والتشافي.", page_hero("عن د. مرفت سرور","كوتش وعي وتشافي معتمدة من الاتحاد الدولي للكوتشينج ICF.") + f'''
+    page("about.html", "عن د. مرفت سرور", "تعرّف على د. مرفت سرور، مدربة وعي وتشافي معتمدة من الاتحاد الدولي للتدريب ICF، ومنهجها في الوعي والتشافي.", page_hero("عن د. مرفت سرور","مدربة وعي وتشافي معتمدة من الاتحاد الدولي للتدريب ICF.") + f'''
 <section class="band"><div class="wrap split"><div class="round-ph"><div class="img"><img src="assets/img/coach-white-square.webp" alt="د. مرفت سرور" width="900" height="900"></div></div>
   <div class="split-body"><span class="eyebrow">القصة</span><h2>رحلتي إلى الوعي</h2><blockquote class="big">«التشافي ليس أن تصبح شخصاً آخر، بل أن تعود إلى نفسك التي نسيتها.»</blockquote>
   <div class="prose"><p>هنا تُكتب قصتك بصوتك: البداية، واللحظة التي غيّرت مسارك، ولماذا اخترتِ طريق الوعي والتشافي. <span class="demo">نص مؤقت</span></p><p>القصة الشخصية هي أكثر ما يقرّب الزائر منك، ويُفضّل أن تكون صادقة وقصيرة ومحددة.</p></div>
-  <div class="chips"><span>{ic("award")}معتمدة من ICF</span><span>{ic("path")}كوتش وعي وتشافي</span><span>{ic("globe")}عملاء من مصر والخليج والعالم</span></div></div></div></section>
+  <div class="chips"><span>{ic("award")}معتمدة من ICF</span><span>{ic("path")}مدربة وعي وتشافي</span><span>{ic("globe")}عملاء من مصر والخليج والعالم</span></div></div></div></section>
 <section class="band tint-blush"><div class="wrap split rev" style="align-items:start"><div class="split-body"><span class="eyebrow">المنهج</span><h2>كيف أعمل؟</h2>
   <ol class="timeline"><li><b>الوعي</b><span class="muted">أن ترى ما يحدث داخلك دون حكم.</span></li><li><b>الـ Decoding</b><span class="muted">فكّ البرمجة والقناعات التي ليست لك.</span></li><li><b>التشافي</b><span class="muted">تحرير المشاعر العالقة واحتضان الطفل الداخلي.</span></li><li><b>التطبيق</b><span class="muted">عادات يومية صغيرة تثبّت التغيير.</span></li></ol></div>
   <div class="split-body"><span class="eyebrow">المؤهلات</span><h2>الاعتماد والخبرة</h2><div class="c-info">
-  {"".join(f'<div class="c-item"><span class="ico">{ic(i)}</span><span><b>{t}</b><span class="muted">{d}</span></span></div>' for i,t,d in [("award","اعتماد الاتحاد الدولي للكوتشينج ICF","يُكتب هنا مستوى الاعتماد وسنته."),("book","الدراسة الأكاديمية","يُكتب هنا المؤهل العلمي."),("layers","شهادات التخصص","الشهادات في الوعي والتشافي والـ Decoding.")])}
+  {"".join(f'<div class="c-item"><span class="ico">{ic(i)}</span><span><b>{t}</b><span class="muted">{d}</span></span></div>' for i,t,d in [("award","اعتماد الاتحاد الدولي للتدريب ICF","يُكتب هنا مستوى الاعتماد وسنته."),("book","الدراسة الأكاديمية","يُكتب هنا المؤهل العلمي."),("layers","شهادات التخصص","الشهادات في الوعي والتشافي والـ Decoding.")])}
   <span class="demo">بيانات مؤقتة</span></div></div></div></section>
 <section class="band"><div class="wrap"><div class="gallery"><figure><img src="assets/img/coach-green.webp" alt="د. مرفت سرور" loading="lazy"></figure><figure><img src="assets/img/coach-white.webp" alt="د. مرفت سرور" loading="lazy"></figure><figure><img src="assets/img/coach-navy.webp" alt="د. مرفت سرور" loading="lazy"></figure></div>
   <div class="center-cta"><a class="btn btn-gold" href="vip.html">ابدأ معي في استيقظ VIP</a></div></div></section>''', active="about.html", schema=[PERSON])
@@ -407,7 +407,7 @@ def build():
   <p class="lead">رقم طلبك <b id="oNo">MS-10241</b> بقيمة <b id="oTotal">—</b>. أرسلنا تأكيد الطلب وبيانات الدخول إلى <b id="oEmail">بريدك</b>.</p>
   <ul class="facts" id="oItems" style="justify-items:center"></ul>
   <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="account.html#mine">{ic("play")}ابدأ الآن</a><a class="btn btn-line" href="account.html#orders">عرض الفاتورة</a></div>
-  <div class="upsell" id="successUpsell" style="text-align:start"><span class="ico">{ic("crown")}</span><div><b>خطوتك التالية: استيقظ VIP</b><p>افتح كل التمارين وعين صاحية، وابدأ رحلتك الخاصة مع د. مرفت.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>
+  <div class="upsell" id="successUpsell" style="text-align:start"><span class="ico">{ic("crown")}</span><div><b>خطوتك التالية: استيقظ VIP</b><p>افتح كل التمارين، وابدأ رحلتك الخاصة مع د. مرفت.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>
   <p class="muted" style="font-size:.85rem">لم تصلك الرسالة؟ راجع مجلد الرسائل غير المرغوبة أو <a href="contact.html">تواصل معنا</a>.</p></div></div></section>''', noindex=True)
     page("failed.html", "لم يكتمل الدفع", "لم يكتمل الدفع.", f'''<section class="band"><div class="wrap"><div class="result"><div class="badge err">{ic("x")}</div><h1 class="title">لم يكتمل الدفع</h1>
   <p class="lead">لم يُخصم أي مبلغ من حسابك. قد يكون السبب رفض البنك، أو رصيداً غير كافٍ، أو انتهاء مهلة الصفحة.</p>
@@ -487,7 +487,7 @@ def book_page():
 FAQ = {
  "general":[("هل أحتاج خبرة سابقة في الوعي؟","لا. كل مادة تبدأ بمقدمة وإرشادات واضحة، ويمكنك البدء بأي تمرين."),("هل المحتوى باللغة العربية؟","نعم، كل المحتوى بالعربية، وسنضيف لغات أخرى لاحقاً."),("هل يمكنني الاستماع من الهاتف؟","نعم، الموقع يعمل على الهاتف والكمبيوتر، ويحفظ تقدّمك على كل الأجهزة.")],
  "pay":[("لماذا يختلف السعر داخل مصر عن خارجها؟","نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة."),("ما طرق الدفع المتاحة؟","داخل مصر: البطاقات البنكية وميزة والمحافظ الإلكترونية وفوري والتقسيط. من خارج مصر: البطاقات الدولية وPayPal."),("متى أحصل على المادة بعد الدفع؟","فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول."),("هل يمكنني استرداد المبلغ؟","كل عمليات الشراء نهائية لأن الأدوات تُفتح فور الدفع. نرد المبلغ فقط في حالة الخصم المزدوج أو الخطأ التقني الذي لم يُحل، كما في سياسة الاسترداد والإلغاء.")],
- "vip":[("ماذا يشمل استيقظ VIP؟","جلسات فردية خاصة بينك وبين د. مرفت فقط، وكل التمارين وكورس عين صاحية، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالأدوات بعد الإلغاء؟","الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى لك."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
+ "vip":[("ماذا يشمل استيقظ VIP؟","جلسات فردية خاصة بينك وبين د. مرفت فقط، وكل التمارين، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالأدوات بعد الإلغاء؟","الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى لك."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
  "sessions":[("كيف تتم الجلسة؟","أونلاين عبر Zoom أو Google Meet، ويصلك الرابط على بريدك."),("هل يمكن تغيير الموعد؟","نعم، حتى ٢٤ ساعة قبل الجلسة من حسابك دون رسوم."),("بأي توقيت تظهر المواعيد؟","تظهر بتوقيت القاهرة مع تحويلها تلقائياً لتوقيت بلدك في الموقع الفعلي.")],
  "books":[("هل يمكن تحميل الكتاب؟","لا، يُقرأ داخل حسابك فقط حفاظاً على حقوق المحتوى، بنسخة تحمل اسمك."),("هل أستطيع القراءة دون إنترنت؟","القراءة تحتاج اتصالاً بالإنترنت لأن الكتاب محفوظ في حسابك.")],
 }
@@ -515,19 +515,17 @@ def home_body():
   </div>
 </section>
 <section class="band tint-blush"><div class="wrap">
-  <div class="head center"><span class="eyebrow center">ابدأ اليوم</span><h2 class="title">اختر أداتك، وابدأ خلال دقيقة</h2><p class="lead">كل أداة تُشترى منفصلة وتُفتح فوراً في حسابك، أو افتحها كلها مع برنامج استيقظ VIP.</p></div>
+  <div class="head center"><span class="eyebrow center">ابدأ اليوم</span><h2 class="title">اختر أداتك، وابدأ خلال دقيقة</h2></div>
   {tabs()}<div class="shelf" data-shelf="home"></div><div class="center-cta"><a class="btn btn-gold" href="library.html">عرض كل الأدوات</a></div></div></section>
 <section class="band"><div class="wrap statement"><span class="eyebrow center">أهلاً بك</span>
   <h2>صوت هادئ يوقظ فيك <em>ما نسيته عن نفسك</em></h2>
-  <p class="lead">إن كنت تبحث عن مساحة آمنة تفهم فيها مشاعرك، وتفكّ تعلّقك، وتعود إلى سكينتك، فأنت في المكان الصحيح.</p></div></section>
-<section class="glow-band"><div class="corner c1"><img src="assets/img/mervat-iam-1.webp" alt="" loading="lazy"></div><div class="corner c2"><img src="assets/img/mervat-iam-2.webp" alt="" loading="lazy"></div>
-  <div class="wrap"><h2>أنا مرفت،</h2><p>وأعدك أن دخولك هنا ليس كخروجك. ما تبحث عنه من هدوء ووضوح ومعنى، يبدأ من الداخل.</p><span class="gold">أمسك يدي، ولنبدأ معاً…</span></div></section>
+  <p class="lead">إن كنت تبحث عن مساحة آمنة تفهم فيها مشاعرك، وتعود إلى سكينتك، فأنت في المكان الصحيح.</p></div></section>
 {MARQUEE}
-<section class="band"><div class="wrap whois">
+<section class="whois-royal"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="wrap whois">
   <div class="framed"><div class="img"><img src="assets/img/mervat-whois.webp" alt="د. مرفت سرور" width="900" height="1125" loading="lazy"></div></div>
-  <div class="split-body"><span class="eyebrow">من هي مرفت سرور؟</span><h2 style="font-family:var(--display);font-size:clamp(1.9rem,3.8vw,2.8rem)">كوتش وعي وتشافي، ورفيقة رحلة العودة إلى الذات</h2>
-    <p class="lead">معتمدة من الاتحاد الدولي للكوتشينج ICF. تجمع بين الكوتشينج والـ Decoding وتمارين التشافي، لترافقك من الفهم إلى التطبيق اليومي. <span class="demo">نبذة مؤقتة</span></p>
-    <div class="stats3"><div><b>—</b>سنوات خبرة</div><div><b>—</b>ساعة تدريبية</div><div><b>—</b>متدرّب</div></div><span class="demo" style="justify-self:start">تُكتب أرقامك الفعلية هنا</span>
+  <div class="split-body"><span class="eyebrow">من هي مرفت سرور؟</span><h2>مدربة وعي وتشافي، ورفيقة رحلة العودة إلى الذات</h2>
+    <p class="lead">معتمدة من الاتحاد الدولي للتدريب ICF، تجمع بين عدة تقنيات وأدوات للتشافي، وترافقك من الفهم إلى التطبيق اليومي.</p>
+    <div class="stats3"><div><b>٨</b>سنوات خبرة</div><div><b>+٥٠٠</b>ساعة تدريبية</div><div><b>+١٠٠</b>متدرّب</div></div>
     <div><a class="btn btn-pill" href="about.html">تعرّف على مرفت</a></div></div></div></section>
 <section class="vip-banner" aria-label="برنامج استيقظ VIP"><div class="vb-img"><img src="assets/img/vip-banner.webp" alt="د. مرفت سرور أمام بوابة النور" width="1672" height="941" loading="lazy"></div>
   <div class="vb-copy"><span class="vb-kicker">البرنامج التدريبي الخاص</span><h2><span class="vb-w">استيقظ</span> <span class="vb-vip">VIP</span></h2>
@@ -540,7 +538,7 @@ def home_body():
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-q" aria-pressed="false">٣ أشهر</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · شهران مجاناً</button></div>
       <div class="amount" id="vipAmount">٢٩٩٩ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">انضم الآن</a></div>
     <a class="btn btn-line btn-sm" href="vip.html" style="justify-self:start">كل تفاصيل البرنامج</a></div>
-  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات الشفاء، وتفكّ البرمجات اللاواعية."),("lib","المكتبة كاملة","كل التمارين وكورس عين صاحية مفتوحة طوال اشتراكك."),("path","خطة يومية ومتابعة","تطبيق واضح أسبوعاً بأسبوع، وتتابع تقدّمك من حسابك."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
+  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات الشفاء، وتفكّ البرمجات اللاواعية."),("lib","المكتبة كاملة","كل التمارين مفتوحة طوال اشتراكك."),("path","خطة يومية ومتابعة","تطبيق واضح يوماً بيوم، وتتابعين تقدّمك من حسابك."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
 </div></section>
 <section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">ابدأ من هنا</span><h2 class="title">لكل طريق قوته في التحوّل من الداخل</h2></div>
   <div class="tiles"><a class="tile" href="library.html"><img src="assets/art/attach.webp" alt="" loading="lazy"><span><b>التمارين المسجّلة</b><small>Decoding، فك تعلّق، تشافٍ وتأمل</small></span></a>

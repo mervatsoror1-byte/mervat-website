@@ -1271,3 +1271,55 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 .au-art .au-photo{z-index:1}
 .au-art .au-cut{z-index:3}
 .au-quote,.au-logo{z-index:4}
+/* ===== Global: retire old plum/lavender palette → royal blue · gold · cream ===== */
+:root{--ink:#1A3670;--plum:#1F3F7C;--blush:#FBF8EE;--blush-2:#F3EEDD;--lilac:#F6F1E4;--muted:#3E4A68;--text:#25304D;--line:#E8DFC8}
+/* header: bolder text */
+.site-header .nav a,.site-header .nav .mega-btn,.site-header .login-link{font-weight:700}
+.site-header .brand b{font-weight:800}
+/* section heads in new identity */
+.head .title,.title{font-family:"Noto Naskh Arabic","Amiri",serif;color:#1F3F7C;font-weight:700}
+.eyebrow{color:#A9843F;font-weight:700}
+/* tools shelf: tabs + cards */
+.tabs .tab{color:#3E4A68;font-weight:600}
+.tabs .tab[aria-pressed="true"]{color:#1F3F7C;font-weight:800}
+.tabs .tab[aria-pressed="true"]::after{background:#C5A059}
+.sc,.shop-card{background:#FFFDF7;border:1px solid rgba(197,160,89,.45);box-shadow:0 18px 40px -32px rgba(20,35,74,.4)}
+.sc h3,.sc .sc-title,.sc h3 a{font-family:"Noto Naskh Arabic","Amiri",serif;color:#1F3F7C;font-weight:700}
+.sc .price{color:#1F3F7C}
+.sc .ph,.sc-img .ph{background:linear-gradient(160deg,#FBF8EE,#EFE6CF)}
+.sc .new,.badge-new,.sc .tag-new{background:#1F3F7C;color:#F5F5DC}
+.sc .chip,.sc .pill,.sc-tags span{background:#F3EEDD;color:#1F3F7C;font-weight:600}
+/* statement: bolder */
+.statement h2{color:#1F3F7C;font-weight:700}
+.statement .lead{color:#25304D;font-weight:600;font-size:clamp(1.1rem,1.6vw,1.25rem)}
+.statement h2 em{background:none;color:#A9843F;-webkit-background-clip:initial;background-clip:initial}
+/* who is: on royal blue so the gold photo belongs */
+.whois-royal{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(70% 90% at 75% 20%,#3A62A8 0%,#284D92 45%,#1F3F7C 100%);padding-block:clamp(70px,9vw,120px);color:#F5F5DC}
+.whois-royal .sparkle{z-index:0}.whois-royal .wrap{position:relative;z-index:1}
+.whois-royal .framed .img{border:1px solid rgba(197,160,89,.7);box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+.whois-royal .framed::before,.whois-royal .framed::after{border-color:rgba(197,160,89,.6)}
+.whois-royal .eyebrow{color:#E2C68C}
+.whois-royal h2{font-family:"Noto Naskh Arabic","Amiri",serif;font-size:clamp(1.9rem,3.6vw,2.7rem);line-height:1.5;color:#F5F5DC;margin:0}
+.whois-royal .lead{color:#F5F5DC;font-weight:500}
+.whois-royal .stats3 div{border-color:rgba(197,160,89,.6);background:rgba(255,255,255,.05);color:#F5F5DC}
+.whois-royal .stats3 b{color:#E2C68C;font-family:"Noto Naskh Arabic",serif;font-size:1.9rem}
+.whois-royal .btn-pill{background:linear-gradient(135deg,#E2C68C,#C5A059);color:#14234A}
+
+/* product cards (scard) */
+.scard{background:#FFFDF7;border:1px solid rgba(197,160,89,.45);box-shadow:0 18px 40px -32px rgba(20,35,74,.4)}
+.scard h3,.scard h3 a{font-family:"Noto Naskh Arabic","Amiri",serif;color:#1F3F7C !important;font-weight:700}
+.scard .sc-price{color:#1F3F7C !important}
+.scard .sc-new{background:#1F3F7C;color:#F5F5DC}
+.scard .sc-tags span{background:#F3EEDD;color:#1F3F7C;font-weight:700}
+.scard .sc-meta{color:#3E4A68}
+.scard .ph{background:linear-gradient(160deg,#FBF8EE,#EFE6CF)}
+/* home VIP block: hairline perks, no white boxes */
+.vip2 .perks{gap:0;border-top:1px solid rgba(197,160,89,.5)}
+.vip2 .perk{border:0;border-bottom:1px solid rgba(197,160,89,.5);border-radius:0;background:none;padding:20px 6px}
+.vip2 .perk .icon{color:#A9843F}
+.vip2 .perk b{font-family:"Noto Naskh Arabic","Amiri",serif;color:#1F3F7C;font-size:1.2rem}
+.vip2 .perk span{color:#25304D;font-weight:500;font-size:1rem}
+.vip2 .lead{color:#25304D;font-weight:500}
+.vip2 .plans-bar{background:#FFFDF7;border:1px solid rgba(197,160,89,.5)}
+.vip2 .amount{color:#1F3F7C}
+.vip2 .btn-line{border-color:#C5A059;color:#1F3F7C}
