@@ -517,16 +517,16 @@ def home_body():
 <section class="band tint-blush"><div class="wrap">
   <div class="head center"><span class="eyebrow center">ابدأ اليوم</span><h2 class="title">اختر أداتك، وابدأ خلال دقيقة</h2></div>
   {tabs()}<div class="shelf" data-shelf="home"></div><div class="center-cta"><a class="btn btn-gold" href="library.html">عرض كل الأدوات</a></div></div></section>
-<section class="band"><div class="wrap statement"><span class="eyebrow center">أهلاً بك</span>
+<section class="band"><div class="wrap statement"><span class="eyebrow center">من هي مرفت سرور؟</span>
   <h2>صوت هادئ يوقظ فيك <em>ما نسيته عن نفسك</em></h2>
   <p class="lead">إن كنت تبحث عن مساحة آمنة تفهم فيها مشاعرك، وتعود إلى سكينتك، فأنت في المكان الصحيح.</p></div></section>
 {MARQUEE}
-<section class="whois-royal"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="wrap whois">
-  <div class="framed"><div class="img"><img src="assets/img/mervat-whois.webp" alt="د. مرفت سرور" width="900" height="1125" loading="lazy"></div></div>
-  <div class="split-body"><span class="eyebrow">من هي مرفت سرور؟</span><h2>مدربة وعي وتشافي، ورفيقة رحلة العودة إلى الذات</h2>
-    <p class="lead">معتمدة من الاتحاد الدولي للتدريب ICF، تجمع بين عدة تقنيات وأدوات للتشافي، وترافقك من الفهم إلى التطبيق اليومي.</p>
-    <div class="stats3"><div><b>٨</b>سنوات خبرة</div><div><b>+٥٠٠</b>ساعة تدريبية</div><div><b>+١٠٠</b>متدرّب</div></div>
-    <div><a class="btn btn-pill" href="about.html">تعرّف على مرفت</a></div></div></div></section>
+<section class="whois-split"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas>
+  <figure class="ws-photo"><img class="ws-bg" src="assets/img/whois-library.webp" alt="د. مرفت سرور" width="1122" height="1402" loading="lazy"><img class="ws-cut" src="assets/img/whois-library-cut.webp" alt="" aria-hidden="true" width="1122" height="1402" loading="lazy"></figure>
+  <div class="ws-copy"><h2>مدربة وعي وتشافي، ورفيقة رحلة العودة إلى الذات</h2>
+    <p>معتمدة من الاتحاد الدولي للتدريب ICF، تجمع بين عدة تقنيات وأدوات للتشافي، وترافقك من الفهم إلى التطبيق اليومي، للوصول إلى النسخة التي تتمناها.</p>
+    <div class="ws-stats"><div><b>٨</b><span>سنوات خبرة</span></div><div><b>+١٨٬٠٠٠</b><span>ساعة تدريبية</span></div><div><b>+١٠٠</b><span>متدرّب</span></div></div>
+    <a class="btn-safia" href="about.html">تعرّف على مرفت</a></div></section>
 <section class="vip-banner" aria-label="برنامج استيقظ VIP"><div class="vb-img"><img src="assets/img/vip-banner.webp" alt="د. مرفت سرور أمام بوابة النور" width="1672" height="941" loading="lazy"></div>
   <div class="vb-copy"><span class="vb-kicker">البرنامج التدريبي الخاص</span><h2><span class="vb-w">استيقظ</span> <span class="vb-vip">VIP</span></h2>
     <p>ليس مجرد رحلة من الوعي بل رحلة عميقة لتغيير نسخة لم تعد تمثلك</p>
@@ -549,7 +549,7 @@ def home_body():
     <ul class="mods">{mods}</ul>
     <div class="buy">{price("ain-sahia")}<button class="btn btn-plum" type="button" data-add="ain-sahia">{ic("bag")}<span>أضف للسلة</span></button><a class="btn btn-line" href="{course["page"]}">تفاصيل الكورس</a></div></div></div></section>
 
-<section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">قصص من عاشوا التحوّل</span><h2 class="title">بكلماتهم</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء المشتركين الحقيقية</span></div><div class="reel" tabindex="0" aria-label="آراء المشتركين">{reel}</div></div></section>
+<section class="band"><div class="wrap"><div class="head center"><h2 class="title">قصص من عاشوا التحوّل</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء المشتركين الحقيقية</span></div><div class="reel" tabindex="0" aria-label="آراء المشتركين">{reel}</div></div></section>
 <section class="ses-banner" aria-label="الجلسات الفردية"><img src="assets/img/sessions-banner.webp" alt="د. مرفت سرور في جلسة أونلاين" width="1672" height="941" loading="lazy">
   <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة كوتشينج أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html">{ic("cal")}احجز جلستك</a></div></section>
 <section class="band" style="padding-bottom:0"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر أهدأ</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
