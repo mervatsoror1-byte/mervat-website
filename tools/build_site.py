@@ -17,9 +17,9 @@ def lessons_ex(main_title, dur):
     return [{"title": "التمرين", "lessons": [["مقدمة وإرشادات قبل البدء", "3:10", True], [main_title, dur], ["خطة التطبيق اليومي (٢١ يوماً)", "4:30"]]}]
 
 PRODUCTS = [
-  dict(id="vip-m", kind="vip", title="استيقظ VIP · شهري", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=2999, us=149, page="vip.html"),
-  dict(id="vip-q", kind="vip", title="استيقظ VIP · ٣ أشهر", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=7999, us=399, page="vip.html"),
-  dict(id="vip-y", kind="vip", title="استيقظ VIP · سنوي", catLabel="برنامج تدريبي", img="assets/art/vip.webp", eg=29999, us=1499, page="vip.html"),
+  dict(id="vip-m", kind="vip", title="استيقظ VIP · شهري", catLabel="برنامج تدريبي", img="assets/img/thumb-vip.webp", eg=2999, us=149, page="vip.html"),
+  dict(id="vip-q", kind="vip", title="استيقظ VIP · ٣ أشهر", catLabel="برنامج تدريبي", img="assets/img/thumb-vip.webp", eg=7999, us=399, page="vip.html"),
+  dict(id="vip-y", kind="vip", title="استيقظ VIP · سنوي", catLabel="برنامج تدريبي", img="assets/img/thumb-vip.webp", eg=29999, us=1499, page="vip.html"),
   dict(id="ain-sahia", kind="course", slug="course-ain-sahia", title="عين صاحية", cat="course", catLabel="كورس صوتي", img="assets/art/course.webp", eg=989, us=49,
        meta="٣ وحدات · ١٤ درساً · ٤ ساعات", vipIncluded=True,
        short="أن ترى ما يحدث داخلك وحولك بوضوح، قبل أن تتصرف من الجرح أو العادة.",
@@ -80,9 +80,9 @@ PRODUCTS = [
   dict(id="b-decode", kind="bundle", title="مسار Decoding", catLabel="باقة", img="assets/art/decode.webp", eg=2139, us=109, page="bundles.html"),
   dict(id="b-free", kind="bundle", title="مسار التنظيف", catLabel="باقة", img="assets/art/attach.webp", eg=1649, us=85, page="bundles.html"),
   dict(id="b-calm", kind="bundle", title="البرمجة اليومية", catLabel="باقة", img="assets/art/morning.webp", eg=649, us=35, page="bundles.html"),
-  dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-navy.webp", eg=399, us=25, page="sessions.html"),
-  dict(id="s-single", kind="session", title="جلسة كوتشينج فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-green.webp", eg=599, us=59, page="sessions.html"),
-  dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/coach-white.webp", eg=1999, us=149, page="sessions.html"),
+  dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=399, us=25, page="sessions.html"),
+  dict(id="s-single", kind="session", title="جلسة كوتشينج فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=599, us=59, page="sessions.html"),
+  dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/thumb-session.webp", eg=1999, us=149, page="sessions.html"),
   dict(id="serenity-gift", kind="gift", title="هدية: مقدمة تأمل السكينة", catLabel="هدية", img="assets/art/calm.webp", eg=0, us=0, page="index.html", learn="learn.html#serenity"),
 ]
 for p in PRODUCTS:

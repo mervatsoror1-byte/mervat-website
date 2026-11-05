@@ -1241,3 +1241,4 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 .q2{top:11%;bottom:auto;left:3%;right:auto;max-width:180px}
 .co-body .coupon .btn-ghost{background:#1F3F7C;color:#F5F5DC;border:0}
 .co-body .coupon input{border-color:rgba(31,63,124,.2)}
+.co-body .line img{border:1px solid rgba(197,160,89,.6);object-position:top}
