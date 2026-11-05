@@ -141,11 +141,12 @@ def articles():
 
 
 def auth():
-    quotes = '<span class="aq q1">انضم لمئات الأشخاص الذين وجدوا السلام الداخلي</span><span class="aq q2">كل خطوة نحو ذاتك، خطوة نحو النور</span><span class="aq q3">السكينة ليست مكاناً تذهب إليه، بل مساحة تخلقها في داخلك</span>'
-    art = f'<div class="au-art"><a class="au-logo" href="index.html"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="120" height="90"></a><img class="au-photo" src="assets/img/auth-standing.webp" alt="د. مرفت سرور" width="900" height="1042">{quotes}</div>'
+    quotes = '<div class="au-quote"><span class="au-orn" aria-hidden="true">✦</span><p>كل خطوة<br>نحو ذاتك<br>خطوة نحو <em>النور</em></p></div>'
+    art = f'<div class="au-art"><a class="au-logo" href="index.html"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="120" height="90"></a><img class="au-photo" src="assets/img/auth-white.webp" alt="د. مرفت سرور" width="1122" height="1402">{quotes}</div>'
+    spark = '<canvas class="sparkle" data-density="1600" aria-hidden="true"></canvas>'
     social = '<div class="au-social">' + "".join(f'<a href="#" aria-label="{n}">{ic(i,"icon icon-sm")}</a>' for i, n in [("chat", "واتساب"), ("mail", "بريد"), ("play", "يوتيوب"), ("heart", "إنستغرام")]) + '</div>'
     back = f'<a class="au-back" href="index.html">عودة {ic("fwd","icon icon-sm")}</a>'
-    page("login.html", "تسجيل الدخول", "سجّل الدخول لمتابعة رحلتك مع د. مرفت سرور.", f'''<div class="au">{art}<div class="au-panel">{back}<div class="au-in">
+    page("login.html", "تسجيل الدخول", "سجّل الدخول لمتابعة رحلتك مع د. مرفت سرور.", f'''<div class="au">{spark}{art}<div class="au-panel">{back}<div class="au-in">
   <h1>أهلاً بك مجدداً</h1><p>سجّل الدخول لمتابعة رحلة التشافي الخاصة بك</p>
   <form class="form" id="loginForm" novalidate><div class="field"><label for="email">البريد الإلكتروني <i>*</i></label><input id="email" type="email" autocomplete="email" placeholder="أدخل بريدك الإلكتروني" required></div>
     <div class="field"><label for="password">كلمة المرور <i>*</i></label><input id="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" required></div>
@@ -154,7 +155,7 @@ def auth():
   <div class="or">أو المتابعة باستخدام</div><div class="social-login"><button class="btn au-sso" type="button" onclick="this.textContent='يُفعّل في الموقع الفعلي'">Google</button><button class="btn au-sso dark" type="button" onclick="this.textContent='يُفعّل في الموقع الفعلي'">Apple</button></div>
   <button class="btn btn-line btn-sm js-demo-login au-demo" type="button">جرّب حساباً تجريبياً جاهزاً</button>
   <p class="au-alt">ليس لديك حساب؟ <a href="register.html">انضم إلينا الآن</a></p>{social}</div></div></div>''', bare=True, noindex=True)
-    page("register.html", "إنشاء حساب", "أنشئ حسابك المجاني واحصل على هدية.", f'''<div class="au">{art}<div class="au-panel">{back}<div class="au-in">
+    page("register.html", "إنشاء حساب", "أنشئ حسابك المجاني واحصل على هدية.", f'''<div class="au">{spark}{art}<div class="au-panel">{back}<div class="au-in">
   <h1>ابدأ رحلتك</h1><p>حساب مجاني، ومعه هدية تُفتح فوراً</p>
   <form class="form" id="registerForm" novalidate><div class="field"><label for="name">الاسم <i>*</i></label><input id="name" autocomplete="name" placeholder="أدخل اسمك" required></div>
     <div class="field"><label for="email">البريد الإلكتروني <i>*</i></label><input id="email" type="email" autocomplete="email" placeholder="أدخل بريدك الإلكتروني" required></div>
@@ -163,7 +164,7 @@ def auth():
     <label class="check"><input type="checkbox" required checked><span>أوافق على <a href="terms.html">الشروط</a> و<a href="privacy.html">الخصوصية</a></span></label>
     <div class="alert" hidden></div><button class="btn btn-gold btn-block" type="submit">إنشاء حسابي</button></form>
   <p class="au-alt">لديك حساب؟ <a href="login.html">سجّل الدخول</a></p>{social}</div></div></div>''', bare=True, noindex=True)
-    page("forgot.html", "استعادة كلمة المرور", "استعادة كلمة المرور.", f'''<div class="au">{art}<div class="au-panel">{back}<div class="au-in">
+    page("forgot.html", "استعادة كلمة المرور", "استعادة كلمة المرور.", f'''<div class="au">{spark}{art}<div class="au-panel">{back}<div class="au-in">
   <h1>نسيت كلمة المرور؟</h1><p>اكتب بريدك وسنرسل لك رابطاً لتعيينها</p>
   <form class="form" id="forgotForm"><div class="field"><label for="fEmail">البريد الإلكتروني <i>*</i></label><input id="fEmail" type="email" required></div><div class="alert" hidden></div><button class="btn btn-gold btn-block" type="submit">أرسل الرابط</button></form>
   <p class="au-alt"><a href="login.html">العودة لتسجيل الدخول</a></p></div></div></div>''', bare=True, noindex=True)

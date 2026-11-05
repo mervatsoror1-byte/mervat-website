@@ -1242,3 +1242,20 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 .co-body .coupon .btn-ghost{background:#1F3F7C;color:#F5F5DC;border:0}
 .co-body .coupon input{border-color:rgba(31,63,124,.2)}
 .co-body .line img{border:1px solid rgba(197,160,89,.6);object-position:top}
+/* ===== Auth v2: white-suit photo dissolving into royal blue, rising stars ===== */
+.au{position:relative;isolation:isolate;background:radial-gradient(90% 80% at 30% 20%,#3A62A8,#284D92 55%,#1F3F7C)}
+.au>.sparkle{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.au-panel{background:transparent;z-index:3}
+.au-art{background:transparent;position:relative;z-index:1}
+.au-art::after{content:none}
+.au-art .au-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:78% 20%;-webkit-mask-image:linear-gradient(to left,#000 62%,transparent 100%);mask-image:linear-gradient(to left,#000 62%,transparent 100%)}
+.au-logo{z-index:4}
+.au-quote{position:absolute;z-index:3;top:22%;right:5%;width:min(230px,30%);display:grid;justify-items:center;gap:10px;text-align:center}
+.au-orn{color:#C5A059;font-size:1rem;display:flex;align-items:center;gap:10px}
+.au-orn::before,.au-orn::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,#C5A059)}
+.au-orn::after{transform:scaleX(-1)}
+.au-quote p{margin:0;font-family:"Noto Naskh Arabic","Amiri",serif;font-weight:700;font-size:clamp(1.25rem,1.9vw,1.7rem);line-height:1.75;color:#1F3F7C;text-shadow:0 1px 12px rgba(245,240,228,.9)}
+.au-quote em{font-style:normal;color:#A9843F}
+.au-quote{top:30%;right:2.5%;width:min(175px,24%)}
+.au-quote p{font-size:clamp(1.1rem,1.6vw,1.45rem)}
+.au-logo img{filter:drop-shadow(0 2px 6px rgba(31,63,124,.25))}
