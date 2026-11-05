@@ -141,8 +141,8 @@ def articles():
 
 
 def auth():
-    quotes = '<div class="au-quote"><span class="au-orn" aria-hidden="true">✦</span><p>كل خطوة<br>نحو ذاتك<br>خطوة نحو <em>النور</em></p></div>'
-    art = f'<div class="au-art"><a class="au-logo" href="index.html"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="120" height="90"></a><img class="au-photo" src="assets/img/auth-white.webp" alt="د. مرفت سرور" width="1122" height="1402">{quotes}</div>'
+    quotes = '<div class="au-quote"><span class="au-orn" aria-hidden="true">✦</span><p>كل خطوة<br>نحو ذاتك<br>خطوة<br>نحو <em>النور</em></p></div>'
+    art = f'<div class="au-art"><a class="au-logo" href="index.html"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="120" height="90"></a><img class="au-photo" src="assets/img/auth-white.webp" alt="د. مرفت سرور" width="1122" height="1402"><img class="au-photo au-cut" src="assets/img/auth-white-cut.webp" alt="" aria-hidden="true" width="1122" height="1402">{quotes}</div>'
     spark = '<canvas class="sparkle" data-density="1600" aria-hidden="true"></canvas>'
     social = '<div class="au-social">' + "".join(f'<a href="#" aria-label="{n}">{ic(i,"icon icon-sm")}</a>' for i, n in [("chat", "واتساب"), ("mail", "بريد"), ("play", "يوتيوب"), ("heart", "إنستغرام")]) + '</div>'
     back = f'<a class="au-back" href="index.html">عودة {ic("fwd","icon icon-sm")}</a>'

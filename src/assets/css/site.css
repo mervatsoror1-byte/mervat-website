@@ -1259,3 +1259,15 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 .au-quote{top:30%;right:2.5%;width:min(175px,24%)}
 .au-quote p{font-size:clamp(1.1rem,1.6vw,1.45rem)}
 .au-logo img{filter:drop-shadow(0 2px 6px rgba(31,63,124,.25))}
+/* auth quote: larger, bolder */
+.au-quote{top:24%;right:2%;width:min(240px,30%);gap:14px}
+.au-quote p{font-size:clamp(1.6rem,2.5vw,2.25rem);font-weight:800;line-height:1.6;color:#1A3670;text-shadow:0 1px 14px rgba(245,240,228,.95),0 0 2px rgba(245,240,228,.8)}
+.au-quote em{color:#9C7631}
+.au-orn{font-size:1.3rem}.au-orn::before,.au-orn::after{width:50px;height:1.5px}
+.au-art .au-photo{object-position:92% 20%}
+.au-quote{top:22%;right:3%;width:min(200px,26%)}
+/* stars behind Mervat: photo z1 · stars z2 · cut-out z3 */
+.au-art{z-index:auto}
+.au-art .au-photo{z-index:1}
+.au-art .au-cut{z-index:3}
+.au-quote,.au-logo{z-index:4}
