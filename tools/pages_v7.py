@@ -142,7 +142,7 @@ def articles():
 
 def auth():
     quotes = '<span class="aq q1">انضم لمئات الأشخاص الذين وجدوا السلام الداخلي</span><span class="aq q2">كل خطوة نحو ذاتك، خطوة نحو النور</span><span class="aq q3">السكينة ليست مكاناً تذهب إليه، بل مساحة تخلقها في داخلك</span>'
-    art = f'<div class="au-art"><a class="au-logo" href="index.html"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="120" height="90"></a><div class="au-frame"><img src="assets/img/coach-seated-cut.webp" alt="د. مرفت سرور"></div>{quotes}</div>'
+    art = f'<div class="au-art"><a class="au-logo" href="index.html"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="120" height="90"></a><img class="au-photo" src="assets/img/auth-standing.webp" alt="د. مرفت سرور" width="900" height="1042">{quotes}</div>'
     social = '<div class="au-social">' + "".join(f'<a href="#" aria-label="{n}">{ic(i,"icon icon-sm")}</a>' for i, n in [("chat", "واتساب"), ("mail", "بريد"), ("play", "يوتيوب"), ("heart", "إنستغرام")]) + '</div>'
     back = f'<a class="au-back" href="index.html">عودة {ic("fwd","icon icon-sm")}</a>'
     page("login.html", "تسجيل الدخول", "سجّل الدخول لمتابعة رحلتك مع د. مرفت سرور.", f'''<div class="au">{art}<div class="au-panel">{back}<div class="au-in">

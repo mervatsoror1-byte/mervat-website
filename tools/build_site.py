@@ -80,9 +80,9 @@ PRODUCTS = [
   dict(id="b-decode", kind="bundle", title="مسار Decoding", catLabel="باقة", img="assets/art/decode.webp", eg=2139, us=109, page="bundles.html"),
   dict(id="b-free", kind="bundle", title="مسار التنظيف", catLabel="باقة", img="assets/art/attach.webp", eg=1649, us=85, page="bundles.html"),
   dict(id="b-calm", kind="bundle", title="البرمجة اليومية", catLabel="باقة", img="assets/art/morning.webp", eg=649, us=35, page="bundles.html"),
-  dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-navy.webp", eg=599, us=25, page="sessions.html"),
-  dict(id="s-single", kind="session", title="جلسة كوتشينج فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-green.webp", eg=1499, us=59, page="sessions.html"),
-  dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/coach-white.webp", eg=5199, us=209, page="sessions.html"),
+  dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-navy.webp", eg=399, us=25, page="sessions.html"),
+  dict(id="s-single", kind="session", title="جلسة كوتشينج فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/coach-green.webp", eg=599, us=59, page="sessions.html"),
+  dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/coach-white.webp", eg=1999, us=149, page="sessions.html"),
   dict(id="serenity-gift", kind="gift", title="هدية: مقدمة تأمل السكينة", catLabel="هدية", img="assets/art/calm.webp", eg=0, us=0, page="index.html", learn="learn.html#serenity"),
 ]
 for p in PRODUCTS:
@@ -401,8 +401,8 @@ def build():
 
     # ---------- cart / checkout / results
     stepper = lambda n: '<div class="stepper">' + '<hr>'.join(f'<span class="{"on" if i<=n else ""}"><i>{"١٢٣"[i]}</i>{t}</span>' for i,t in enumerate(["السلة","الدفع","تم"])) + '</div>'
-    page("cart.html", "السلة", "سلة المشتريات.", f'<section class="band-sm"><div class="wrap">{stepper(0)}<h1 class="title" style="margin-bottom:22px">سلتك</h1><div id="cartPage"></div></div></section>', noindex=True)
-    page("checkout.html", "إتمام الشراء", "إتمام الشراء.", f'<section class="band-sm"><div class="wrap">{stepper(1)}<h1 class="title" style="margin-bottom:22px">إتمام الشراء</h1><div id="checkoutPage"></div></div></section>', noindex=True)
+    page("cart.html", "السلة", "سلة المشتريات.", f'<section class="co-head"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="wrap">{stepper(0)}<h1>سلتك</h1></div></section><section class="co-body"><div class="wrap"><div id="cartPage"></div></div></section>', noindex=True)
+    page("checkout.html", "إتمام الشراء", "إتمام الشراء.", f'<section class="co-head"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="wrap">{stepper(1)}<h1>إتمام الشراء</h1></div></section><section class="co-body"><div class="wrap"><div id="checkoutPage"></div></div></section>', noindex=True)
     page("success.html", "تم الدفع بنجاح", "تم الدفع بنجاح.", f'''<section class="band"><div class="wrap">{stepper(2)}<div class="result" id="successBox"><div class="badge">{ic("check")}</div><h1 class="title">شكراً لك، تم الدفع بنجاح</h1>
   <p class="lead">رقم طلبك <b id="oNo">MS-10241</b> بقيمة <b id="oTotal">—</b>. أرسلنا تأكيد الطلب وبيانات الدخول إلى <b id="oEmail">بريدك</b>.</p>
   <ul class="facts" id="oItems" style="justify-items:center"></ul>
