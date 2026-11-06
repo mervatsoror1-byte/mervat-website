@@ -1398,3 +1398,12 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
   .site-footer,.site-footer a{font-size:14.5px}
   .tabs .tab{font-size:14px}
 }
+/* ===== desktop header: every item on one center line ===== */
+@media (min-width:901px){
+  .site-header .nav,.site-header .tools{align-items:center}
+  .site-header .menu{align-items:center}
+  .site-header .menu > li{display:flex;align-items:center;height:44px}
+  .site-header .menu > li > a,.site-header .menu > li > .mega-btn{display:inline-flex;align-items:center;gap:4px;height:44px;padding-block:0;line-height:1.2}
+  .site-header .login-link,.site-header .hdr-book{display:inline-flex;align-items:center;line-height:1.2}
+  .site-header .hdr-book{height:44px;padding-block:0}
+}
