@@ -81,7 +81,7 @@ PRODUCTS = [
   dict(id="b-free", kind="bundle", title="مسار التنظيف", catLabel="باقة", img="assets/art/attach.webp", eg=1649, us=85, page="bundles.html"),
   dict(id="b-calm", kind="bundle", title="البرمجة اليومية", catLabel="باقة", img="assets/art/morning.webp", eg=649, us=35, page="bundles.html"),
   dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=399, us=25, page="sessions.html"),
-  dict(id="s-single", kind="session", title="جلسة كوتشينج فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=599, us=59, page="sessions.html"),
+  dict(id="s-single", kind="session", title="جلسة استشارة فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=599, us=59, page="sessions.html"),
   dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/thumb-session.webp", eg=1999, us=149, page="sessions.html"),
   dict(id="serenity-gift", kind="gift", title="هدية: مقدمة تأمل السكينة", catLabel="هدية", img="assets/art/calm.webp", eg=0, us=0, page="index.html", learn="learn.html#serenity"),
 ]
@@ -175,6 +175,7 @@ def header(active, hero=False):
   <a class="brand" href="index.html" aria-label="الصفحة الرئيسية"><img src="assets/brand/logo-icon-gold.webp" alt="" width="38" height="48"><span><b>مرفت سرور</b><small>Mervat Soror</small></span></a>
   <ul class="menu" id="menu">{items}</ul>
   <div class="tools">
+    <a class="hdr-book" href="sessions.html#booking">{ic("cal")}<span>احجز جلسة</span></a>
     <a class="login-link js-user-text" href="login.html">تسجيل الدخول</a>
     <a class="iconbtn" href="cart.html" aria-label="السلة">{ic("bag")}<span class="count js-cart-count">٠</span></a>
     <button class="iconbtn" type="button" id="searchBtn" aria-label="بحث">{ic("search")}</button>
@@ -183,7 +184,7 @@ def header(active, hero=False):
 </div></header>
 <div class="search-ov" id="searchOv" hidden><div class="search-box"><div class="search">{ic("search")}<label class="sr" for="sq">ابحث في المواد</label><input id="sq" type="text" placeholder="ابحث: فك التعلّق، Decoding، تنفّس، كتاب…" autocomplete="off"><button class="iconbtn" type="button" id="searchClose" aria-label="إغلاق">{ic("x")}</button></div><div class="search-res" id="searchRes"></div></div></div>
 <div class="help" id="help"><div class="help-panel" id="helpPanel" hidden><b>كيف يمكننا خدمتك؟</b><span class="muted">نرد عادةً خلال ساعات العمل.</span>
-  <a href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat")}واتساب</a><a href="contact.html">{ic("mail")}راسلنا</a><a href="faq.html">{ic("book")}الأسئلة الشائعة</a><a href="sessions.html">{ic("cal")}احجز استشارة</a></div>
+  <a href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat")}واتساب</a><a href="contact.html">{ic("mail")}راسلنا</a><a href="faq.html">{ic("book")}الأسئلة الشائعة</a><a href="sessions.html">{ic("cal")}احجز جلسة</a></div>
   <button class="help-btn" id="helpBtn" type="button" aria-expanded="false" aria-controls="helpPanel"><span class="help-logo"><img src="assets/brand/logo-icon-gold.webp" alt="" width="26" height="32"></span><span class="help-txt">كيف يمكننا خدمتك؟</span></button></div>
 <nav class="tabbar" aria-label="تنقل سريع"><a href="index.html">{ic("home")}<span>الرئيسية</span></a><a href="library.html">{ic("lib")}<span>الأدوات</span></a><a href="vip.html" class="tb-vip">{ic("crown")}<span>VIP</span></a><a href="cart.html">{ic("bag")}<span>السلة</span><i class="count js-cart-count">٠</i></a><a href="account.html">{ic("user")}<span>حسابي</span></a></nav>'''
 
@@ -325,8 +326,8 @@ def build():
 <section class="wrap"><div class="card" style="text-align:center;display:grid;gap:10px;justify-items:center"><span class="ico">{ic("gift")}</span><h2 style="font-size:1.4rem">كتب مجانية قادمة</h2><p class="muted">سنضيف كتيبات مجانية تُفتح بمجرد إنشاء حساب.</p><a class="btn btn-gold btn-sm" href="register.html">أنشئ حسابك لتصلك أولاً</a></div></section>''', active="books.html")
 
     # ---------- sessions
-    types = "".join(f'<label class="type"><input type="radio" name="stype" value="{sid}" {"checked" if sid=="s-single" else ""}><span><b>{E(BY[sid]["title"])}</b><small>{d}</small></span>{price(sid)}</label>' for sid, d in [("s-intro","تعرّف على أسلوب الكوتشينج وحدّد احتياجك"),("s-single","جلسة عميقة حول موضوع واحد"),("s-pack","أربع جلسات أسبوعية بسعر أقل")])
-    page("sessions.html", "الجلسات الفردية", "احجز جلسة كوتشينج فردية أونلاين مع د. مرفت سرور. اختر الموعد بتوقيت بلدك، وادفع بالبطاقة أو المحفظة أو PayPal.", page_hero("الجلسات الفردية","اختر نوع الجلسة والموعد، ويصلك التأكيد ورابط الجلسة على بريدك.") + f'''
+    types = "".join(f'<label class="type"><input type="radio" name="stype" value="{sid}" {"checked" if sid=="s-single" else ""}><span><b>{E(BY[sid]["title"])}</b><small>{d}</small></span>{price(sid)}</label>' for sid, d in [("s-intro","تعرّف على طريقة العمل وحدّد احتياجك"),("s-single","جلسة عميقة حول موضوع واحد"),("s-pack","أربع جلسات أسبوعية بسعر أقل")])
+    page("sessions.html", "الجلسات الفردية", "احجز جلسة استشارة فردية أونلاين مع د. مرفت سرور. اختر الموعد بتوقيت بلدك، وادفع بالبطاقة أو المحفظة أو PayPal.", page_hero("الجلسات الفردية","اختر نوع الجلسة والموعد، ويصلك التأكيد ورابط الجلسة على بريدك.") + f'''
 <section class="band-sm"><div class="wrap split" id="booking" style="align-items:start">
   <div class="split-body"><h2 style="font-size:1.4rem;font-family:var(--body)">١. نوع الجلسة</h2><div class="types">{types}</div>
     <ul class="facts" style="margin-top:10px"><li>{ic("live")}أونلاين عبر Zoom أو Google Meet</li><li>{ic("globe")}يظهر الموعد بتوقيت بلدك</li><li>{ic("bell")}تذكير قبل الجلسة بيوم وبساعة</li><li>{ic("cal")}تغيير الموعد مجاناً حتى ٢٤ ساعة قبله</li></ul></div>
@@ -551,7 +552,7 @@ def home_body():
 
 <section class="band"><div class="wrap"><div class="head center"><h2 class="title">قصص من عاشوا التحوّل</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء المشتركين الحقيقية</span></div><div class="reel" tabindex="0" aria-label="آراء المشتركين">{reel}</div></div></section>
 <section class="ses-banner" aria-label="الجلسات الفردية"><img src="assets/img/sessions-banner.webp" alt="د. مرفت سرور في جلسة أونلاين" width="1672" height="941" loading="lazy">
-  <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة كوتشينج أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html">{ic("cal")}احجز جلستك</a></div></section>
+  <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة استشارة أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html#booking">{ic("cal")}احجز جلستك</a></div></section>
 <section class="band" style="padding-bottom:0"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر أهدأ</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
 <section class="band book-band" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap split">{book3d()}
   <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]} <span class="demo">نبذة مؤقتة</span></p>

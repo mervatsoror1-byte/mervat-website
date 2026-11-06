@@ -1347,3 +1347,9 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 /* testimonial highlight + sessions banner title: royal */
 .voice.hl{background:linear-gradient(170deg,#284D92,#1F3F7C)}
 .ses-banner h2{color:#1F3F7C}
+/* header: clear "book a session" button */
+.hdr-book{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;font-weight:800;font-size:.95rem;color:#14234A;background:linear-gradient(135deg,#E2C68C,#C5A059 55%,#AE8945);padding:9px 18px;border-radius:999px;box-shadow:0 10px 22px -12px rgba(184,151,95,.9);margin-inline-end:8px;transition:transform .2s}
+.hdr-book:hover{transform:translateY(-1px)}
+.hdr-book .icon{width:18px;height:18px}
+@media (max-width:560px){.hdr-book{padding:7px 12px;font-size:.85rem;margin-inline-end:2px}.hdr-book .icon{display:none}}
+#booking,#plans,#inside{scroll-margin-top:110px}
