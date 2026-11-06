@@ -1353,3 +1353,13 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 .hdr-book .icon{width:18px;height:18px}
 @media (max-width:560px){.hdr-book{padding:7px 12px;font-size:.85rem;margin-inline-end:2px}.hdr-book .icon{display:none}}
 #booking,#plans,#inside{scroll-margin-top:110px}
+/* ===== Inner page header: royal blue + rising stars (was pink) ===== */
+.page-hero{isolation:isolate;overflow:hidden;background:radial-gradient(70% 120% at 70% 0%,#3A62A8 0%,#284D92 50%,#1F3F7C 100%);border-bottom:1px solid rgba(197,160,89,.45);padding-block:clamp(44px,6vw,76px)}
+.page-hero .sparkle{z-index:0}.page-hero .wrap{position:relative;z-index:1}
+.page-hero h1,.page-hero .display{font-family:"Noto Naskh Arabic","Amiri",serif;color:#F5F5DC}
+.page-hero .lead{color:#F5F5DC;font-weight:500}
+.page-hero .eyebrow{color:#E2C68C}
+.page-hero .crumbs,.page-hero .crumbs a{color:rgba(245,245,220,.85)}
+.page-hero .crumbs li[aria-current]{color:#E2C68C}
+@media (max-width:560px){.site-header .tools{gap:2px}.hdr-book{padding:6px 11px;font-size:.8rem}.site-header .iconbtn{width:36px;height:36px}}
+@media (max-width:360px){.site-header .brand small,.site-header .brand b{display:none}}

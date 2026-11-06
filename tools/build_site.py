@@ -230,7 +230,7 @@ def crumbs(*items):
     li = "".join(f'<li><a href="{h}">{E(t)}</a></li>' if h else f'<li aria-current="page">{E(t)}</li>' for t, h in items)
     return f'<ol class="crumbs"><li><a href="index.html">الرئيسية</a></li>{li}</ol>'
 def page_hero(title, lead="", *trail, eyebrow=""):
-    return f'<section class="page-hero"><div class="wrap">{crumbs(*(trail or [(title, None)]))}{f"<span class=eyebrow>{eyebrow}</span>" if eyebrow else ""}<h1 class="display">{title}</h1>{f"<p class=lead>{lead}</p>" if lead else ""}</div></section>'
+    return f'<section class="page-hero"><canvas class="sparkle" data-density="2400" aria-hidden="true"></canvas><div class="wrap">{crumbs(*(trail or [(title, None)]))}{f"<span class=eyebrow>{eyebrow}</span>" if eyebrow else ""}<h1 class="display">{title}</h1>{f"<p class=lead>{lead}</p>" if lead else ""}</div></section>'
 def price(pid): p = BY[pid]; return f'<span class="price" data-price="{pid}">{p["eg"]:,} ج.م</span>'.replace(",", "")
 def tabs(): return '<div class="tabs" role="group" aria-label="تصنيف التمارين">' + "".join(f'<button class="tab" type="button" data-filter="{k}" aria-pressed="{str(k=="all").lower()}">{v}</button>' for k, v in CATS) + "</div>"
 def stage(img, f1=True):
