@@ -44,8 +44,22 @@ function paintHeader(){
     else { a.href = "login.html"; a.innerHTML = icon("user"); a.setAttribute("aria-label","تسجيل الدخول"); }
   });
 }
+function setPriceText(e, txt){
+  const t = e.firstChild;
+  if (t && t.nodeType === 3){ if (t.data !== txt) t.data = txt; }
+  else e.prepend(document.createTextNode(txt));
+}
+/* small currency switch next to every price */
+function curMini(){
+  const t = S.region === "eg" ? "⇄ $" : "⇄ ج.م", lbl = S.region === "eg" ? "عرض الأسعار بالدولار" : "عرض الأسعار بالجنيه المصري";
+  $$("[data-price], #vipAmount").forEach(el => {
+    let b = [...el.children].find(c => c.classList.contains("cur-mini"));
+    if (!b){ b = document.createElement("button"); b.type = "button"; b.className = "cur-mini"; el.appendChild(b); }
+    if (b.textContent !== t){ b.textContent = t; b.title = lbl; b.setAttribute("aria-label", lbl); }
+  });
+}
 function paintPrices(){
-  $$("[data-price]").forEach(e => { const p = P[e.dataset.price]; if (p) e.textContent = money(p.eg, p.us); });
+  $$("[data-price]").forEach(e => { const p = P[e.dataset.price]; if (p) setPriceText(e, money(p.eg, p.us)); });
   $$("[data-eg]").forEach(e => e.textContent = S.region === "eg" ? e.dataset.eg : e.dataset.us);
   $$("[data-was]").forEach(e => { const [eg, us] = e.dataset.was.split("|"); e.textContent = S.region === "eg" ? ar(eg) + " ج.م" : "$" + us; });
 }
@@ -124,7 +138,7 @@ function renderDynamic(){
   if ($("#accountPage")) renderAccount();
   if ($("#vipAmount")) renderVipBar();
 }
-function paintPricesOnly(){ $$("[data-price]").forEach(e => { const p = P[e.dataset.price]; if (p) e.textContent = money(p.eg, p.us); }); }
+function paintPricesOnly(){ $$("[data-price]").forEach(e => { const p = P[e.dataset.price]; if (p) setPriceText(e, money(p.eg, p.us)); }); }
 
 /* ---------- cart page ---------- */
 function buyNow(){ try { return JSON.parse(ss("buynow") || "null"); } catch(e){ return null; } }
@@ -536,4 +550,12 @@ $$("canvas.sparkle").forEach(c => {
 
 initForms(); initPlayer(); initReader(); initBooking();
 paintAll();
+curMini();
+let cmRaf = 0;
+new MutationObserver(() => { if (!cmRaf) cmRaf = requestAnimationFrame(() => { cmRaf = 0; curMini(); }); }).observe(document.body, {childList:true, subtree:true});
+document.addEventListener("click", e => {
+  const b = e.target.closest(".cur-mini"); if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  S.region = S.region === "eg" ? "intl" : "eg"; save(); paintAll(); curMini();
+}, true);
 })();

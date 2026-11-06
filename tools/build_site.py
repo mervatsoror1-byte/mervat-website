@@ -164,7 +164,7 @@ def mega():
     </div></div>'''
 
 
-NAV2 = [("index.html","الرئيسية",""),("MEGA","الأدوات",""),("sessions.html","الاستشارات",""),("vip.html","برنامج استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","")]
+NAV2 = [("index.html","الرئيسية",""),("MEGA","الأدوات",""),("sessions.html","الاستشارات",""),("vip.html","برنامج استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","nav-contact")]
 
 def header(active, hero=False):
     def item(h,t,c):

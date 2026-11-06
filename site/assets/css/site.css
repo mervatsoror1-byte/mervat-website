@@ -1363,3 +1363,38 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 .page-hero .crumbs li[aria-current]{color:#E2C68C}
 @media (max-width:560px){.site-header .tools{gap:2px}.hdr-book{padding:6px 11px;font-size:.8rem}.site-header .iconbtn{width:36px;height:36px}}
 @media (max-width:360px){.site-header .brand small,.site-header .brand b{display:none}}
+/* ===== small currency switch next to prices ===== */
+.cur-mini{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-inline-start:8px;height:22px;padding:0 8px;border-radius:999px;border:1px solid rgba(197,160,89,.75);background:rgba(197,160,89,.08);color:#A9843F;font-family:"Readex Pro",system-ui,sans-serif;font-size:11px;font-weight:700;line-height:1;letter-spacing:0;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.cur-mini:hover{background:#C5A059;color:#14234A}
+.vp-royal .cur-mini,.vip-split .cur-mini,.whois-split .cur-mini,.co-head .cur-mini{color:#E2C68C;border-color:rgba(226,198,140,.7)}
+/* ===== header: "contact" only in the burger menu ===== */
+@media (min-width:901px){.site-header .menu li:has(> .nav-contact){display:none}}
+/* ===== mobile typography: proportional to phone screens ===== */
+@media (max-width:600px){
+  body{font-size:15px;line-height:1.85}
+  p,.lead,.statement .lead,.ws-copy p,.vs-copy p,.vp-head p,.split-body .lead,.head .lead{font-size:15.5px}
+  .title,.head .title,.statement h2,.sb-copy h2,.ses-banner h2,.jr-copy h2,.vp-head h2{font-size:24px;line-height:1.5}
+  .hs-copy h1{font-size:25px;line-height:1.7}
+  .page-hero h1,.page-hero .display{font-size:28px}
+  .ws-copy h2{font-size:24px}
+  .vb-copy h2{font-size:28px}
+  .vip2 h2{font-size:30px}
+  .vs-copy h1{font-size:34px}
+  .au-in h1{font-size:28px}
+  .scard h3,.scard h3 a{font-size:17px}
+  .scard .sc-price,.sc-price{font-size:21px}
+  .perk b,.vip2 .perk b{font-size:16.5px}
+  .perk span,.vip2 .perk span{font-size:14.5px}
+  .vp-feat h3{font-size:18px}.vp-feat p{font-size:14.5px}
+  .vp-plan h3{font-size:19px}.vp-price .price{font-size:32px}
+  .vp-faq summary{font-size:16px;padding:18px 2px}
+  .voice p{font-size:14.5px}
+  .vp-strip span{font-size:16px;gap:20px}
+  .btn-safia{font-size:17px;padding:12px 36px}
+  .btn{font-size:14.5px}
+  .eyebrow,.vs-eyebrow{font-size:13px}
+  .ws-stats b{font-size:21px}.ws-stats span{font-size:13px}
+  .au-quote p{font-size:22px}
+  .site-footer,.site-footer a{font-size:14.5px}
+  .tabs .tab{font-size:14px}
+}
