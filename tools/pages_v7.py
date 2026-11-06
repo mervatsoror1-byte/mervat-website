@@ -43,7 +43,7 @@ def product(p):
     axes = "".join(f"<li><b>{E(m['title'])}</b></li>" for m in p["modules"])
     lessons = "".join(f'<div class="lrow">{ic("play","icon icon-sm pl")}<span>{E(l[0])}</span>' + (f'<a href="learn.html#{p["id"]}">شاهد مجاناً</a>' if l[2:] else ic("lock","icon icon-sm lk")) + '</div>' for m in p["modules"] for l in m["lessons"])
     kind = "الكورس" if is_course else "التمرين"
-    facts = p.get("facts") or [["lessons", f"يحتوي على {total} {'دروس' if total > 2 else 'درس'}"], ["clock", f"المدة: {dur}"], ["clock", "مدة الوصول: ٣٦٥ يوماً من تاريخ الشراء"], ["devices", "تابع من أي لابتوب أو موبايل"]]
+    facts = p.get("facts") or [["lessons", f"يحتوي على {total} {'دروس' if total > 2 else 'درس'}"], ["clock", f"المدة: {dur}"], ["cal", "مدة الوصول: ٣٦٥ يوماً من تاريخ الشراء"], ["receipt", "التجديد بعد انتهاء المدة بنصف السعر"], ["devices", "تابع من أي لابتوب أو موبايل"]]
     facts_html = "".join(f'<li>{ic(i, "icon icon-sm")}<span>{E(t)}</span></li>' for i, t in facts)
     modules_html = "".join(f'<details {"open" if n == 0 else ""}><summary>{E(m["title"])}</summary>' + "".join(f'<div class="pd3-l">{ic("play" if l[2:] else "lock", "icon icon-sm")}<span>{E(l[0])}</span>' + (f'<a href="learn.html#{p["id"]}">استمع مجاناً</a>' if l[2:] else "") + '</div>' for l in m["lessons"]) + '</details>' for n, m in enumerate(p["modules"]))
     page(p["page"], f'{p["title"]}', p["short"] + f' {p["catLabel"]} مع د. مرفت سرور.', f'''
