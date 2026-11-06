@@ -96,7 +96,7 @@ function card(p){
       ${p.isNew ? '<span class="sc-new">جديد</span>' : ''}${owned ? '<span class="sc-own">في مكتبتك</span>' : ''}</div>
     <div class="sc-tags"><span>${kind}</span><span>${esc(p.catLabel)}</span><span>Online</span></div>
     <h3><a href="${p.page}">${esc(p.title)}</a></h3>
-    <span class="sc-meta">${icon("lessons")}${ar(lessons)} ${lessons > 2 ? "دروس" : "درس"}</span>
+    <span class="sc-meta">${icon("lessons")}${p.cardMeta ? esc(p.cardMeta) : ar(lessons) + " " + (lessons > 2 ? "دروس" : lessons == 2 ? "درسان" : "درس")}</span>
     <span class="sc-price" data-price="${p.id}">${money(p.eg,p.us)}</span>
     <div class="sc-act">${owned ? `<a class="btn btn-gold btn-sm" href="${p.learn}">ابدأ الآن</a>` : `<a class="btn btn-gold btn-sm" href="${p.page}">عرض التفاصيل</a><button class="add" type="button" data-add="${p.id}" aria-label="أضف ${esc(p.title)} للسلة">${icon("plus")}</button>`}</div>
   </article>`;
