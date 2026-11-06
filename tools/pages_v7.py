@@ -43,33 +43,33 @@ def product(p):
     axes = "".join(f"<li><b>{E(m['title'])}</b></li>" for m in p["modules"])
     lessons = "".join(f'<div class="lrow">{ic("play","icon icon-sm pl")}<span>{E(l[0])}</span>' + (f'<a href="learn.html#{p["id"]}">شاهد مجاناً</a>' if l[2:] else ic("lock","icon icon-sm lk")) + '</div>' for m in p["modules"] for l in m["lessons"])
     kind = "الكورس" if is_course else "التمرين"
+    facts = p.get("facts") or [["lessons", f"يحتوي على {total} {'دروس' if total > 2 else 'درس'}"], ["clock", f"المدة: {dur}"], ["infinity", "وصول كامل مدى الحياة"], ["devices", "تابع من أي لابتوب أو موبايل"]]
+    facts_html = "".join(f'<li>{ic(i, "icon icon-sm")}<span>{E(t)}</span></li>' for i, t in facts)
+    modules_html = "".join(f'<details {"open" if n == 0 else ""}><summary>{E(m["title"])}</summary>' + "".join(f'<div class="pd3-l">{ic("play" if l[2:] else "lock", "icon icon-sm")}<span>{E(l[0])}</span>' + (f'<a href="learn.html#{p["id"]}">استمع مجاناً</a>' if l[2:] else "") + '</div>' for l in m["lessons"]) + '</details>' for n, m in enumerate(p["modules"]))
     page(p["page"], f'{p["title"]}', p["short"] + f' {p["catLabel"]} مع د. مرفت سرور.', f'''
 <section class="pg"><div class="wrap">
   {crumbs(("الأدوات","library.html"), (p["title"], None))}
-  <div class="pd2">
-    <div class="pd2-main">
-      <h1 class="pg-title">{E(p["title"])}</h1>
-      <p class="pd2-kicker">{E(p["catLabel"])}</p>
-      <div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div>
-      <h2 class="pd2-h">محتوى {kind}</h2><ul class="axes">{axes}</ul>
-      <h2 class="pd2-h">مناسب لك إذا كنت…</h2><ul class="axes">{"".join(f"<li>{E(x)}</li>" for x in p["forWho"])}</ul>
-      <div class="sc-tags" style="padding:0;margin:14px 0"><span>{"كورس" if is_course else "تمرين"}</span><span>{E(p["catLabel"])}</span><span>Online</span></div>
-      <details class="lbox" open><summary>محتوى {kind}</summary>{lessons}</details>
-    </div>
-    <aside class="pd2-side"><div class="buy2">
-      <div class="sc-img"><span class="ph"><img src="assets/brand/logo-icon-gold.webp" alt=""></span></div>
-      <div class="buy2-head"><h3>{E(p["title"])}</h3><span class="ctas"><button class="sq-ic" type="button" data-fav="{p["id"]}" aria-pressed="false" aria-label="احفظ">{ic("heart","icon icon-sm")}</button><a class="sq-ic" href="contact.html" aria-label="مشاركة">{ic("share","icon icon-sm")}</a></span></div>
-      <span class="sc-price" style="padding:0" data-price="{p["id"]}">{p["eg"]} ج.م</span>
-      <small class="muted">وصول مدى الحياة</small>
-      <div class="buy2-meta"><span>{ic("lessons","icon icon-sm")}{total} {"دروس" if total > 2 else "درس"}</span><span>{ic("clock","icon icon-sm")}{dur}</span></div>
-      <button class="btn btn-gold btn-block" type="button" data-buy="{p["id"]}"><span>اشترك الآن</span></button>
-      <button class="btn btn-line btn-block" type="button" data-add="{p["id"]}">{ic("bag")}<span>إضافة إلى السلة</span></button>
-      <a class="gift-link" href="contact.html">{ic("gift","icon icon-sm")}إهداء هذه الأداة</a>
-      <div class="incl"><b>هذه الأداة تشمل:</b><span>{total} {"دروس صوتية ومرئية" if total > 2 else "درس"} عالية الجودة</span><span>وصول كامل مدى الحياة</span>{"<span>مشمولة في برنامج استيقظ VIP</span>" if p.get("vipIncluded") else ""}</div>
-    </div></aside>
+  <div class="pd3">
+    <a class="pd3-media{" has-cover" if p.get("cover") else ""}" href="learn.html#{p["id"]}" aria-label="استمع لمقدمة {E(p["title"])} مجاناً">
+      <img src="{p.get("coverLg") or p.get("cover") or "assets/brand/logo-icon-gold.webp"}" alt="{E(p["title"])}" width="1600" height="900">
+      <span class="pd3-play">{ic("play")}</span><span class="pd3-free">المقدمة مجاناً</span></a>
+    <aside class="pd3-buy">
+      <h1>{E(p["title"])}</h1>
+      <p class="pd3-kicker">{E(p["catLabel"])}</p>
+      <ul class="pd3-facts">{facts_html}</ul>
+      <div class="pd3-price"><span class="sc-price" data-price="{p["id"]}">{p["eg"]} ج.م</span></div>
+      <button class="btn-safia pd3-cta" type="button" data-buy="{p["id"]}"><span>اشترك الآن</span></button>
+      <button class="vp-btn pd3-add" type="button" data-add="{p["id"]}"><span>أضف إلى السلة</span></button>
+      <div class="pd3-links"><button type="button" data-fav="{p["id"]}" aria-pressed="false">{ic("heart","icon icon-sm")}احفظ</button><a href="contact.html">{ic("gift","icon icon-sm")}إهداء</a><a href="contact.html">{ic("share","icon icon-sm")}مشاركة</a></div>
+      {"<p class=pd3-vip>" + ic("crown","icon icon-sm") + "مشمول في برنامج استيقظ VIP</p>" if p.get("vipIncluded") else ""}
+    </aside>
   </div>
-  <hr class="sep">
-  <h2 class="pg-title" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">أدوات قد تعجبك</h2>
+  <div class="pd3-body">
+    <div class="pd3-sec"><h2>عن {kind}</h2><div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div></div>
+    <div class="pd3-sec"><h2>مناسب لك إذا كنت…</h2><ul class="pd3-for">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in p["forWho"])}</ul></div>
+    <div class="pd3-sec"><h2>محتوى {kind}</h2><div class="vp-faq">{modules_html}</div>{"<p class=vp-small>أسماء الدروس مبدئية وتُحدَّث قريباً</p>" if p.get("facts") else ""}</div>
+  </div>
+  <div class="vp-head" style="margin:clamp(50px,7vw,90px) 0 30px"><span class="vp-orn" aria-hidden="true">✦</span><h2>أدوات قد تعجبك</h2></div>
   <div class="shelf" data-shelf="related" data-current="{p["id"]}"></div>
 </div></section>''', active="library.html",
          schema=[{"@context": "https://schema.org", "@type": "Course", "name": p["title"], "description": p["short"], "inLanguage": "ar",

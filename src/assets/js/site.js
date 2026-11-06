@@ -91,7 +91,7 @@ function card(p){
   const owned = hasAccess(p.id), lessons = p.lessonsCount || 1;
   const kind = p.kind === "course" ? "كورس" : p.kind === "book" ? "كتاب" : "تمرين";
   return `<article class="scard" data-cat="${p.cat}">
-    <div class="sc-img"><a class="ph" href="${p.page}" aria-label="${esc(p.title)}"><img src="assets/brand/logo-icon-gold.webp" alt="" loading="lazy"></a>
+    <div class="sc-img"><a class="ph${p.cover ? " has-cover" : ""}" href="${p.page}" aria-label="${esc(p.title)}"><img src="${p.cover || "assets/brand/logo-icon-gold.webp"}" alt="" loading="lazy"></a>
       <button class="sc-fav" type="button" data-fav="${p.id}" aria-pressed="false" aria-label="احفظ في المفضلة">${icon("heart")}</button>
       ${p.isNew ? '<span class="sc-new">جديد</span>' : ''}${owned ? '<span class="sc-own">في مكتبتك</span>' : ''}</div>
     <div class="sc-tags"><span>${kind}</span><span>${esc(p.catLabel)}</span><span>Online</span></div>
