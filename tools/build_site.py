@@ -83,6 +83,7 @@ PRODUCTS = [
   dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=399, us=25, page="sessions.html"),
   dict(id="s-single", kind="session", title="جلسة استشارة فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=599, us=59, page="sessions.html"),
   dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/thumb-session.webp", eg=1999, us=149, page="sessions.html"),
+  dict(id="s-coach", kind="session", title="جلسة كوتشينج · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=750, us=69, page="sessions.html"),
   dict(id="serenity-gift", kind="gift", title="هدية: مقدمة تأمل السكينة", catLabel="هدية", img="assets/art/calm.webp", eg=0, us=0, page="index.html", learn="learn.html#serenity"),
 ]
 for p in PRODUCTS:
@@ -326,7 +327,7 @@ def build():
 <section class="wrap"><div class="card" style="text-align:center;display:grid;gap:10px;justify-items:center"><span class="ico">{ic("gift")}</span><h2 style="font-size:1.4rem">كتب مجانية قادمة</h2><p class="muted">سنضيف كتيبات مجانية تُفتح بمجرد إنشاء حساب.</p><a class="btn btn-gold btn-sm" href="register.html">أنشئ حسابك لتصلك أولاً</a></div></section>''', active="books.html")
 
     # ---------- sessions
-    types = "".join(f'<label class="type"><input type="radio" name="stype" value="{sid}" {"checked" if sid=="s-single" else ""}><span><b>{E(BY[sid]["title"])}</b><small>{d}</small></span>{price(sid)}</label>' for sid, d in [("s-intro","تعرّف على طريقة العمل وحدّد احتياجك"),("s-single","جلسة عميقة حول موضوع واحد"),("s-pack","أربع جلسات أسبوعية بسعر أقل")])
+    types = "".join(f'<label class="type"><input type="radio" name="stype" value="{sid}" {"checked" if sid=="s-single" else ""}><span><b>{E(BY[sid]["title"])}</b><small>{d}</small></span>{price(sid)}</label>' for sid, d in [("s-intro","تعرّف على طريقة العمل وحدّد احتياجك"),("s-single","جلسة عميقة حول موضوع واحد"),("s-pack","أربع جلسات أسبوعية بسعر أقل"),("s-coach","جلسة بمعايير ICF: أسئلة تساعدك تكتشف إجاباتك بنفسك وتضع خطوات واضحة نحو هدفك")])
     page("sessions.html", "الجلسات الفردية", "احجز جلسة استشارة فردية أونلاين مع د. مرفت سرور. اختر الموعد بتوقيت بلدك، وادفع بالبطاقة أو المحفظة أو PayPal.", page_hero("الجلسات الفردية","اختر نوع الجلسة والموعد، ويصلك التأكيد ورابط الجلسة على بريدك.") + f'''
 <section class="band-sm"><div class="wrap split" id="booking" style="align-items:start">
   <div class="split-body"><h2 style="font-size:1.4rem;font-family:var(--body)">١. نوع الجلسة</h2><div class="types">{types}</div>
