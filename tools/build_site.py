@@ -58,15 +58,15 @@ PRODUCTS = [
              "حين ترى الجذور بوضوح، تستطيع أن تخرج من جرح الرفض، وأن تقبل نفسك أولاً، فيبدأ الناس في الخارج بقبولك."],
        forWho=["تشعر بالرفض أو الهجر في علاقاتك","تبحث دائماً عن قبول الآخرين","تخاف أن يتركك من تحب","تجد صعوبة في قبول نفسك كما أنت"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين Decoding نور القبول","10:00"]]}]),
-  dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود الطاقي", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-stagnation-sm.webp", cover="assets/img/covers/decode-stagnation-sm.webp", coverLg="assets/img/covers/decode-stagnation.webp", eg=889, us=45, isNew=True, vipIncluded=True,
+  dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود والخمول", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-stagnation-sm.webp", cover="assets/img/covers/decode-stagnation-sm.webp", coverLg="assets/img/covers/decode-stagnation.webp", eg=889, us=45, isNew=True, vipIncluded=True,
        meta="تمرين تشريحي للعقل اللاواعي · ١٠ دقائق", ctype="Decoding · تمرين تشريحي للعقل اللاواعي", level="متقدم", cardMeta="تمرين تشريحي · ١٠ دقائق",
        facts=[["play","تمرين تشريحي للعقل اللاواعي مدته ١٠ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
-       short="تمرين تشريحي للعقل اللاواعي يفكّ الركود الطاقي: الكسل والخمول والتجمّد الذي يمنعك من التحرك نحو أهدافك.",
-       desc=["«Decoding الركود الطاقي» تمرين تشريحي للعقل اللاواعي، مدته ١٠ دقائق، يتعامل مع حالة يعرفها كثيرون: الكسل والخمول، وعدم القدرة على التحرك نحو أهدافك رغم أنك تعرف ما تريد.",
-             "في الركود الطاقي تبقى متجمّداً في مكانك: تقضي الوقت في التمرير على الموبايل، أو تُلهي نفسك بأي شيء، وتؤجّل الخطوة التي تعرف أنها مهمة.",
-             "التمرين يعمل على فكّ هذا التجمّد الطاقي من جذوره في العقل اللاواعي، لتعود الطاقة للتدفق، وتستطيع أن تتحرك فعلاً نحو أهدافك."],
+       short="تمرين تشريحي للعقل اللاواعي يفكّ الركود والخمول: الكسل والتجمّد الذي يمنعك من التحرك نحو أهدافك.",
+       desc=["«Decoding الركود والخمول» تمرين تشريحي للعقل اللاواعي، مدته ١٠ دقائق، يتعامل مع حالة يعرفها كثيرون: الكسل والخمول، وعدم القدرة على التحرك نحو أهدافك رغم أنك تعرف ما تريد.",
+             "في حالة الركود والخمول تبقى متجمّداً في مكانك: تقضي الوقت في التمرير على الموبايل، أو تُلهي نفسك بأي شيء، وتؤجّل الخطوة التي تعرف أنها مهمة.",
+             "التمرين يعمل على فكّ هذا الركود من جذوره في العقل اللاواعي، لتعود الطاقة للتدفق، وتستطيع أن تتحرك فعلاً نحو أهدافك."],
        forWho=["تشعر بكسل وخمول دون سبب واضح","تقضي وقتاً طويلاً في التمرير على الموبايل","تعرف أهدافك لكنك لا تتحرك نحوها","تبدأ ثم تتوقف، وتؤجّل باستمرار"],
-       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين Decoding الركود الطاقي","10:00"]]}]),
+       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين Decoding الركود والخمول","10:00"]]}]),
   dict(id="inner-child", kind="exercise", slug="inner-child-healing", title="تمرين تشافي الطفل الداخلي", cat="heal", catLabel="التشافي", img="assets/img/covers/inner-child-sm.webp", cover="assets/img/covers/inner-child-sm.webp", coverLg="assets/img/covers/inner-child.webp", eg=689, us=35, vipIncluded=True,
        meta="تمرين عميق · ١٠ دقائق", level="متوسط", ctype="تشافي الطفل الداخلي", cardMeta="تمرين عميق · ١٠ دقائق",
        facts=[["play","تمرين عميق مدته ١٠ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
@@ -76,15 +76,15 @@ PRODUCTS = [
              "حين ترى ما عاشه هذا الطفل، تبدأ رحلة تشافيه، وتمنحه الأمان الذي احتاجه."],
        forWho=["ردود فعل عاطفية قوية ومفاجئة","ذكريات طفولة مؤلمة أو غير واضحة","احتياج دائم للأمان والقبول","تشعر أن جرحاً قديماً ما زال يؤثر فيك"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين تشافي الطفل الداخلي","10:00"]]}]),
-  dict(id="heart-coherence", kind="exercise", slug="heart-coherence-breathing", title="تنفّس الاتزان الطاقي", cat="breath", catLabel="تنفّس", img="assets/img/covers/breath-sm.webp", cover="assets/img/covers/breath-sm.webp", coverLg="assets/img/covers/breath.webp", eg=239, us=12, vipIncluded=True,
+  dict(id="heart-coherence", kind="exercise", slug="heart-coherence-breathing", title="تنفّس الاتزان الداخلي", cat="breath", catLabel="تنفّس", img="assets/img/covers/breath-sm.webp", cover="assets/img/covers/breath-sm.webp", coverLg="assets/img/covers/breath.webp", eg=239, us=12, vipIncluded=True,
        meta="تمرين تنفّس · ١٠ دقائق", level="متوسط", ctype="تنفّس · تقنية الاتساق القلبي", cardMeta="تمرين تنفّس · ١٠ دقائق",
        facts=[["play","تمرين تنفّس بتقنية الاتساق القلبي مدته ١٠ دقائق"],["heart","يعطي إشارة أمان للعصب الحائر والمخ والقلب"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال.",
-       desc=["«تنفّس الاتزان الطاقي» تمرين تنفّس قائم على تقنية الاتساق القلبي، أساسها خلق توازن هرموني وعصبي بين موجات الدماغ ومعدل التغيّر في ضربات القلب.",
+       desc=["«تنفّس الاتزان الداخلي» تمرين تنفّس قائم على تقنية الاتساق القلبي، أساسها خلق توازن هرموني وعصبي بين موجات الدماغ ومعدل التغيّر في ضربات القلب.",
              "هذه الطريقة هي اليُسر الفعلي للعبور من الترددات المنخفضة والانقباض على سلّم هوكينز للوعي، إلى المستويات المرتفعة من الوعي.",
              "التنفّس يمكن أن يحرّرك من البقاء محبوساً في حالة استنفار بيولوجي ودفاع مستمر. فعن طريق الاتساق القلبي تعطي إشارة أمان للعصب الحائر وللمخ والقلب، فتنتقل إلى حالة من التشافي والاتصال."],
        forWho=["توتر وقلق مستمر وشعور بالاستنفار","إحساس بالانقباض وثقل الطاقة","صعوبة في الاسترخاء أو النوم","رغبة في رفع مستوى وعيك وطاقتك"],
-       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تنفّس الاتزان الطاقي","10:00"]]}]),
+       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تنفّس الاتزان الداخلي","10:00"]]}]),
   dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/img/covers/morning-priming-sm.webp", cover="assets/img/covers/morning-priming-sm.webp", coverLg="assets/img/covers/morning-priming.webp", eg=289, us=15, vipIncluded=True,
        meta="توكيدات صباحية · ١٠ دقائق", level="مبتدئ", ctype="توكيدات صباحية · تشافٍ جسدي", cardMeta="توكيدات صباحية · ١٠ دقائق",
        facts=[["play","توكيدات صباحية يومية مدتها ١٠ دقائق"],["heart","معظمها يتحدث مع الجسد ويدعم شفاءه"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
@@ -94,7 +94,7 @@ PRODUCTS = [
              "مع التكرار كل صباح، يصبح عادة تضبط حالتك الداخلية قبل أن يبدأ اليوم."],
        forWho=["تبدأ يومك بقلق أو ثقل","تمرّ بتعب أو ألم جسدي وتريد دعم شفائك","تريد روتيناً صباحياً قصيراً وثابتاً","تحب أن تستقبل يومك بطاقة هادئة وجميلة"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["توكيدات Priming الصباح","10:00"]]}]),
-  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي الروحي", cat="heal", catLabel="التشافي", img="assets/img/covers/peace-sm.webp", cover="assets/img/covers/peace-sm.webp", coverLg="assets/img/covers/peace.webp", level="مبتدئ", eg=289, us=15, vipIncluded=True,
+  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام", cat="heal", catLabel="التشافي", img="assets/img/covers/peace-sm.webp", cover="assets/img/covers/peace-sm.webp", coverLg="assets/img/covers/peace.webp", level="مبتدئ", eg=289, us=15, vipIncluded=True,
        meta="توكيدات يومية · ساعة ودقيقة", ctype="توكيدات · برمجة العقل اللاواعي", cardMeta="توكيدات يومية · ساعة ودقيقة",
        facts=[["play","توكيدات عن السلام والطمأنينة مدتها ساعة ودقيقة"],["path","للتطبيق اليومي لبرمجة العقل اللاواعي"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي.",
@@ -117,7 +117,7 @@ PRODUCTS = [
        meta="كتاب · يُقرأ داخل الموقع", short="عن الموروث العائلي الذي نحمله دون أن نراه، وكيف نتحرر منه بوعي ورحمة.", learn="reader.html"),
   dict(id="b-original", kind="bundle", title="باقة النسخة الأصلية", catLabel="باقة", img="assets/img/covers/decode-original-sm.webp", eg=1689, us=85, page="bundles.html"),
   dict(id="b-acceptance", kind="bundle", title="باقة نور القبول", catLabel="باقة", img="assets/img/covers/decode-acceptance-sm.webp", eg=1689, us=85, page="bundles.html"),
-  dict(id="b-stagnation", kind="bundle", title="باقة فكّ الركود الطاقي", catLabel="باقة", img="assets/img/covers/decode-stagnation-sm.webp", eg=1689, us=85, page="bundles.html"),
+  dict(id="b-stagnation", kind="bundle", title="باقة فكّ الركود والخمول", catLabel="باقة", img="assets/img/covers/decode-stagnation-sm.webp", eg=1689, us=85, page="bundles.html"),
   dict(id="b-peace", kind="bundle", title="باقة السلام والطمأنينة", catLabel="باقة", img="assets/img/covers/peace-sm.webp", eg=1199, us=59, page="bundles.html"),
   dict(id="b-child", kind="bundle", title="باقة تشافي الطفل الداخلي", catLabel="باقة", img="assets/img/covers/inner-child-sm.webp", eg=1529, us=79, page="bundles.html"),
   dict(id="b-attach", kind="bundle", title="باقة فكّ التعلّق", catLabel="باقة", img="assets/img/covers/attach-sm.webp", eg=1529, us=79, page="bundles.html"),
@@ -133,12 +133,12 @@ for p in PRODUCTS:
         p["learn"] = "learn.html#" + p["id"]
         p["lessonsCount"] = sum(len(m["lessons"]) for m in p["modules"])
 BUNDLES = [
-  dict(id="b-original", items=["heart-coherence","morning-priming","serenity","decode-original"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","تأمل السكينة والتنظيف","Decoding النسخة الأصلية"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-original-sm.webp","assets/img/covers/serenity-sm.webp"]),
-  dict(id="b-acceptance", items=["heart-coherence","morning-priming","serenity","decode-acceptance"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","تأمل السكينة والتنظيف","Decoding نور القبول"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-acceptance-sm.webp","assets/img/covers/serenity-sm.webp"]),
-  dict(id="b-stagnation", items=["heart-coherence","morning-priming","serenity","decode-stagnation"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","تأمل السكينة والتنظيف","Decoding الركود الطاقي"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-stagnation-sm.webp","assets/img/covers/serenity-sm.webp"]),
-  dict(id="b-peace", items=["heart-coherence","morning-priming","serenity","peace-affirmations"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","تأمل السكينة والتنظيف","توكيدات السلام"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/peace-sm.webp","assets/img/covers/serenity-sm.webp"]),
-  dict(id="b-child", items=["heart-coherence","morning-priming","serenity","inner-child"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","تأمل السكينة والتنظيف","تشافي الطفل الداخلي"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/inner-child-sm.webp","assets/img/covers/serenity-sm.webp"]),
-  dict(id="b-attach", items=["heart-coherence","morning-priming","serenity","attach"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","تأمل السكينة والتنظيف","فكّ التعلّق"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/attach-sm.webp","assets/img/covers/serenity-sm.webp"]),
+  dict(id="b-original", items=["heart-coherence","morning-priming","serenity","decode-original"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","Decoding النسخة الأصلية"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-original-sm.webp","assets/img/covers/serenity-sm.webp"]),
+  dict(id="b-acceptance", items=["heart-coherence","morning-priming","serenity","decode-acceptance"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","Decoding نور القبول"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-acceptance-sm.webp","assets/img/covers/serenity-sm.webp"]),
+  dict(id="b-stagnation", items=["heart-coherence","morning-priming","serenity","decode-stagnation"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","Decoding الركود والخمول"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-stagnation-sm.webp","assets/img/covers/serenity-sm.webp"]),
+  dict(id="b-peace", items=["heart-coherence","morning-priming","serenity","peace-affirmations"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","توكيدات السلام"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/peace-sm.webp","assets/img/covers/serenity-sm.webp"]),
+  dict(id="b-child", items=["heart-coherence","morning-priming","serenity","inner-child"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","تشافي الطفل الداخلي"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/inner-child-sm.webp","assets/img/covers/serenity-sm.webp"]),
+  dict(id="b-attach", items=["heart-coherence","morning-priming","serenity","attach"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","فكّ التعلّق"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/attach-sm.webp","assets/img/covers/serenity-sm.webp"]),
 ]
 BY = {p["id"]: p for p in PRODUCTS}
 EXERCISES = [p for p in PRODUCTS if p["kind"] == "exercise"]
@@ -322,7 +322,7 @@ def build():
     course = BY["ain-sahia"]
     mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"]))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
     page("index.html", f"{NAME} | مدربة وعي وتشافي معتمدة من ICF",
-         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفّس الاتزان الطاقي مع د. مرفت سرور، مدربة وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
+         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفّس الاتزان الداخلي مع د. مرفت سرور، مدربة وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
 
     # ---------- VIP
     def vplan(pid, name, note, feats, tag="", best=False, cta=""):
@@ -352,12 +352,12 @@ def build():
          active="vip.html", schema=[{"@context":"https://schema.org","@type":"Product","name":"استيقظ VIP","description":"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور","brand":NAME,"offers":[{"@type":"Offer","price":BY["vip-m"]["eg"],"priceCurrency":"EGP"},{"@type":"Offer","price":BY["vip-m"]["us"],"priceCurrency":"USD"}]}])
 
     # ---------- library
-    page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفّس الاتزان الطاقي، Priming الصباح، توكيدات السلام وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
+    page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفّس الاتزان الداخلي، Priming الصباح، توكيدات السلام وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
 <section class="band-sm"><div class="wrap"><div class="search">{ic("search")}<label class="sr" for="q">ابحث في التمارين</label><input id="q" type="search" placeholder="ابحث: تعلّق، تنفّس، طفل داخلي…"></div>{tabs()}<div class="shelf" data-shelf="library"></div></div></section>
 <section class="band" style="padding-top:0"><div class="wrap"><div class="vip-card" style="grid-template-columns:1fr"><div class="vip-body" style="text-align:center;justify-items:center"><h2 style="font-size:clamp(1.6rem,3vw,2.4rem)">كل هذه التمارين مفتوحة مع <span class="foil-text">استيقظ VIP</span></h2><p class="lead">بدلاً من الشراء واحداً واحداً، افتح المكتبة كاملة مع البرنامج.</p><a class="btn btn-gold" href="vip.html">اعرف البرنامج</a></div></div></div></section>''', active="library.html")
 
     # ---------- bundles
-    page("bundles.html", "الباقات", "باقات بنظام يومي متكامل: تنفّس الاتزان الطاقي، وPriming الصباح، وتمرين لموضوع محدد (Decoding، الطفل الداخلي، فك التعلّق، السلام)، بسعر أقل من شرائها منفصلة.", page_hero("الباقات","كل باقة نظام يومي متكامل: تنفّس، وتوكيد صباحي، وتأمل السكينة والتنظيف، وتمرين يعالج موضوعاً محدداً، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + GIFT)
+    page("bundles.html", "الباقات", "باقات بنظام يومي متكامل: تنفّس الاتزان الداخلي، وPriming الصباح، وتمرين لموضوع محدد (Decoding، الطفل الداخلي، فك التعلّق، السلام)، بسعر أقل من شرائها منفصلة.", page_hero("الباقات","كل باقة نظام يومي متكامل: تنفّس، وتوكيد صباحي، وتأمل السكينة والتنظيف، وتمرين يعالج موضوعاً محدداً، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + GIFT)
 
     # ---------- products
     for p in PRODUCTS:
@@ -491,7 +491,7 @@ def voices():
     return '''<section class="band tint-pearl"><div class="wrap"><div class="head center"><span class="eyebrow center">تجارب</span><h2 class="title">بكلمات من سبقوك</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء المشتركين الحقيقية</span></div>
   <div class="qgrid"><div class="q big"><span class="mark">”</span><p>مكان رأي مشتركة في استيقظ VIP: ما الذي تغيّر في علاقتها بنفسها بعد شهر من الالتزام.</p><div class="who"><b>اسم المشتركة · البلد</b><a href="vip.html">استيقظ VIP ←</a></div></div>
   <div class="q"><span class="mark">”</span><p>مكان رأي عن تمرين فك التعلّق وما شعر به صاحبه بعده.</p><div class="who"><b>اسم المشترك</b><a href="exercise-detachment.html">فك التعلّق ←</a></div></div>
-  <div class="q"><span class="mark">”</span><p>مكان رأي عن تنفّس الاتزان الطاقي قبل النوم.</p><div class="who"><b>اسم المشتركة</b><a href="heart-coherence-breathing.html">الاتساق القلبي ←</a></div></div></div></div></section>'''
+  <div class="q"><span class="mark">”</span><p>مكان رأي عن تنفّس الاتزان الداخلي قبل النوم.</p><div class="who"><b>اسم المشتركة</b><a href="heart-coherence-breathing.html">الاتساق القلبي ←</a></div></div></div></div></section>'''
 def faq_items(items): return "".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in items)
 
 def product_page(p):
@@ -546,7 +546,7 @@ def home_body():
     voices_list = [("س","مكان رأي حقيقي لمشتركة عن تجربتها مع تمرين فك التعلّق، وما تغيّر بعده في علاقاتها.","اسم المشتركة · تمرين فك التعلّق"),
                    ("ن","مكان رأي عضوة في استيقظ VIP: كيف تغيّر يومها بعد شهر من الالتزام والخطة اليومية.","اسم العضوة · استيقظ VIP"),
                    ("ه","مكان رأي عن كورس عين صاحية وكيف غيّر الامتنان اليومي إحساسها بحياتها.","اسم المشتركة · عين صاحية"),
-                   ("م","مكان رأي عن تنفّس الاتزان الطاقي قبل النوم وفي المواقف الصعبة.","اسم المشترك · تنفّس الاتزان الطاقي"),
+                   ("م","مكان رأي عن تنفّس الاتزان الداخلي قبل النوم وفي المواقف الصعبة.","اسم المشترك · تنفّس الاتزان الداخلي"),
                    ("ر","مكان رأي عن جلسة فردية مع د. مرفت وما خرجت به منها.","اسم المشتركة · جلسة فردية")]
     reel = "".join(f'<div class="voice {"hl" if i==1 else ""}"><span class="av">{a}</span><span class="qm">“</span><p>{E(t)}</p><b>{E(n)}</b></div>' for i,(a,t,n) in enumerate(voices_list))
     return f'''
