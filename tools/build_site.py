@@ -118,6 +118,9 @@ PRODUCTS = [
   dict(id="b-original", kind="bundle", title="باقة النسخة الأصلية", catLabel="باقة", img="assets/img/covers/decode-original-sm.webp", eg=1129, us=57, page="bundles.html"),
   dict(id="b-acceptance", kind="bundle", title="باقة نور القبول", catLabel="باقة", img="assets/img/covers/decode-acceptance-sm.webp", eg=1129, us=57, page="bundles.html"),
   dict(id="b-stagnation", kind="bundle", title="باقة فكّ الركود الطاقي", catLabel="باقة", img="assets/img/covers/decode-stagnation-sm.webp", eg=1129, us=57, page="bundles.html"),
+  dict(id="b-peace", kind="bundle", title="باقة السلام والطمأنينة", catLabel="باقة", img="assets/img/covers/peace-sm.webp", eg=649, us=33, page="bundles.html"),
+  dict(id="b-child", kind="bundle", title="باقة تشافي الطفل الداخلي", catLabel="باقة", img="assets/img/covers/inner-child-sm.webp", eg=969, us=49, page="bundles.html"),
+  dict(id="b-attach", kind="bundle", title="باقة فكّ التعلّق", catLabel="باقة", img="assets/img/covers/attach-sm.webp", eg=969, us=49, page="bundles.html"),
   dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=399, us=25, page="sessions.html"),
   dict(id="s-single", kind="session", title="جلسة استشارة فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=599, us=59, page="sessions.html"),
   dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/thumb-session.webp", eg=1999, us=149, page="sessions.html"),
@@ -133,6 +136,9 @@ BUNDLES = [
   dict(id="b-original", items=["heart-coherence","morning-priming","decode-original"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","Decoding النسخة الأصلية"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-original-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
   dict(id="b-acceptance", items=["heart-coherence","morning-priming","decode-acceptance"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","Decoding نور القبول"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-acceptance-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
   dict(id="b-stagnation", items=["heart-coherence","morning-priming","decode-stagnation"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","Decoding الركود الطاقي"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-stagnation-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
+  dict(id="b-peace", items=["heart-coherence","morning-priming","peace-affirmations"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","توكيدات السلام"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/peace-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
+  dict(id="b-child", items=["heart-coherence","morning-priming","inner-child"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","تشافي الطفل الداخلي"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/inner-child-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
+  dict(id="b-attach", items=["heart-coherence","morning-priming","attach"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","فكّ التعلّق"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/attach-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
 ]
 BY = {p["id"]: p for p in PRODUCTS}
 EXERCISES = [p for p in PRODUCTS if p["kind"] == "exercise"]
@@ -351,7 +357,7 @@ def build():
 <section class="band" style="padding-top:0"><div class="wrap"><div class="vip-card" style="grid-template-columns:1fr"><div class="vip-body" style="text-align:center;justify-items:center"><h2 style="font-size:clamp(1.6rem,3vw,2.4rem)">كل هذه التمارين مفتوحة مع <span class="foil-text">استيقظ VIP</span></h2><p class="lead">بدلاً من الشراء واحداً واحداً، افتح المكتبة كاملة مع البرنامج.</p><a class="btn btn-gold" href="vip.html">اعرف البرنامج</a></div></div></div></section>''', active="library.html")
 
     # ---------- bundles
-    page("bundles.html", "الباقات", "باقات بنظام يومي متكامل: تنفّس الاتزان الطاقي، وPriming الصباح، وتمرين Decoding، بسعر أقل من شرائها منفصلة.", page_hero("الباقات","كل باقة نظام يومي متكامل: تنفّس، ثم توكيد صباحي، ثم تمرين Decoding، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + GIFT)
+    page("bundles.html", "الباقات", "باقات بنظام يومي متكامل: تنفّس الاتزان الطاقي، وPriming الصباح، وتمرين لموضوع محدد (Decoding، الطفل الداخلي، فك التعلّق، السلام)، بسعر أقل من شرائها منفصلة.", page_hero("الباقات","كل باقة نظام يومي متكامل: تنفّس، ثم توكيد صباحي، ثم تمرين يعالج موضوعاً محدداً، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + GIFT)
 
     # ---------- products
     for p in PRODUCTS:
