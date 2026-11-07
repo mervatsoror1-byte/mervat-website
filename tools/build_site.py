@@ -76,21 +76,25 @@ PRODUCTS = [
              "حين ترى ما عاشه هذا الطفل، تبدأ رحلة تشافيه، وتمنحه الأمان الذي احتاجه."],
        forWho=["ردود فعل عاطفية قوية ومفاجئة","ذكريات طفولة مؤلمة أو غير واضحة","احتياج دائم للأمان والقبول","تشعر أن جرحاً قديماً ما زال يؤثر فيك"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين تشافي الطفل الداخلي","10:00"]]}]),
-  dict(id="heart-coherence", kind="exercise", slug="heart-coherence-breathing", title="تنفّس الاتساق القلبي", cat="breath", catLabel="تنفّس", img="assets/art/breath.webp", eg=239, us=12, vipIncluded=True,
-       meta="تمرين تنفّس · ١٢ دقيقة", short="تنفّس منتظم يعيد التوازن بين القلب والعقل خلال دقائق.",
-       desc=["تقنية تنفّس بسيطة وعميقة تُهدّئ الجهاز العصبي وتعيد الاتساق بين إيقاع القلب والتنفس.","مناسب قبل النوم، وقبل المواقف الصعبة، وفي بداية اليوم."],
-       forWho=["توتر وقلق يومي","صعوبة في النوم","تشتت وكثرة تفكير","رغبة في عادة يومية قصيرة"],
-       modules=lessons_ex("تنفّس الاتساق القلبي","11:40")),
+  dict(id="heart-coherence", kind="exercise", slug="heart-coherence-breathing", title="تنفّس الاتزان الطاقي", cat="breath", catLabel="تنفّس", img="assets/img/covers/breath-sm.webp", cover="assets/img/covers/breath-sm.webp", coverLg="assets/img/covers/breath.webp", eg=239, us=12, vipIncluded=True,
+       meta="تمرين تنفّس", ctype="تنفّس · تقنية الاتساق القلبي", cardMeta="تمرين تنفّس · الاتساق القلبي",
+       facts=[["play","تمرين تنفّس بتقنية الاتساق القلبي"],["heart","يعطي إشارة أمان للعصب الحائر والمخ والقلب"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
+       short="تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال.",
+       desc=["«تنفّس الاتزان الطاقي» تمرين تنفّس قائم على تقنية الاتساق القلبي، أساسها خلق توازن هرموني وعصبي بين موجات الدماغ ومعدل التغيّر في ضربات القلب.",
+             "هذه الطريقة هي اليُسر الفعلي للعبور من الترددات المنخفضة والانقباض على سلّم هوكينز للوعي، إلى المستويات المرتفعة من الوعي.",
+             "التنفّس يمكن أن يحرّرك من البقاء محبوساً في حالة استنفار بيولوجي ودفاع مستمر. فعن طريق الاتساق القلبي تعطي إشارة أمان للعصب الحائر وللمخ والقلب، فتنتقل إلى حالة من التشافي والاتصال."],
+       forWho=["توتر وقلق مستمر وشعور بالاستنفار","إحساس بالانقباض وثقل الطاقة","صعوبة في الاسترخاء أو النوم","رغبة في رفع مستوى وعيك وطاقتك"],
+       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تنفّس الاتزان الطاقي","10:00"]]}]),
   dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/img/covers/morning-priming-sm.webp", cover="assets/img/covers/morning-priming-sm.webp", coverLg="assets/img/covers/morning-priming.webp", eg=289, us=15, vipIncluded=True,
-       meta="توكيدات صباحية للتشافي الجسدي", ctype="توكيدات صباحية · تشافٍ جسدي", cardMeta="توكيدات صباحية · تشافٍ جسدي",
-       facts=[["play","توكيدات صباحية يومية"],["heart","معظمها يتحدث مع الجسد ويدعم شفاءه"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
+       meta="توكيدات صباحية · ١٠ دقائق", level="مبتدئ", ctype="توكيدات صباحية · تشافٍ جسدي", cardMeta="توكيدات صباحية · ١٠ دقائق",
+       facts=[["play","توكيدات صباحية يومية مدتها ١٠ دقائق"],["heart","معظمها يتحدث مع الجسد ويدعم شفاءه"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم تشافي جسدك.",
        desc=["«Priming الصباح» تمرين توكيدات يومية تسمعه مع بداية يومك، يساعدك على استقبال الصباح بشكل جميل، ويهيّئك ليوم جديد وسعيد.",
              "معظم التوكيدات تتحدث مع الجسد وتدعم الشفاء الجسدي، فتبدأ يومك وأنت في سلام مع جسدك وممتن له.",
              "مع التكرار كل صباح، يصبح عادة تضبط حالتك الداخلية قبل أن يبدأ اليوم."],
        forWho=["تبدأ يومك بقلق أو ثقل","تمرّ بتعب أو ألم جسدي وتريد دعم شفائك","تريد روتيناً صباحياً قصيراً وثابتاً","تحب أن تستقبل يومك بطاقة هادئة وجميلة"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["توكيدات Priming الصباح","10:00"]]}]),
-  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي الروحي", cat="heal", catLabel="التشافي", img="assets/art/peace.webp", eg=289, us=15, vipIncluded=True,
+  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي الروحي", cat="heal", catLabel="التشافي", img="assets/art/peace.webp", level="مبتدئ", eg=289, us=15, vipIncluded=True,
        meta="صوتي · ١٥ دقيقة", short="توكيدات مختارة بصوت د. مرفت تزرع السلام في العقل الباطن.",
        desc=["توكيدات صوتية هادئة تُسمع بتركيز أو قبل النوم، تساعد على استبدال الحديث الداخلي القاسي بلغة سلام ورحمة.","يمكن تكرارها يومياً."],
        forWho=["حديث داخلي قاسٍ","قلق قبل النوم","رغبة في تهدئة روحية","دعم لرحلة التشافي"],
@@ -308,7 +312,7 @@ def build():
     course = BY["ain-sahia"]
     mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"]))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
     page("index.html", f"{NAME} | مدربة وعي وتشافي معتمدة من ICF",
-         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفس الاتساق القلبي مع د. مرفت سرور، مدربة وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
+         "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفّس الاتزان الطاقي مع د. مرفت سرور، مدربة وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
 
     # ---------- VIP
     def vplan(pid, name, note, feats, tag="", best=False, cta=""):
@@ -338,7 +342,7 @@ def build():
          active="vip.html", schema=[{"@context":"https://schema.org","@type":"Product","name":"استيقظ VIP","description":"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور","brand":NAME,"offers":[{"@type":"Offer","price":BY["vip-m"]["eg"],"priceCurrency":"EGP"},{"@type":"Offer","price":BY["vip-m"]["us"],"priceCurrency":"USD"}]}])
 
     # ---------- library
-    page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفس الاتساق القلبي، Priming الصباح، توكيدات السلام وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
+    page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفّس الاتزان الطاقي، Priming الصباح، توكيدات السلام وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
 <section class="band-sm"><div class="wrap"><div class="search">{ic("search")}<label class="sr" for="q">ابحث في التمارين</label><input id="q" type="search" placeholder="ابحث: تعلّق، تنفّس، طفل داخلي…"></div>{tabs()}<div class="shelf" data-shelf="library"></div></div></section>
 <section class="band" style="padding-top:0"><div class="wrap"><div class="vip-card" style="grid-template-columns:1fr"><div class="vip-body" style="text-align:center;justify-items:center"><h2 style="font-size:clamp(1.6rem,3vw,2.4rem)">كل هذه التمارين مفتوحة مع <span class="foil-text">استيقظ VIP</span></h2><p class="lead">بدلاً من الشراء واحداً واحداً، افتح المكتبة كاملة مع البرنامج.</p><a class="btn btn-gold" href="vip.html">اعرف البرنامج</a></div></div></div></section>''', active="library.html")
 
@@ -477,7 +481,7 @@ def voices():
     return '''<section class="band tint-pearl"><div class="wrap"><div class="head center"><span class="eyebrow center">تجارب</span><h2 class="title">بكلمات من سبقوك</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء المشتركين الحقيقية</span></div>
   <div class="qgrid"><div class="q big"><span class="mark">”</span><p>مكان رأي مشتركة في استيقظ VIP: ما الذي تغيّر في علاقتها بنفسها بعد شهر من الالتزام.</p><div class="who"><b>اسم المشتركة · البلد</b><a href="vip.html">استيقظ VIP ←</a></div></div>
   <div class="q"><span class="mark">”</span><p>مكان رأي عن تمرين فك التعلّق وما شعر به صاحبه بعده.</p><div class="who"><b>اسم المشترك</b><a href="exercise-detachment.html">فك التعلّق ←</a></div></div>
-  <div class="q"><span class="mark">”</span><p>مكان رأي عن تنفّس الاتساق القلبي قبل النوم.</p><div class="who"><b>اسم المشتركة</b><a href="heart-coherence-breathing.html">الاتساق القلبي ←</a></div></div></div></div></section>'''
+  <div class="q"><span class="mark">”</span><p>مكان رأي عن تنفّس الاتزان الطاقي قبل النوم.</p><div class="who"><b>اسم المشتركة</b><a href="heart-coherence-breathing.html">الاتساق القلبي ←</a></div></div></div></div></section>'''
 def faq_items(items): return "".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in items)
 
 def product_page(p):
@@ -532,7 +536,7 @@ def home_body():
     voices_list = [("س","مكان رأي حقيقي لمشتركة عن تجربتها مع تمرين فك التعلّق، وما تغيّر بعده في علاقاتها.","اسم المشتركة · تمرين فك التعلّق"),
                    ("ن","مكان رأي عضوة في استيقظ VIP: كيف تغيّر يومها بعد شهر من الالتزام والخطة اليومية.","اسم العضوة · استيقظ VIP"),
                    ("ه","مكان رأي عن كورس عين صاحية وكيف غيّر الامتنان اليومي إحساسها بحياتها.","اسم المشتركة · عين صاحية"),
-                   ("م","مكان رأي عن تنفّس الاتساق القلبي قبل النوم وفي المواقف الصعبة.","اسم المشترك · الاتساق القلبي"),
+                   ("م","مكان رأي عن تنفّس الاتزان الطاقي قبل النوم وفي المواقف الصعبة.","اسم المشترك · تنفّس الاتزان الطاقي"),
                    ("ر","مكان رأي عن جلسة فردية مع د. مرفت وما خرجت به منها.","اسم المشتركة · جلسة فردية")]
     reel = "".join(f'<div class="voice {"hl" if i==1 else ""}"><span class="av">{a}</span><span class="qm">“</span><p>{E(t)}</p><b>{E(n)}</b></div>' for i,(a,t,n) in enumerate(voices_list))
     return f'''
