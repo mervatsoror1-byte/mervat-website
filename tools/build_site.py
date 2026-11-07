@@ -94,11 +94,11 @@ PRODUCTS = [
              "مع التكرار كل صباح، يصبح عادة تضبط حالتك الداخلية قبل أن يبدأ اليوم."],
        forWho=["تبدأ يومك بقلق أو ثقل","تمرّ بتعب أو ألم جسدي وتريد دعم شفائك","تريد روتيناً صباحياً قصيراً وثابتاً","تحب أن تستقبل يومك بطاقة هادئة وجميلة"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["توكيدات Priming الصباح","10:00"]]}]),
-  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام", cat="heal", catLabel="التشافي", img="assets/img/covers/peace-sm.webp", cover="assets/img/covers/peace-sm.webp", coverLg="assets/img/covers/peace.webp", level="مبتدئ", eg=289, us=15, vipIncluded=True,
+  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي العميق", cat="heal", catLabel="التشافي", img="assets/img/covers/peace-sm.webp", cover="assets/img/covers/peace-sm.webp", coverLg="assets/img/covers/peace.webp", level="مبتدئ", eg=289, us=15, vipIncluded=True,
        meta="توكيدات يومية · ساعة ودقيقة", ctype="توكيدات · برمجة العقل اللاواعي", cardMeta="توكيدات يومية · ساعة ودقيقة",
        facts=[["play","توكيدات عن السلام والطمأنينة مدتها ساعة ودقيقة"],["path","للتطبيق اليومي لبرمجة العقل اللاواعي"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي.",
-       desc=["«توكيدات السلام» تمرين للتطبيق اليومي، يعمل على برمجة العقل اللاواعي من خلال توكيدات عن السلام والطمأنينة.",
+       desc=["«توكيدات السلام للتشافي العميق» تمرين للتطبيق اليومي، يعمل على برمجة العقل اللاواعي من خلال توكيدات عن السلام والطمأنينة.",
              "مدته ساعة ودقيقة، تستمع إليه بهدوء كل يوم، فتترسّخ معاني السلام والطمأنينة في عقلك اللاواعي يوماً بعد يوم، ويحلّ الهدوء مكان القلق.",
              "يمكنك الاستماع إليه وأنت مسترخٍ أو قبل النوم."],
        forWho=["قلق وتوتر مستمر","حديث داخلي قاسٍ أو مقلق","صعوبة في الهدوء قبل النوم","رغبة في برمجة يومية للسلام والطمأنينة"],
@@ -136,7 +136,7 @@ BUNDLES = [
   dict(id="b-original", items=["heart-coherence","morning-priming","serenity","decode-original"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","Decoding النسخة الأصلية"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-original-sm.webp","assets/img/covers/serenity-sm.webp"]),
   dict(id="b-acceptance", items=["heart-coherence","morning-priming","serenity","decode-acceptance"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","Decoding نور القبول"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-acceptance-sm.webp","assets/img/covers/serenity-sm.webp"]),
   dict(id="b-stagnation", items=["heart-coherence","morning-priming","serenity","decode-stagnation"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","Decoding الركود والخمول"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-stagnation-sm.webp","assets/img/covers/serenity-sm.webp"]),
-  dict(id="b-peace", items=["heart-coherence","morning-priming","serenity","peace-affirmations"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","توكيدات السلام"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/peace-sm.webp","assets/img/covers/serenity-sm.webp"]),
+  dict(id="b-peace", items=["heart-coherence","morning-priming","serenity","peace-affirmations"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","توكيدات السلام للتشافي العميق"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/peace-sm.webp","assets/img/covers/serenity-sm.webp"]),
   dict(id="b-child", items=["heart-coherence","morning-priming","serenity","inner-child"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","تشافي الطفل الداخلي"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/inner-child-sm.webp","assets/img/covers/serenity-sm.webp"]),
   dict(id="b-attach", items=["heart-coherence","morning-priming","serenity","attach"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","فكّ التعلّق"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/attach-sm.webp","assets/img/covers/serenity-sm.webp"]),
 ]
@@ -352,7 +352,7 @@ def build():
          active="vip.html", schema=[{"@context":"https://schema.org","@type":"Product","name":"استيقظ VIP","description":"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور","brand":NAME,"offers":[{"@type":"Offer","price":BY["vip-m"]["eg"],"priceCurrency":"EGP"},{"@type":"Offer","price":BY["vip-m"]["us"],"priceCurrency":"USD"}]}])
 
     # ---------- library
-    page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفّس الاتزان الداخلي، Priming الصباح، توكيدات السلام وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
+    page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفّس الاتزان الداخلي، Priming الصباح، توكيدات السلام للتشافي العميق، وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
 <section class="band-sm"><div class="wrap"><div class="search">{ic("search")}<label class="sr" for="q">ابحث في التمارين</label><input id="q" type="search" placeholder="ابحث: تعلّق، تنفّس، طفل داخلي…"></div>{tabs()}<div class="shelf" data-shelf="library"></div></div></section>
 <section class="band" style="padding-top:0"><div class="wrap"><div class="vip-card" style="grid-template-columns:1fr"><div class="vip-body" style="text-align:center;justify-items:center"><h2 style="font-size:clamp(1.6rem,3vw,2.4rem)">كل هذه التمارين مفتوحة مع <span class="foil-text">استيقظ VIP</span></h2><p class="lead">بدلاً من الشراء واحداً واحداً، افتح المكتبة كاملة مع البرنامج.</p><a class="btn btn-gold" href="vip.html">اعرف البرنامج</a></div></div></div></section>''', active="library.html")
 
