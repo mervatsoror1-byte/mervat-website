@@ -40,11 +40,15 @@ PRODUCTS = [
        desc=["التعلّق يجعل سلامك الداخلي مرهوناً بشيء خارجك. في هذا التأمل الموجّه مع د. مرفت تلاحظ التعلّق، وتفهم ما يحاول أن يحميه، ثم تحرّره بهدوء.","يبدأ بمقدمة قصيرة تشرح التمرين وطريقته، ثم التأمل نفسه في ١٠ دقائق، ويمكنك تكراره كلما احتجت إليه."],
        forWho=["تعلّق بعلاقة انتهت أو لم تبدأ","قلق دائم من فقدان شخص أو شيء","صعوبة في ترك النتائج لله","تفكير متكرر لا يتوقف"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين وطريقته","3:00",True],["تأمل فك التعلّق","10:00"]]}]),
-  dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="Decoding النسخة الأصلية", cat="decode", catLabel="Decoding", img="assets/art/decode.webp", eg=889, us=45, isNew=True, vipIncluded=True,
-       meta="٤ دروس · ٣٥ دقيقة", short="عملية تشريحية للاوعي تفكّ الشيفرات التي غطّت نسختك الأصلية، وتطبيقها يومياً يحقق تحولاً عميقاً.",
-       desc=["نحمل منذ الطفولة رسائل وقناعات ليست لنا. «Decoding النسخة الأصلية» يساعدك على تمييز هذه البرمجة وفكّها، والاتصال بنسختك الأصلية الحرة.","يتكون من تمهيد وتمرين رئيسي وتطبيق يومي."],
+  dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="Decoding النسخة الأصلية", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-original-sm.webp", cover="assets/img/covers/decode-original-sm.webp", coverLg="assets/img/covers/decode-original.webp", eg=889, us=45, isNew=True, vipIncluded=True,
+       meta="تمرين Decoding · ١٠ دقائق", ctype="Decoding · تمرين فريد", cardMeta="تمرين Decoding · ١٠ دقائق",
+       facts=[["play","تمرين Decoding واحد مدته ١٠ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
+       short="تمرين فريد من نوعه: صور مركّبة بطريقة خاصة تخترق طبقات العقل اللاواعي، وتعمل على كشف نسختك الأصلية وإيصالك إليها.",
+       desc=["«Decoding النسخة الأصلية» ليس تأملاً، بل تمرين فريد من نوعه صمّمته د. مرفت. يعتمد على صور معيّنة مركّبة مع بعضها بطريقة خاصة، تخترق طبقات العقل اللاواعي مباشرة.",
+             "تبدأ هذه الصور في العمل على كشف ما غطّى نسختك الأصلية من برمجة وقناعات ليست لك، لتصل تدريجياً إلى نسختك الأصلية الحرة.",
+             "يبدأ بمقدمة قصيرة تشرح التمرين وطريقة مشاهدته، ثم التمرين نفسه في ١٠ دقائق، ويمكنك تكراره لتعميق أثره."],
        forWho=["تشعر أنك لا تعيش حياتك أنت","تحمل قناعات قاسية عن نفسك","تريد أن تعرف ماذا تريد فعلاً","تبحث عن هوية أهدأ وأصدق"],
-       modules=[{"title":"الـ Decoding","lessons":[["ما هي النسخة الأصلية؟","6:40",True],["رصد البرمجة","9:20"],["تمرين الـ Decoding","14:30"],["التثبيت اليومي","5:10"]]}]),
+       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين وطريقة مشاهدته","3:00",True],["تمرين Decoding النسخة الأصلية","10:00"]]}]),
   dict(id="decode-acceptance", kind="exercise", slug="decoding-light-of-acceptance", title="Decoding نور القبول", cat="decode", catLabel="Decoding", img="assets/art/light.webp", eg=889, us=45, vipIncluded=True,
        meta="٣ دروس · ٣٠ دقيقة", short="أن تقبل نفسك وما حدث لك، فيتسع داخلك للنور والسكينة.",
        desc=["القبول ليس استسلاماً، بل توقف عن مقاومة ما هو موجود حتى تستطيع تغييره. في هذا الـ Decoding تفكّ شيفرة الرفض وتسمح لنور القبول أن يدخل.","يُستخدم بعد «النسخة الأصلية» أو وحده."],
@@ -513,7 +517,7 @@ def home_body():
     return f'''
 <div class="popup" id="vipPop" hidden role="dialog" aria-modal="true" aria-labelledby="popT"><div class="pop-card"><button class="pop-close" type="button" id="popClose" aria-label="إغلاق">✕</button>
   <div class="pop-art pop-sq"><img src="assets/img/popup-vip.webp" alt="د. مرفت سرور" width="900" height="900"><div class="txt"><h2 id="popT">اتخذي الآن الخطوة التي تستحقينها</h2><a class="btn btn-gold" href="vip.html">استيقظ VIP</a></div></div></div></div>
-<section class="hero-s"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas>
+<section class="hero-s"><canvas class="sparkle" data-density="1500" aria-hidden="true"></canvas>
   <div class="hs-in">
     <div class="hs-photo"><img src="assets/img/coach-seated-cut.webp" alt="د. مرفت سرور" width="839" height="1129" fetchpriority="high"></div>
     <div class="hs-copy"><div class="hs-wm" aria-hidden="true"><span class="script">Mervat</span><span class="serif">Soror</span></div>
