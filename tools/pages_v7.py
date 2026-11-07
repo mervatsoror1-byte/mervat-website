@@ -92,8 +92,8 @@ def about():
            "برنامج <b>استيقظ VIP</b>. يتميّز البرنامج بأنه يجمع بين هذه التقنيات جميعاً، ليوفّر طريقاً للتشافي بخطوات عملية وعلمية مرتبة، "
            "ويعمل على عدة مستويات ليصل بالعميل في النهاية إلى التشافي، وتغيير نسخته القديمة، وبناء الهوية الجديدة التي طالما طمح إليها.</p>")
     page("about.html", "عن مرفت", "مرفت سرور مدربة وعي وكوتش معتمد من ICF بدرجة PCC، ومؤسسة برنامج استيقظ VIP للتشافي.", f'''
+{B.page_hero("من هي مرفت سرور", "مدربة وعي وتشافي، ورفيقة رحلة العودة إلى الذات", ("عن مرفت", None))}
 <section class="pg"><div class="wrap">
-  <h2 class="gold-h">من هي مرفت سرور</h2>
   <div class="ab-row ab-main"><div class="ab-ph"><img src="assets/img/mervat-about.webp" alt="مرفت سرور" width="900" height="1012"></div>
     <div class="ab-tx"><h2>مرفت سرور</h2>{bio}
       </div></div>
@@ -105,8 +105,9 @@ def contact():
     items = [("chat", "01095292748", "https://wa.me/201095292748"), ("mail", "support@mervatsoror.com", "contact.html"),
              ("play", "mervatsoror", "#"), ("user", "mervatsoror", "#"), ("globe", "mervatsoror", "#"), ("heart", "mervatsoror", "#")]
     page("contact.html", "اتصل بنا", "تواصل مع فريق د. مرفت سرور: واتساب 01095292748، أو أرسل رسالتك من النموذج.", f'''
+{B.page_hero("مساحة آمنة لاستفساراتك", "شاركني ما يدور في خاطرك، ويسعدني مرافقتك.", ("اتصل بنا", None))}
 <section class="pg"><div class="wrap ct-grid">
-  <div class="ct-form"><h1 class="pg-title">مساحة آمنة لاستفساراتك</h1><p class="muted">شاركني ما يدور في خاطرك، ويسعدني مرافقتك.</p>
+  <div class="ct-form">
     <form class="form" data-simple="وصلتنا رسالتك، وسنرد عليك قريباً.">
       <div class="field"><label for="ctName">الاسم <i>*</i></label><input id="ctName" required placeholder="أدخل اسمك"></div>
       <div class="field"><label for="ctEmail">البريد الإلكتروني <i>*</i></label><input id="ctEmail" type="email" required placeholder="أدخل بريدك الإلكتروني"></div>
@@ -122,7 +123,8 @@ def contact():
 def faq():
     allq = [q for k in FAQ for q in FAQ[k]]
     page("faq.html", "الأسئلة الشائعة", "إجابات عن الدفع والأسعار داخل مصر وخارجها، برنامج استيقظ VIP، الجلسات والكتب.", f'''
-<section class="pg"><div class="wrap"><h1 class="pg-title">الأسئلة الشائعة</h1><div class="faq2">{"".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q,a in allq)}</div></div></section>''',
+{B.page_hero("الأسئلة الشائعة", "إجابات عن الدفع والأسعار، وبرنامج استيقظ VIP، والجلسات والكتب.")}
+<section class="pg"><div class="wrap narrow"><div class="faq2 vp-faq">{"".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q,a in allq)}</div></div></section>''',
          schema=[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in allq]}])
 
 
@@ -135,11 +137,12 @@ ARTICLES = [("كيف أتصالح مع نفسي؟ خطوات عملية للبد
 
 
 def articles():
-    cards = "".join(f'''<article class="scard"><div class="sc-img"><span class="ph"><img src="assets/brand/logo-icon-gold.webp" alt=""></span><button class="sc-fav" type="button" aria-label="احفظ">{ic("heart")}</button></div>
+    cards = "".join(f'''<article class="scard"><div class="sc-img"><span class="ph has-cover"><img src="assets/img/covers/{cv}-sm.webp" alt="" loading="lazy"></span><button class="sc-fav" type="button" aria-label="احفظ">{ic("heart")}</button></div>
       <div class="sc-tags"><span>{c}</span></div><h3>{E(t)}</h3><span class="sc-meta">{ic("clock")}{r} · {ic("cal")}قريباً</span>
-      <div class="sc-act"><a class="btn btn-gold btn-sm" href="articles.html">اقرأ المزيد</a></div></article>''' for t, c, r in ARTICLES)
+      <div class="sc-act"><a class="btn btn-gold btn-sm" href="articles.html">اقرأ المزيد</a></div></article>''' for (t, c, r), cv in zip(ARTICLES, ["decode-acceptance","decode-original","attach","inner-child","breath","morning-priming"]))
     page("articles.html", "المقالات", "مقالات د. مرفت سرور عن الوعي الذاتي، التشافي، فك التعلّق، الطفل الداخلي والـ Decoding.", f'''
-<section class="pg"><div class="wrap"><div class="pg-row"><h1 class="pg-title">المقالات</h1>
+{B.page_hero("المقالات", "عن الوعي الذاتي، والتشافي، وفكّ التعلّق، والطفل الداخلي، والـ Decoding.")}
+<section class="pg"><div class="wrap"><div class="pg-row">
   <div class="toolbar" style="margin:0;flex:1;max-width:640px"><div class="search grow">{ic("search")}<label class="sr" for="aq">ابحث بعنوان المقالة</label><input id="aq" type="text" placeholder="ابحث بعنوان المقالة"></div><label class="sortbox"><span class="muted">ترتيب حسب</span><select aria-label="ترتيب"><option>الأحدث</option></select></label></div></div>
   <p class="muted" style="margin-bottom:22px"><span class="demo">عناوين مقترحة حسب كلمات البحث المستهدفة، تُكتب لاحقاً</span></p>
   <div class="shelf">{cards}</div></div></section>''')

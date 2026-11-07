@@ -320,7 +320,7 @@ def build():
     global HOME
     HOME = home_body()
     course = BY["ain-sahia"]
-    mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"]))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
+    mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"])).translate(str.maketrans("0123456789","٠١٢٣٤٥٦٧٨٩"))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
     page("index.html", f"{NAME} | مدربة وعي وتشافي معتمدة من ICF",
          "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفّس الاتزان الداخلي مع د. مرفت سرور، مدربة وعي وتشافي معتمدة من ICF.", HOME, schema=[ORG, PERSON])
 
@@ -542,7 +542,7 @@ from legal_content import LEGAL
 
 def home_body():
     course = BY["ain-sahia"]
-    mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"]))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
+    mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"])).translate(str.maketrans("0123456789","٠١٢٣٤٥٦٧٨٩"))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
     voices_list = [("س","مكان رأي حقيقي لمشتركة عن تجربتها مع تمرين فك التعلّق، وما تغيّر بعده في علاقاتها.","اسم المشتركة · تمرين فك التعلّق"),
                    ("ن","مكان رأي عضوة في استيقظ VIP: كيف تغيّر يومها بعد شهر من الالتزام والخطة اليومية.","اسم العضوة · استيقظ VIP"),
                    ("ه","مكان رأي عن كورس عين صاحية وكيف غيّر الامتنان اليومي إحساسها بحياتها.","اسم المشتركة · عين صاحية"),

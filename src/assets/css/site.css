@@ -1463,3 +1463,23 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 .b-flow li{justify-content:flex-start}
 .b-flow li:not(:last-child)::after{content:none}
 .b-flow::before{content:"نظامك اليومي";display:block;color:#A9843F;font-weight:800;font-size:.82rem;margin-bottom:2px}
+/* ===== remaining pages: new identity ===== */
+.faq2.vp-faq{gap:0}
+.faq2.vp-faq details{background:none;border-radius:0;padding:0}
+.faq2.vp-faq summary::after{content:"+";transform:none}
+.faq2.vp-faq details[open] summary::after{transform:rotate(45deg)}
+.faq details{background:none;border-radius:0;box-shadow:none;padding:0;border-bottom:1px solid rgba(197,160,89,.5)}
+.faq{border-top:1px solid rgba(197,160,89,.5);gap:0}
+.faq summary{font-family:"Noto Naskh Arabic","Amiri",serif;color:#1F3F7C;padding:20px 4px}
+.faq summary::after{content:"+";width:30px;height:30px;border-radius:50%;border:1px solid #C5A059;color:#A9843F;display:grid;place-items:center;font-size:1.1rem;flex:none}
+.faq details[open] summary::after{content:"+";transform:rotate(45deg)}
+.faq details p{color:#2C3A5C;font-weight:500;padding:0 4px 20px}
+.result .badge.err{background:#F3EEDD;color:#1F3F7C;border:1px solid rgba(197,160,89,.6)}
+.notfound .num{background:none;-webkit-background-clip:initial;background-clip:initial;color:#C5A059}
+.book3d .cover .ttl b{color:#F5F5DC}.book3d .cover .ttl small{color:#E2C68C}
+.feats .feat,.ab-tx .chip,.acc-nav,.stat,.lesson-card,.player,.outline{border-color:rgba(197,160,89,.4)}
+.feats .feat{background:#FFFDF7;border:1px solid rgba(197,160,89,.4);box-shadow:none}
+.stat{background:#FFFDF7;border:1px solid rgba(197,160,89,.4);box-shadow:none}
+.stat b{color:#1F3F7C}
+.acc-nav{background:#FFFDF7;border:1px solid rgba(197,160,89,.4)}
+.acc-nav a[aria-current],.acc-nav a.on{background:#F3EEDD;color:#1F3F7C}
