@@ -58,7 +58,7 @@ PRODUCTS = [
              "حين ترى الجذور بوضوح، تستطيع أن تخرج من جرح الرفض، وأن تقبل نفسك أولاً، فيبدأ الناس في الخارج بقبولك."],
        forWho=["تشعر بالرفض أو الهجر في علاقاتك","تبحث دائماً عن قبول الآخرين","تخاف أن يتركك من تحب","تجد صعوبة في قبول نفسك كما أنت"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين Decoding نور القبول","10:00"]]}]),
-  dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود الطاقي", cat="decode", catLabel="Decoding", img="assets/art/decode.webp", eg=889, us=45, isNew=True, vipIncluded=True,
+  dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود الطاقي", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-stagnation-sm.webp", cover="assets/img/covers/decode-stagnation-sm.webp", coverLg="assets/img/covers/decode-stagnation.webp", eg=889, us=45, isNew=True, vipIncluded=True,
        meta="تمرين تشريحي للعقل اللاواعي · ١٠ دقائق", ctype="Decoding · تمرين تشريحي للعقل اللاواعي", cardMeta="تمرين تشريحي · ١٠ دقائق",
        facts=[["play","تمرين تشريحي للعقل اللاواعي مدته ١٠ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين تشريحي للعقل اللاواعي يفكّ أسباب الركود الطاقي ويعيد تدفق الطاقة والحركة في حياتك.",
