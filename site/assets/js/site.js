@@ -106,9 +106,10 @@ function bundleCard(b){
   return `<article class="bundle">
     <div class="fan" aria-hidden="true">${b.fan.map(s=>`<img src="${s}" alt="">`).join("")}</div>
     <h3>${esc(p.title)}</h3><p class="inside">${b.items.map(i=>esc(P[i].title)).join(" · ")}</p>
+    ${b.flow ? `<ol class="b-flow">${b.flow.map((f,n)=>`<li><i>${ar(n+1)}</i>${esc(f)}</li>`).join("")}</ol>` : ""}
     <span class="saving">توفّر ${S.region==="eg" ? ar(eg-p.eg)+" ج.م" : "$"+(us-p.us)}</span>
     <div class="buy"><span class="price">${money(p.eg,p.us)}<s>${S.region==="eg" ? ar(eg)+" ج.م" : "$"+us}</s></span>
-      <button class="btn btn-plum btn-sm" type="button" data-add="${p.id}"><span>أضف للسلة</span></button></div>
+      <button class="btn btn-gold btn-sm" type="button" data-add="${p.id}"><span>أضف للسلة</span></button></div>
   </article>`;
 }
 

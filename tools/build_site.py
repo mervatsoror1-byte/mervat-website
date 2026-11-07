@@ -115,9 +115,9 @@ PRODUCTS = [
        modules=[{"title":"التأمل","lessons":[["مقدمة: شرح التأمل","3:00",True],["القسم الأول: التنفس","5:00"],["القسم الثاني: التحرر","8:00"],["القسم الثالث: الحماية","5:00"]]}]),
   dict(id="book-ghosts", kind="book", slug="book-ghosts", title="عندما تولد في عائلة من الأشباح", cat="book", catLabel="كتاب إلكتروني", img="assets/art/book.webp", eg=349, us=14, vipIncluded=False,
        meta="كتاب · يُقرأ داخل الموقع", short="عن الموروث العائلي الذي نحمله دون أن نراه، وكيف نتحرر منه بوعي ورحمة.", learn="reader.html"),
-  dict(id="b-decode", kind="bundle", title="مسار Decoding", catLabel="باقة", img="assets/img/covers/decode-original-sm.webp", eg=2139, us=109, page="bundles.html"),
-  dict(id="b-free", kind="bundle", title="مسار التنظيف", catLabel="باقة", img="assets/img/covers/attach-sm.webp", eg=1649, us=85, page="bundles.html"),
-  dict(id="b-calm", kind="bundle", title="البرمجة اليومية", catLabel="باقة", img="assets/img/covers/morning-priming-sm.webp", eg=649, us=35, page="bundles.html"),
+  dict(id="b-original", kind="bundle", title="باقة النسخة الأصلية", catLabel="باقة", img="assets/img/covers/decode-original-sm.webp", eg=1129, us=57, page="bundles.html"),
+  dict(id="b-acceptance", kind="bundle", title="باقة نور القبول", catLabel="باقة", img="assets/img/covers/decode-acceptance-sm.webp", eg=1129, us=57, page="bundles.html"),
+  dict(id="b-stagnation", kind="bundle", title="باقة فكّ الركود الطاقي", catLabel="باقة", img="assets/img/covers/decode-stagnation-sm.webp", eg=1129, us=57, page="bundles.html"),
   dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=399, us=25, page="sessions.html"),
   dict(id="s-single", kind="session", title="جلسة استشارة فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=599, us=59, page="sessions.html"),
   dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/thumb-session.webp", eg=1999, us=149, page="sessions.html"),
@@ -130,9 +130,9 @@ for p in PRODUCTS:
         p["learn"] = "learn.html#" + p["id"]
         p["lessonsCount"] = sum(len(m["lessons"]) for m in p["modules"])
 BUNDLES = [
-  dict(id="b-decode", items=["decode-original","decode-acceptance","decode-stagnation"], fan=["assets/img/covers/decode-acceptance-sm.webp","assets/img/covers/decode-original-sm.webp","assets/img/covers/decode-stagnation-sm.webp"]),
-  dict(id="b-free", items=["attach","inner-child","serenity"], fan=["assets/img/covers/inner-child-sm.webp","assets/img/covers/attach-sm.webp","assets/img/covers/serenity-sm.webp"]),
-  dict(id="b-calm", items=["morning-priming","peace-affirmations","heart-coherence"], fan=["assets/img/covers/peace-sm.webp","assets/img/covers/morning-priming-sm.webp","assets/img/covers/breath-sm.webp"]),
+  dict(id="b-original", items=["heart-coherence","morning-priming","decode-original"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","Decoding النسخة الأصلية"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-original-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
+  dict(id="b-acceptance", items=["heart-coherence","morning-priming","decode-acceptance"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","Decoding نور القبول"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-acceptance-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
+  dict(id="b-stagnation", items=["heart-coherence","morning-priming","decode-stagnation"], flow=["تنفّس الاتزان الطاقي","Priming الصباح","Decoding الركود الطاقي"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/decode-stagnation-sm.webp","assets/img/covers/morning-priming-sm.webp"]),
 ]
 BY = {p["id"]: p for p in PRODUCTS}
 EXERCISES = [p for p in PRODUCTS if p["kind"] == "exercise"]
@@ -351,7 +351,7 @@ def build():
 <section class="band" style="padding-top:0"><div class="wrap"><div class="vip-card" style="grid-template-columns:1fr"><div class="vip-body" style="text-align:center;justify-items:center"><h2 style="font-size:clamp(1.6rem,3vw,2.4rem)">كل هذه التمارين مفتوحة مع <span class="foil-text">استيقظ VIP</span></h2><p class="lead">بدلاً من الشراء واحداً واحداً، افتح المكتبة كاملة مع البرنامج.</p><a class="btn btn-gold" href="vip.html">اعرف البرنامج</a></div></div></div></section>''', active="library.html")
 
     # ---------- bundles
-    page("bundles.html", "الباقات", "باقات تمارين مترابطة بسعر أقل: مسار Decoding، مسار التحرّر، ومسار السكينة اليومية.", page_hero("الباقات","تمارين مترابطة في مسار واحد، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + GIFT)
+    page("bundles.html", "الباقات", "باقات بنظام يومي متكامل: تنفّس الاتزان الطاقي، وPriming الصباح، وتمرين Decoding، بسعر أقل من شرائها منفصلة.", page_hero("الباقات","كل باقة نظام يومي متكامل: تنفّس، ثم توكيد صباحي، ثم تمرين Decoding، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + GIFT)
 
     # ---------- products
     for p in PRODUCTS:

@@ -1452,3 +1452,14 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 @media (max-width:980px){.hero-s .hs-photo::after{display:none}}
 .hs-copy h1 .hs-line{display:block}
 @media (min-width:981px){.hero-s .hs-copy{max-width:680px}.hero-s .hs-copy h1{font-size:clamp(1.9rem,2.55vw,2.6rem)}.hs-copy h1 .hs-line{white-space:nowrap}}
+/* bundle daily system */
+.b-flow{list-style:none;margin:2px 0 4px;padding:12px 14px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;background:#F6F1E4;border:1px solid rgba(197,160,89,.35);border-radius:14px}
+.b-flow li{display:inline-flex;align-items:center;gap:6px;color:#1F3F7C;font-weight:700;font-size:.88rem}
+.b-flow li:not(:last-child)::after{content:"←";color:#C5A059;margin-inline-start:8px}
+.b-flow i{font-style:normal;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#C5A059;color:#14234A;font-size:.72rem}
+.bundle{background:#FFFDF7;border:1px solid rgba(197,160,89,.45)}
+.bundle h3{font-family:"Noto Naskh Arabic","Amiri",serif;color:#1F3F7C}
+.b-flow{flex-direction:column;align-items:stretch;gap:8px;text-align:start}
+.b-flow li{justify-content:flex-start}
+.b-flow li:not(:last-child)::after{content:none}
+.b-flow::before{content:"نظامك اليومي";display:block;color:#A9843F;font-weight:800;font-size:.82rem;margin-bottom:2px}
