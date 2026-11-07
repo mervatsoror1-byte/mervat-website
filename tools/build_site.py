@@ -550,12 +550,12 @@ def home_body():
   <div class="hs-in">
     <div class="hs-photo"><img src="assets/img/coach-seated-cut.webp" alt="د. مرفت سرور" width="839" height="1129" fetchpriority="high"></div>
     <div class="hs-copy"><div class="hs-wm" aria-hidden="true"><span class="script">Mervat</span><span class="serif">Soror</span></div>
-      <h1>لديك الآن رفيق حقيقي في الرحلة <span class="gold">يحمل شعلة نور</span> ويمسك بيدك حتى تصل للجانب الآخر</h1>
+      <h1><span class="hs-line">لديك الآن رفيق حقيقي في الرحلة</span> <span class="gold hs-line">يحمل شعلة نور</span> <span class="hs-line">ويمسك بيدك حتى تصل للجانب الآخر</span></h1>
       <a class="btn-safia" href="vip.html">نوّر</a></div>
   </div>
 </section>
 <section class="band tint-blush"><div class="wrap">
-  <div class="head center"><span class="eyebrow center">ابدأ اليوم</span><h2 class="title">اختر أداتك، وابدأ خلال دقيقة</h2></div>
+  <div class="head center"><span class="eyebrow center">ابدأ اليوم</span><h2 class="title">اختر أداتك، وابدأ فوراً</h2></div>
   {tabs()}<div class="shelf" data-shelf="home"></div><div class="center-cta"><a class="btn btn-gold" href="library.html">عرض كل الأدوات</a></div></div></section>
 <section class="band"><div class="wrap statement"><span class="eyebrow center">من هي مرفت سرور؟</span>
   <h2>صوت هادئ يوقظ فيك <em>ما نسيته عن نفسك</em></h2>
@@ -596,8 +596,8 @@ def home_body():
 <section class="band book-band" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap split">{book3d()}
   <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]} <span class="demo">نبذة مؤقتة</span></p>
     {book_feats()}<div class="buy">{price("book-ghosts")}<button class="btn btn-plum" type="button" data-buy="book-ghosts"><span>اشترِ الكتاب</span></button><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
-<section class="journey" aria-label="رحلتك تبدأ بقرار واحد"><img src="assets/img/journey.webp" alt="د. مرفت سرور على شرفة عند الشروق" width="1914" height="822" loading="lazy">
-  <div class="jr-copy"><h2>رحلتك تبدأ <span class="gold">بقرار واحد</span></h2><p>أنشئ حسابك المجاني واستلم هديتك الأولى فوراً</p></div><div class="jr-cta"><a class="btn btn-gold" href="register.html">{ic("gift")}ابدأ الآن</a></div></section>'''
+<section class="journey" aria-label="كل شروق فرصة لتولد من جديد"><img src="assets/img/journey.webp" alt="د. مرفت سرور على شرفة عند الشروق" width="1914" height="822" loading="lazy">
+  <div class="jr-copy"><h2>كل شروق <span class="gold">فرصة</span> لتولد من جديد</h2><p>أنشئ حسابك المجاني واستلم هديتك الأولى فوراً</p></div><div class="jr-cta"><a class="btn btn-gold" href="register.html">{ic("gift")}ابدأ الآن</a></div></section>'''
 
 if __name__ == "__main__":
     build()

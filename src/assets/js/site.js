@@ -93,7 +93,7 @@ function card(p){
   return `<article class="scard" data-cat="${p.cat}">
     <div class="sc-img"><a class="ph${p.cover ? " has-cover" : ""}" href="${p.page}" aria-label="${esc(p.title)}"><img src="${p.cover || "assets/brand/logo-icon-gold.webp"}" alt="" loading="lazy"></a>
       <button class="sc-fav" type="button" data-fav="${p.id}" aria-pressed="false" aria-label="احفظ في المفضلة">${icon("heart")}</button>
-      ${p.isNew ? '<span class="sc-new">جديد</span>' : ''}${owned ? '<span class="sc-own">في مكتبتك</span>' : ''}</div>
+      ${owned ? '<span class="sc-own">✓ اشتريته</span>' : ''}</div>
     <div class="sc-tags"><span>${kind}</span><span>${esc(p.catLabel)}</span><span>Online</span></div>
     <h3><a href="${p.page}">${esc(p.title)}</a></h3>
     <span class="sc-meta">${icon("lessons")}${p.cardMeta ? esc(p.cardMeta) : ar(lessons) + " " + (lessons > 2 ? "دروس" : lessons == 2 ? "درسان" : "درس")}</span>
