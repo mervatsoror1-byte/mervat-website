@@ -179,7 +179,45 @@ def auth():
 
 
 def build_v7():
-    library(); about(); contact(); faq(); articles(); auth()
+    library(); about(); contact(); faq(); articles(); auth(); landing_serenity()
     for p in PRODUCTS:
         if p["kind"] in ("course", "exercise"):
             product(p)
+
+def landing_serenity():
+    pid = "serenity"
+    pr = B.price(pid)
+    steps = [("١", "التنفّس", "تهدأ أنفاسك وتعود إلى جسدك، فيستعد عقلك للتنظيف."),
+             ("٢", "التحرّر", "تتخيّل دخاناً يمثّل المشاعر السلبية، تلاحظ أين يسكن في جسدك بالضبط، ثم تحرّره."),
+             ("٣", "الحماية", "نور ينزل من السماء ويغلّف جسدك بالكامل، ليحميك من أي طاقات سلبية.")]
+    pains = ["تحمل ثقلاً عاطفياً متراكماً لا تعرف مصدره", "تتأثر بطاقات من حولك بسهولة", "تشعر بمشاعر سلبية لا تعرف كيف تتخلص منها", "تحتاج إلى هدوء حقيقي وحماية داخلية"]
+    gets = [("play", "تأمل موجّه بصوت د. مرفت سرور"), ("layers", "ثلاث مراحل: التنفّس، التحرّر، الحماية"), ("lessons", "مقدمة مجانية تشرح التأمل"),
+            ("cal", "وصول ٣٦٥ يوماً، والتجديد بنصف السعر"), ("devices", "على الهاتف أو الكمبيوتر")]
+    faqs = [("هل يناسبني إن لم أجرّب التأمل من قبل؟", "التأمل موجّه خطوة بخطوة بصوت د. مرفت، ومعه مقدمة تشرح طريقته قبل أن تبدأ."),
+            ("متى أمارسه؟", "عند الشعور بالثقل، أو بعد يوم مرهق، أو بشكل منتظم ضمن روتينك اليومي."),
+            ("متى أحصل عليه بعد الدفع؟", "يُفتح فوراً في حسابك بعد تأكيد الدفع، وتستمع إليه من أي جهاز.")]
+    buy = f'<div class="lp-buy"><div class="lp-price">{pr}</div><button class="btn-safia" type="button" data-buy="{pid}"><span>ابدأ التأمل الآن</span></button><a class="lp-free" href="learn.html#{pid}">{ic("play","icon icon-sm")}استمع للمقدمة مجاناً</a></div>'
+    page("lp-serenity.html", "تأمل السكينة والتنظيف", "تأمل موجّه بصوت د. مرفت سرور لتنظيف المشاعر السلبية في ثلاث مراحل: التنفّس، التحرّر، الحماية.", f"""
+<header class="lp-top"><a href="index.html" aria-label="مرفت سرور"><img src="assets/brand/logo-gold-transparent.webp" alt="مرفت سرور" width="120" height="90"></a></header>
+<section class="lp-hero"><canvas class="sparkle" data-density="1500" aria-hidden="true"></canvas>
+  <figure class="lp-ph"><img src="assets/img/covers/serenity.webp" alt="" width="1600" height="900" fetchpriority="high"></figure>
+  <div class="lp-copy"><span class="vs-eyebrow">تأمل موجّه بصوت د. مرفت سرور</span>
+    <h1>نظّف ما تراكم داخلك <span>وعُد إلى سكينتك</span></h1>
+    <p>تأمل السكينة والتنظيف يحرّرك من المشاعر السلبية في ثلاث مراحل، ويغلّفك بنور يحميك.</p>
+    {buy}</div></section>
+<section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>هذا التأمل لك إذا كنت…</h2></header>
+  <ul class="lp-pains">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in pains)}</ul></div></section>
+<section class="vp-sec vp-royal"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap">
+  <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>ثلاث مراحل في تأمل واحد</h2></header>
+  <div class="lp-steps">{"".join(f'<div class="lp-step"><b>{n}</b><h3>{t}</h3><p>{d}</p></div>' for n, t, d in steps)}</div></div></section>
+<section class="vp-sec vp-ivory"><div class="vp-wrap lp-two">
+  <div><header class="vp-head" style="justify-items:start;text-align:start"><h2>ماذا تحصل عليه</h2></header>
+    <ul class="pd3-facts lp-gets">{"".join(f"<li>{ic(i,'icon icon-sm')}<span>{E(t)}</span></li>" for i, t in gets)}</ul></div>
+  <div class="lp-me"><img src="assets/img/mervat-about.webp" alt="د. مرفت سرور" width="900" height="1012" loading="lazy">
+    <div><b>د. مرفت سرور</b><span>مدربة وعي وتشافي معتمدة من ICF بدرجة PCC · أكثر من ١٨ ألف ساعة تدريبية</span></div></div></div></section>
+<section class="vp-sec vp-ivory" style="padding-top:0"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة سريعة</h2></header>
+  <div class="vp-faq">{"".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in faqs)}</div></div></section>
+<section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>امنح نفسك عشر دقائق من السكينة اليوم</h2>{buy}</div></section>
+<footer class="lp-foot"><a href="terms.html">الشروط</a> · <a href="privacy.html">الخصوصية</a> · <a href="refund.html">الاسترداد</a> · <a href="contact.html">تواصل معنا</a><span>© ٢٠٢٦ د. مرفت سرور</span></footer>
+<div class="lp-sticky"><div class="lp-price">{pr}</div><button class="btn-safia" type="button" data-buy="{pid}"><span>ابدأ الآن</span></button></div>
+""", bare=True)
