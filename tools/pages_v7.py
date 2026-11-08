@@ -48,7 +48,7 @@ def product(p):
     facts = list(p.get("facts") or [["lessons", f"يحتوي على {_n(total)}"], ["clock", f"المدة: {dur.translate(_ar)}"]])
     if p.get("ctype"): facts.append(["layers", f"نوع المادة: {p['ctype']}"])
     if p.get("level"): facts.append(["award", f"المستوى: {p['level']}"])
-    facts += [["cal", "مدة الوصول: ٣٦٥ يوماً من تاريخ الشراء"], ["receipt", "التجديد بعد انتهاء المدة بنصف السعر"], ["devices", "تابع من أي لابتوب أو موبايل"]]
+    facts += [["cal", "مدة الوصول: ٣٦٥ يوماً من تاريخ الشراء"], ["devices", "تابع من أي لابتوب أو موبايل"]]
     facts_html = "".join(f'<li>{ic(i, "icon icon-sm")}<span>{E(t)}</span></li>' for i, t in facts)
     modules_html = "".join(f'<details {"open" if n == 0 else ""}><summary>{E(m["title"])}</summary>' + "".join(f'<div class="pd3-l">{ic("play" if l[2:] else "lock", "icon icon-sm")}<span>{E(l[0])}</span>' + (f'<a href="learn.html#{p["id"]}">استمع مجاناً</a>' if l[2:] else "") + '</div>' for l in m["lessons"]) + '</details>' for n, m in enumerate(p["modules"]))
     page(p["page"], f'{p["title"]}', p["short"] + f' {p["catLabel"]} مع د. مرفت سرور.', f'''
@@ -187,12 +187,12 @@ def build_v7():
 def landing_serenity():
     pid = "serenity"
     pr = B.price(pid)
-    steps = [("١", "التنفّس", "تهدأ أنفاسك وتعود إلى جسدك، فيستعد عقلك للتنظيف."),
-             ("٢", "التحرّر", "تتخيّل دخاناً يمثّل المشاعر السلبية، تلاحظ أين يسكن في جسدك بالضبط، ثم تحرّره."),
-             ("٣", "الحماية", "نور ينزل من السماء ويغلّف جسدك بالكامل، ليحميك من أي طاقات سلبية.")]
+    steps = [("١", "التنفّس", "تهدأ أنفاسك وتعود إلى جسدك."),
+             ("٢", "التحرّر", "تتخلّص من مشاعرك السلبية."),
+             ("٣", "الحماية", "حماية في نهاية التمرين من أي طاقات سلبية.")]
     pains = ["تحمل ثقلاً عاطفياً متراكماً لا تعرف مصدره", "تتأثر بطاقات من حولك بسهولة", "تشعر بمشاعر سلبية لا تعرف كيف تتخلص منها", "تحتاج إلى هدوء حقيقي وحماية داخلية"]
     gets = [("play", "تأمل موجّه بصوت د. مرفت سرور"), ("layers", "ثلاث مراحل: التنفّس، التحرّر، الحماية"), ("lessons", "مقدمة مجانية تشرح التأمل"),
-            ("cal", "وصول ٣٦٥ يوماً، والتجديد بنصف السعر"), ("devices", "على الهاتف أو الكمبيوتر")]
+            ("cal", "وصول لمدة ٣٦٥ يوماً"), ("devices", "على الهاتف أو الكمبيوتر")]
     faqs = [("هل يناسبني إن لم أجرّب التأمل من قبل؟", "التأمل موجّه خطوة بخطوة بصوت د. مرفت، ومعه مقدمة تشرح طريقته قبل أن تبدأ."),
             ("متى أمارسه؟", "عند الشعور بالثقل، أو بعد يوم مرهق، أو بشكل منتظم ضمن روتينك اليومي."),
             ("متى أحصل عليه بعد الدفع؟", "يُفتح فوراً في حسابك بعد تأكيد الدفع، وتستمع إليه من أي جهاز.")]
@@ -203,7 +203,7 @@ def landing_serenity():
   <figure class="lp-ph"><img src="assets/img/covers/serenity.webp" alt="" width="1600" height="900" fetchpriority="high"></figure>
   <div class="lp-copy"><span class="vs-eyebrow">تأمل موجّه بصوت د. مرفت سرور</span>
     <h1>نظّف ما تراكم داخلك <span>وعُد إلى سكينتك</span></h1>
-    <p>تأمل السكينة والتنظيف يحرّرك من المشاعر السلبية في ثلاث مراحل، ويغلّفك بنور يحميك.</p>
+    <p>تأمل السكينة والتنظيف يحرّرك من المشاعر السلبية في ثلاث مراحل.</p>
     {buy}</div></section>
 <section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>هذا التأمل لك إذا كنت…</h2></header>
   <ul class="lp-pains">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in pains)}</ul></div></section>
