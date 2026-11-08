@@ -1710,3 +1710,18 @@ body:has(.lp-hero) .help-c{display:none}
   .help-c .help-btn{padding:4px 0 4px 4px}
   .help .help-logo{width:40px;height:40px}
 }
+/* voice testimonials: royal pills */
+.vr-pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 26px;max-width:1080px;margin:0 auto}
+.vr-pill{display:flex;align-items:center;gap:16px;padding:10px 12px 10px 26px;border-radius:999px;background:linear-gradient(135deg,#284D92,#1A3670);box-shadow:0 16px 30px -18px rgba(20,35,74,.7);border:1px solid rgba(226,198,140,.35)}
+.vr-pill .vr-play{width:56px;height:56px;box-shadow:0 0 0 5px rgba(226,198,140,.18)}
+.vr-pill-t{flex:1;min-width:0;display:grid}
+.vr-pill-t b{color:#F5F5DC;font-family:"Noto Naskh Arabic",serif;font-size:1.1rem}
+.vr-pill-t small{color:#C9D3EA;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vr-listen{display:inline-flex;align-items:center;gap:8px;color:#E2C68C;font-weight:800}
+.vr-mini{display:inline-flex;align-items:center;gap:2px;height:16px}
+.vr-mini i{width:2px;border-radius:2px;background:#E2C68C;height:40%}
+.vr-mini i:nth-child(2),.vr-mini i:nth-child(4){height:100%}.vr-mini i:nth-child(3){height:65%}
+.vr-pill.on .vr-mini i{animation:vrw .7s ease-in-out infinite alternate}
+.vr-pill.on .vr-mini i:nth-child(odd){animation-delay:.25s}
+.vr-demo-note{grid-column:1/-1;text-align:center;margin:4px 0 0;color:#A9843F;font-size:.82rem;font-weight:700}
+@media (max-width:760px){.vr-pills{grid-template-columns:1fr}.vr-pill{padding-inline-end:18px}.vr-pill .vr-play{width:48px;height:48px}}

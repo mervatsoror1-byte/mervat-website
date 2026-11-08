@@ -571,8 +571,12 @@ function renderVoices(){
     const id = el.dataset.vr;
     if (id === "all"){
       const items = []; Object.keys(all).forEach(k => (all[k]||[]).forEach((v,i) => items.push([k, i, Object.assign({}, v, {date: (P[k] ? P[k].title + " · " : "") + v.date})])));
-      const demos = [{name:"اسم العميلة الأول", date:"تمرين فك التعلّق · منذ يومين", len:74}, {name:"عميلة من الإسكندرية", date:"Decoding نور القبول · منذ أسبوع", len:52}, {name:"عميلة من الرياض", date:"استيقظ VIP · منذ أسبوعين", len:96}];
-      el.innerHTML = items.slice(0, 6).map(([k,i,v]) => voiceCard(v, k, i, false)).join("") + (items.length ? "" : demos.map((v,i) => voiceCard(v, "all", i, true)).join(""));
+      const n2 = k => String(k).padStart(2,"0").replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+      const pill = (k, i, v, idx, demo) => `<article class="vr-pill${demo ? " is-demo" : ""}"><button class="vr-play" type="button" ${demo ? 'data-vrdemo="1"' : `data-vrplay="${k}|${i}"`} aria-label="تشغيل رأي عملائنا ${n2(idx)}">${icon("play")}</button>
+        <div class="vr-pill-t"><b>رأي عملائنا ${n2(idx)}</b>${v && !demo ? `<small>${esc(v.name)} · ${esc(P[k] ? P[k].title : "")}</small>` : ""}</div>
+        <span class="vr-listen">استمع <i class="vr-mini"><i></i><i></i><i></i><i></i><i></i></i></span>${demo ? "" : `<audio preload="none" src="${v.src}"></audio>`}</article>`;
+      el.innerHTML = items.length ? items.slice(0, 6).map(([k,i,v], n) => pill(k, i, v, n + 1, false)).join("")
+                                  : [1,2,3,4,5,6].map(n => pill("all", n, null, n, true)).join("") + `<p class="vr-demo-note">أمثلة للتصميم، تظهر مكانها تسجيلات العملاء الحقيقية تلقائياً</p>`;
       return;
     }
     const list = all[id] || [];
@@ -630,8 +634,8 @@ document.addEventListener("click", e => {
   const st = e.target.closest("[data-vrstart]"); if (st){ vStart(st.closest("[data-vrrec]"), st.dataset.vrstart); return; }
   if (e.target.closest("[data-vrdemo]")){ toast("هذا مثال للتصميم، والتسجيلات الحقيقية تظهر هنا بعد أن تسجّلها العميلات."); return; }
   const pl = e.target.closest("[data-vrplay]");
-  if (pl){ const a = pl.closest(".vr-card").querySelector("audio"); $$(".vr-card audio").forEach(x => { if (x !== a){ x.pause(); x.closest(".vr-card").classList.remove("on"); } });
-    if (a.paused){ a.play(); pl.closest(".vr-card").classList.add("on"); a.onended = () => pl.closest(".vr-card").classList.remove("on"); } else { a.pause(); pl.closest(".vr-card").classList.remove("on"); } return; }
+  if (pl){ const card = pl.closest(".vr-card,.vr-pill"), a = card.querySelector("audio"); $$(".vr-card audio,.vr-pill audio").forEach(x => { if (x !== a){ x.pause(); x.closest(".vr-card,.vr-pill").classList.remove("on"); } });
+    if (a.paused){ a.play(); card.classList.add("on"); a.onended = () => card.classList.remove("on"); } else { a.pause(); card.classList.remove("on"); } return; }
   const dl = e.target.closest("[data-vrdel]");
   if (dl){ const [id, i] = dl.dataset.vrdel.split("|"); const all = vLoad(); (all[id]||[]).splice(+i, 1); vSave(all); renderVoices(); toast("حُذف التسجيل"); }
 });
