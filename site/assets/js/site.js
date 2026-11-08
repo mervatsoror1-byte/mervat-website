@@ -642,7 +642,7 @@ function initSessCards(){
   const cards = $$("[data-sess]"); if (!cards.length) return;
   const months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
   const today = new Date(); today.setHours(0,0,0,0);
-  const OPEN = [0, 1, 3, 6]; // Sun, Mon, Wed, Sat (example availability)
+  const OPEN = [0, 1, 2, 3, 4, 5, 6]; // every day is open
   cards.forEach(card => {
     const id = card.dataset.sess, st = {y: today.getFullYear(), m: today.getMonth(), day: null, slot: null};
     const daysEl = card.querySelector(".ss-days"), slotsEl = card.querySelector(".ss-slots"), title = card.querySelector(".ss-month");
