@@ -680,6 +680,54 @@ function initSessCards(){
   });
 }
 initSessCards();
+
+/* ---------- Nour assistant (prototype: scripted answers) ---------- */
+(function(){
+  const log = $("#nourLog"), chips = $("#nourChips"), form = $("#nourForm"), q = $("#nourQ"), x = $("#nourX");
+  if (!log) return;
+  const L = (href, t) => `<a href="${href}">${t}</a>`;
+  const pr = id => P[id] ? money(P[id].eg, P[id].us) : "";
+  const A = {
+    attach: () => `يبدو أن قلبك متعلّق بشيء يُثقله. أرشّح لك ${L("exercise-detachment.html","تمرين فك التعلّق")}: تأمل موجّه ١٠ دقائق، مستواه مبتدئ، بسعر ${pr("attach")}. وإن أردتِ نظاماً يومياً كاملاً ${L("bundles.html","باقة فك التعلّق")}.`,
+    peace: () => `للسلام الداخلي أرشّح لك ${L("serenity-cleansing-meditation.html","تأمل السكينة والتنظيف")} (${pr("serenity")})، و${L("peace-affirmations.html","توكيدات السلام للتشافي العميق")} (${pr("peace-affirmations")}) للاستماع اليومي.`,
+    reject: () => `جرح الرفض يحتاج عملاً أعمق. أرشّح لك ${L("decoding-light-of-acceptance.html","Decoding نور القبول")}: تمرين تشريحي للعقل اللاواعي يساعدك على قبول ذاتك أولاً (${pr("decode-acceptance")}).`,
+    child: () => `للطفولة وجروحها أرشّح لك ${L("inner-child-healing.html","تمرين تشافي الطفل الداخلي")}: تمرين عميق ١٠ دقائق، مستواه متوسط (${pr("inner-child")}).`,
+    lazy: () => `إن كنتِ تشعرين بالكسل والتأجيل والتجمّد أمام أهدافك، أرشّح لك ${L("decoding-energy-stagnation.html","Decoding الركود والخمول")} (${pr("decode-stagnation")}).`,
+    diff: () => `باختصار: <b>التأملات</b> للتهدئة والتحرّر، و<b>Decoding</b> تمارين تشريحية للعقل اللاواعي (متقدمة)، و<b>التوكيدات و Priming</b> للبرمجة اليومية. وإن لم تعرفي من أين تبدئين، ${L("sessions.html#booking","جلسة التعارف")} هي الأنسب.`,
+    vip: () => `${L("vip.html","استيقظ VIP")} هو البرنامج الكامل: جلسات فردية خاصة مع د. مرفت عبر Zoom، وكل التمارين، وخطة يومية ومتابعة شخصية. يبدأ من ${pr("vip-m")} شهرياً.`,
+    book: () => `يمكنك الحجز من ${L("sessions.html#booking","صفحة الجلسات")}: جلسة تعارف ٣٠ دقيقة (${pr("s-intro")})، أو استشارة فردية (${pr("s-single")})، أو كوتشينج (${pr("s-coach")}).`,
+    pay: () => `داخل مصر: البطاقات، والمحافظ، وفوري. وخارج مصر: البطاقات الدولية و PayPal. تُفتح الأداة في حسابك فوراً بعد الدفع، والوصول ٣٦٥ يوماً.`,
+    human: () => `بكل سرور، تواصلي مع فريق د. مرفت على ${L("https://wa.me/201095292748","واتساب")} أو من ${L("contact.html","صفحة التواصل")}.`,
+    crisis: () => `أنا آسفة لأنك تمرّين بهذا، ومشاعرك مهمة. لست بديلاً عن المساعدة المتخصصة، فأرجو أن تتواصلي الآن مع شخص تثقين به أو مع خط دعم نفسي. في مصر: الخط الساخن للأمانة العامة للصحة النفسية <b>08008880700</b>، وفي الطوارئ <b>123</b>. إن كنتِ خارج مصر، اتصلي برقم الطوارئ في بلدك.`,
+    fallback: () => `لم أفهم سؤالك تماماً. اختاري من الأزرار بالأسفل، أو اكتبي ما تشعرين به بكلمات بسيطة، أو ${L("https://wa.me/201095292748","تواصلي مع الفريق على واتساب")}.`
+  };
+  const RULES = [
+    ["crisis", /انتحار|أنتحر|انهي حياتي|أنهي حياتي|أؤذي نفسي|اذي نفسي|أموت نفسي|مش عايزة أعيش|لا أريد أن أعيش/],
+    ["attach", /تعل|فراق|انسى|أنسى|بنساه|ترك|انفصال|حب/],
+    ["reject", /رفض|هجر|قبول|محدش بيحب|لا أحد يحب/],
+    ["child", /طفول|الطفل|أهلي|ابويا|أبي|أمي|صدمة/],
+    ["lazy", /كسل|خمول|تأجيل|اجل|موبايل|سكرول|هدف|اهدافي|أهدافي|ركود/],
+    ["peace", /سلام|هدوء|قلق|توتر|سكين|نوم|مشاعر سلبية|طاقة سلبية/],
+    ["vip", /vip|استيقظ|برنامج|اشتراك/i],
+    ["book", /جلس|حجز|احجز|استشار|كوتش|تعارف|موعد/],
+    ["pay", /دفع|سعر|بكام|كام|فلوس|فيزا|باي ?بال|محفظ|فوري/],
+    ["diff", /فرق|ابدأ|أبدأ|منين|من أين|ايه المناسب|ما المناسب/],
+    ["human", /حد|شخص|فريق|واتس|تواصل|مرفت/]
+  ];
+  const CHIPS = [["جرح في العلاقات والتعلّق","attach"],["أبحث عن سلام داخلي","peace"],["أشعر بالرفض","reject"],["الكسل والتأجيل","lazy"],["من أين أبدأ؟","diff"],["ما هو استيقظ VIP؟","vip"],["أريد حجز جلسة","book"],["طرق الدفع","pay"]];
+  const add = (who, html) => { const d = document.createElement("div"); d.className = "nour-m " + who; d.innerHTML = html; log.appendChild(d); log.scrollTop = log.scrollHeight; };
+  const reply = key => { const t = document.createElement("div"); t.className = "nour-m bot typing"; t.innerHTML = "<i></i><i></i><i></i>"; log.appendChild(t); log.scrollTop = log.scrollHeight;
+    setTimeout(() => { t.remove(); add("bot", A[key]()); }, 650); };
+  const ask = text => { add("me", esc(text)); const r = RULES.find(([, re]) => re.test(text)); reply(r ? r[0] : "fallback"); };
+  let started = false;
+  const start = () => { if (started) return; started = true;
+    add("bot", `أهلاً بك 🤍<br>أنا <b>نور</b>، مساعدتك الخاصة في موقع د. مرفت سرور.<br>ما الذي يشغل قلبك اليوم؟ اختاري من الأسفل أو اكتبي لي.`);
+    chips.innerHTML = CHIPS.map(([t,k]) => `<button type="button" data-k="${k}">${t}</button>`).join(""); };
+  $("#helpBtn").addEventListener("click", () => setTimeout(() => { if (!$("#helpPanel").hidden){ start(); q.focus({preventScroll:true}); } }, 0));
+  chips.addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; add("me", esc(b.textContent)); reply(b.dataset.k); });
+  form.addEventListener("submit", e => { e.preventDefault(); const t = q.value.trim(); if (!t) return; q.value = ""; ask(t); });
+  x.addEventListener("click", e => { e.stopPropagation(); $("#helpPanel").hidden = true; $("#helpBtn").setAttribute("aria-expanded","false"); });
+})();
 initForms(); initPlayer(); initReader(); initBooking();
 paintAll();
 curMini();
