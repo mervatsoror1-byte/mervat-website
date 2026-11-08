@@ -232,6 +232,7 @@ def header(active, hero=False):
 <div class="search-ov" id="searchOv" hidden><div class="search-box"><div class="search">{ic("search")}<label class="sr" for="sq">ابحث في المواد</label><input id="sq" type="text" placeholder="ابحث: فك التعلّق، Decoding، تنفّس، كتاب…" autocomplete="off"><button class="iconbtn" type="button" id="searchClose" aria-label="إغلاق">{ic("x")}</button></div><div class="search-res" id="searchRes"></div></div></div>
 <div class="help" id="help"><div class="nour" id="helpPanel" hidden role="dialog" aria-label="نور، مساعدتك الخاصة">
   <header class="nour-h"><span class="nour-av"><img src="assets/brand/logo-icon-gold.webp" alt="" width="26" height="32"></span><div><b>نور · مساعدتك الخاصة</b><small><i></i>متاحة الآن</small></div><button class="nour-x" type="button" id="nourX" aria-label="إغلاق">✕</button></header>
+  <nav class="nour-contact" aria-label="وسائل التواصل"><a href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat","icon icon-sm")}واتساب</a><a href="contact.html">{ic("mail","icon icon-sm")}راسلنا</a><a href="faq.html">{ic("book","icon icon-sm")}الأسئلة الشائعة</a><a href="sessions.html#booking">{ic("cal","icon icon-sm")}احجزي جلسة</a></nav>
   <div class="nour-log" id="nourLog" aria-live="polite"></div>
   <div class="nour-chips" id="nourChips"></div>
   <form class="nour-in" id="nourForm"><input id="nourQ" type="text" placeholder="اكتبي سؤالك هنا…" autocomplete="off" aria-label="اكتبي سؤالك"><button type="submit" aria-label="إرسال">{ic("fwd")}</button></form>
