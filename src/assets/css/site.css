@@ -1548,3 +1548,8 @@ body:has(.lp-hero) .help,body:has(.lp-hero) .tabbar{display:none}
 .lp-more .vp-btn{color:#1F3F7C;max-width:320px;text-decoration:none;display:inline-block}
 .lp-more .vp-btn:hover{color:#14234A}
 @media (max-width:900px){.lp-sticky .lp-was{display:none}.lp-sticky .lp-price{flex-wrap:nowrap}.lp-copy .lp-links{display:flex}}
+/* primary: start now (direct checkout) · secondary: small cart */
+.buy-ctas{display:inline-flex;align-items:center;gap:8px}
+.bundle .add,.split-body .buy .add{flex:none}
+.pd3-add2{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:none;border:0;cursor:pointer;color:#1F3F7C;font:inherit;font-weight:700;font-size:.92rem;text-decoration:underline;text-underline-offset:5px;text-decoration-color:rgba(197,160,89,.8)}
+.pd3-add2 .icon{color:#A9843F}

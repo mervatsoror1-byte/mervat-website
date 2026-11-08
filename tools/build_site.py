@@ -595,7 +595,7 @@ def home_body():
 <section class="wrap" style="padding-bottom:clamp(56px,8vw,110px)"><div class="split"><div class="portal-img"><div class="img"><img src="{course["img"]}" alt="" width="600" height="800" loading="lazy"></div><div class="float"><b>كورس صوتي</b>تسمعه في أي وقت ومن أي جهاز</div></div>
   <div class="split-body"><span class="eyebrow">الكورس</span><h2>عين صاحية</h2><p class="lead">{course["short"]} كورس صوتي مقسّم إلى وحدات، يحفظ لك تقدّمك وتكمل من حيث توقفت.</p>
     <ul class="mods">{mods}</ul>
-    <div class="buy">{price("ain-sahia")}<button class="btn btn-plum" type="button" data-add="ain-sahia">{ic("bag")}<span>أضف للسلة</span></button><a class="btn btn-line" href="{course["page"]}">تفاصيل الكورس</a></div></div></div></section>
+    <div class="buy">{price("ain-sahia")}<button class="btn btn-gold" type="button" data-buy="ain-sahia"><span>ابدأ الآن</span></button><button class="add" type="button" data-add="ain-sahia" aria-label="أضف عين صاحية للسلة" title="أضف للسلة"></button><a class="btn btn-line" href="{course["page"]}">تفاصيل الكورس</a></div></div></div></section>
 
 <section class="band"><div class="wrap"><div class="head center"><h2 class="title">قالوا عنا</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء المشتركين الحقيقية</span></div><div class="reel" tabindex="0" aria-label="آراء المشتركين">{reel}</div></div></section>
 <section class="ses-banner" aria-label="الجلسات الفردية"><img src="assets/img/sessions-banner.webp" alt="د. مرفت سرور في جلسة أونلاين" width="1672" height="941" loading="lazy">

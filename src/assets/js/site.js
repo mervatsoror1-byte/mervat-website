@@ -66,7 +66,7 @@ function paintPrices(){
 function paintButtons(){
   $$("[data-add]").forEach(b => {
     const id = b.dataset.add, inCart = S.cart.some(c => c.id === id), owned = hasAccess(id);
-    if (b.classList.contains("add")){ b.classList.toggle("in", inCart); b.innerHTML = icon(inCart ? "check" : "plus"); }
+    if (b.classList.contains("add")){ b.classList.toggle("in", inCart); b.innerHTML = icon(inCart ? "check" : "bag"); }
     else if (b.dataset.label !== undefined || (b.dataset.label = b.textContent.trim())){
       const lbl = b.querySelector("span") || b;
       if (owned && P[id] && P[id].learn){ b.dataset.owned = "1"; lbl.textContent = "ابدأ الآن"; }
@@ -109,7 +109,7 @@ function bundleCard(b){
     ${b.flow ? `<ol class="b-flow">${b.flow.map((f,n)=>`<li><i>${ar(n+1)}</i>${esc(f)}</li>`).join("")}</ol>` : ""}
     <span class="saving">توفّر ${S.region==="eg" ? ar(eg-p.eg)+" ج.م" : "$"+(us-p.us)}</span>
     <div class="buy"><span class="price">${money(p.eg,p.us)}<s>${S.region==="eg" ? ar(eg)+" ج.م" : "$"+us}</s></span>
-      <button class="btn btn-gold btn-sm" type="button" data-add="${p.id}"><span>أضف للسلة</span></button></div>
+      <span class="buy-ctas"><button class="btn btn-gold btn-sm" type="button" data-buy="${p.id}"><span>ابدأ الآن</span></button><button class="add" type="button" data-add="${p.id}" aria-label="أضف ${esc(p.title)} للسلة" title="أضف للسلة"></button></span></div>
   </article>`;
 }
 
@@ -133,7 +133,7 @@ function renderDynamic(){
   $$("[data-bundles]").forEach(el => el.innerHTML = D.bundles.map(bundleCard).join(""));
   paintPricesOnly();
   $$("[data-fav]").forEach(b => b.setAttribute("aria-pressed", S.favs.includes(b.dataset.fav)));
-  $$(".add[data-add]").forEach(b => { const inCart = S.cart.some(c => c.id === b.dataset.add); b.classList.toggle("in", inCart); b.innerHTML = icon(inCart ? "check" : "plus"); });
+  $$(".add[data-add]").forEach(b => { const inCart = S.cart.some(c => c.id === b.dataset.add); b.classList.toggle("in", inCart); b.innerHTML = icon(inCart ? "check" : "bag"); });
   if ($("#cartPage")) renderCart();
   if ($("#checkoutPage")) renderCheckout();
   if ($("#accountPage")) renderAccount();

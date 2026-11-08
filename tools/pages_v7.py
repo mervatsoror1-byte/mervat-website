@@ -63,8 +63,8 @@ def product(p):
       <p class="pd3-kicker">{E(p["catLabel"])}</p>
       <ul class="pd3-facts">{facts_html}</ul>
       <div class="pd3-price"><span class="sc-price" data-price="{p["id"]}">{p["eg"]} ج.م</span></div>
-      <button class="btn-safia pd3-cta" type="button" data-buy="{p["id"]}"><span>اشترك الآن</span></button>
-      <button class="vp-btn pd3-add" type="button" data-add="{p["id"]}"><span>أضف إلى السلة</span></button>
+      <button class="btn-safia pd3-cta" type="button" data-buy="{p["id"]}"><span>ابدأ الآن</span></button>
+      <button class="pd3-add2" type="button" data-add="{p["id"]}">{ic("bag","icon icon-sm")}<span>أضف إلى السلة لشراء أكثر من أداة</span></button>
       <div class="pd3-links"><button type="button" data-fav="{p["id"]}" aria-pressed="false">{ic("heart","icon icon-sm")}احفظ</button><a href="contact.html">{ic("gift","icon icon-sm")}إهداء</a><a href="contact.html">{ic("share","icon icon-sm")}مشاركة</a></div>
       {"<p class=pd3-vip>" + ic("crown","icon icon-sm") + "مشمول في برنامج استيقظ VIP</p>" if p.get("vipIncluded") else ""}
     </aside>
