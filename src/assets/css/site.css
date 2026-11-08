@@ -1696,3 +1696,17 @@ body:has(.lp-hero) .help,body:has(.lp-hero) .tabbar{display:none}
 .nour-contact a{display:grid;justify-items:center;gap:3px;padding:6px 2px;border-radius:12px;text-decoration:none;color:#1F3F7C;font-weight:800;font-size:.72rem;text-align:center;line-height:1.3}
 .nour-contact a:hover{background:#FFFDF7}
 .nour-contact .icon{width:20px;height:20px;color:#A9843F}
+/* two floating buttons: Nour (right) · contact (left) */
+.help-c{right:auto;left:calc(22px + env(safe-area-inset-left,0px));justify-items:start}
+.help-c .help-btn{padding:5px 18px 5px 6px}
+body:has(.lp-hero) .help-c{display:none}
+@media (max-width:600px){.help .help-txt{display:none}.help .help-btn{padding:5px}}
+@media (max-width:600px){
+  .help .help-txt{display:inline;font-size:0}
+  .help .help-txt::after{font-size:12.5px;font-weight:800;color:#F5F5DC}
+  #help .help-txt::after{content:"نور";padding-inline-end:10px}
+  .help-c .help-txt::after{content:"تواصل";padding-inline-start:10px}
+  #help .help-btn{padding:4px 4px 4px 0}
+  .help-c .help-btn{padding:4px 0 4px 4px}
+  .help .help-logo{width:40px;height:40px}
+}

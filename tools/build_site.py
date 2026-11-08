@@ -232,12 +232,14 @@ def header(active, hero=False):
 <div class="search-ov" id="searchOv" hidden><div class="search-box"><div class="search">{ic("search")}<label class="sr" for="sq">ابحث في المواد</label><input id="sq" type="text" placeholder="ابحث: فك التعلّق، Decoding، تنفّس، كتاب…" autocomplete="off"><button class="iconbtn" type="button" id="searchClose" aria-label="إغلاق">{ic("x")}</button></div><div class="search-res" id="searchRes"></div></div></div>
 <div class="help" id="help"><div class="nour" id="helpPanel" hidden role="dialog" aria-label="نور، مساعدتك الخاصة">
   <header class="nour-h"><span class="nour-av"><img src="assets/brand/logo-icon-gold.webp" alt="" width="26" height="32"></span><div><b>نور · مساعدتك الخاصة</b><small><i></i>متاحة الآن</small></div><button class="nour-x" type="button" id="nourX" aria-label="إغلاق">✕</button></header>
-  <nav class="nour-contact" aria-label="وسائل التواصل"><a href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat","icon icon-sm")}واتساب</a><a href="contact.html">{ic("mail","icon icon-sm")}راسلنا</a><a href="faq.html">{ic("book","icon icon-sm")}الأسئلة الشائعة</a><a href="sessions.html#booking">{ic("cal","icon icon-sm")}احجزي جلسة</a></nav>
   <div class="nour-log" id="nourLog" aria-live="polite"></div>
   <div class="nour-chips" id="nourChips"></div>
   <form class="nour-in" id="nourForm"><input id="nourQ" type="text" placeholder="اكتبي سؤالك هنا…" autocomplete="off" aria-label="اكتبي سؤالك"><button type="submit" aria-label="إرسال">{ic("fwd")}</button></form>
   <small class="nour-note">نور مساعدة آلية ترشّحك للأداة المناسبة، ولا تقدّم علاجاً أو تشخيصاً.</small></div>
   <button class="help-btn" id="helpBtn" type="button" aria-expanded="false" aria-controls="helpPanel"><span class="help-logo"><img src="assets/brand/logo-icon-gold.webp" alt="" width="26" height="32"></span><span class="help-txt">اسألي نور</span></button></div>
+<div class="help help-c" id="helpC"><div class="help-panel" id="helpCPanel" hidden><b>كيف يمكننا خدمتك؟</b><span class="muted">نرد عادةً خلال ساعات العمل.</span>
+  <a href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat")}واتساب</a><a href="contact.html">{ic("mail")}راسلنا</a><a href="faq.html">{ic("book")}الأسئلة الشائعة</a><a href="sessions.html#booking">{ic("cal")}احجزي جلسة</a></div>
+  <button class="help-btn" id="helpCBtn" type="button" aria-expanded="false" aria-controls="helpCPanel"><span class="help-logo"><img src="assets/brand/logo-icon-gold.webp" alt="" width="26" height="32"></span><span class="help-txt">كيف يمكننا خدمتك؟</span></button></div>
 <nav class="tabbar" aria-label="تنقل سريع"><a href="index.html">{ic("home")}<span>الرئيسية</span></a><a href="library.html">{ic("lib")}<span>الأدوات</span></a><a href="vip.html" class="tb-vip">{ic("crown")}<span>VIP</span></a><a href="cart.html">{ic("bag")}<span>السلة</span><i class="count js-cart-count">٠</i></a><a href="account.html">{ic("user")}<span>حسابي</span></a></nav>'''
 
 FOOTER = f'''<footer class="site-footer"><div class="wrap">
