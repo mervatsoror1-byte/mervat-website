@@ -235,7 +235,7 @@ function submitPay(f){
     if (p.kind === "vip") S.vip = {plan:p.id, since:new Date().toISOString()};
     else if (p.kind === "bundle") D.bundles.find(b => b.id === p.id).items.forEach(i => S.owned.includes(i) || S.owned.push(i));
     else if (p.kind === "session") S.bookings.push({type:p.title, when:c.when, link:"يُرسل قبل الجلسة"});
-    else if (!S.owned.includes(p.id)) S.owned.push(p.id);
+    else { const g = p.grants || p.id; if (!S.owned.includes(g)) S.owned.push(g); }
   });
   S.lastGw = gw;
   S.orders.unshift({no, date:new Date().toLocaleDateString("ar-EG"), items:items.map(c=>P[c.id].title), total:fmt(t.total), gw, status:"مكتمل"});
@@ -514,7 +514,7 @@ if (helpBtn){
 const sOv = $("#searchOv"), sq = $("#sq"), sRes = $("#searchRes");
 function searchDraw(){
   const q = (sq.value || "").trim();
-  const list = D.products.filter(p => p.page && !["gift","session"].includes(p.kind) && p.id !== "vip-y" && (!q || (p.title + " " + (p.catLabel||"") + " " + (p.short||"")).includes(q)));
+  const list = D.products.filter(p => p.page && !["gift","session","offer"].includes(p.kind) && p.id !== "vip-y" && (!q || (p.title + " " + (p.catLabel||"") + " " + (p.short||"")).includes(q)));
   sRes.innerHTML = list.length ? list.map(p => `<a href="${p.page}"><img src="${p.img}" alt=""><span><b>${esc(p.title)}</b><br><small>${esc(p.catLabel||"")}</small></span><small>${p.eg ? money(p.eg,p.us) : ""}</small></a>`).join("") : `<p class="empty">لا توجد نتائج. جرّب كلمة أخرى.</p>`;
 }
 if (sOv){

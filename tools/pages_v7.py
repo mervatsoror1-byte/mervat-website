@@ -179,45 +179,77 @@ def auth():
 
 
 def build_v7():
-    library(); about(); contact(); faq(); articles(); auth(); landing_serenity()
+    library(); about(); contact(); faq(); articles(); auth(); landings()
     for p in PRODUCTS:
         if p["kind"] in ("course", "exercise"):
             product(p)
 
-def landing_serenity():
-    pid = "serenity"
-    pr = B.price(pid)
-    steps = [("١", "التنفّس", "تهدأ أنفاسك وتعود إلى جسدك."),
-             ("٢", "التحرّر", "تتخلّص من مشاعرك السلبية."),
-             ("٣", "الحماية", "حماية في نهاية التمرين من أي طاقات سلبية.")]
-    pains = ["تحمل ثقلاً عاطفياً متراكماً لا تعرف مصدره", "تتأثر بطاقات من حولك بسهولة", "تشعر بمشاعر سلبية لا تعرف كيف تتخلص منها", "تحتاج إلى هدوء حقيقي وحماية داخلية"]
-    gets = [("play", "تأمل موجّه بصوت د. مرفت سرور"), ("layers", "ثلاث مراحل: التنفّس، التحرّر، الحماية"), ("lessons", "مقدمة مجانية تشرح التأمل"),
-            ("cal", "وصول لمدة ٣٦٥ يوماً"), ("devices", "على الهاتف أو الكمبيوتر")]
-    faqs = [("هل يناسبني إن لم أجرّب التأمل من قبل؟", "التأمل موجّه خطوة بخطوة بصوت د. مرفت، ومعه مقدمة تشرح طريقته قبل أن تبدأ."),
-            ("متى أمارسه؟", "عند الشعور بالثقل، أو بعد يوم مرهق، أو بشكل منتظم ضمن روتينك اليومي."),
-            ("متى أحصل عليه بعد الدفع؟", "يُفتح فوراً في حسابك بعد تأكيد الدفع، وتستمع إليه من أي جهاز.")]
-    buy = f'<div class="lp-buy"><div class="lp-price">{pr}</div><button class="btn-safia" type="button" data-buy="{pid}"><span>ابدأ التأمل الآن</span></button><a class="lp-free" href="learn.html#{pid}">{ic("play","icon icon-sm")}استمع للمقدمة مجاناً</a></div>'
-    page("lp-serenity.html", "تأمل السكينة والتنظيف", "تأمل موجّه بصوت د. مرفت سرور لتنظيف المشاعر السلبية في ثلاث مراحل: التنفّس، التحرّر، الحماية.", f"""
-<header class="lp-top"><a href="index.html" aria-label="مرفت سرور"><img src="assets/brand/logo-gold-transparent.webp" alt="مرفت سرور" width="120" height="90"></a></header>
+
+LANDINGS = [
+  dict(file="lp-serenity.html", offer="lp-serenity", base="serenity", cover="serenity", pos="82% 50%",
+       title="تأمل السكينة والتنظيف", desc="تأمل موجّه بصوت د. مرفت سرور لتنظيف المشاعر السلبية في ثلاث مراحل: التنفّس، التحرّر، الحماية.",
+       h1=("نظّف ما تراكم داخلك", "وعُد إلى سكينتك"), lead="تأمل السكينة والتنظيف يحرّرك من المشاعر السلبية في ثلاث مراحل.",
+       cta="ابدأ التأمل الآن", pains_h="هذا التأمل لك إذا كنت…",
+       pains=["تحمل ثقلاً عاطفياً متراكماً لا تعرف مصدره", "تتأثر بطاقات من حولك بسهولة", "تشعر بمشاعر سلبية لا تعرف كيف تتخلص منها", "تحتاج إلى هدوء حقيقي وحماية داخلية"],
+       steps_h="ثلاث مراحل في تأمل واحد",
+       steps=[("التنفّس", "تهدأ أنفاسك وتعود إلى جسدك."), ("التحرّر", "تتخلّص من مشاعرك السلبية."), ("الحماية", "حماية في نهاية التمرين من أي طاقات سلبية.")],
+       gets=[("play", "تأمل موجّه بصوت د. مرفت سرور"), ("layers", "ثلاث مراحل: التنفّس، التحرّر، الحماية"), ("lessons", "مقدمة مجانية تشرح التأمل"), ("cal", "وصول لمدة ٣٦٥ يوماً"), ("devices", "على الهاتف أو الكمبيوتر")],
+       faqs=[("هل يناسبني إن لم أجرّب التأمل من قبل؟", "التأمل موجّه خطوة بخطوة بصوت د. مرفت، ومعه مقدمة تشرح طريقته قبل أن تبدأ."),
+             ("متى أمارسه؟", "عند الشعور بالثقل، أو بعد يوم مرهق، أو بشكل منتظم ضمن روتينك اليومي."),
+             ("متى أحصل عليه بعد الدفع؟", "يُفتح فوراً في حسابك بعد تأكيد الدفع، وتستمع إليه من أي جهاز.")],
+       final="امنح نفسك دقائق من السكينة اليوم"),
+  dict(file="lp-attach.html", offer="lp-attach", base="attach", cover="attach", pos="50% 50%",
+       title="تمرين فك التعلّق", desc="تأمل موجّه بصوت د. مرفت سرور مدته ١٠ دقائق، يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة.",
+       h1=("حرّر قلبك مما يُثقله", "وعُد إلى مركزك"), lead="تأمل موجّه مدته ١٠ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة.",
+       cta="ابدأ التمرين الآن", pains_h="هذا التمرين لك إذا كنت…",
+       pains=["متعلّقاً بعلاقة انتهت أو لم تبدأ", "تعيش قلقاً دائماً من فقدان شخص أو شيء", "تجد صعوبة في ترك النتائج لله", "لا يتوقف تفكيرك في نفس الشخص أو الموقف"],
+       steps_h="ماذا يحدث في التمرين",
+       steps=[("تلاحظ", "ترى تعلّقك بوضوح دون أن تحكم على نفسك."), ("تفهم", "تعرف ما الذي يحاول هذا التعلّق أن يحميه فيك."), ("تتحرّر", "تحرّره بهدوء، وتعود إلى سلامك الداخلي.")],
+       gets=[("play", "تأمل موجّه مدته ١٠ دقائق بصوت د. مرفت سرور"), ("award", "مستوى مبتدئ، مناسب لأول تجربة"), ("lessons", "مقدمة مجانية تشرح التمرين"), ("cal", "وصول لمدة ٣٦٥ يوماً"), ("devices", "على الهاتف أو الكمبيوتر")],
+       faqs=[("هل يناسبني إن لم أجرّب التأمل من قبل؟", "نعم، مستواه مبتدئ، وهو موجّه خطوة بخطوة، ومعه مقدمة تشرح طريقته."),
+             ("كم مرة أمارسه؟", "يمكنك تكراره كلما شعرت بالتعلّق أو القلق، ومع التكرار يصبح التحرّر أسهل."),
+             ("متى أحصل عليه بعد الدفع؟", "يُفتح فوراً في حسابك بعد تأكيد الدفع، وتستمع إليه من أي جهاز.")],
+       final="امنح نفسك عشر دقائق من الحرية اليوم"),
+]
+
+
+def landing(L):
+    off, base = B.BY[L["offer"]], B.BY[L["base"]]
+    pid = L["offer"]
+    pr = f'<span class="price" data-price="{pid}">{off["eg"]} ج.م</span>'
+    was = f'<s class="lp-was" data-was="{base["eg"]}|{base["us"]}">{base["eg"]} ج.م</s>'
+    buy = (f'<div class="lp-buy"><div class="lp-price">{pr}{was}<em class="lp-tag">سعر خاص لفترة محدودة</em></div>'
+           f'<button class="btn-safia" type="button" data-buy="{pid}"><span>{L["cta"]}</span></button>'
+           f'<div class="lp-links"><a class="lp-free" href="learn.html#{base["id"]}">{ic("play","icon icon-sm")}استمع للمقدمة مجاناً</a>'
+           f'<a class="lp-all" href="library.html">تعرّف على كل الأدوات ←</a></div></div>')
+    nums = "١٢٣"
+    page(L["file"], L["title"], L["desc"], f"""
+<header class="lp-top"><a href="index.html" aria-label="مرفت سرور"><img src="assets/brand/logo-gold-transparent.webp" alt="مرفت سرور" width="120" height="90"></a><a class="lp-site" href="library.html">كل الأدوات</a></header>
 <section class="lp-hero"><canvas class="sparkle" data-density="1500" aria-hidden="true"></canvas>
-  <figure class="lp-ph"><img src="assets/img/covers/serenity.webp" alt="" width="1600" height="900" fetchpriority="high"></figure>
+  <figure class="lp-ph"><img src="assets/img/covers/{L["cover"]}.webp" alt="" width="1600" height="900" fetchpriority="high" style="object-position:{L["pos"]}"></figure>
   <div class="lp-copy"><span class="vs-eyebrow">تأمل موجّه بصوت د. مرفت سرور</span>
-    <h1>نظّف ما تراكم داخلك <span>وعُد إلى سكينتك</span></h1>
-    <p>تأمل السكينة والتنظيف يحرّرك من المشاعر السلبية في ثلاث مراحل.</p>
+    <h1>{L["h1"][0]} <span>{L["h1"][1]}</span></h1>
+    <p>{L["lead"]}</p>
     {buy}</div></section>
-<section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>هذا التأمل لك إذا كنت…</h2></header>
-  <ul class="lp-pains">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in pains)}</ul></div></section>
+<section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>{L["pains_h"]}</h2></header>
+  <ul class="lp-pains">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in L["pains"])}</ul></div></section>
 <section class="vp-sec vp-royal"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap">
-  <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>ثلاث مراحل في تأمل واحد</h2></header>
-  <div class="lp-steps">{"".join(f'<div class="lp-step"><b>{n}</b><h3>{t}</h3><p>{d}</p></div>' for n, t, d in steps)}</div></div></section>
+  <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>{L["steps_h"]}</h2></header>
+  <div class="lp-steps">{"".join(f'<div class="lp-step"><b>{nums[k]}</b><h3>{t}</h3><p>{d}</p></div>' for k, (t, d) in enumerate(L["steps"]))}</div></div></section>
 <section class="vp-sec vp-ivory"><div class="vp-wrap lp-two">
   <div><header class="vp-head" style="justify-items:start;text-align:start"><h2>ماذا تحصل عليه</h2></header>
-    <ul class="pd3-facts lp-gets">{"".join(f"<li>{ic(i,'icon icon-sm')}<span>{E(t)}</span></li>" for i, t in gets)}</ul></div>
+    <ul class="pd3-facts lp-gets">{"".join(f"<li>{ic(i,'icon icon-sm')}<span>{E(t)}</span></li>" for i, t in L["gets"])}</ul></div>
   <div class="lp-me"><img src="assets/img/mervat-about.webp" alt="د. مرفت سرور" width="900" height="1012" loading="lazy">
     <div><b>د. مرفت سرور</b><span>مدربة وعي وتشافي معتمدة من ICF بدرجة PCC · أكثر من ١٨ ألف ساعة تدريبية</span></div></div></div></section>
 <section class="vp-sec vp-ivory" style="padding-top:0"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة سريعة</h2></header>
-  <div class="vp-faq">{"".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in faqs)}</div></div></section>
-<section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>امنح نفسك عشر دقائق من السكينة اليوم</h2>{buy}</div></section>
-<footer class="lp-foot"><a href="terms.html">الشروط</a> · <a href="privacy.html">الخصوصية</a> · <a href="refund.html">الاسترداد</a> · <a href="contact.html">تواصل معنا</a><span>© ٢٠٢٦ د. مرفت سرور</span></footer>
-<div class="lp-sticky"><div class="lp-price">{pr}</div><button class="btn-safia" type="button" data-buy="{pid}"><span>ابدأ الآن</span></button></div>
+  <div class="vp-faq">{"".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in L["faqs"])}</div></div></section>
+<section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>{L["final"]}</h2>{buy}</div></section>
+<section class="lp-more"><div class="vp-wrap"><h2>اكتشف باقي أدوات د. مرفت</h2><p>تمارين Decoding، وتأملات للتشافي، وتوكيدات، وباقات بنظام يومي متكامل.</p><a class="vp-btn" href="library.html">تعرّف على كل الأدوات</a></div></section>
+<footer class="lp-foot"><a href="index.html">الموقع الرئيسي</a> · <a href="terms.html">الشروط</a> · <a href="privacy.html">الخصوصية</a> · <a href="refund.html">الاسترداد</a> · <a href="contact.html">تواصل معنا</a><span>© ٢٠٢٦ د. مرفت سرور</span></footer>
+<div class="lp-sticky"><div class="lp-price">{pr}{was}</div><button class="btn-safia" type="button" data-buy="{pid}"><span>ابدأ الآن</span></button></div>
 """, bare=True)
+
+
+def landings():
+    for L in LANDINGS:
+        landing(L)

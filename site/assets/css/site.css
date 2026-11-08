@@ -1528,6 +1528,23 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
   .lp-sticky .btn-safia{min-width:0;padding:10px 28px;border:0}
 }
 body:has(.lp-hero) .help,body:has(.lp-hero) .tabbar{display:none}
-.lp-ph img{object-position:82% 50%}
+
 .lp-me img{width:min(240px,70%)}
 @media (max-width:900px){.lp-ph img{object-position:50% 50%}.lp-top img{height:52px}}
+.lp-top{justify-content:space-between;align-items:center;padding:16px max(20px,4vw)}
+.lp-site{color:#F5F5DC;font-weight:700;text-decoration:none;border:1px solid rgba(226,198,140,.7);border-radius:999px;padding:7px 16px;background:rgba(20,35,74,.35);backdrop-filter:blur(4px)}
+.lp-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.lp-was{color:rgba(245,245,220,.75);font-size:1.15rem;text-decoration-color:#E2C68C}
+.lp-tag{width:100%;font-style:normal;font-size:.85rem;font-weight:700;color:#E2C68C}
+.lp-links{display:flex;flex-wrap:wrap;gap:10px 22px;width:100%}
+.lp-free{width:auto}
+.lp-all{color:#F5F5DC;font-weight:700;text-decoration:none;opacity:.9}
+.lp-all:hover{opacity:1;text-decoration:underline}
+.vp-final .lp-links{justify-content:center}
+.lp-more{background:#FBF8EE;text-align:center;padding:60px 0}
+.lp-more .vp-wrap{display:grid;gap:14px;justify-items:center}
+.lp-more h2{margin:0;font-family:"Noto Naskh Arabic",serif;color:#1F3F7C;font-size:clamp(1.5rem,2.6vw,2rem)}
+.lp-more p{margin:0;color:#2C3A5C;font-weight:500}
+.lp-more .vp-btn{color:#1F3F7C;max-width:320px;text-decoration:none;display:inline-block}
+.lp-more .vp-btn:hover{color:#14234A}
+@media (max-width:900px){.lp-sticky .lp-was{display:none}.lp-sticky .lp-price{flex-wrap:nowrap}.lp-copy .lp-links{display:flex}}
