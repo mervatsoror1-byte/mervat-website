@@ -372,16 +372,39 @@ def build():
 <div class="buy">{price("book-ghosts")}<a class="btn btn-plum" href="book-ghosts.html">صفحة الكتاب</a><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
 <section class="wrap"><div class="card" style="text-align:center;display:grid;gap:10px;justify-items:center"><span class="ico">{ic("gift")}</span><h2 style="font-size:1.4rem">كتب مجانية قادمة</h2><p class="muted">سنضيف كتيبات مجانية تُفتح بمجرد إنشاء حساب.</p><a class="btn btn-gold btn-sm" href="register.html">أنشئ حسابك لتصلك أولاً</a></div></section>''', active="books.html")
 
-    # ---------- sessions
-    types = "".join(f'<label class="type"><input type="radio" name="stype" value="{sid}" {"checked" if sid=="s-single" else ""}><span><b>{E(BY[sid]["title"])}</b><small>{d}</small></span>{price(sid)}</label>' for sid, d in [("s-intro","تعرّف على طريقة العمل وحدّد احتياجك"),("s-single","جلسة عميقة حول موضوع واحد"),("s-pack","أربع جلسات أسبوعية بسعر أقل"),("s-coach","جلسة بمعايير ICF: أسئلة تساعدك تكتشف إجاباتك بنفسك وتضع خطوات واضحة نحو هدفك")])
-    page("sessions.html", "الجلسات الفردية", "احجز جلسة استشارة فردية أونلاين مع د. مرفت سرور. اختر الموعد بتوقيت بلدك، وادفع بالبطاقة أو المحفظة أو PayPal.", page_hero("الجلسات الفردية","اختر نوع الجلسة والموعد، ويصلك التأكيد ورابط الجلسة على بريدك.") + f'''
-<section class="band-sm"><div class="wrap split" id="booking" style="align-items:start">
-  <div class="split-body"><h2 style="font-size:1.4rem;font-family:var(--body)">١. نوع الجلسة</h2><div class="types">{types}</div>
-    <ul class="facts" style="margin-top:10px"><li>{ic("live")}أونلاين عبر Zoom أو Google Meet</li><li>{ic("globe")}يظهر الموعد بتوقيت بلدك</li><li>{ic("bell")}تذكير قبل الجلسة بيوم وبساعة</li><li>{ic("cal")}تغيير الموعد مجاناً حتى ٢٤ ساعة قبله</li></ul></div>
-  <div class="cal"><div class="cal-head"><h3>٢. اختر الموعد · <span id="bkMonth"></span></h3><div class="cal-nav"><button class="iconbtn" id="bkPrev" type="button" aria-label="الأسبوع السابق">{ic("fwd")}</button><button class="iconbtn" id="bkNext" type="button" aria-label="الأسبوع التالي">{ic("back")}</button></div></div>
-    <div class="days" id="bkDays"></div><div class="slots" id="bkSlots"></div><small class="muted">المواعيد بتوقيت القاهرة (GMT+2). المواعيد هنا للعرض.</small>
-    <button class="btn btn-gold btn-block" id="bkGo" type="button">{ic("lock")}تأكيد الموعد والدفع</button></div></div></section>
-<section class="band"><div class="wrap narrow"><div class="head center"><h2 class="title">أسئلة عن الجلسات</h2></div><div class="faq">{faq_items(FAQ["sessions"])}</div></div></section>''', active="sessions.html")
+    # ---------- sessions (Stan-style: profile column + session cards with calendars)
+    SESS = [("s-intro", "assets/img/mervat-about.webp", "تعرّفي على طريقة العمل، وحدّدي احتياجك، ونختار معاً الطريق الأنسب لك.",
+             ["جلسة أونلاين عبر Zoom لمدة ٣٠ دقيقة", "نفهم ما تمرّين به وما تحتاجينه", "توصية واضحة بالخطوة التالية"]),
+            ("s-single", "assets/img/thumb-session.webp", "جلسة عميقة حول موضوع واحد يشغلك، تخرجين منها بفهم أوضح وخطوات عملية.",
+             ["جلسة خاصة أونلاين لمدة ٦٠ دقيقة", "تركيز كامل على موضوع واحد", "خطوات عملية تطبّقينها بعد الجلسة"]),
+            ("s-coach", "assets/img/whois-library.webp", "جلسة بمعايير ICF: أسئلة تساعدك تكتشفين إجاباتك بنفسك، وتضعين خطوات واضحة نحو هدفك.",
+             ["جلسة كوتشينج أونلاين لمدة ٦٠ دقيقة", "بمعايير الاتحاد الدولي للتدريب ICF", "هدف واضح وخطة عمل منك أنتِ"]),
+            ("s-pack", "assets/img/thumb-vip.webp", "أربع جلسات أسبوعية متتالية، لمتابعة متصلة وتحوّل أعمق، بسعر أقل.",
+             ["٤ جلسات خاصة أونلاين، جلسة كل أسبوع", "متابعة متصلة بين الجلسات", "تحجزين الجلسة الأولى الآن، والباقي معاً"])]
+    def sess_card(sid, img, d, pts):
+        P_ = BY[sid]
+        return f"""<article class="ss-card" data-sess="{sid}">
+  <div class="ss-top"><img src="{img}" alt="" width="120" height="120" loading="lazy"><div><h3>{E(P_["title"])}</h3><p>{E(d)}</p>{price(sid)}</div></div>
+  <div class="ss-cal"><div class="ss-cal-h"><button type="button" class="ss-nav" data-dir="-1" aria-label="الشهر السابق">›</button><b class="ss-month"></b><button type="button" class="ss-nav" data-dir="1" aria-label="الشهر التالي">‹</button></div>
+    <div class="ss-wd"><span>سبت</span><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span></div>
+    <div class="ss-days"></div><div class="ss-slots"></div></div>
+  <button class="btn-safia ss-go" type="button"><span>احجزي جلستك الآن</span></button>
+  <details class="ss-more"><summary>اعرفي المزيد</summary><ul>{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in pts)}</ul></details>
+</article>"""
+    SOC = [("https://www.instagram.com/mervatsoror111", "إنستغرام", '<rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17" cy="7" r=".9"/>'),
+           ("https://www.tiktok.com/@fefesoror", "تيك توك", '<path d="M14 4v10.5a3.5 3.5 0 1 1-3-3.46M14 4c.5 2.4 2 4 5 4.3"/>'),
+           ("https://www.facebook.com/mrft.srwr", "فيسبوك", '<path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/>'),
+           ("https://www.youtube.com/@mervatsoror", "يوتيوب", '<rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10 9.5v5l4.5-2.5z"/>')]
+    soc = "".join(f'<a href="{h}" target="_blank" rel="noopener" aria-label="{n}"><svg class="icon" viewBox="0 0 24 24">{g}</svg></a>' for h, n, g in SOC)
+    page("sessions.html", "الجلسات الفردية", "احجز جلسة تعارف أو استشارة أو كوتشينج أونلاين مع د. مرفت سرور. اختر الموعد بتوقيت بلدك، وادفع بالبطاقة أو المحفظة أو PayPal.", f'''
+<section class="ss-page" id="booking"><canvas class="sparkle" data-density="2000" aria-hidden="true"></canvas><div class="ss-wrap">
+  <div class="ss-grid">{"".join(sess_card(*x) for x in SESS)}</div>
+  <aside class="ss-profile"><img src="assets/img/popup-vip.webp" alt="د. مرفت سرور" width="900" height="900">
+    <h1>مرفت سرور</h1><p>مدربة وعي وتشافي · معتمدة من ICF بدرجة PCC · رفيقة رحلة العودة إلى الذات</p>
+    <div class="ss-soc">{soc}</div>
+    <ul class="ss-facts"><li>{ic("live")}أونلاين عبر Zoom</li><li>{ic("globe")}الموعد بتوقيت القاهرة</li><li>{ic("bell")}تذكير قبل الجلسة</li></ul></aside>
+</div></section>
+<section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة عن الجلسات</h2></header><div class="vp-faq">{faq_items(FAQ["sessions"])}</div></div></section>''', active="sessions.html")
 
     # ---------- about
     page("about.html", "عن د. مرفت سرور", "تعرّف على د. مرفت سرور، مدربة وعي وتشافي معتمدة من الاتحاد الدولي للتدريب ICF، ومنهجها في الوعي والتشافي.", page_hero("عن د. مرفت سرور","مدربة وعي وتشافي معتمدة من الاتحاد الدولي للتدريب ICF.") + f'''

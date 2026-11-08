@@ -369,7 +369,7 @@ function initReader(){
 
 /* ---------- booking ---------- */
 function initBooking(){
-  const root = $("#booking"); if (!root) return;
+  const root = $("#booking"); if (!root || !$("#bkDays")) return;
   const days = $("#bkDays"), slots = $("#bkSlots"), title = $("#bkMonth");
   const names = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
   const months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
@@ -636,6 +636,50 @@ document.addEventListener("click", e => {
   if (dl){ const [id, i] = dl.dataset.vrdel.split("|"); const all = vLoad(); (all[id]||[]).splice(+i, 1); vSave(all); renderVoices(); toast("حُذف التسجيل"); }
 });
 renderVoices();
+
+/* ---------- session cards with month calendars ---------- */
+function initSessCards(){
+  const cards = $$("[data-sess]"); if (!cards.length) return;
+  const months = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+  const today = new Date(); today.setHours(0,0,0,0);
+  const OPEN = [0, 1, 3, 6]; // Sun, Mon, Wed, Sat (example availability)
+  cards.forEach(card => {
+    const id = card.dataset.sess, st = {y: today.getFullYear(), m: today.getMonth(), day: null, slot: null};
+    const daysEl = card.querySelector(".ss-days"), slotsEl = card.querySelector(".ss-slots"), title = card.querySelector(".ss-month");
+    function draw(){
+      title.textContent = months[st.m] + " " + ar(st.y);
+      const first = new Date(st.y, st.m, 1), lead = (first.getDay() + 1) % 7, n = new Date(st.y, st.m + 1, 0).getDate();
+      let h = "";
+      for (let k = 0; k < lead; k++) h += "<span></span>";
+      for (let d = 1; d <= n; d++){
+        const dt = new Date(st.y, st.m, d), key = `${st.y}-${st.m+1}-${d}`;
+        const ok = dt > today && OPEN.includes(dt.getDay());
+        h += `<button type="button" class="ss-d${ok ? " ok" : ""}" ${ok ? "" : "disabled"} data-k="${key}" aria-pressed="${st.day===key}">${ar(d)}</button>`;
+      }
+      daysEl.innerHTML = h;
+      if (!st.day){ slotsEl.innerHTML = ""; return; }
+      const seed = Number(st.day.split("-")[2]);
+      slotsEl.innerHTML = `<small>الأوقات المتاحة (بتوقيت القاهرة)</small>` + D.slots.map((s,k) => `<button type="button" class="ss-s" data-s="${s}" ${(seed+k)%4===0?"disabled":""} aria-pressed="${st.slot===s}">${s}</button>`).join("");
+    }
+    card.addEventListener("click", e => {
+      const b = e.target.closest("button"); if (!b || b.disabled) return;
+      if (b.classList.contains("ss-nav")){ const dir = +b.dataset.dir; const t = new Date(st.y, st.m + dir, 1);
+        if (t < new Date(today.getFullYear(), today.getMonth(), 1) || t > new Date(today.getFullYear(), today.getMonth() + 3, 1)) return;
+        st.y = t.getFullYear(); st.m = t.getMonth(); draw(); }
+      else if (b.classList.contains("ss-d")){ st.day = b.dataset.k; st.slot = null; draw(); }
+      else if (b.classList.contains("ss-s")){ st.slot = b.dataset.s; draw(); }
+      else if (b.classList.contains("ss-go")){
+        if (!st.day){ toast("اختاري يوماً من التقويم أولاً"); return; }
+        if (!st.slot){ toast("اختاري وقت الجلسة"); return; }
+        const [y, m, d] = st.day.split("-").map(Number), dt = new Date(y, m - 1, d);
+        const names = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+        startBuy(id, {when: `${names[dt.getDay()]} ${ar(d)} ${months[m-1]} · ${st.slot} (بتوقيت القاهرة)`});
+      }
+    });
+    draw();
+  });
+}
+initSessCards();
 initForms(); initPlayer(); initReader(); initBooking();
 paintAll();
 curMini();
