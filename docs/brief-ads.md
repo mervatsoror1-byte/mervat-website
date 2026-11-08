@@ -3,7 +3,7 @@
 > ملفات مرتبطة: docs/pricing-analysis-sumaya.md · docs/offers-calendar.md · docs/progress.md · docs/plan.md
 
 ## من هي
-- الحسابات: فيسبوك https://www.facebook.com/share/1JPFJ5DLZW/ · يوتيوب https://www.youtube.com/@mervatsoror · تيك توك https://www.tiktok.com/@fefesoror · إنستغرام https://www.instagram.com/mervatsoror111 · واتساب 01095292748
+- الحسابات: فيسبوك https://www.facebook.com/mrft.srwr · يوتيوب https://www.youtube.com/@mervatsoror · تيك توك https://www.tiktok.com/@fefesoror · إنستغرام https://www.instagram.com/mervatsoror111 · واتساب 01095292748
 - مرفت سرور: مدربة وعي وتشافي، معتمدة من الاتحاد الدولي للتدريب ICF بدرجة PCC.
 - بدأت ٢٠١٩. دراسات: جامعة بنسلفانيا (مارتن سليجمان)، جامعة لايدن (كريس غوتو-جونز).
 - الأرقام: ٨ سنوات خبرة · +١٨ ألف ساعة تدريبية · +١٠٠ متدرب.

@@ -549,6 +549,93 @@ $$("canvas.sparkle").forEach(c => {
   size(); addEventListener("resize", size); requestAnimationFrame(draw);
 });
 
+
+/* ---------- voice reviews (prototype: kept in this browser) ---------- */
+const VKEY = "ms_voices_v1";
+const vLoad = () => { try { return JSON.parse(localStorage.getItem(VKEY) || "{}"); } catch(e){ return {}; } };
+const vSave = v => { try { localStorage.setItem(VKEY, JSON.stringify(v)); return true; } catch(e){ return false; } };
+const wave = seed => { let h = ""; for (let i = 0; i < 34; i++){ const v = 22 + Math.round(70 * Math.abs(Math.sin(seed * 7.3 + i * 1.7) * Math.cos(i * .53 + seed))); h += `<i style="height:${v}%"></i>`; } return h; };
+const fmtT = s => { s = Math.max(0, Math.round(s)); return (Math.floor(s/60) + ":" + String(s%60).padStart(2,"0")).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]); };
+function voiceCard(v, id, idx, demo){
+  return `<article class="vr-card${demo ? " is-demo" : ""}">
+    <button class="vr-play" type="button" ${demo ? 'data-vrdemo="1"' : `data-vrplay="${id}|${idx}"`} aria-label="تشغيل">${icon("play")}</button>
+    <div class="vr-main"><div class="vr-wave">${wave((idx+3)*(demo?11:5))}</div>
+      <div class="vr-meta"><b>${esc(v.name)}</b><span>${esc(v.date)}${v.len ? " · " + fmtT(v.len) : ""}</span></div></div>
+    ${demo ? '<span class="vr-demo">مثال للتصميم</span>' : `<button class="vr-del" type="button" data-vrdel="${id}|${idx}" title="حذف (يظهر في الموقع الحقيقي لمرفت فقط)">حذف</button>`}
+    ${demo ? "" : `<audio preload="none" src="${v.src}"></audio>`}
+  </article>`;
+}
+function renderVoices(){
+  const all = vLoad();
+  $$("[data-vr]").forEach(el => {
+    const id = el.dataset.vr;
+    if (id === "all"){
+      const items = []; Object.keys(all).forEach(k => (all[k]||[]).forEach((v,i) => items.push([k, i, Object.assign({}, v, {date: (P[k] ? P[k].title + " · " : "") + v.date})])));
+      const demos = [{name:"اسم العميلة الأول", date:"تمرين فك التعلّق · منذ يومين", len:74}, {name:"عميلة من الإسكندرية", date:"Decoding نور القبول · منذ أسبوع", len:52}, {name:"عميلة من الرياض", date:"استيقظ VIP · منذ أسبوعين", len:96}];
+      el.innerHTML = items.slice(0, 6).map(([k,i,v]) => voiceCard(v, k, i, false)).join("") + (items.length ? "" : demos.map((v,i) => voiceCard(v, "all", i, true)).join(""));
+      return;
+    }
+    const list = all[id] || [];
+    const demos = [{name:"اسم العميلة الأول", date:"منذ يومين", len:74}, {name:"عميلة من القاهرة", date:"منذ أسبوع", len:52}];
+    el.innerHTML = list.map((v,i) => voiceCard(v, id, i, false)).join("") + (list.length ? "" : demos.map((v,i) => voiceCard(v, id, i, true)).join(""));
+  });
+  $$("[data-vrrec]").forEach(el => {
+    if (el.dataset.state && el.dataset.state !== "idle") return;
+    const id = el.dataset.vrrec;
+    el.innerHTML = hasAccess(id)
+      ? `<button class="vr-start" type="button" data-vrstart="${id}">${icon("chat")}<span>سجّلي تجربتك بصوتك</span></button><small>حتى دقيقتين · تُنشر مباشرة</small>`
+      : `<div class="vr-locked">${icon("lock")}<span>بعد شراء هذه الأداة، يمكنك تسجيل تجربتك بصوتك هنا.</span></div>`;
+  });
+}
+let vRec = null;
+async function vStart(el, id){
+  if (!navigator.mediaDevices || !window.MediaRecorder){ toast("التسجيل الصوتي غير مدعوم في هذا المتصفح."); return; }
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({audio:true}); }
+  catch(e){ toast("لم يُسمح باستخدام الميكروفون. في النسخة التجريبية قد يُمنع، ويعمل في الموقع الحقيقي."); return; }
+  const chunks = [], mr = new MediaRecorder(stream), t0 = Date.now();
+  el.dataset.state = "rec";
+  el.innerHTML = `<div class="vr-live"><span class="vr-dot"></span><b class="vr-time">٠:٠٠</b><span>جارٍ التسجيل…</span><button class="vr-stop" type="button">إيقاف</button></div>`;
+  const tick = setInterval(() => { const s = (Date.now()-t0)/1000; const t = el.querySelector(".vr-time"); if (t) t.textContent = fmtT(s); if (s >= 120) mr.stop(); }, 250);
+  mr.ondataavailable = e => e.data.size && chunks.push(e.data);
+  mr.onstop = () => {
+    clearInterval(tick); stream.getTracks().forEach(t => t.stop());
+    const blob = new Blob(chunks, {type: mr.mimeType || "audio/webm"}), len = (Date.now()-t0)/1000;
+    const url = URL.createObjectURL(blob);
+    el.dataset.state = "review";
+    const first = S.user && S.user.name ? S.user.name.trim().split(/\s+/)[0] : "";
+    el.innerHTML = `<div class="vr-review"><audio controls src="${url}"></audio>
+      <div class="vr-opts"><label><input type="radio" name="vrn" value="first" checked><span>اسمي الأول${first ? " (" + esc(first) + ")" : ""}</span></label>
+      <label><input type="radio" name="vrn" value="city"><span>عميلة من</span></label><input class="vr-city" type="text" placeholder="المدينة" aria-label="المدينة"></div>
+      <label class="check"><input type="checkbox" class="vr-ok"><span>أوافق على نشر تسجيلي الصوتي في الموقع</span></label>
+      <div class="vr-actions"><button class="btn-safia vr-pub" type="button">نشر تجربتي</button><button class="vp-btn vr-redo" type="button">إعادة التسجيل</button></div></div>`;
+    el.querySelector(".vr-redo").onclick = () => { el.dataset.state = "idle"; renderVoices(); };
+    el.querySelector(".vr-pub").onclick = () => {
+      if (!el.querySelector(".vr-ok").checked){ toast("ضعي علامة الموافقة على النشر أولاً."); return; }
+      const city = el.querySelector(".vr-city").value.trim();
+      const name = el.querySelector("input[name=vrn]:checked").value === "city" ? "عميلة من " + (city || "مصر") : (first || "عميلة");
+      const fr = new FileReader();
+      fr.onload = () => {
+        const all = vLoad(); (all[id] = all[id] || []).unshift({name, src: fr.result, len, date: "الآن"});
+        if (!vSave(all)){ toast("التسجيل أكبر من مساحة النسخة التجريبية، جرّبي تسجيلاً أقصر."); return; }
+        el.dataset.state = "idle"; renderVoices(); toast("نُشرت تجربتك، شكراً لك");
+      };
+      fr.readAsDataURL(blob);
+    };
+  };
+  el.querySelector(".vr-stop").onclick = () => mr.stop();
+  mr.start();
+}
+document.addEventListener("click", e => {
+  const st = e.target.closest("[data-vrstart]"); if (st){ vStart(st.closest("[data-vrrec]"), st.dataset.vrstart); return; }
+  if (e.target.closest("[data-vrdemo]")){ toast("هذا مثال للتصميم، والتسجيلات الحقيقية تظهر هنا بعد أن تسجّلها العميلات."); return; }
+  const pl = e.target.closest("[data-vrplay]");
+  if (pl){ const a = pl.closest(".vr-card").querySelector("audio"); $$(".vr-card audio").forEach(x => { if (x !== a){ x.pause(); x.closest(".vr-card").classList.remove("on"); } });
+    if (a.paused){ a.play(); pl.closest(".vr-card").classList.add("on"); a.onended = () => pl.closest(".vr-card").classList.remove("on"); } else { a.pause(); pl.closest(".vr-card").classList.remove("on"); } return; }
+  const dl = e.target.closest("[data-vrdel]");
+  if (dl){ const [id, i] = dl.dataset.vrdel.split("|"); const all = vLoad(); (all[id]||[]).splice(+i, 1); vSave(all); renderVoices(); toast("حُذف التسجيل"); }
+});
+renderVoices();
 initForms(); initPlayer(); initReader(); initBooking();
 paintAll();
 curMini();
