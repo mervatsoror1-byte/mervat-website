@@ -1725,3 +1725,9 @@ body:has(.lp-hero) .help-c{display:none}
 .vr-pill.on .vr-mini i:nth-child(odd){animation-delay:.25s}
 .vr-demo-note{grid-column:1/-1;text-align:center;margin:4px 0 0;color:#A9843F;font-size:.82rem;font-weight:700}
 @media (max-width:760px){.vr-pills{grid-template-columns:1fr}.vr-pill{padding-inline-end:18px}.vr-pill .vr-play{width:48px;height:48px}}
+/* Arabic book: spine on the right, opens from the right */
+.book3d .cover{aspect-ratio:2/3;transform:rotateY(24deg) rotateX(4deg)}
+.book3d:hover .cover{transform:rotateY(8deg) rotateX(2deg)}
+.book3d .cover .face{border-radius:12px 3px 3px 12px;box-shadow:-24px 30px 50px -20px rgba(26,54,112,.5)}
+.book3d .cover .face::after{background:linear-gradient(270deg,rgba(0,0,0,.2),transparent 6%,rgba(255,255,255,.22) 9%,transparent 14%)}
+.book3d .cover .pages{left:auto;right:100%;transform:rotateY(-90deg);transform-origin:right}

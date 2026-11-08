@@ -517,7 +517,7 @@ def build():
 
 # ------------------------------------------------------------------ partials
 def li(items): return "".join(f"<li>{ic('check')}<span>{E(x)}</span></li>" for x in items)
-def book3d(): return '<div class="book3d"><div class="cover"><div class="face"><img src="assets/art/book.webp" alt="" width="600" height="800" loading="lazy"></div><div class="ttl"><b>عندما تولد في عائلة من الأشباح</b><small>د. مرفت سرور</small></div><div class="pages"></div></div></div>'
+def book3d(): return '<div class="book3d"><div class="cover"><div class="face"><img src="assets/art/book.webp" alt="" width="600" height="800" loading="lazy"></div><div class="pages"></div></div></div>'
 def book_feats(): return f'<div class="feats"><div class="feat">{ic("book")}<b>اقرأه داخل حسابك</b>على الهاتف أو الكمبيوتر</div><div class="feat">{ic("lock")}<b>نسخة باسمك</b>محمية وغير قابلة للتحميل</div><div class="feat">{ic("mark")}<b>يتذكّر صفحتك</b>تكمل من حيث توقفت</div></div>'
 def voices():
     return '''<section class="band tint-pearl"><div class="wrap"><div class="head center"><span class="eyebrow center">تجارب</span><h2 class="title">بكلمات من سبقوك</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء المشتركين الحقيقية</span></div>
