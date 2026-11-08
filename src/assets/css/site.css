@@ -1645,3 +1645,13 @@ body:has(.lp-hero) .help,body:has(.lp-hero) .tabbar{display:none}
 .ss-go{margin-top:auto}
 @media (max-width:1060px){.ss-top{min-height:0}.ss-slots{min-height:0}}
 @media (min-width:1061px){.ss-grid{grid-auto-rows:1fr}}
+/* mobile: larger exercise titles (menu + cards) */
+@media (max-width:900px){
+  .mcol>a span{font-size:18px;font-weight:800;line-height:1.5}
+  .mcol>a small{font-size:14px}
+}
+@media (max-width:600px){
+  .scard h3,.scard h3 a{font-size:20px;line-height:1.5}
+  .scard .sc-meta{font-size:15px}
+  .scard .sc-tags span{font-size:13px}
+}
