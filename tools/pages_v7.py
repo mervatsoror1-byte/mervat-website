@@ -103,7 +103,8 @@ def about():
 
 def contact():
     items = [("chat", "01095292748", "https://wa.me/201095292748"), ("mail", "support@mervatsoror.com", "contact.html"),
-             ("play", "mervatsoror", "#"), ("user", "mervatsoror", "#"), ("globe", "mervatsoror", "#"), ("heart", "mervatsoror", "#")]
+             ("play", "يوتيوب", "https://www.youtube.com/@mervatsoror"), ("heart", "إنستغرام", "https://www.instagram.com/mervatsoror111"),
+             ("user", "فيسبوك", "https://www.facebook.com/share/1JPFJ5DLZW/"), ("globe", "تيك توك", "https://www.tiktok.com/@fefesoror")]
     page("contact.html", "اتصل بنا", "تواصل مع فريق د. مرفت سرور: واتساب 01095292748، أو أرسل رسالتك من النموذج.", f'''
 {B.page_hero("مساحة آمنة لاستفساراتك", "شاركني ما يدور في خاطرك، ويسعدني مرافقتك.", ("اتصل بنا", None))}
 <section class="pg"><div class="wrap ct-grid">
@@ -115,8 +116,7 @@ def contact():
       <div class="field"><label for="ctMsg">رسالتك <i>*</i></label><textarea id="ctMsg" required maxlength="500" placeholder="أدخل محتوى الرسالة"></textarea></div>
       <div class="alert" hidden></div><button class="btn btn-gold btn-block" type="submit">إرسال الرسالة</button></form></div>
   <div class="ct-card"><h2>تابع رحلة الوعي اليومية عبر منصاتنا</h2><p>حيث نشارككم ومضات من النور والإلهام.</p>
-    <div class="ct-list">{"".join(f'<a href="{h}" {"target=_blank rel=noopener" if h.startswith("http") else ""}><span class="gic">{ic(i,"icon icon-sm")}</span><b>{t}</b></a>' for i,t,h in items)}</div>
-    <span class="demo" style="color:#C9D3EA;border-color:#C9D3EA">أسماء الحسابات مؤقتة</span></div>
+    <div class="ct-list">{"".join(f'<a href="{h}" {"target=_blank rel=noopener" if h.startswith("http") else ""}><span class="gic">{ic(i,"icon icon-sm")}</span><b>{t}</b></a>' for i,t,h in items)}</div></div>
 </div></section>''', active="contact.html")
 
 
@@ -152,7 +152,7 @@ def auth():
     quotes = '<div class="au-quote"><span class="au-orn" aria-hidden="true">✦</span><p>كل خطوة<br>نحو ذاتك<br>خطوة<br>نحو <em>النور</em></p></div>'
     art = f'<div class="au-art"><a class="au-logo" href="index.html"><img src="assets/brand/logo-gold-transparent.webp" alt="د. مرفت سرور" width="120" height="90"></a><img class="au-photo" src="assets/img/auth-white.webp" alt="د. مرفت سرور" width="1122" height="1402"><img class="au-photo au-cut" src="assets/img/auth-white-cut.webp" alt="" aria-hidden="true" width="1122" height="1402">{quotes}</div>'
     spark = '<canvas class="sparkle" data-density="1600" aria-hidden="true"></canvas>'
-    social = '<div class="au-social">' + "".join(f'<a href="#" aria-label="{n}">{ic(i,"icon icon-sm")}</a>' for i, n in [("chat", "واتساب"), ("mail", "بريد"), ("play", "يوتيوب"), ("heart", "إنستغرام")]) + '</div>'
+    social = '<div class="au-social">' + "".join(f'<a href="{h}" target="_blank" rel="noopener" aria-label="{n}">{ic(i,"icon icon-sm")}</a>' for i, n, h in [("chat", "واتساب", "https://wa.me/201095292748"), ("play", "يوتيوب", "https://www.youtube.com/@mervatsoror"), ("heart", "إنستغرام", "https://www.instagram.com/mervatsoror111"), ("user", "فيسبوك", "https://www.facebook.com/share/1JPFJ5DLZW/")]) + '</div>'
     back = f'<a class="au-back" href="index.html">عودة {ic("fwd","icon icon-sm")}</a>'
     page("login.html", "تسجيل الدخول", "سجّل الدخول لمتابعة رحلتك مع د. مرفت سرور.", f'''<div class="au">{spark}{art}<div class="au-panel">{back}<div class="au-in">
   <h1>أهلاً بك مجدداً</h1><p>سجّل الدخول لمتابعة رحلة التشافي الخاصة بك</p>
