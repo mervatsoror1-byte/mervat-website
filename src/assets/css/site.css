@@ -1731,3 +1731,8 @@ body:has(.lp-hero) .help-c{display:none}
 .book3d .cover .face{border-radius:12px 3px 3px 12px;box-shadow:-24px 30px 50px -20px rgba(26,54,112,.5)}
 .book3d .cover .face::after{background:linear-gradient(270deg,rgba(0,0,0,.2),transparent 6%,rgba(255,255,255,.22) 9%,transparent 14%)}
 .book3d .cover .pages{left:auto;right:100%;transform:rotateY(-90deg);transform-origin:right}
+.voice b{display:block}
+.voice .vo-p{display:block;margin-top:2px;color:#A9843F;font-weight:700;font-size:.8rem}
+.voice.hl .vo-p{color:#E2C68C}
+.reel-sm{margin-bottom:20px}
+@media (min-width:900px){.reel-sm{grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));overflow:visible}}

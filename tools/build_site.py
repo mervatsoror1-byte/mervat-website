@@ -143,6 +143,24 @@ BUNDLES = [
   dict(id="b-attach", items=["heart-coherence","morning-priming","serenity","attach"], flow=["تنفّس الاتزان الداخلي","Priming الصباح","تأمل السكينة والتنظيف","فكّ التعلّق"], fan=["assets/img/covers/breath-sm.webp","assets/img/covers/attach-sm.webp","assets/img/covers/serenity-sm.webp"]),
 ]
 BY = {p["id"]: p for p in PRODUCTS}
+REVIEWS = [
+  # (name, country, product id or "", product label, text)
+  ("إلهام", "ليبيا", "ain-sahia", "كورس عين صاحية", "كورس ممتاز. كنت أعرف أن حياتي عامرة بنِعم الله، لكنني الآن أراها بشكل مختلف: وجهة نظر جديدة وشعور جديد، وكأن كل شيء من حولي تغيّر."),
+  ("مارو", "الجزائر", "vip-m", "برنامج استيقظ VIP", "البرنامج التدريبي رائع جداً. كانت عندي عوائق مالية لا أعرف سببها، ولم أتوقع أن تتغيّر نظرتي لكل الأمور بهذا الشكل. شكراً كثيراً."),
+  ("خالدة", "الأردن", "attach", "تمرين فك التعلّق", "كنت متعلّقة بزوجي كثيراً، دون مبالغة. تمرين فك التعلّق كان كالسحر: تلاشى التعلّق تماماً، وأصبحت علاقتنا أكثر اتزاناً."),
+  ("أميمة", "المغرب", "", "تمرين", "التمرين رائع، شكراً دكتورة مرفت. مركّز جداً رغم بساطته، تذكّرت ذكريات كثيرة وبقيت أبكي طوال التمرين. الأسئلة قوية جداً، وكأنها فتحت جروحاً قديمة."),
+  ("ليلى", "السعودية", "serenity", "تأمل السكينة والتنظيف · استيقظ VIP", "شكراً لكِ يا دكتورة مرفت. بدأت ألاحظ التأثير الكبير لتأمل السكينة مع تطبيق البرنامج التدريبي. شكراً من القلب."),
+  ("أميرة", "مصر", "", "التطبيق اليومي", "تحرّرت من مشاعر كثيرة، والتطبيق المستمر فرق معي جداً، حتى الأوجاع والصداع بدأت تخفّ."),
+  ("فاطمة", "تونس", "serenity", "تأمل السكينة والتنظيف", "تأمل لطيف أصبح روتيناً يومياً في حياتي. كل صباح أشعر أن يومي لا يكتمل إلا به."),
+  ("رانا", "الإمارات", "", "تمرين", "تطبيق التمرين كأنه لمس أعمق نقطة في كياني."),
+  ("أمنية", "الأردن", "", "تمرين", "أنتِ مبدعة يا دكتورة. استفدت كثيراً من التمرين، وما زلت أطبّقه حتى أصل لهدفي. ربنا ييسّر لكِ كل الخير."),
+  ("سوزان", "ألمانيا", "", "تمرين", "أمس مساءً مارست التمرين، وصباح اليوم شعرت أن صدري اتّسع بعد ضيق طويل."),
+  ("إيمان", "الجزائر", "", "رسالة شكر", "شكراً كثيراً يا دكتورة. ربنا يخليكِ دائماً مصدر حب ودعم لنا، ويسخّر لكِ كل الحب والخير."),
+]
+def review_card(r, hl=False):
+    n, c, pid, lab, t = r
+    return f'<div class="voice {"hl" if hl else ""}"><span class="av">{n[0]}</span><span class="qm">“</span><p>{E(t)}</p><b>{E(n)} من {E(c)}</b><small class="vo-p">{E(lab)}</small></div>'
+
 EXERCISES = [p for p in PRODUCTS if p["kind"] == "exercise"]
 CATS = [("all","الكل"),("course","الكورسات"),("decode","Decoding"),("priming","Priming"),("free","فك التعلّق"),("heal","التشافي"),("breath","تنفّس وتأمل")]
 COUNTRIES = [("EG","مصر"),("SA","السعودية"),("AE","الإمارات"),("KW","الكويت"),("QA","قطر"),("BH","البحرين"),("OM","عُمان"),("JO","الأردن"),("LB","لبنان"),("MA","المغرب"),("DZ","الجزائر"),("TN","تونس"),("US","الولايات المتحدة"),("GB","المملكة المتحدة"),("CA","كندا"),("DE","ألمانيا"),("XX","دولة أخرى")]
@@ -356,6 +374,7 @@ def build():
 <section class="vp-sec vp-royal" id="plans"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap">
   <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>اختاري ما يناسبك</h2><p>الأسعار بالجنيه داخل مصر وبالدولار خارجها. يمكنك الإلغاء في أي وقت من حسابك.</p></header>
   {plans}</div></section>
+<section class="vp-sec vp-ivory" style="padding-bottom:0"><div class="vp-wrap"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>قالوا عن البرنامج</h2></header><div class="reel reel-sm">{"".join(review_card(r, k == 0) for k, r in enumerate([r for r in REVIEWS if "VIP" in r[3] or r[2] == "vip-m"]))}</div></div></section>
 <section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة عن البرنامج</h2></header><div class="vp-faq">{faq_items(FAQ["vip"])}</div></div></section>
 <section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>اتخذي الآن الخطوة التي تستحقينها</h2><a class="btn-safia" href="#plans">استيقظ VIP</a></div></section>''',
          active="vip.html", schema=[{"@context":"https://schema.org","@type":"Product","name":"استيقظ VIP","description":"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور","brand":NAME,"offers":[{"@type":"Offer","price":BY["vip-m"]["eg"],"priceCurrency":"EGP"},{"@type":"Offer","price":BY["vip-m"]["us"],"priceCurrency":"USD"}]}])
@@ -575,12 +594,7 @@ from legal_content import LEGAL
 def home_body():
     course = BY["ain-sahia"]
     mods = "".join(f'<li><span class="n">{["٠","١","٢","٣"][i]}</span><b>{E(m["title"].split(": ")[-1])}</b><small class="{"free" if i==0 else ""}">{"استمع مجاناً" if i==0 else str(len(m["lessons"])).translate(str.maketrans("0123456789","٠١٢٣٤٥٦٧٨٩"))+" دروس"}</small></li>' for i, m in enumerate(course["modules"]))
-    voices_list = [("س","مكان رأي حقيقي لمشتركة عن تجربتها مع تمرين فك التعلّق، وما تغيّر بعده في علاقاتها.","اسم المشتركة · تمرين فك التعلّق"),
-                   ("ن","مكان رأي عضوة في استيقظ VIP: كيف تغيّر يومها بعد شهر من الالتزام والخطة اليومية.","اسم العضوة · استيقظ VIP"),
-                   ("ه","مكان رأي عن كورس عين صاحية وكيف غيّر الامتنان اليومي إحساسها بحياتها.","اسم المشتركة · عين صاحية"),
-                   ("م","مكان رأي عن تنفّس الاتزان الداخلي قبل النوم وفي المواقف الصعبة.","اسم المشترك · تنفّس الاتزان الداخلي"),
-                   ("ر","مكان رأي عن جلسة فردية مع د. مرفت وما خرجت به منها.","اسم المشتركة · جلسة فردية")]
-    reel = "".join(f'<div class="voice {"hl" if i==1 else ""}"><span class="av">{a}</span><span class="qm">“</span><p>{E(t)}</p><b>{E(n)}</b></div>' for i,(a,t,n) in enumerate(voices_list))
+    reel = "".join(review_card(r, i == 1) for i, r in enumerate(REVIEWS))
     return f'''
 <div class="popup" id="vipPop" hidden role="dialog" aria-modal="true" aria-labelledby="popT"><div class="pop-card"><button class="pop-close" type="button" id="popClose" aria-label="إغلاق">✕</button>
   <div class="pop-art pop-sq"><img src="assets/img/popup-vip.webp" alt="د. مرفت سرور" width="900" height="900"><div class="txt"><h2 id="popT">اتخذي الآن الخطوة التي تستحقينها</h2><a class="btn btn-gold" href="vip.html">استيقظ VIP</a></div></div></div></div>
@@ -627,7 +641,7 @@ def home_body():
     <ul class="mods">{mods}</ul>
     <div class="buy">{price("ain-sahia")}<button class="btn btn-gold" type="button" data-buy="ain-sahia"><span>ابدأ الآن</span></button><button class="add" type="button" data-add="ain-sahia" aria-label="أضف عين صاحية للسلة" title="أضف للسلة"></button><a class="btn btn-line" href="{course["page"]}">تفاصيل الكورس</a></div></div></div></section>
 
-<section class="band"><div class="wrap"><div class="head center"><h2 class="title">قالوا عنا</h2><span class="demo">أمثلة توضيحية، تُستبدل بآراء العملاء الحقيقية</span></div><div class="reel" tabindex="0" aria-label="آراء العملاء">{reel}</div>
+<section class="band"><div class="wrap"><div class="head center"><h2 class="title">قالوا عنا</h2><p class="lead">من رسائل عميلاتنا</p></div><div class="reel" tabindex="0" aria-label="آراء العملاء">{reel}</div>
   <div class="vp-head" style="margin:56px 0 26px"><span class="vp-orn" aria-hidden="true">✦</span><h2>استمع إلى آراء عملائنا</h2><p>تجارب حقيقية بأصوات من عاشوها</p></div><div class="vr-pills" data-vr="all"></div></div></section>
 <section class="ses-banner" aria-label="الجلسات الفردية"><img src="assets/img/sessions-banner.webp" alt="د. مرفت سرور في جلسة أونلاين" width="1672" height="941" loading="lazy">
   <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة استشارة أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html#booking">{ic("cal")}احجز جلستك</a></div></section>

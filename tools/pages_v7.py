@@ -72,6 +72,7 @@ def product(p):
   <div class="pd3-body">
     <div class="pd3-sec"><h2>عن {kind}</h2><div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div></div>
     <div class="pd3-sec" id="voices"><h2>قالوا عن {"الكورس" if is_course else "التمرين"}</h2><p class="vr-hint">آراء صوتية من عميلات جرّبن {"الكورس" if is_course else "التمرين"}، تسجّلها كل عميلة بنفسها بعد الشراء.</p>
+      {('<div class="reel reel-sm">' + "".join(B.review_card(r) for r in B.REVIEWS if r[2] == p["id"]) + '</div>') if any(r[2] == p["id"] for r in B.REVIEWS) else ""}
       <div class="vr-rec" data-vrrec="{p["id"]}"></div><div class="vr-list" data-vr="{p["id"]}"></div></div>
     <div class="pd3-sec"><h2>مناسب لك إذا كنت…</h2><ul class="pd3-for">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in p["forWho"])}</ul></div>
     <div class="pd3-sec"><h2>محتوى {kind}</h2><div class="vp-faq">{modules_html}</div>{"<p class=vp-small>أسماء الدروس مبدئية وتُحدَّث قريباً</p>" if p.get("facts") else ""}</div>
@@ -243,6 +244,7 @@ def landing(L):
     <ul class="pd3-facts lp-gets">{"".join(f"<li>{ic(i,'icon icon-sm')}<span>{E(t)}</span></li>" for i, t in L["gets"])}</ul></div>
   <div class="lp-me"><img src="assets/img/mervat-about.webp" alt="د. مرفت سرور" width="900" height="1012" loading="lazy">
     <div><b>د. مرفت سرور</b><span>مدربة وعي وتشافي معتمدة من ICF بدرجة PCC · أكثر من ١٨ ألف ساعة تدريبية</span></div></div></div></section>
+{('<section class="vp-sec vp-ivory" style="padding-top:0"><div class="vp-wrap"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>قالوا عن ' + ("التأمل" if L["base"] == "serenity" else "التمرين") + '</h2></header><div class="reel reel-sm">' + "".join(B.review_card(r, k == 0) for k, r in enumerate([r for r in B.REVIEWS if r[2] == L["base"]])) + '</div></div></section>') if any(r[2] == L["base"] for r in B.REVIEWS) else ""}
 <section class="vp-sec vp-ivory" style="padding-top:0"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة سريعة</h2></header>
   <div class="vp-faq">{"".join(f"<details><summary>{E(q)}</summary><p>{E(a)}</p></details>" for q, a in L["faqs"])}</div></div></section>
 <section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>{L["final"]}</h2>{buy}</div></section>
