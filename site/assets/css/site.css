@@ -1736,3 +1736,14 @@ body:has(.lp-hero) .help-c{display:none}
 .voice.hl .vo-p{color:#E2C68C}
 .reel-sm{margin-bottom:20px}
 @media (min-width:900px){.reel-sm{grid-auto-flow:row;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));overflow:visible}}
+/* testimonial slider */
+.slider{position:relative}
+.slider .reel{scroll-behavior:smooth;padding-inline:max(4px,calc((100% - 340px)/2))}
+.reel-sm{grid-auto-flow:column!important;grid-template-columns:none!important;overflow-x:auto!important}
+.sl-arrow{position:absolute;top:calc(50% - 22px);z-index:3;width:46px;height:46px;border-radius:50%;border:1px solid rgba(197,160,89,.7);background:#FFFDF7;color:#1F3F7C;font-size:1.8rem;line-height:1;cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 24px -14px rgba(20,35,74,.6)}
+.sl-arrow:hover{background:linear-gradient(135deg,#E2C68C,#C5A059);color:#14234A}
+.sl-prev{right:-6px}.sl-next{left:-6px}
+.sl-dots{display:flex;justify-content:center;gap:8px;margin-top:4px}
+.sl-dots button{width:9px;height:9px;padding:0;border-radius:999px;border:0;background:rgba(31,63,124,.25);cursor:pointer;transition:width .25s,background .25s}
+.sl-dots button[aria-current="true"]{width:26px;background:#C5A059}
+@media (max-width:700px){.sl-arrow{width:38px;height:38px;font-size:1.5rem;top:calc(50% - 30px)}.sl-prev{right:-2px}.sl-next{left:-2px}}

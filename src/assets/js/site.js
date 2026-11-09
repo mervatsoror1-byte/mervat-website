@@ -736,6 +736,36 @@ initSessCards();
   b.addEventListener("click", e => { e.stopPropagation(); pnl.hidden = !pnl.hidden; b.setAttribute("aria-expanded", !pnl.hidden); });
   document.addEventListener("click", e => { if (!$("#helpC").contains(e.target)){ pnl.hidden = true; b.setAttribute("aria-expanded","false"); } });
 })();
+
+/* ---------- testimonial slider: arrows, dots, autoplay ---------- */
+$$(".reel").forEach(reel => {
+  const cards = [...reel.children]; if (cards.length < 2) return;
+  const wrap = document.createElement("div"); wrap.className = "slider";
+  reel.parentNode.insertBefore(wrap, reel); wrap.appendChild(reel);
+  const prev = document.createElement("button"), next = document.createElement("button"), dots = document.createElement("div");
+  prev.type = next.type = "button"; prev.className = "sl-arrow sl-prev"; next.className = "sl-arrow sl-next";
+  prev.setAttribute("aria-label", "الرأي السابق"); next.setAttribute("aria-label", "الرأي التالي");
+  prev.innerHTML = "›"; next.innerHTML = "‹"; dots.className = "sl-dots";
+  wrap.append(prev, next, dots);
+  dots.innerHTML = cards.map((_, i) => `<button type="button" aria-label="الرأي ${ar(i+1)}"></button>`).join("");
+  const step = () => (cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left) || cards[0].offsetWidth;
+  const current = () => { const r = reel.getBoundingClientRect(); let best = 0, bd = 1e9;
+    cards.forEach((c, i) => { const cr = c.getBoundingClientRect(), d = Math.abs((cr.left + cr.width/2) - (r.left + r.width/2)); if (d < bd){ bd = d; best = i; } }); return best; };
+  const go = i => { i = (i + cards.length) % cards.length; const c = cards[i], r = reel.getBoundingClientRect(), cr = c.getBoundingClientRect();
+    reel.scrollBy({left: (cr.left + cr.width/2) - (r.left + r.width/2), behavior: "smooth"}); };
+  const paint = () => { const k = current(); [...dots.children].forEach((d, i) => d.setAttribute("aria-current", i === k)); cards.forEach((c, i) => c.classList.toggle("hl", i === k)); };
+  // RTL: "next" moves visually to the left
+  next.onclick = () => { go(current() + 1); restart(); };
+  prev.onclick = () => { go(current() - 1); restart(); };
+  dots.onclick = e => { const b = e.target.closest("button"); if (!b) return; go([...dots.children].indexOf(b)); restart(); };
+  reel.addEventListener("scroll", () => requestAnimationFrame(paint), {passive: true});
+  let t = null, paused = false;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const restart = () => { clearInterval(t); if (!reduce) t = setInterval(() => { if (!paused && !document.hidden) go(current() + 1); }, 5000); };
+  wrap.addEventListener("mouseenter", () => paused = true); wrap.addEventListener("mouseleave", () => paused = false);
+  reel.addEventListener("touchstart", () => { paused = true; }, {passive: true}); reel.addEventListener("touchend", () => { setTimeout(() => paused = false, 4000); }, {passive: true});
+  paint(); restart();
+});
 initForms(); initPlayer(); initReader(); initBooking();
 paintAll();
 curMini();
