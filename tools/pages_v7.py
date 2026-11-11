@@ -60,6 +60,7 @@ def product(p):
       <span class="pd3-play">{ic("play")}</span><span class="pd3-free">المقدمة مجاناً</span></a>
     <aside class="pd3-buy">
       <h1>{E(p["title"])}</h1>
+      <div class="rt-sum" data-rate-sum="{p["id"]}"></div>
       <p class="pd3-kicker">{E(p["catLabel"])}</p>
       <ul class="pd3-facts">{facts_html}</ul>
       <div class="pd3-price"><span class="sc-price" data-price="{p["id"]}">{p["eg"]} ج.م</span></div>
@@ -71,6 +72,7 @@ def product(p):
   </div>
   <div class="pd3-body">
     <div class="pd3-sec"><h2>عن {kind}</h2><div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div></div>
+    <div class="pd3-sec rt-box" data-rate-box="{p["id"]}"></div>
     <div class="pd3-sec" id="voices"><h2>قالوا عن {"الكورس" if is_course else "التمرين"}</h2><p class="vr-hint">آراء صوتية من عميلات جرّبن {"الكورس" if is_course else "التمرين"}، تسجّلها كل عميلة بنفسها بعد الشراء.</p>
       {('<div class="reel reel-sm">' + "".join(B.review_card(r) for r in B.REVIEWS if p["id"] in r[2].split("|")) + '</div>') if any(p["id"] in r[2].split("|") for r in B.REVIEWS) else ""}
       <div class="vr-rec" data-vrrec="{p["id"]}"></div><div class="vr-list" data-vr="{p["id"]}"></div></div>

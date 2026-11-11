@@ -1747,3 +1747,20 @@ body:has(.lp-hero) .help-c{display:none}
 .sl-dots button{width:9px;height:9px;padding:0;border-radius:999px;border:0;background:rgba(31,63,124,.25);cursor:pointer;transition:width .25s,background .25s}
 .sl-dots button[aria-current="true"]{width:26px;background:#C5A059}
 @media (max-width:700px){.sl-arrow{width:38px;height:38px;font-size:1.5rem;top:calc(50% - 30px)}.sl-prev{right:-2px}.sl-next{left:-2px}}
+/* ===== star ratings ===== */
+.rt-sum{display:flex;align-items:center;gap:8px;margin:-4px 0 2px;color:#1F3F7C;font-weight:700}
+.rt-sum[hidden]{display:none}
+.rt-sum b{font-size:1.05rem}.rt-sum span{color:#5A6582;font-weight:600;font-size:.88rem}
+.rt-stars{display:inline-flex;direction:ltr;gap:1px;font-size:1.15rem;line-height:1}
+.rt-stars i{font-style:normal;color:rgba(197,160,89,.3)}
+.rt-stars i.f{color:#C5A059}
+.rt-stars i.h{background:linear-gradient(90deg,#C5A059 50%,rgba(197,160,89,.3) 50%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.rt-sum.sm{margin:2px 0 0;font-size:.85rem}.rt-sum.sm .rt-stars{font-size:.95rem}.rt-sum.sm b{font-size:.92rem}.rt-sum.sm span{font-size:.78rem}
+.rt-box{display:grid;gap:10px;justify-items:start;padding:20px 22px;border-radius:20px;background:#FFFDF7;border:1px solid rgba(197,160,89,.5)}
+.rt-box[hidden]{display:none}
+.rt-box h2{margin:0}
+.rt-pick{display:flex;direction:ltr;gap:4px}
+.rt-pick button{border:0;background:none;cursor:pointer;font-size:2.2rem;line-height:1;color:rgba(197,160,89,.3);padding:2px;transition:transform .15s,color .15s}
+.rt-pick button.f,.rt-pick button.hv{color:#C5A059}
+.rt-pick button:hover{transform:scale(1.12)}
+.rt-box small{color:#5A6582;font-weight:600}

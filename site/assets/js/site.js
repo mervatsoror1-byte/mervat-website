@@ -95,7 +95,7 @@ function card(p){
       <button class="sc-fav" type="button" data-fav="${p.id}" aria-pressed="false" aria-label="احفظ في المفضلة">${icon("heart")}</button>
       ${owned ? '<span class="sc-own">✓ اشتريته</span>' : ''}</div>
     <div class="sc-tags"><span>${kind}</span><span>${esc(p.catLabel)}</span></div>
-    <h3><a href="${p.page}">${esc(p.title)}</a></h3>
+    <h3><a href="${p.page}">${esc(p.title)}</a></h3><div class="rt-sum sm" data-rate-sum="${p.id}"></div>
     <span class="sc-meta">${icon("lessons")}${p.cardMeta ? esc(p.cardMeta) : ar(lessons) + " " + (lessons > 2 ? "دروس" : lessons == 2 ? "درسان" : "درس")}</span>
     <span class="sc-price" data-price="${p.id}">${money(p.eg,p.us)}</span>
     <div class="sc-act">${owned ? `<a class="btn btn-gold btn-sm" href="${p.learn}">ابدأ الآن</a>` : `<a class="btn btn-gold btn-sm" href="${p.page}">عرض التفاصيل</a><button class="add" type="button" data-add="${p.id}" aria-label="أضف ${esc(p.title)} للسلة">${icon("plus")}</button>`}</div>
@@ -766,6 +766,33 @@ $$(".reel").forEach(reel => {
   reel.addEventListener("touchstart", () => { paused = true; }, {passive: true}); reel.addEventListener("touchend", () => { setTimeout(() => paused = false, 4000); }, {passive: true});
   paint(); restart();
 });
+
+/* ---------- star ratings (prototype: kept in this browser) ---------- */
+const RKEY = "ms_ratings_v1", RMIN = 3;
+const rLoad = () => { try { return JSON.parse(localStorage.getItem(RKEY) || "{}"); } catch(e){ return {}; } };
+const rSave = v => { try { localStorage.setItem(RKEY, JSON.stringify(v)); } catch(e){} };
+const starRow = (val, cls) => `<span class="rt-stars ${cls||""}" aria-hidden="true">${[1,2,3,4,5].map(i => `<i class="${val >= i ? "f" : val >= i - .5 ? "h" : ""}">★</i>`).join("")}</span>`;
+function rStats(id){ const r = rLoad()[id] || {}, list = (r.others || []).concat(r.mine ? [r.mine] : []);
+  return {n: list.length, avg: list.length ? list.reduce((a,b) => a+b, 0) / list.length : 0, mine: r.mine || 0}; }
+const fmt1 = v => v.toFixed(1).replace(".", "٫").replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+function paintRatings(){
+  $$("[data-rate-sum]").forEach(el => { const st = rStats(el.dataset.rateSum);
+    el.innerHTML = st.n >= RMIN ? `${starRow(st.avg)}<b>${fmt1(st.avg)}</b><span>(${ar(st.n)} ${st.n > 10 ? "تقييماً" : "تقييمات"})</span>` : "";
+    el.hidden = st.n < RMIN; });
+  $$("[data-rate-box]").forEach(el => { const id = el.dataset.rateBox, st = rStats(id);
+    if (!hasAccess(id)){ el.innerHTML = ""; el.hidden = true; return; }
+    el.hidden = false;
+    el.innerHTML = `<h2>قيّمي ${P[id] && P[id].kind === "course" ? "الكورس" : "التمرين"}</h2>
+      <div class="rt-pick" role="radiogroup" aria-label="تقييمك من ٥">${[1,2,3,4,5].map(i => `<button type="button" role="radio" aria-checked="${st.mine === i}" aria-label="${ar(i)} من ٥" data-rate="${id}|${i}" class="${st.mine >= i ? "f" : ""}">★</button>`).join("")}</div>
+      <small>${st.mine ? "شكراً لتقييمك، ويمكنك تغييره في أي وقت." : "اختاري عدد النجوم. يظهر متوسط التقييم بجانب الاسم بعد " + ar(RMIN) + " تقييمات."}</small>`; });
+}
+document.addEventListener("click", e => { const b = e.target.closest("[data-rate]"); if (!b) return;
+  const [id, n] = b.dataset.rate.split("|"), all = rLoad(); all[id] = all[id] || {}; all[id].mine = +n; rSave(all); paintRatings(); toast("سُجّل تقييمك: " + ar(n) + " من ٥"); });
+document.addEventListener("mouseover", e => { const b = e.target.closest("[data-rate]"); if (!b) return; const k = +b.dataset.rate.split("|")[1];
+  [...b.parentNode.children].forEach((x, i) => x.classList.toggle("hv", i < k)); });
+document.addEventListener("mouseout", e => { const b = e.target.closest("[data-rate]"); if (b) [...b.parentNode.children].forEach(x => x.classList.remove("hv")); });
+paintRatings();
+new MutationObserver(() => { if ($$("[data-rate-sum]:empty").some(x => !x.hidden && rStats(x.dataset.rateSum).n >= RMIN)) paintRatings(); }).observe(document.body, {childList:true, subtree:true});
 initForms(); initPlayer(); initReader(); initBooking();
 paintAll();
 curMini();
