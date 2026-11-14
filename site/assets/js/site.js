@@ -242,6 +242,7 @@ function submitPay(f){
   ss("lastOrder", JSON.stringify({no, total:fmt(t.total), items:items.map(c=>P[c.id].title), email:S.user.email, gw}));
   if (single){ S.cart = S.cart.filter(c => c.id !== items[0].id || P[c.id].kind === "session"); ss("buynow", null); }
   else { S.cart = []; }
+  try { localStorage.removeItem("ms_pending_v1"); } catch(e){}
   ss("coupon", null); save();
   location.href = "success.html";
 }
@@ -249,6 +250,7 @@ function startBuy(id, extra){
   const p = P[id]; if (!p) return;
   if (hasAccess(id) && p.learn){ location.href = p.learn; return; }
   ss("buynow", JSON.stringify(Object.assign({id}, extra||{})));
+  try { localStorage.setItem("ms_pending_v1", JSON.stringify({id, extra: extra||null, t: Date.now(), shown: 0})); } catch(e){}
   if (!S.user){ ss("next", "checkout.html"); location.href = "login.html"; return; }
   location.href = "checkout.html";
 }
@@ -493,6 +495,49 @@ if (megaBtn){
 const hh = $(".site-header.on-hero");
 if (hh){ const onS = () => hh.classList.toggle("scrolled", scrollY > 40); addEventListener("scroll", onS, {passive:true}); onS(); }
 
+
+/* ---------- gentle "you were about to choose yourself" message ----------
+   1) Desktop: leaving the checkout/login page with an unfinished order (mouse heads for the tab bar).
+   2) Any device: coming back to the site later with an order left unfinished (within 7 days, once a day). */
+const PKEY = "ms_pending_v1";
+const pend = (() => { try { return JSON.parse(localStorage.getItem(PKEY) || "null"); } catch(e){ return null; } })();
+const pendSave = v => { try { localStorage.setItem(PKEY, JSON.stringify(v)); } catch(e){} };
+const here = location.pathname.split("/").pop() || "index.html";
+const onPayPage = ["checkout.html", "login.html"].includes(here);
+function showChoose(id, onPay){
+  const p = P[id]; if (!p || $("#choosePop")) return;
+  const el = document.createElement("div");
+  el.className = "popup ch-pop"; el.id = "choosePop"; el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true"); el.setAttribute("aria-labelledby", "chT");
+  el.innerHTML = `<div class="ch-card"><button class="pop-close" type="button" data-ch-close aria-label="إغلاق">✕</button>
+    <div class="ch-stars" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i></div>
+    ${p.cover ? `<img class="ch-img" src="${p.cover}" alt="">` : ""}
+    <h2 id="chT">توقّفتِ في منتصف الطريق إلى نفسك</h2>
+    <p>كنتِ على بُعد خطوة من شعورٍ أخفّ وأهدأ.<br>هل ما زلتِ ترينه في <b>${esc(p.title)}</b>؟</p>
+    <p class="ch-soft">وإن كان التردد هو ما أوقفك، فهذا طبيعي تماماً؛ خذي وقتك.</p>
+    <div class="ch-acts"><button class="btn btn-gold" type="button" data-ch-go>${onPay ? "نعم، أكمل طلبي" : "نعم، أكمل من حيث توقفت"}</button>
+    <a class="ch-ask" href="contact.html">عندي سؤال قبل أن أكمل</a></div>
+    <button class="ch-later" type="button" data-ch-close>ليس الآن</button></div>`;
+  document.body.appendChild(el);
+  const close = () => el.remove();
+  el.addEventListener("click", e => {
+    if (e.target === el || e.target.closest("[data-ch-close]")) close();
+    if (e.target.closest("[data-ch-go]")){ if (onPay) close(); else startBuy(id, pend && pend.extra || undefined); }
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") close(); }, {once: true});
+  setTimeout(() => { const b = el.querySelector("[data-ch-go]"); b && b.focus(); }, 50);
+}
+if (pend && P[pend.id]){
+  const stale = Date.now() - pend.t > 7 * 864e5, done = hasAccess(pend.id) && P[pend.id].kind !== "session";
+  if (stale || done){ try { localStorage.removeItem(PKEY); } catch(e){} }
+  else if (onPayPage && ss("buynow")){
+    if (matchMedia("(hover: hover) and (pointer: fine)").matches)
+      document.addEventListener("mouseout", e => { if (!e.relatedTarget && e.clientY <= 0 && !ss("exitSeen")){ ss("exitSeen", "1"); showChoose(pend.id, true); } });
+  }
+  else if (!onPayPage && here !== "success.html" && Date.now() - (pend.shown || 0) > 864e5 && Date.now() - pend.t > 30 * 6e4){
+    ss("popSeen", "1"); // don't stack it with the VIP popup
+    setTimeout(() => { pend.shown = Date.now(); pendSave(pend); showChoose(pend.id, false); }, 1500);
+  }
+}
 /* ---------- VIP popup (home, once per visit) ---------- */
 const pop = $("#vipPop");
 if (pop && !ss("popSeen")){

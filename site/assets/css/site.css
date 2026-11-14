@@ -1764,3 +1764,16 @@ body:has(.lp-hero) .help-c{display:none}
 .rt-pick button.f,.rt-pick button.hv{color:#C5A059}
 .rt-pick button:hover{transform:scale(1.12)}
 .rt-box small{color:#5A6582;font-weight:600}
+
+/* ===== "choose yourself" return message ===== */
+.ch-card{position:relative;width:min(440px,100%);max-height:calc(100dvh - 32px);overflow:auto;border-radius:22px;padding:30px 24px 18px;text-align:center;color:#F5F5DC;
+  background:radial-gradient(90% 70% at 50% 0%,#3A62A8,#284D92 55%,#1A3670);border:1px solid rgba(197,160,89,.55);box-shadow:0 40px 80px -30px rgba(0,0,0,.6);display:grid;gap:12px;justify-items:center}
+.ch-card .pop-close{top:12px;left:12px}
+.ch-stars{display:flex;gap:10px;color:#E2C68C;font-size:.9rem}.ch-stars i{font-style:normal}.ch-stars i:nth-child(2){font-size:1.4rem;color:#C5A059;transform:translateY(-4px)}
+.ch-img{width:120px;height:120px;object-fit:cover;border-radius:60px 60px 14px 14px;border:2px solid #C5A059;box-shadow:0 14px 30px -12px rgba(0,0,0,.5)}
+.ch-card h2{margin:0;color:#E2C68C;font-size:1.45rem;line-height:1.5}
+.ch-card p{margin:0;color:#F5F5DC;line-height:1.9;font-size:1.02rem}.ch-card p b{color:#E2C68C}
+.ch-card .ch-soft{font-size:.9rem;color:rgba(245,245,220,.78)}
+.ch-acts{display:grid;gap:10px;width:100%;margin-top:4px}.ch-acts .btn{width:100%}
+.ch-ask{color:#E2C68C;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.ch-later{border:0;background:none;color:rgba(245,245,220,.65);font:inherit;font-size:.88rem;cursor:pointer;padding:6px}
