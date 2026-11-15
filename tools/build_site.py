@@ -314,7 +314,7 @@ GIFT = f'''<section class="wrap"><div class="gift"><div class="gift-copy"><span 
   <div class="fan" aria-hidden="true"><img src="assets/art/calm.webp" alt=""><img src="assets/art/book.webp" alt=""><img src="assets/art/morning.webp" alt=""></div></div></section>'''
 MARQUEE = '<div class="vp-strip" aria-hidden="true"><div class="track">' + ('<span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span>' * 2) + '</div></div>'
 ORG = {"@context":"https://schema.org","@type":"Organization","name":NAME,"url":SITE_URL,"logo":f"{SITE_URL}/assets/brand/logo-gold-transparent.png"}
-PERSON = {"@context":"https://schema.org","@type":"Person","name":"مرفت سرور","jobTitle":"مدربة وعي وتشافي معتمدة من ICF","url":f"{SITE_URL}/about.html","image":f"{SITE_URL}/assets/img/coach-white.webp","memberOf":{"@type":"Organization","name":"International Coaching Federation (ICF)"}}
+PERSON = {"@context":"https://schema.org","@type":"Person","name":"مرفت سرور","jobTitle":"مدربة وعي وتشافي معتمدة من ICF","url":f"{SITE_URL}/about.html","image":f"{SITE_URL}/assets/img/whois-library.webp","memberOf":{"@type":"Organization","name":"International Coaching Federation (ICF)"}}
 
 def vip_card():
     return f'''<div class="vip-card"><div class="vip-art"><div class="arch-img"><img src="assets/img/coach-green.webp" alt="د. مرفت سرور" width="900" height="1125" loading="lazy"></div></div>
@@ -471,7 +471,6 @@ def build():
     <div class="field"><label for="password">كلمة المرور</label><input id="password" type="password" autocomplete="current-password" required><a class="hint" href="forgot.html">نسيت كلمة المرور؟</a></div>
     <div class="alert" hidden></div><button class="btn btn-plum btn-block" type="submit">تسجيل الدخول</button></form>
   <div class="or">أو</div><div class="social-login"><button class="btn btn-line btn-sm" type="button" onclick="this.textContent='يُفعّل في الموقع الفعلي'">Google</button><button class="btn btn-line btn-sm" type="button" onclick="this.textContent='يُفعّل في الموقع الفعلي'">Apple</button></div>
-  <button class="btn btn-ghost btn-sm js-demo-login" type="button">جرّب حساباً تجريبياً جاهزاً</button>
   <p class="muted" style="text-align:center">ليس لديك حساب؟ <a href="register.html">أنشئ حساباً مجانياً</a></p></div></div></div>''', bare=True, noindex=True)
     page("register.html", "إنشاء حساب", "أنشئ حسابك المجاني واحصل على هدية: مقدمة تأمل السكينة والفصل الأول من الكتاب.", f'''<div class="auth-wrap">{auth_side}<div class="auth-form"><div class="inner">
   <a class="brand" href="index.html"><img src="assets/brand/logo-icon-gold.webp" alt="" width="38" height="48"><span><b>د. مرفت سرور</b></span></a>
@@ -577,7 +576,7 @@ def product_page(p):
 def book_page():
     b = BY["book-ghosts"]
     page("book-ghosts.html", b["title"], b["short"], page_hero(b["title"], b["short"], ("الكتب","books.html"), (b["title"], None), eyebrow="كتاب إلكتروني") + f'''
-<section class="band-sm"><div class="wrap pd"><div class="pd-main"><div class="split" style="grid-template-columns:auto 1fr">{book3d()}<div class="prose"><h2 class="section-title">عن الكتاب</h2><p>نبذة الكتاب تُكتب هنا: لمن كُتب، وما الذي سيفهمه القارئ عن نفسه وعائلته بعد قراءته. <span class="demo">نص مؤقت</span></p><h3>ستقرأ في هذا الكتاب</h3><ul><li>كيف ننتقل ما لم يُقل في العائلة إلى الأبناء</li><li>علامات الأشباح العائلية في حياتك اليومية</li><li>تمارين قصيرة للتحرر بوعي ورحمة</li></ul></div></div>{book_feats()}</div>
+<section class="band-sm"><div class="wrap pd"><div class="pd-main"><div class="split" style="grid-template-columns:auto 1fr">{book3d()}<div class="prose"><h2 class="section-title">عن الكتاب</h2><p>كتاب عن الموروث العائلي الذي نحمله دون أن نراه، وكيف نتحرر منه بوعي ورحمة.</p><h3>ستقرأ في هذا الكتاب</h3><ul><li>كيف ننتقل ما لم يُقل في العائلة إلى الأبناء</li><li>علامات الأشباح العائلية في حياتك اليومية</li><li>تمارين قصيرة للتحرر بوعي ورحمة</li></ul></div></div>{book_feats()}</div>
   <aside class="pd-side"><div class="buybox">{price("book-ghosts")}<ul class="facts"><li>{ic("book")}يُقرأ داخل الموقع</li><li>{ic("lock")}نسخة محمية باسمك</li><li>{ic("devices")}هاتف وكمبيوتر</li></ul>
   <button class="btn btn-gold btn-block" type="button" data-buy="book-ghosts"><span>اشترِ الكتاب الآن</span></button><button class="btn btn-line btn-block" type="button" data-add="book-ghosts">{ic("bag")}<span>أضف للسلة</span></button><a class="btn btn-line btn-block" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></aside></div></section>''',
          active="books.html", schema=[{"@context":"https://schema.org","@type":"Book","name":b["title"],"author":{"@type":"Person","name":"مرفت سرور"},"inLanguage":"ar","bookFormat":"https://schema.org/EBook","offers":{"@type":"Offer","price":b["eg"],"priceCurrency":"EGP"}}])
@@ -648,7 +647,7 @@ def home_body():
   <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة استشارة أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html#booking">{ic("cal")}احجز جلستك</a></div></section>
 <section class="band" style="padding-bottom:0"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر مخفض</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
 <section class="band book-band" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap split">{book3d()}
-  <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]} <span class="demo">نبذة مؤقتة</span></p>
+  <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]}</p>
     {book_feats()}<div class="buy">{price("book-ghosts")}<button class="btn btn-plum" type="button" data-buy="book-ghosts"><span>اشترِ الكتاب</span></button><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
 <section class="journey" aria-label="كل شروق فرصة لتولد من جديد"><img src="assets/img/journey.webp" alt="د. مرفت سرور على شرفة عند الشروق" width="1914" height="822" loading="lazy">
   <div class="jr-copy"><h2>كل شروق <span class="gold">فرصة</span> لتولد من جديد</h2><p>أنشئ حسابك المجاني واستلم هديتك الأولى فوراً</p></div><div class="jr-cta"><a class="btn btn-gold" href="register.html">{ic("gift")}ابدأ الآن</a></div></section>'''

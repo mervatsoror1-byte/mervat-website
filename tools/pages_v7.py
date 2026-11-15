@@ -149,7 +149,6 @@ def articles():
 {B.page_hero("المقالات", "عن الوعي الذاتي، والتشافي، وفكّ التعلّق، والطفل الداخلي، والـ Decoding.")}
 <section class="pg"><div class="wrap"><div class="pg-row">
   <div class="toolbar" style="margin:0;flex:1;max-width:640px"><div class="search grow">{ic("search")}<label class="sr" for="aq">ابحث بعنوان المقالة</label><input id="aq" type="text" placeholder="ابحث بعنوان المقالة"></div><label class="sortbox"><span class="muted">ترتيب حسب</span><select aria-label="ترتيب"><option>الأحدث</option></select></label></div></div>
-  <p class="muted" style="margin-bottom:22px"><span class="demo">عناوين مقترحة حسب كلمات البحث المستهدفة، تُكتب لاحقاً</span></p>
   <div class="shelf">{cards}</div></div></section>''')
 
 
@@ -166,7 +165,6 @@ def auth():
     <div class="au-row"><label class="check"><input type="checkbox"><span>تذكرني</span></label><a href="forgot.html">نسيت كلمة المرور؟</a></div>
     <div class="alert" hidden></div><button class="btn btn-gold btn-block" type="submit">تسجيل الدخول</button></form>
   <div class="or">أو المتابعة باستخدام</div><div class="social-login"><button class="btn au-sso" type="button" onclick="this.textContent='يُفعّل في الموقع الفعلي'">Google</button><button class="btn au-sso dark" type="button" onclick="this.textContent='يُفعّل في الموقع الفعلي'">Apple</button></div>
-  <button class="btn btn-line btn-sm js-demo-login au-demo" type="button">جرّب حساباً تجريبياً جاهزاً</button>
   <p class="au-alt">ليس لديك حساب؟ <a href="register.html">انضم إلينا الآن</a></p>{social}</div></div></div>''', bare=True, noindex=True)
     page("register.html", "إنشاء حساب", "أنشئ حسابك المجاني واحصل على هدية.", f'''<div class="au">{spark}{art}<div class="au-panel">{back}<div class="au-in">
   <h1>ابدأ رحلتك</h1><p>حساب مجاني، ومعه هدية تُفتح فوراً</p>

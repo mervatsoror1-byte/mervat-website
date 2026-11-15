@@ -141,13 +141,16 @@ function renderDynamic(){
 }
 function paintPricesOnly(){ $$("[data-price]").forEach(e => { const p = P[e.dataset.price]; if (p) setPriceText(e, money(p.eg, p.us)); }); }
 
+/* Discount codes for real occasions only, e.g. {"RAMADAN": .15}. Empty = no active codes. */
+const COUPONS = {};
+
 /* ---------- cart page ---------- */
 function buyNow(){ try { return JSON.parse(ss("buynow") || "null"); } catch(e){ return null; } }
 function payItems(){ const b = buyNow(); return b ? [b] : S.cart; }
 function totals(list){
   list = list || S.cart;
   const sub = list.reduce((s,c) => s + priceOf(P[c.id]), 0);
-  const code = ss("coupon"); const disc = code === "WELCOME10" ? sub * .10 : 0;
+  const code = ss("coupon"); const disc = (COUPONS[code] || 0) * sub;
   return {sub, disc, total: sub - disc, code};
 }
 function lineHTML(c, i, compact){
@@ -167,7 +170,7 @@ function renderCart(){
       <div class="sumrow"><span>المجموع</span><span>${fmt(t.sub)}</span></div>
       ${t.disc ? `<div class="sumrow" style="color:var(--ok)"><span>خصم ${esc(t.code)}</span><span>− ${fmt(t.disc)}</span></div>` : ""}
       <div class="sumrow total"><span>الإجمالي</span><span>${fmt(t.total)}</span></div>
-      <form class="coupon" id="couponForm"><label class="sr" for="coupon">كود الخصم</label><input id="coupon" placeholder="كود الخصم (جرّب WELCOME10)" value="${esc(t.code||"")}"><button class="btn btn-ghost btn-sm" type="submit">تطبيق</button></form>
+      <form class="coupon" id="couponForm"><label class="sr" for="coupon">كود الخصم</label><input id="coupon" placeholder="كود الخصم" value="${esc(t.code||"")}"><button class="btn btn-ghost btn-sm" type="submit">تطبيق</button></form>
       <a class="btn btn-gold btn-block" href="checkout.html" id="toCheckout">إتمام الشراء</a>
       <p class="secure">${icon("lock")}دفع آمن ومشفّر · وصول فوري بعد الدفع</p>
     </aside></div>`;
@@ -428,7 +431,7 @@ $$('input[type="password"]').forEach(inp => {
 function initForms(){
   document.addEventListener("submit", e => {
     const f = e.target;
-    if (f.id === "couponForm"){ e.preventDefault(); const v = $("#coupon").value.trim().toUpperCase(); if (v === "WELCOME10"){ ss("coupon", v); toast("تم تطبيق خصم ١٠٪"); } else { ss("coupon", null); toast("كود الخصم غير صحيح"); } renderCart(); return; }
+    if (f.id === "couponForm"){ e.preventDefault(); const v = $("#coupon").value.trim().toUpperCase(); if (COUPONS[v]){ ss("coupon", v); toast("تم تطبيق خصم " + ar(Math.round(COUPONS[v]*100)) + "٪"); } else { ss("coupon", null); toast("كود الخصم غير صحيح"); } renderCart(); return; }
     if (f.id === "payForm"){ e.preventDefault(); submitPay(f); return; }
     if (f.id === "loginForm" || f.id === "registerForm"){
       e.preventDefault();
