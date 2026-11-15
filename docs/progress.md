@@ -58,3 +58,11 @@
 - شراء الاستضافة (Hostinger Business + drmervatsoror.com مجاناً + البريد) مؤجّل إلى ما بعد التسجيل.
 - عند العودة: عدد دروس عين صاحية وأسماؤها ومدتها ← تحديث صفحة الكورس، ثم الاستضافة ثم بناء WordPress.
 - بانتظار: اتصال Paymob، ملفات التمارين النهائية (MP4)، طريقة تطبيق كل باقة.
+
+## WordPress staging (started 2026-11-15)
+- Staging site: https://new.mervatsror.com (separate Hostinger website, own document root; WP install id 31588510, Arabic).
+- Admin user `mervat_admin`, email info@mervatsror.com. The random install password was never shown or stored: Mervat sets her own via "نسيت كلمة المرور".
+- Plugins active: WooCommerce, WooCommerce PayPal Payments, Tutor LMS (+ Bunny.net integration), Amelia. Hostinger default plugins also present.
+- SSL active with HTTPS redirect.
+- Plan: custom theme built from this repo (no page builder), content set up by a setup plugin from the same product data, both deployed through the Hostinger API. Two currencies (EGP default, USD for PayPal) with fixed prices per currency, likely via WooCommerce Multilingual & Multicurrency (free).
+- The static site stays live on mervatsror.com until Mervat approves the switch.
