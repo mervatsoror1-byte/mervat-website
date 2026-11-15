@@ -33,6 +33,13 @@ def library():
 
 
 def product(p):
+    _who = "الكورس" if p.get("kind") == "course" else "التمرين"
+    _written = [r for r in B.REVIEWS if p["id"] in r[2].split("|")]
+    _reel = ('<div class="reel reel-sm">' + "".join(B.review_card(r) for r in _written) + '</div>') if _written else ""
+    if B.VOICE_REVIEWS:
+        voices_sec = f'<div class="pd3-sec" id="voices"><h2>قالوا عن {_who}</h2><p class="vr-hint">آراء صوتية من عميلات جرّبن {_who}، تسجّلها كل عميلة بنفسها بعد الشراء.</p>{_reel}<div class="vr-rec" data-vrrec="{p["id"]}"></div><div class="vr-list" data-vr="{p["id"]}"></div></div>'
+    else:
+        voices_sec = f'<div class="pd3-sec" id="voices"><h2>قالوا عن {_who}</h2>{_reel}</div>' if _written else ""
     is_course = p["kind"] == "course"
     total = sum(len(m["lessons"]) for m in p["modules"])
     secs = 0
@@ -73,9 +80,7 @@ def product(p):
   <div class="pd3-body">
     <div class="pd3-sec"><h2>عن {kind}</h2><div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div></div>
     <div class="pd3-sec rt-box" data-rate-box="{p["id"]}"></div>
-    <div class="pd3-sec" id="voices"><h2>قالوا عن {"الكورس" if is_course else "التمرين"}</h2><p class="vr-hint">آراء صوتية من عميلات جرّبن {"الكورس" if is_course else "التمرين"}، تسجّلها كل عميلة بنفسها بعد الشراء.</p>
-      {('<div class="reel reel-sm">' + "".join(B.review_card(r) for r in B.REVIEWS if p["id"] in r[2].split("|")) + '</div>') if any(p["id"] in r[2].split("|") for r in B.REVIEWS) else ""}
-      <div class="vr-rec" data-vrrec="{p["id"]}"></div><div class="vr-list" data-vr="{p["id"]}"></div></div>
+    {voices_sec}
     <div class="pd3-sec"><h2>مناسب لك إذا كنت…</h2><ul class="pd3-for">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in p["forWho"])}</ul></div>
     <div class="pd3-sec"><h2>محتوى {kind}</h2><div class="vp-faq">{modules_html}</div>{"<p class=vp-small>أسماء الدروس مبدئية وتُحدَّث قريباً</p>" if p.get("facts") else ""}</div>
   </div>

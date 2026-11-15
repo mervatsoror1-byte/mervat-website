@@ -9,6 +9,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC, OUT = ROOT / "src", ROOT / "site"
 SITE_URL = "https://mervatsror.com"
+VOICE_REVIEWS = False   # voice reviews hidden for now; set True to show them again
+VOICE_HOME = '<div class="vp-head" style="margin:56px 0 26px"><span class="vp-orn" aria-hidden="true">✦</span><h2>استمع إلى آراء عملائنا</h2><p>تجارب حقيقية بأصوات من عاشوها</p></div><div class="vr-pills" data-vr="all"></div>'
 NAME = "د. مرفت سرور"
 E = html.escape
 
@@ -642,7 +644,7 @@ def home_body():
     <div class="buy">{price("ain-sahia")}<button class="btn btn-gold" type="button" data-buy="ain-sahia"><span>ابدأ الآن</span></button><button class="add" type="button" data-add="ain-sahia" aria-label="أضف عين صاحية للسلة" title="أضف للسلة"></button><a class="btn btn-line" href="{course["page"]}">تفاصيل الكورس</a></div></div></div></section>
 
 <section class="band"><div class="wrap"><div class="head center"><h2 class="title">قالوا عنا</h2><p class="lead">من رسائل عميلاتنا</p></div><div class="reel" tabindex="0" aria-label="آراء العملاء">{reel}</div>
-  <div class="vp-head" style="margin:56px 0 26px"><span class="vp-orn" aria-hidden="true">✦</span><h2>استمع إلى آراء عملائنا</h2><p>تجارب حقيقية بأصوات من عاشوها</p></div><div class="vr-pills" data-vr="all"></div></div></section>
+  {VOICE_HOME if VOICE_REVIEWS else ""}</div></section>
 <section class="ses-banner" aria-label="الجلسات الفردية"><img src="assets/img/sessions-banner.webp" alt="د. مرفت سرور في جلسة أونلاين" width="1672" height="941" loading="lazy">
   <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة استشارة أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html#booking">{ic("cal")}احجز جلستك</a></div></section>
 <section class="band" style="padding-bottom:0"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر مخفض</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
