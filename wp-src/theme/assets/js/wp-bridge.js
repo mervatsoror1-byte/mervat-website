@@ -95,6 +95,31 @@
     if (e.target.closest("#logout")) { e.preventDefault(); e.stopImmediatePropagation(); location.href = W.account + "customer-logout/"; }
   }, true);
 
+  // First visit: pounds for visitors in Egypt, dollars elsewhere (same rule as before: the device's time zone).
+  try {
+    if (!/(?:^|; )ms_cur=/.test(document.cookie) && !/wcpbc-manual-country/.test(location.search)) {
+      document.cookie = "ms_cur=1; path=/; max-age=31536000; SameSite=Lax";
+      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      var want = tz === "Africa/Cairo" ? "EGP" : "USD";
+      if (want !== W.currency) {
+        var cu = new URL(location.href); cu.searchParams.set("wcpbc-manual-country", want === "EGP" ? "EG" : "US");
+        location.replace(cu.toString()); return;
+      }
+    }
+  } catch (e) {}
+  // Remember a manual choice, and keep the address clean.
+  if (/wcpbc-manual-country/.test(location.search)) {
+    document.cookie = "ms_cur=1; path=/; max-age=31536000; SameSite=Lax";
+    try { var cl = new URL(location.href); cl.searchParams.delete("wcpbc-manual-country"); history.replaceState(null, "", cl.toString()); } catch (e) {}
+  }
+
+  // Underline the current page in the menu.
+  var here = location.pathname.replace(/\/+$/, "/");
+  document.querySelectorAll("#menu > li > a").forEach(function (a) {
+    try { if (new URL(a.href).pathname.replace(/\/+$/, "/") === here) a.setAttribute("aria-current", "page"); } catch (e) {}
+  });
+  if (/^\/(tools|library|bundles|books)\//.test(here)) { var mb = document.getElementById("megaBtn"); if (mb) mb.setAttribute("data-current", "1"); }
+
   // Header login link -> account
   document.querySelectorAll(".js-user-text").forEach(function (l) { l.setAttribute("href", W.account); if (W.user) l.textContent = "حسابي"; });
 })();

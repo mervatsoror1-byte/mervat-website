@@ -70,7 +70,7 @@ add_action('wp_enqueue_scripts', function () {
     $cur = function_exists('get_woocommerce_currency') ? get_woocommerce_currency() : 'USD';
     $user = wp_get_current_user();
     // Data and links must be ready before site.js runs.
-    wp_add_inline_script('ms-data', 'window.SITE_DATA=JSON.parse(JSON.stringify(window.SITE_DATA).split("{{T}}").join(' . wp_json_encode($t) . '));', 'after');
+    wp_add_inline_script('ms-data', 'window.SITE_DATA=JSON.parse(JSON.stringify(window.SITE_DATA).split("{{T}}").join(' . wp_json_encode($t) . ').split("{{H}}").join(' . wp_json_encode(untrailingslashit(home_url())) . '));', 'after');
     wp_add_inline_script('ms-site', 'window.MS_WP=' . wp_json_encode([
         'home' => untrailingslashit(home_url()),
         'theme' => $t,

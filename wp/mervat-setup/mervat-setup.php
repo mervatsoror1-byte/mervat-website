@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.0.2
+ * Version: 1.0.4
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.0.2';
+const MS_SETUP_VERSION = '1.0.4';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -70,6 +70,8 @@ function ms_setup_run(): void {
         'blog_public' => $staging ? '0' : '1',
         'timezone_string' => 'Africa/Cairo',
         'date_format' => 'j F Y',
+        'woocommerce_registration_privacy_policy_text' => 'نستخدم بياناتك لإدارة حسابك وطلباتك فقط، كما هو موضّح في [privacy_policy].',
+        'woocommerce_checkout_privacy_policy_text' => 'نستخدم بياناتك لإتمام طلبك وإدارة حسابك فقط، كما هو موضّح في [privacy_policy].',
     ];
     foreach ($opts as $k => $v) { update_option($k, $v); }
     $perma = (array)get_option('woocommerce_permalinks', []);
@@ -97,6 +99,7 @@ function ms_setup_run(): void {
 
     if (class_exists('WC_Install')) { WC_Install::create_pages(); }
     ms_setup_pages();
+    ms_link_policy_pages();
     ms_setup_products();
     ms_name_shop_pages();
     ms_install_translations();
@@ -258,3 +261,17 @@ add_filter('woocommerce_billing_fields', function ($fields) {
     foreach (['billing_address_1', 'billing_address_2', 'billing_city', 'billing_state', 'billing_postcode', 'billing_company'] as $f) { unset($fields[$f]); }
     return $fields;
 });
+
+/* ---------------------------------------------------------------- privacy and terms links in checkout */
+function ms_link_policy_pages(): void {
+    $privacy = get_page_by_path('privacy', OBJECT, 'page');
+    $terms = get_page_by_path('terms', OBJECT, 'page');
+    if ($privacy) { update_option('wp_page_for_privacy_policy', $privacy->ID); }
+    if ($terms) { update_option('woocommerce_terms_page_id', $terms->ID); }
+    $old = get_post(3);
+    if ($old && $old->post_type === 'page' && $old->post_status === 'draft' && (!$privacy || $old->ID !== $privacy->ID)) { wp_trash_post($old->ID); }
+}
+
+/* ---------------------------------------------------------------- quiet cart: the header count is enough */
+add_filter('wc_add_to_cart_message_html', '__return_empty_string');
+add_filter('woocommerce_add_success', function ($message) { return trim(wp_strip_all_tags((string)$message)) === '' ? '' : $message; });
