@@ -260,7 +260,7 @@ def landing(L):
 <section class="lp-more"><div class="vp-wrap"><h2>اكتشف باقي أدوات د. مرفت</h2><p>تمارين Decoding، وتأملات للتشافي، وتوكيدات، وباقات بنظام يومي متكامل.</p><a class="vp-btn" href="library.html">تعرّف على كل الأدوات</a></div></section>
 <footer class="lp-foot"><a href="index.html">الموقع الرئيسي</a> · <a href="terms.html">الشروط</a> · <a href="privacy.html">الخصوصية</a> · <a href="refund.html">الاسترداد</a> · <a href="contact.html">تواصل معنا</a><span>© ٢٠٢٦ د. مرفت سرور</span></footer>
 <div class="lp-sticky"><div class="lp-price">{pr}{was}</div><button class="btn-safia" type="button" data-buy="{pid}"><span>ابدأ الآن</span></button></div>
-""", bare=True)
+""", bare=True, noindex=True)
 
 
 def landings():
