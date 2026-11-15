@@ -39,7 +39,11 @@ def product(p):
     if B.VOICE_REVIEWS:
         voices_sec = f'<div class="pd3-sec" id="voices"><h2>قالوا عن {_who}</h2><p class="vr-hint">آراء صوتية من عميلات جرّبن {_who}، تسجّلها كل عميلة بنفسها بعد الشراء.</p>{_reel}<div class="vr-rec" data-vrrec="{p["id"]}"></div><div class="vr-list" data-vr="{p["id"]}"></div></div>'
     else:
-        voices_sec = f'<div class="pd3-sec" id="voices"><h2>قالوا عن {_who}</h2>{_reel}</div>' if _written else ""
+        import urllib.parse as _u
+        _wa = "https://wa.me/201095292748?text=" + _u.quote(f"مرحباً د. مرفت، أريد مشاركة تجربتي بصوتي مع «{p['title']}». سأرسلها الآن رسالة صوتية.")
+        _rec = (f'<div class="vr-rec vr-rec-wa"><a class="vr-start" href="{_wa}" target="_blank" rel="noopener">{ic("chat")}<span>سجّلي تجربتك بصوتك</span></a>'
+                f'<small>أرسليها رسالة صوتية على واتساب (حتى دقيقتين)، وتُنشر هنا بعد مراجعتها.</small></div>')
+        voices_sec = f'<div class="pd3-sec" id="voices"><h2>قالوا عن {_who}</h2>{_reel}{_rec}</div>'
     is_course = p["kind"] == "course"
     total = sum(len(m["lessons"]) for m in p["modules"])
     secs = 0

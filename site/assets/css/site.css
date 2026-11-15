@@ -1777,3 +1777,4 @@ body:has(.lp-hero) .help-c{display:none}
 .ch-acts{display:grid;gap:10px;width:100%;margin-top:4px}.ch-acts .btn{width:100%}
 .ch-ask{color:#E2C68C;font-weight:700;text-decoration:underline;text-underline-offset:4px}
 .ch-later{border:0;background:none;color:rgba(245,245,220,.65);font:inherit;font-size:.88rem;cursor:pointer;padding:6px}
+.vr-rec-wa{margin:26px 0 0;padding-inline:4px}.vr-rec-wa .vr-start{text-decoration:none}
