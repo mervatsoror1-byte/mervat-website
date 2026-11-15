@@ -201,6 +201,58 @@ const GATEWAYS = {
     {id:"nbe-card", t:"بطاقة دولية", s:"Visa · Mastercard بالدولار (البنك الأهلي المصري)", l:["VISA","MC"]},
     {id:"paypal", t:"PayPal", s:"ادفع من رصيدك أو بطاقتك عبر PayPal", l:["PayPal"]}]
 };
+/* PayPal (USD): public client id of the "Mervat Website" live app. Orders are recorded by api/order.php, which emails Mervat. */
+const PAYPAL_CLIENT_ID = "BAAuJ28XBWu2exv0mdBFYtzTRI-PG9UtXjBq6wj4OQbdd-UcK1cVMZOMXRe3Li9PeWiFGRPcypy-0CnvZY";
+const usdTotal = items => (Math.round(items.reduce((s, c) => s + (+P[c.id].us || 0), 0) * 100) / 100).toFixed(2).replace(/\.00$/, "");
+let ppLoading = null;
+function loadPayPal(){
+  if (window.paypal) return Promise.resolve(window.paypal);
+  if (!ppLoading) ppLoading = new Promise((ok, no) => {
+    const sc = document.createElement("script");
+    sc.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(PAYPAL_CLIENT_ID) + "&currency=USD&intent=capture&components=buttons";
+    sc.onload = () => ok(window.paypal); sc.onerror = () => { ppLoading = null; no(new Error("paypal")); };
+    document.head.appendChild(sc);
+  });
+  return ppLoading;
+}
+async function initPayPal(items){
+  const box = $("#ppButtons"); if (!box) return;
+  const usd = usdTotal(items), single = !!buyNow();
+  const desc = items.map(c => P[c.id].title).join(" + ").slice(0, 120);
+  try {
+    const pp = await loadPayPal();
+    box.innerHTML = "";
+    await pp.Buttons({
+      style: {layout: "vertical", color: "gold", shape: "pill", label: "pay", height: 48},
+      createOrder: (d, actions) => actions.order.create({
+        purchase_units: [{amount: {currency_code: "USD", value: (+usd).toFixed(2)}, description: desc}],
+        application_context: {shipping_preference: "NO_SHIPPING", brand_name: "Mervat Soror"}
+      }),
+      onApprove: async (d, actions) => {
+        box.innerHTML = `<span class="muted">جارٍ تأكيد الدفع…</span>`;
+        const cap = await actions.order.capture();
+        const c0 = (((cap.purchase_units || [])[0] || {}).payments || {}).captures || [];
+        const capId = (c0[0] && c0[0].id) || cap.id;
+        const paid = c0[0] && c0[0].amount ? c0[0].amount.currency_code + " " + c0[0].amount.value : "";
+        const payer = cap.payer || {};
+        let no = "MS-" + String(capId).slice(-6);
+        try {
+          const r = await fetch("api/order.php", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({
+            paypal_id: capId, paid, items: items.map(c => ({id: c.id, when: c.when || ""})),
+            name: S.user ? S.user.name : "", email: S.user ? S.user.email : "", payer_email: payer.email_address || ""})});
+          const j = await r.json(); if (j && j.no) no = j.no;
+        } catch(e){}
+        S.orders.unshift({no, date: new Date().toLocaleDateString("ar-EG"), items: items.map(c => P[c.id].title), total: "$" + usd, gw: "paypal", status: "قيد التفعيل"});
+        ss("lastOrder", JSON.stringify({no, total: "$" + usd, items: items.map(c => P[c.id].title), email: (S.user && S.user.email) || payer.email_address || "", gw: "paypal"}));
+        if (single){ S.cart = S.cart.filter(c => c.id !== items[0].id); ss("buynow", null); } else { S.cart = []; }
+        save(); location.href = "success.html";
+      },
+      onCancel: () => toast("أُلغيت عملية الدفع، ولم يُخصم أي مبلغ."),
+      onError: () => toast("تعذّر الدفع عبر PayPal. جرّبي مرة أخرى أو أكملي الطلب عبر واتساب.")
+    }).render(box);
+  } catch(e){ box.innerHTML = `<span class="muted">تعذّر تحميل زر PayPal. أكملي الطلب عبر واتساب.</span>`; }
+}
+
 /* Online payment switch: false until the payment gateway is connected; orders go through WhatsApp meanwhile. */
 const PAY_LIVE = false;
 function waOrderLink(items, t){
@@ -225,8 +277,11 @@ function renderCheckout(){
       <div class="alert err" id="payErr" hidden></div>
       ${PAY_LIVE ? `<button class="btn btn-gold btn-block" type="submit">${icon("lock")}ادفع ${fmt(t.total)}</button>
       <p class="secure" style="text-align:center">بالضغط على «ادفع» أنت توافق على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>، والشراء نهائي.</p>`
-      : `<div class="alert info pay-soon"><b>حتى تفعيل الدفع الإلكتروني</b>، يتم الطلب عبر واتساب: نرسل لكِ طريقة الدفع، ونفعّل طلبك فور تأكيده.</div>
-      <a class="btn btn-gold btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}أكملي الطلب عبر واتساب (${fmt(t.total)})</a>
+      : `<div class="pp-box"><div class="pp-head"><b>ادفعي الآن ببطاقتك أو بحساب PayPal</b><span class="pp-amt">$${usdTotal(items)}</span></div>
+        <small>الدفع عبر PayPal يكون بالدولار، ويمكنك الدفع ببطاقة فيزا أو ماستركارد دون فتح حساب.</small><div id="ppButtons" class="pp-buttons"><span class="muted">جارٍ تحميل زر الدفع…</span></div></div>
+      <div class="pp-or"><span>أو</span></div>
+      <div class="alert info pay-soon"><b>للدفع بالجنيه المصري:</b> حتى تفعيل الدفع الإلكتروني، يتم الطلب عبر واتساب: نرسل لكِ طريقة الدفع، ونفعّل طلبك فور تأكيده.</div>
+      <a class="btn btn-line btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}أكملي الطلب عبر واتساب (${money(items.reduce((s,c)=>s+P[c.id].eg,0), items.reduce((s,c)=>s+P[c.id].us,0))})</a>
       <p class="secure" style="display:block;text-align:center">بإتمام الطلب أنتِ توافقين على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>.</p>`}
     </div>
    </form>
@@ -238,6 +293,7 @@ function renderCheckout(){
      <div class="sumrow total"><span>الإجمالي</span><span>${fmt(t.total)}</span></div>
      ${single ? `<button class="btn btn-line btn-sm" type="button" id="addInstead">أريد إضافة أدوات أخرى · انقل إلى السلة</button>` : ""}</aside>
   </div>`;
+  if (!PAY_LIVE) initPayPal(items);
 }
 function submitPay(f){
   if (!PAY_LIVE) return;

@@ -502,12 +502,12 @@ def build():
     stepper = lambda n: '<div class="stepper">' + '<hr>'.join(f'<span class="{"on" if i<=n else ""}"><i>{"١٢٣"[i]}</i>{t}</span>' for i,t in enumerate(["السلة","الدفع","تم"])) + '</div>'
     page("cart.html", "السلة", "سلة المشتريات.", f'<section class="co-head"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="wrap">{stepper(0)}<h1>سلتك</h1></div></section><section class="co-body"><div class="wrap"><div id="cartPage"></div></div></section>', noindex=True)
     page("checkout.html", "إتمام الشراء", "إتمام الشراء.", f'<section class="co-head"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="wrap">{stepper(1)}<h1>إتمام الشراء</h1></div></section><section class="co-body"><div class="wrap"><div id="checkoutPage"></div></div></section>', noindex=True)
-    page("success.html", "تم الدفع بنجاح", "تم الدفع بنجاح.", f'''<section class="band"><div class="wrap">{stepper(2)}<div class="result" id="successBox"><div class="badge">{ic("check")}</div><h1 class="title">شكراً لك، تم الدفع بنجاح</h1>
-  <p class="lead">رقم طلبك <b id="oNo">MS-10241</b> بقيمة <b id="oTotal">—</b>. أرسلنا تأكيد الطلب وبيانات الدخول إلى <b id="oEmail">بريدك</b>.</p>
+    page("success.html", "تم الدفع بنجاح", "تم الدفع بنجاح.", f'''<section class="band"><div class="wrap">{stepper(2)}<div class="result" id="successBox"><div class="badge">{ic("check")}</div><h1 class="title">شكراً لكِ، وصلنا دفعك بنجاح</h1>
+  <p class="lead">رقم طلبك <b id="oNo">—</b> بقيمة <b id="oTotal">—</b>. نفعّل طلبك ونرسل لكِ طريقة الوصول على <b id="oEmail">بريدك</b> خلال ٢٤ ساعة كحد أقصى.</p>
   <ul class="facts" id="oItems" style="justify-items:center"></ul>
-  <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="account.html#mine">{ic("play")}ابدأ الآن</a><a class="btn btn-line" href="account.html#orders">عرض الفاتورة</a></div>
+  <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat")}تواصلي معنا على واتساب</a><a class="btn btn-line" href="library.html">تصفّحي الأدوات</a></div>
   <div class="upsell" id="successUpsell" style="text-align:start"><span class="ico">{ic("crown")}</span><div><b>خطوتك التالية: استيقظ VIP</b><p>افتح كل التمارين، وابدأ رحلتك الخاصة مع د. مرفت.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>
-  <p class="muted" style="font-size:.85rem">لم تصلك الرسالة؟ راجع مجلد الرسائل غير المرغوبة أو <a href="contact.html">تواصل معنا</a>.</p></div></div></section>''', noindex=True)
+  <p class="muted" style="font-size:.85rem">احتفظي برقم الطلب. وإن لم تصلك رسالتنا، راجعي مجلد الرسائل غير المرغوبة أو <a href="contact.html">تواصلي معنا</a>.</p></div></div></section>''', noindex=True)
     page("failed.html", "لم يكتمل الدفع", "لم يكتمل الدفع.", f'''<section class="band"><div class="wrap"><div class="result"><div class="badge err">{ic("x")}</div><h1 class="title">لم يكتمل الدفع</h1>
   <p class="lead">لم يُخصم أي مبلغ من حسابك. قد يكون السبب رفض البنك، أو رصيداً غير كافٍ، أو انتهاء مهلة الصفحة.</p>
   <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="checkout.html">حاول مرة أخرى</a><a class="btn btn-line" href="contact.html">تواصل مع الدعم</a></div>
@@ -536,6 +536,8 @@ def build():
     # product ids/titles the voice API accepts
     _pp = "".join("  " + json.dumps(x["id"]) + " => " + json.dumps(x["title"], ensure_ascii=False) + ",\n" for x in PRODUCTS if x.get("kind") not in ("offer",))
     (OUT/"api/_products.php").write_text("<?php\nreturn [\n" + _pp + "];\n", encoding="utf-8")
+    _pr = "".join("  " + json.dumps(x["id"]) + " => ['t' => " + json.dumps(x["title"], ensure_ascii=False) + ", 'us' => " + str(x["us"]) + "],\n" for x in PRODUCTS if x.get("us"))
+    (OUT/"api/_prices.php").write_text("<?php\nreturn [\n" + _pr + "];\n", encoding="utf-8")
     (OUT/"robots.txt").write_text(f"User-agent: *\nDisallow: /account.html\nDisallow: /cart.html\nDisallow: /checkout.html\nDisallow: /learn.html\nDisallow: /reader.html\nDisallow: /admin/\nDisallow: /api/\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
     print(f"built {len(PAGES)} pages into {OUT}")
 

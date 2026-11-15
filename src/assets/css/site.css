@@ -1783,3 +1783,10 @@ body:has(.lp-hero) .help-c{display:none}
 .vr-first,.vr-city{padding:8px 12px;border:1px solid #E8DFC6;border-radius:10px;font:inherit;max-width:180px}
 .vr-thanks{display:flex;gap:10px;align-items:center;padding:14px 18px;border-radius:16px;background:#FFFDF7;border:1px solid rgba(197,160,89,.5);color:#1F3F7C;font-weight:700}
 .vr-thanks .icon{color:#C5A059}
+.pp-box{display:grid;gap:8px;padding:16px;border-radius:18px;border:1px solid rgba(197,160,89,.55);background:#FFFDF7}
+.pp-head{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#1F3F7C}
+.pp-amt{font-weight:800;font-size:1.2rem;color:#1A3670;direction:ltr}
+.pp-box small{color:#5A6582;font-weight:600}
+.pp-buttons{min-height:56px;margin-top:6px}
+.pp-or{display:flex;align-items:center;gap:12px;color:#5A6582;font-weight:700;margin:4px 0}
+.pp-or::before,.pp-or::after{content:"";flex:1;height:1px;background:#E8DFC6}
