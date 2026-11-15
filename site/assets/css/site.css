@@ -1778,3 +1778,8 @@ body:has(.lp-hero) .help-c{display:none}
 .ch-ask{color:#E2C68C;font-weight:700;text-decoration:underline;text-underline-offset:4px}
 .ch-later{border:0;background:none;color:rgba(245,245,220,.65);font:inherit;font-size:.88rem;cursor:pointer;padding:6px}
 .vr-rec-wa{margin:26px 0 0;padding-inline:4px}.vr-rec-wa .vr-start{text-decoration:none}
+.vr-list:empty{display:none}
+.vr-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.vr-first,.vr-city{padding:8px 12px;border:1px solid #E8DFC6;border-radius:10px;font:inherit;max-width:180px}
+.vr-thanks{display:flex;gap:10px;align-items:center;padding:14px 18px;border-radius:16px;background:#FFFDF7;border:1px solid rgba(197,160,89,.5);color:#1F3F7C;font-weight:700}
+.vr-thanks .icon{color:#C5A059}

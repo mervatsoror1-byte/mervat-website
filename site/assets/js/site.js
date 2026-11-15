@@ -608,94 +608,96 @@ $$("canvas.sparkle").forEach(c => {
 });
 
 
-/* ---------- voice reviews (prototype: kept in this browser) ---------- */
-const VKEY = "ms_voices_v1";
-const vLoad = () => { try { return JSON.parse(localStorage.getItem(VKEY) || "{}"); } catch(e){ return {}; } };
-const vSave = v => { try { localStorage.setItem(VKEY, JSON.stringify(v)); return true; } catch(e){ return false; } };
+/* ---------- voice reviews: recorded on the site, saved on the server, shown after Mervat approves ---------- */
+const VAPI = "api/voice.php";
 const wave = seed => { let h = ""; for (let i = 0; i < 34; i++){ const v = 22 + Math.round(70 * Math.abs(Math.sin(seed * 7.3 + i * 1.7) * Math.cos(i * .53 + seed))); h += `<i style="height:${v}%"></i>`; } return h; };
 const fmtT = s => { s = Math.max(0, Math.round(s)); return (Math.floor(s/60) + ":" + String(s%60).padStart(2,"0")).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]); };
-function voiceCard(v, id, idx, demo){
-  return `<article class="vr-card${demo ? " is-demo" : ""}">
-    <button class="vr-play" type="button" ${demo ? 'data-vrdemo="1"' : `data-vrplay="${id}|${idx}"`} aria-label="تشغيل">${icon("play")}</button>
-    <div class="vr-main"><div class="vr-wave">${wave((idx+3)*(demo?11:5))}</div>
-      <div class="vr-meta"><b>${esc(v.name)}</b><span>${esc(v.date)}${v.len ? " · " + fmtT(v.len) : ""}</span></div></div>
-    ${demo ? '<span class="vr-demo">مثال للتصميم</span>' : `<button class="vr-del" type="button" data-vrdel="${id}|${idx}" title="حذف (يظهر في الموقع الحقيقي لمرفت فقط)">حذف</button>`}
-    ${demo ? "" : `<audio preload="none" src="${v.src}"></audio>`}
+const vSrc = id => `${VAPI}?action=audio&id=${encodeURIComponent(id)}`;
+const vWhen = d => { const days = Math.floor((Date.now() - new Date(d)) / 864e5); return days < 1 ? "اليوم" : days < 2 ? "أمس" : days < 30 ? "منذ " + ar(days) + " أيام" : new Date(d).toLocaleDateString("ar-EG", {month:"long", year:"numeric"}); };
+let vCache = null;
+function vFetch(){
+  if (!vCache) vCache = fetch(VAPI + "?action=list", {cache:"no-store"}).then(r => r.ok ? r.json() : {voices: []}).then(j => j.voices || []).catch(() => []);
+  return vCache;
+}
+function voiceCard(v, n){
+  return `<article class="vr-card">
+    <button class="vr-play" type="button" data-vrplay aria-label="تشغيل تجربة ${esc(v.name)}">${icon("play")}</button>
+    <div class="vr-main"><div class="vr-wave">${wave(n + 3)}</div>
+      <div class="vr-meta"><b>${esc(v.name)}</b><span>${vWhen(v.date)}${v.len ? " · " + fmtT(v.len) : ""}</span></div></div>
+    <audio preload="none" src="${vSrc(v.id)}"></audio>
   </article>`;
 }
-function renderVoices(){
-  const all = vLoad();
+async function renderVoices(){
+  const all = await vFetch();
   $$("[data-vr]").forEach(el => {
     const id = el.dataset.vr;
     if (id === "all"){
-      const items = []; Object.keys(all).forEach(k => (all[k]||[]).forEach((v,i) => items.push([k, i, Object.assign({}, v, {date: (P[k] ? P[k].title + " · " : "") + v.date})])));
       const n2 = k => String(k).padStart(2,"0").replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
-      const pill = (k, i, v, idx, demo) => `<article class="vr-pill${demo ? " is-demo" : ""}"><button class="vr-play" type="button" ${demo ? 'data-vrdemo="1"' : `data-vrplay="${k}|${i}"`} aria-label="تشغيل رأي عملائنا ${n2(idx)}">${icon("play")}</button>
-        <div class="vr-pill-t"><b>رأي عملائنا ${n2(idx)}</b>${v && !demo ? `<small>${esc(v.name)} · ${esc(P[k] ? P[k].title : "")}</small>` : ""}</div>
-        <span class="vr-listen">استمع <i class="vr-mini"><i></i><i></i><i></i><i></i><i></i></i></span>${demo ? "" : `<audio preload="none" src="${v.src}"></audio>`}</article>`;
-      el.innerHTML = items.length ? items.slice(0, 6).map(([k,i,v], n) => pill(k, i, v, n + 1, false)).join("")
-                                  : [1,2,3,4,5,6].map(n => pill("all", n, null, n, true)).join("") + `<p class="vr-demo-note">أمثلة للتصميم، تظهر مكانها تسجيلات العملاء الحقيقية تلقائياً</p>`;
+      const items = all.filter(v => P[v.pid]).slice(0, 6);
+      el.innerHTML = items.map((v, i) => `<article class="vr-pill"><button class="vr-play" type="button" data-vrplay aria-label="تشغيل رأي عملائنا ${n2(i+1)}">${icon("play")}</button>
+        <div class="vr-pill-t"><b>رأي عملائنا ${n2(i+1)}</b><small>${esc(v.name)} · ${esc(P[v.pid].title)}</small></div>
+        <span class="vr-listen">استمع <i class="vr-mini"><i></i><i></i><i></i><i></i><i></i></i></span><audio preload="none" src="${vSrc(v.id)}"></audio></article>`).join("");
+      const wrap = el.closest("[data-vr-wrap]"); if (wrap) wrap.hidden = !items.length;
       return;
     }
-    const list = all[id] || [];
-    const demos = [{name:"اسم العميلة الأول", date:"منذ يومين", len:74}, {name:"عميلة من القاهرة", date:"منذ أسبوع", len:52}];
-    el.innerHTML = list.map((v,i) => voiceCard(v, id, i, false)).join("") + (list.length ? "" : demos.map((v,i) => voiceCard(v, id, i, true)).join(""));
+    el.innerHTML = all.filter(v => v.pid === id).map(voiceCard).join("");
   });
   $$("[data-vrrec]").forEach(el => {
     if (el.dataset.state && el.dataset.state !== "idle") return;
-    const id = el.dataset.vrrec;
-    el.innerHTML = hasAccess(id)
-      ? `<button class="vr-start" type="button" data-vrstart="${id}">${icon("chat")}<span>سجّلي تجربتك بصوتك</span></button><small>حتى دقيقتين · تُنشر مباشرة</small>`
-      : `<div class="vr-locked">${icon("lock")}<span>بعد شراء هذه الأداة، يمكنك تسجيل تجربتك بصوتك هنا.</span></div>`;
+    el.innerHTML = `<button class="vr-start" type="button" data-vrstart="${el.dataset.vrrec}">${icon("chat")}<span>سجّلي تجربتك بصوتك</span></button><small>حتى دقيقتين · تُنشر بعد مراجعة د. مرفت</small>`;
   });
 }
-let vRec = null;
 async function vStart(el, id){
-  if (!navigator.mediaDevices || !window.MediaRecorder){ toast("التسجيل الصوتي غير مدعوم في هذا المتصفح."); return; }
+  if (!navigator.mediaDevices || !window.MediaRecorder){ toast("التسجيل الصوتي غير مدعوم في هذا المتصفح. جرّبي متصفحاً آخر مثل Chrome أو Safari."); return; }
   let stream;
   try { stream = await navigator.mediaDevices.getUserMedia({audio:true}); }
-  catch(e){ toast("لم يُسمح باستخدام الميكروفون. في النسخة التجريبية قد يُمنع، ويعمل في الموقع الحقيقي."); return; }
+  catch(e){ toast("لم يُسمح باستخدام الميكروفون. اسمحي للموقع باستخدامه من إعدادات المتصفح ثم أعيدي المحاولة."); return; }
   const chunks = [], mr = new MediaRecorder(stream), t0 = Date.now();
   el.dataset.state = "rec";
   el.innerHTML = `<div class="vr-live"><span class="vr-dot"></span><b class="vr-time">٠:٠٠</b><span>جارٍ التسجيل…</span><button class="vr-stop" type="button">إيقاف</button></div>`;
-  const tick = setInterval(() => { const s = (Date.now()-t0)/1000; const t = el.querySelector(".vr-time"); if (t) t.textContent = fmtT(s); if (s >= 120) mr.stop(); }, 250);
+  const tick = setInterval(() => { const s = (Date.now()-t0)/1000; const t = el.querySelector(".vr-time"); if (t) t.textContent = fmtT(s); if (s >= 120 && mr.state === "recording") mr.stop(); }, 250);
   mr.ondataavailable = e => e.data.size && chunks.push(e.data);
   mr.onstop = () => {
     clearInterval(tick); stream.getTracks().forEach(t => t.stop());
-    const blob = new Blob(chunks, {type: mr.mimeType || "audio/webm"}), len = (Date.now()-t0)/1000;
+    const blob = new Blob(chunks, {type: mr.mimeType || "audio/webm"}), len = Math.min(120, (Date.now()-t0)/1000);
+    if (len < 2){ el.dataset.state = "idle"; renderVoices(); toast("التسجيل قصير جداً، جرّبي مرة أخرى."); return; }
     const url = URL.createObjectURL(blob);
     el.dataset.state = "review";
     const first = S.user && S.user.name ? S.user.name.trim().split(/\s+/)[0] : "";
     el.innerHTML = `<div class="vr-review"><audio controls src="${url}"></audio>
-      <div class="vr-opts"><label><input type="radio" name="vrn" value="first" checked><span>اسمي الأول${first ? " (" + esc(first) + ")" : ""}</span></label>
-      <label><input type="radio" name="vrn" value="city"><span>عميلة من</span></label><input class="vr-city" type="text" placeholder="المدينة" aria-label="المدينة"></div>
-      <label class="check"><input type="checkbox" class="vr-ok"><span>أوافق على نشر تسجيلي الصوتي في الموقع</span></label>
-      <div class="vr-actions"><button class="btn-safia vr-pub" type="button">نشر تجربتي</button><button class="vp-btn vr-redo" type="button">إعادة التسجيل</button></div></div>`;
-    el.querySelector(".vr-redo").onclick = () => { el.dataset.state = "idle"; renderVoices(); };
-    el.querySelector(".vr-pub").onclick = () => {
+      <div class="vr-opts"><label><input type="radio" name="vrn" value="first" checked><span>اسمي الأول</span></label><input class="vr-first" type="text" maxlength="30" placeholder="اسمك الأول" aria-label="اسمك الأول" value="${esc(first)}">
+      <label><input type="radio" name="vrn" value="city"><span>عميلة من</span></label><input class="vr-city" type="text" maxlength="30" placeholder="المدينة أو البلد" aria-label="المدينة أو البلد"></div>
+      <input class="vr-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="check"><input type="checkbox" class="vr-ok"><span>أوافق على نشر تسجيلي الصوتي في الموقع بعد مراجعته</span></label>
+      <div class="vr-actions"><button class="btn-safia vr-pub" type="button">أرسلي تجربتي</button><button class="vp-btn vr-redo" type="button">إعادة التسجيل</button></div></div>`;
+    el.querySelector(".vr-redo").onclick = () => { URL.revokeObjectURL(url); el.dataset.state = "idle"; renderVoices(); };
+    const pub = el.querySelector(".vr-pub");
+    pub.onclick = async () => {
       if (!el.querySelector(".vr-ok").checked){ toast("ضعي علامة الموافقة على النشر أولاً."); return; }
-      const city = el.querySelector(".vr-city").value.trim();
-      const name = el.querySelector("input[name=vrn]:checked").value === "city" ? "عميلة من " + (city || "مصر") : (first || "عميلة");
-      const fr = new FileReader();
-      fr.onload = () => {
-        const all = vLoad(); (all[id] = all[id] || []).unshift({name, src: fr.result, len, date: "الآن"});
-        if (!vSave(all)){ toast("التسجيل أكبر من مساحة النسخة التجريبية، جرّبي تسجيلاً أقصر."); return; }
-        el.dataset.state = "idle"; renderVoices(); toast("نُشرت تجربتك، شكراً لك");
-      };
-      fr.readAsDataURL(blob);
+      const byCity = el.querySelector("input[name=vrn]:checked").value === "city";
+      const city = el.querySelector(".vr-city").value.trim(), firstName = el.querySelector(".vr-first").value.trim();
+      const name = byCity ? "عميلة من " + (city || "مصر") : (firstName || "عميلة");
+      const fd = new FormData();
+      fd.append("pid", id); fd.append("name", name); fd.append("len", len.toFixed(1)); fd.append("consent", "1");
+      fd.append("website", el.querySelector(".vr-hp").value);
+      fd.append("audio", blob, "voice");
+      pub.disabled = true; pub.textContent = "جارٍ الإرسال…";
+      try {
+        const r = await fetch(VAPI + "?action=submit", {method: "POST", body: fd}), j = await r.json().catch(() => ({}));
+        if (r.ok && j.ok){ URL.revokeObjectURL(url); el.dataset.state = "idle"; el.innerHTML = `<div class="vr-thanks">${icon("check")}<span>وصلت تجربتك، شكراً لك. ستظهر هنا بعد مراجعة د. مرفت.</span></div>`; return; }
+        toast(j.error === "limit" ? "أرسلتِ عدة تسجيلات خلال وقت قصير. جرّبي بعد ساعة." : j.error === "size" || j.error === "length" ? "التسجيل أطول من المسموح، سجّلي حتى دقيقتين." : "لم يُرسل التسجيل. حاولي مرة أخرى.");
+      } catch(e){ toast("تعذّر الإرسال. تأكدي من الاتصال بالإنترنت وحاولي مرة أخرى."); }
+      pub.disabled = false; pub.textContent = "أرسلي تجربتي";
     };
   };
-  el.querySelector(".vr-stop").onclick = () => mr.stop();
+  el.querySelector(".vr-stop").onclick = () => { if (mr.state === "recording") mr.stop(); };
   mr.start();
 }
 document.addEventListener("click", e => {
   const st = e.target.closest("[data-vrstart]"); if (st){ vStart(st.closest("[data-vrrec]"), st.dataset.vrstart); return; }
-  if (e.target.closest("[data-vrdemo]")){ toast("هذا مثال للتصميم، والتسجيلات الحقيقية تظهر هنا بعد أن تسجّلها العميلات."); return; }
   const pl = e.target.closest("[data-vrplay]");
   if (pl){ const card = pl.closest(".vr-card,.vr-pill"), a = card.querySelector("audio"); $$(".vr-card audio,.vr-pill audio").forEach(x => { if (x !== a){ x.pause(); x.closest(".vr-card,.vr-pill").classList.remove("on"); } });
-    if (a.paused){ a.play(); card.classList.add("on"); a.onended = () => card.classList.remove("on"); } else { a.pause(); card.classList.remove("on"); } return; }
-  const dl = e.target.closest("[data-vrdel]");
-  if (dl){ const [id, i] = dl.dataset.vrdel.split("|"); const all = vLoad(); (all[id]||[]).splice(+i, 1); vSave(all); renderVoices(); toast("حُذف التسجيل"); }
+    if (a.paused){ a.play().catch(() => toast("تعذّر تشغيل التسجيل.")); card.classList.add("on"); a.onended = () => card.classList.remove("on"); } else { a.pause(); card.classList.remove("on"); } }
 });
 renderVoices();
 
