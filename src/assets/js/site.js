@@ -209,7 +209,7 @@ function loadPayPal(){
   if (window.paypal) return Promise.resolve(window.paypal);
   if (!ppLoading) ppLoading = new Promise((ok, no) => {
     const sc = document.createElement("script");
-    sc.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(PAYPAL_CLIENT_ID) + "&currency=USD&intent=capture&components=buttons";
+    sc.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(PAYPAL_CLIENT_ID) + "&currency=USD&intent=capture&components=buttons&disable-funding=card,credit,paylater,venmo";
     sc.onload = () => ok(window.paypal); sc.onerror = () => { ppLoading = null; no(new Error("paypal")); };
     document.head.appendChild(sc);
   });
@@ -223,7 +223,7 @@ async function initPayPal(items){
     const pp = await loadPayPal();
     box.innerHTML = "";
     await pp.Buttons({
-      style: {layout: "vertical", color: "gold", shape: "pill", label: "pay", height: 48},
+      style: {layout: "horizontal", color: "white", shape: "pill", label: "paypal", height: 52, tagline: false},
       createOrder: (d, actions) => actions.order.create({
         purchase_units: [{amount: {currency_code: "USD", value: (+usd).toFixed(2)}, description: desc}],
         application_context: {shipping_preference: "NO_SHIPPING", brand_name: "Mervat Soror"}
@@ -277,11 +277,11 @@ function renderCheckout(){
       <div class="alert err" id="payErr" hidden></div>
       ${PAY_LIVE ? `<button class="btn btn-gold btn-block" type="submit">${icon("lock")}ادفع ${fmt(t.total)}</button>
       <p class="secure" style="text-align:center">بالضغط على «ادفع» أنت توافق على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>، والشراء نهائي.</p>`
-      : `<div class="pp-box"><div class="pp-head"><b>ادفعي الآن ببطاقتك أو بحساب PayPal</b><span class="pp-amt">$${usdTotal(items)}</span></div>
-        <small>الدفع عبر PayPal يكون بالدولار، ويمكنك الدفع ببطاقة فيزا أو ماستركارد دون فتح حساب.</small><div id="ppButtons" class="pp-buttons"><span class="muted">جارٍ تحميل زر الدفع…</span></div></div>
-      <div class="pp-or"><span>أو</span></div>
-      <div class="alert info pay-soon"><b>للدفع بالجنيه المصري:</b> حتى تفعيل الدفع الإلكتروني، يتم الطلب عبر واتساب: نرسل لكِ طريقة الدفع، ونفعّل طلبك فور تأكيده.</div>
-      <a class="btn btn-line btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}أكملي الطلب عبر واتساب (${money(items.reduce((s,c)=>s+P[c.id].eg,0), items.reduce((s,c)=>s+P[c.id].us,0))})</a>
+      : `<div class="pp-box"><div class="pp-head"><b>الدفع بالبيبال</b><span class="pp-amt">$${usdTotal(items)}</span></div>
+        <div id="ppButtons" class="pp-buttons"><span class="muted">جارٍ تحميل زر الدفع…</span></div></div>
+      ${S.region === "eg" ? `<div class="pp-or"><span>أو</span></div>
+      <div class="alert info pay-soon"><b>للدفع بالجنيه المصري:</b> حتى تفعيل الدفع الإلكتروني، يتم الطلب عبر واتساب.</div>
+      <a class="btn btn-line btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}الطلب عبر واتساب (${money(items.reduce((s,c)=>s+P[c.id].eg,0), items.reduce((s,c)=>s+P[c.id].us,0))})</a>` : ""}
       <p class="secure" style="display:block;text-align:center">بإتمام الطلب أنتِ توافقين على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>.</p>`}
     </div>
    </form>
