@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC, OUT = ROOT / "src", ROOT / "site"
-SITE_URL = "https://mervatsoror.com"   # TODO: replace with the real domain
+SITE_URL = "https://mervatsror.com"
 NAME = "د. مرفت سرور"
 E = html.escape
 
@@ -269,7 +269,7 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
     </div>
     <div><h4>البرامج</h4><ul><li><a href="vip.html">استيقظ VIP</a></li><li><a href="course-ain-sahia.html">عين صاحية</a></li><li><a href="library.html">مكتبة الأدوات</a></li><li><a href="bundles.html">الباقات</a></li><li><a href="books.html">الكتب</a></li><li><a href="sessions.html">الجلسات الفردية</a></li></ul></div>
     <div><h4>المساعدة</h4><ul><li><a href="lp-serenity.html">✦ هبوط: السكينة والتنظيف</a></li><li><a href="lp-attach.html">✦ هبوط: فك التعلّق</a></li><li><a href="about.html">عن مرفت</a></li><li><a href="articles.html">المقالات</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="contact.html">تواصل معنا</a></li><li><a href="account.html">حسابي</a></li><li><a href="cart.html">السلة</a></li></ul></div>
-    <div><h4>تواصل</h4><ul class="f-contact"><li><a href="https://wa.me/201095292748">{ic("chat","icon icon-sm")}01095292748</a></li><li><a href="contact.html">{ic("mail","icon icon-sm")}support@mervatsoror.com</a></li><li><span>{ic("pin","icon icon-sm")}القاهرة، مصر</span></li></ul><h4 style="margin-top:18px">السياسات</h4><ul><li><a href="policies.html">كل السياسات</a></li><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
+    <div><h4>تواصل</h4><ul class="f-contact"><li><a href="https://wa.me/201095292748">{ic("chat","icon icon-sm")}01095292748</a></li><li><a href="mailto:info@mervatsror.com">{ic("mail","icon icon-sm")}info@mervatsror.com</a></li><li><span>{ic("pin","icon icon-sm")}القاهرة، مصر</span></li></ul><h4 style="margin-top:18px">السياسات</h4><ul><li><a href="policies.html">كل السياسات</a></li><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
   </div>
   <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة. · <a href="terms.html" style="color:inherit">الشروط</a> · <a href="privacy.html" style="color:inherit">الخصوصية</a> · <a href="refund.html" style="color:inherit">الاسترداد</a> · <a href="delivery.html" style="color:inherit">تقديم الخدمة</a></span><div class="region foot-cur" role="group" aria-label="عرض الأسعار بـ"><button type="button" data-region="eg">جنيه مصري</button><button type="button" data-region="intl">دولار $</button></div><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
 </div></footer>'''
@@ -455,7 +455,7 @@ def build():
     # ---------- contact
     page("contact.html", "تواصل معنا", "تواصل مع فريق د. مرفت سرور للاستفسارات والدعم الفني والتعاون.", page_hero("تواصل معنا","نرد خلال يوم عمل واحد.") + f'''
 <section class="band-sm"><div class="wrap contact-grid">
-  <div class="c-info">{"".join(f'<div class="c-item"><span class="ico">{ic(i)}</span><span><b>{t}</b><span class="copyable muted">{v}</span></span></div>' for i,t,v in [("mail","البريد الإلكتروني","support@mervatsoror.com"),("chat","واتساب","01095292748"),("clock","مواعيد الدعم","الأحد إلى الخميس · ١٠ ص حتى ٦ م بتوقيت القاهرة"),("pin","العنوان","القاهرة، مصر")])}<span class="demo">بيانات تواصل مؤقتة</span></div>
+  <div class="c-info">{"".join(f'<div class="c-item"><span class="ico">{ic(i)}</span><span><b>{t}</b><span class="copyable muted">{v}</span></span></div>' for i,t,v in [("mail","البريد الإلكتروني","info@mervatsror.com"),("chat","واتساب","01095292748"),("clock","مواعيد الدعم","الأحد إلى الخميس · ١٠ ص حتى ٦ م بتوقيت القاهرة"),("pin","العنوان","القاهرة، مصر")])}<span class="demo">بيانات تواصل مؤقتة</span></div>
   <form class="card form" data-simple="وصلتنا رسالتك، وسنرد عليك على بريدك خلال يوم عمل.">
     <div class="row2"><div class="field"><label for="ctName">الاسم</label><input id="ctName" required></div><div class="field"><label for="ctEmail">البريد الإلكتروني</label><input id="ctEmail" type="email" required></div></div>
     <div class="field"><label for="ctTopic">الموضوع</label><select id="ctTopic"><option>استفسار عن البرامج</option><option>مشكلة في الدفع</option><option>الوصول إلى مادة اشتريتها</option><option>الجلسات الفردية</option><option>تعاون وإعلام</option></select></div>
