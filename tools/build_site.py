@@ -284,7 +284,7 @@ def page(file, title, desc, body, active="", schema=None, noindex=False, bare=Fa
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="canonical" href="{SITE_URL}/{'' if file=='index.html' else file}">
 {'<meta name="robots" content="noindex,nofollow">' if noindex else ''}
-<meta property="og:type" content="website"><meta property="og:locale" content="ar_AR"><meta property="og:title" content="{E(full_title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:image" content="{SITE_URL}/assets/img/coach-white.webp">
+<meta property="og:type" content="website"><meta property="og:locale" content="ar_AR"><meta property="og:title" content="{E(full_title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:image" content="{SITE_URL}/assets/img/og-share.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="{SITE_URL}/{'' if file=='index.html' else file}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{SITE_URL}/assets/img/og-share.jpg">
 <meta name="theme-color" content="#FDFAF5"><link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="assets/brand/favicon-192.png">
 {FONTS}<link rel="stylesheet" href="assets/css/site.css">{ld}'''
     content = f'''{SPRITE}
