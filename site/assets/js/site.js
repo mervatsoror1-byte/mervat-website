@@ -201,6 +201,13 @@ const GATEWAYS = {
     {id:"nbe-card", t:"بطاقة دولية", s:"Visa · Mastercard بالدولار (البنك الأهلي المصري)", l:["VISA","MC"]},
     {id:"paypal", t:"PayPal", s:"ادفع من رصيدك أو بطاقتك عبر PayPal", l:["PayPal"]}]
 };
+/* Online payment switch: false until the payment gateway is connected; orders go through WhatsApp meanwhile. */
+const PAY_LIVE = false;
+function waOrderLink(items, t){
+  const lines = items.map(c => "• " + P[c.id].title + (c.when ? " (" + c.when + ")" : "")).join("\n");
+  const msg = "مرحباً د. مرفت، أريد إتمام طلبي من الموقع:\n" + lines + "\nالإجمالي: " + fmt(t.total) + (S.user ? "\nالاسم: " + S.user.name + "\nالبريد: " + S.user.email : "");
+  return "https://wa.me/201095292748?text=" + encodeURIComponent(msg);
+}
 function renderCheckout(){
   const box = $("#checkoutPage"), items = payItems(), single = !!buyNow();
   if (!S.user){ ss("next", "checkout.html"); location.replace("login.html"); return; }
@@ -212,13 +219,15 @@ function renderCheckout(){
    <form class="form" id="payForm" novalidate>
     <div class="card form">
       <div class="alert info">تشتري باسم <b>${esc(S.user.name)}</b> · ${esc(S.user.email)}</div>
-      <h3>طريقة الدفع</h3>
+      ${PAY_LIVE ? `<h3>طريقة الدفع</h3>
       ${recurring ? `<div class="alert info">اشتراك متجدد تلقائياً، ويمكنك إلغاء التجديد في أي وقت من «حسابي ← اشتراكاتي».</div>` : ""}
-      <div class="pay-opts">${gws.map(g=>`<label class="pay-opt"><input type="radio" name="gw" value="${g.id}" ${g.id===last?"checked":""}><span><b>${g.t}</b><small>${g.s}</small></span><span class="logos">${g.l.map(x=>`<span>${x}</span>`).join("")}</span></label>`).join("")}</div>
+      <div class="pay-opts">${gws.map(g=>`<label class="pay-opt"><input type="radio" name="gw" value="${g.id}" ${g.id===last?"checked":""}><span><b>${g.t}</b><small>${g.s}</small></span><span class="logos">${g.l.map(x=>`<span>${x}</span>`).join("")}</span></label>`).join("")}</div>` : `<h3>إتمام الطلب</h3>`}
       <div class="alert err" id="payErr" hidden></div>
-      <button class="btn btn-gold btn-block" type="submit">${icon("lock")}ادفع ${fmt(t.total)}</button>
-      <p class="secure" style="text-align:center">بالضغط على «ادفع» أنت توافق على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>، والشراء نهائي.</p>
-      <p class="secure">نموذج تجريبي: لن يُخصم أي مبلغ. <a href="failed.html">شاهد صفحة فشل الدفع</a></p>
+      ${PAY_LIVE ? `<button class="btn btn-gold btn-block" type="submit">${icon("lock")}ادفع ${fmt(t.total)}</button>
+      <p class="secure" style="text-align:center">بالضغط على «ادفع» أنت توافق على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>، والشراء نهائي.</p>`
+      : `<div class="alert info pay-soon"><b>حتى تفعيل الدفع الإلكتروني</b>، يتم الطلب عبر واتساب: نرسل لكِ طريقة الدفع، ونفعّل طلبك فور تأكيده.</div>
+      <a class="btn btn-gold btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}أكملي الطلب عبر واتساب (${fmt(t.total)})</a>
+      <p class="secure" style="display:block;text-align:center">بإتمام الطلب أنتِ توافقين على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>.</p>`}
     </div>
    </form>
    <aside class="card summary"><h3>طلبك</h3>
@@ -231,6 +240,7 @@ function renderCheckout(){
   </div>`;
 }
 function submitPay(f){
+  if (!PAY_LIVE) return;
   const items = payItems(), single = !!buyNow();
   const t = totals(items), gw = (f.querySelector("input[name=gw]:checked")||{}).value, no = "MS-" + (10240 + S.orders.length + 1);
   items.forEach(c => {
