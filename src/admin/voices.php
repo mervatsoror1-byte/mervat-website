@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$csrfOk()) { $err = 'انتهت صلاحية الصفحة، أعيدي المحاولة.'; }
     elseif ($do === 'setup' && !$hasPassword) {
         if (!rate_ok('login', 5, 900, false)) { $err = 'محاولات كثيرة. انتظري ربع ساعة.'; }
-        elseif (!password_verify(strtoupper(trim((string)($_POST['code'] ?? ''))), $cfg['setup_code_hash'])) { rate_ok('login', 5, 900); $err = 'كود الإعداد غير صحيح.'; }
+        elseif (!password_verify(implode('-', str_split(substr(preg_replace('/[^A-Z0-9]/', '', strtoupper((string)($_POST['code'] ?? ''))), 0, 12), 4)), $cfg['setup_code_hash'])) { rate_ok('login', 5, 900); $err = 'كود الإعداد غير صحيح.'; }
         elseif (mb_strlen((string)($_POST['pass'] ?? '')) < 10) { $err = 'كلمة السر يجب أن تكون ١٠ أحرف على الأقل.'; }
         elseif (($_POST['pass'] ?? '') !== ($_POST['pass2'] ?? '')) { $err = 'كلمتا السر غير متطابقتين.'; }
         else {
