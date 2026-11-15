@@ -9,7 +9,9 @@ const MAX_PENDING = 300;
 const NOTIFY_EMAIL = 'info@mervatsror.com';
 
 function data_dir(): string {
-    $base = getenv('MS_DATA_DIR') ?: dirname(__DIR__, 2) . '/ms_data';
+    // Both sites (static and WordPress) share the main domain's data folder when it exists.
+    $shared = dirname(__DIR__, 3) . '/mervatsror.com/ms_data';
+    $base = getenv('MS_DATA_DIR') ?: (is_dir($shared) ? $shared : dirname(__DIR__, 2) . '/ms_data');
     foreach (['', '/voices', '/limits'] as $sub) {
         $d = $base . $sub;
         if (!is_dir($d) && !@mkdir($d, 0700, true)) { fail(500, 'storage'); }

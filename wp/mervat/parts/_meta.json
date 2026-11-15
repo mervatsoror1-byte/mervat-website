@@ -1,0 +1,263 @@
+{
+ "404": {
+  "title": "الصفحة غير موجودة",
+  "desc": "الصفحة غير موجودة.",
+  "ld": "",
+  "noindex": true,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "about": {
+  "title": "عن مرفت",
+  "desc": "مرفت سرور مدربة وعي وكوتش معتمد من ICF بدرجة PCC، ومؤسسة برنامج استيقظ VIP للتشافي.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Person\", \"name\": \"مرفت سرور\", \"jobTitle\": \"مدربة وعي وتشافي معتمدة من ICF\", \"url\": \"https://mervatsror.com/about.html\", \"image\": \"https://mervatsror.com/assets/img/whois-library.webp\", \"memberOf\": {\"@type\": \"Organization\", \"name\": \"International Coaching Federation (ICF)\"}}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "articles": {
+  "title": "المقالات",
+  "desc": "مقالات د. مرفت سرور عن الوعي الذاتي، التشافي، فك التعلّق، الطفل الداخلي والـ Decoding.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "book-ghosts": {
+  "title": "عندما تولد في عائلة من الأشباح",
+  "desc": "عن الموروث العائلي الذي نحمله دون أن نراه، وكيف نتحرر منه بوعي ورحمة.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Book\", \"name\": \"عندما تولد في عائلة من الأشباح\", \"author\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"inLanguage\": \"ar\", \"bookFormat\": \"https://schema.org/EBook\", \"offers\": {\"@type\": \"Offer\", \"price\": 349, \"priceCurrency\": \"EGP\"}}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "book-ghosts"
+ },
+ "books": {
+  "title": "الكتب الإلكترونية",
+  "desc": "كتب د. مرفت سرور الإلكترونية، تُقرأ داخل حسابك على أي جهاز.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "bundles": {
+  "title": "الباقات",
+  "desc": "باقات بنظام يومي متكامل: تنفّس الاتزان الداخلي، وPriming الصباح، وتمرين لموضوع محدد (Decoding، الطفل الداخلي، فك التعلّق، السلام)، بسعر أقل من شرائها منفصلة.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "contact": {
+  "title": "اتصل بنا",
+  "desc": "تواصل مع فريق د. مرفت سرور: واتساب 01095292748، أو أرسل رسالتك من النموذج.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "course-ain-sahia": {
+  "title": "عين صاحية",
+  "desc": "كورس الامتنان: كيف تقول «الحمد لله رب العالمين» من قلبك، وتشكر الله بالشكل الصحيح، وترى ما يتغيّر في حياتك حين تمتنّ كل يوم. كورس صوتي مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"عين صاحية\", \"description\": \"كورس الامتنان: كيف تقول «الحمد لله رب العالمين» من قلبك، وتشكر الله بالشكل الصحيح، وترى ما يتغيّر في حياتك حين تمتنّ كل يوم.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 1499, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 75, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "ain-sahia"
+ },
+ "decoding-energy-stagnation": {
+  "title": "Decoding الركود والخمول",
+  "desc": "تمرين تشريحي للعقل اللاواعي يفكّ الركود والخمول: الكسل والتجمّد الذي يمنعك من التحرك نحو أهدافك. Decoding مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding الركود والخمول\", \"description\": \"تمرين تشريحي للعقل اللاواعي يفكّ الركود والخمول: الكسل والتجمّد الذي يمنعك من التحرك نحو أهدافك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "decode-stagnation"
+ },
+ "decoding-light-of-acceptance": {
+  "title": "Decoding نور القبول",
+  "desc": "تمرين تشريحي للعقل اللاواعي لقبول الذات: يساعدك على الخروج من جرح الرفض والهجر، وأن تقبل نفسك أولاً حتى يبدأ الناس في الخارج بقبولك. Decoding مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding نور القبول\", \"description\": \"تمرين تشريحي للعقل اللاواعي لقبول الذات: يساعدك على الخروج من جرح الرفض والهجر، وأن تقبل نفسك أولاً حتى يبدأ الناس في الخارج بقبولك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "decode-acceptance"
+ },
+ "decoding-original-version": {
+  "title": "Decoding النسخة الأصلية",
+  "desc": "تمرين تشريحي للعقل اللاواعي، فريد من نوعه: صور مركّبة بطريقة خاصة تخترق طبقات العقل اللاواعي، وتعمل على كشف نسختك الأصلية وإيصالك إليها. Decoding مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding النسخة الأصلية\", \"description\": \"تمرين تشريحي للعقل اللاواعي، فريد من نوعه: صور مركّبة بطريقة خاصة تخترق طبقات العقل اللاواعي، وتعمل على كشف نسختك الأصلية وإيصالك إليها.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "decode-original"
+ },
+ "delivery": {
+  "title": "سياسة تقديم الخدمة",
+  "desc": "كيف ومتى تحصل على الأدوات والاشتراكات والجلسات بعد الدفع.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "exercise-detachment": {
+  "title": "تمرين فك التعلّق",
+  "desc": "تأمل موجّه مدته ١٠ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك. فك التعلّق مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين فك التعلّق\", \"description\": \"تأمل موجّه مدته ١٠ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 349, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "attach"
+ },
+ "faq": {
+  "title": "الأسئلة الشائعة",
+  "desc": "إجابات عن الدفع والأسعار داخل مصر وخارجها، برنامج استيقظ VIP، الجلسات والكتب.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [{\"@type\": \"Question\", \"name\": \"هل أحتاج خبرة سابقة في الوعي؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"لا. كل مادة تبدأ بمقدمة وإرشادات واضحة، ويمكنك البدء بأي تمرين.\"}}, {\"@type\": \"Question\", \"name\": \"هل المحتوى باللغة العربية؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"نعم، كل المحتوى بالعربية، وسنضيف لغات أخرى لاحقاً.\"}}, {\"@type\": \"Question\", \"name\": \"هل يمكنني الاستماع من الهاتف؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"نعم، الموقع يعمل على الهاتف والكمبيوتر، ويحفظ تقدّمك على كل الأجهزة.\"}}, {\"@type\": \"Question\", \"name\": \"لماذا يختلف السعر داخل مصر عن خارجها؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة.\"}}, {\"@type\": \"Question\", \"name\": \"ما طرق الدفع المتاحة؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"داخل مصر: البطاقات البنكية وميزة والمحافظ الإلكترونية وفوري والتقسيط. من خارج مصر: البطاقات الدولية وPayPal.\"}}, {\"@type\": \"Question\", \"name\": \"متى أحصل على المادة بعد الدفع؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول.\"}}, {\"@type\": \"Question\", \"name\": \"هل يمكنني استرداد المبلغ؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"كل عمليات الشراء نهائية لأن الأدوات تُفتح فور الدفع. نرد المبلغ فقط في حالة الخصم المزدوج أو الخطأ التقني الذي لم يُحل، كما في سياسة الاسترداد والإلغاء.\"}}, {\"@type\": \"Question\", \"name\": \"ما المدة التي يحدث فيها التغيير؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"التغيير الحقيقي يحتاج التزاماً وتطبيقاً يومياً، والمدة المناسبة ثلاثة أشهر على الأقل، ولذلك نرشّح اشتراك ٣ أشهر كبداية.\"}}, {\"@type\": \"Question\", \"name\": \"ماذا يشمل استيقظ VIP؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"جلسات فردية خاصة بينك وبين د. مرفت فقط، وكل التمارين، وخطة يومية، ومزايا على الجلسات.\"}}, {\"@type\": \"Question\", \"name\": \"كيف ألغي الاشتراك؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة.\"}}, {\"@type\": \"Question\", \"name\": \"هل أحتفظ بالأدوات بعد الإلغاء؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى متاحاً لك ٣٦٥ يوماً من تاريخ شرائه.\"}}, {\"@type\": \"Question\", \"name\": \"هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.\"}}, {\"@type\": \"Question\", \"name\": \"كيف تتم الجلسة؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"أونلاين عبر Zoom أو Google Meet، ويصلك الرابط على بريدك.\"}}, {\"@type\": \"Question\", \"name\": \"هل يمكن تغيير الموعد؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"نعم، حتى ٢٤ ساعة قبل الجلسة من حسابك دون رسوم.\"}}, {\"@type\": \"Question\", \"name\": \"بأي توقيت تظهر المواعيد؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"تظهر بتوقيت القاهرة مع تحويلها تلقائياً لتوقيت بلدك في الموقع الفعلي.\"}}, {\"@type\": \"Question\", \"name\": \"هل يمكن تحميل الكتاب؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"لا، يُقرأ داخل حسابك فقط حفاظاً على حقوق المحتوى، بنسخة تحمل اسمك.\"}}, {\"@type\": \"Question\", \"name\": \"هل أستطيع القراءة دون إنترنت؟\", \"acceptedAnswer\": {\"@type\": \"Answer\", \"text\": \"القراءة تحتاج اتصالاً بالإنترنت لأن الكتاب محفوظ في حسابك.\"}}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "heart-coherence-breathing": {
+  "title": "تنفّس الاتزان الداخلي",
+  "desc": "تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال. تنفّس مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تنفّس الاتزان الداخلي\", \"description\": \"تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "heart-coherence"
+ },
+ "front": {
+  "title": "د. مرفت سرور",
+  "desc": "برنامج استيقظ VIP، كورس عين صاحية، وتمارين Decoding وفك التعلق وتشافي الطفل الداخلي وتنفّس الاتزان الداخلي مع د. مرفت سرور، مدربة وعي وتشافي معتمدة من ICF.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Organization\", \"name\": \"د. مرفت سرور\", \"url\": \"https://mervatsror.com\", \"logo\": \"https://mervatsror.com/assets/brand/logo-gold-transparent.png\"}</script><script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Person\", \"name\": \"مرفت سرور\", \"jobTitle\": \"مدربة وعي وتشافي معتمدة من ICF\", \"url\": \"https://mervatsror.com/about.html\", \"image\": \"https://mervatsror.com/assets/img/whois-library.webp\", \"memberOf\": {\"@type\": \"Organization\", \"name\": \"International Coaching Federation (ICF)\"}}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "front",
+  "sku": ""
+ },
+ "inner-child-healing": {
+  "title": "تمرين تشافي الطفل الداخلي",
+  "desc": "تمرين عميق لتشافي الطفل الداخلي: تدخل في مساحة آمنة معه، تكتشفه، وتتعرّف على ما مرّ به في طفولتك. التشافي مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين تشافي الطفل الداخلي\", \"description\": \"تمرين عميق لتشافي الطفل الداخلي: تدخل في مساحة آمنة معه، تكتشفه، وتتعرّف على ما مرّ به في طفولتك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 449, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "inner-child"
+ },
+ "library": {
+  "title": "الأدوات",
+  "desc": "كل أدوات د. مرفت سرور: كورس عين صاحية، تمارين Decoding وPriming، فك التعلق، تشافي الطفل الداخلي، تنفّس الاتزان الداخلي وتأمل السكينة.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "lp-attach": {
+  "title": "تمرين فك التعلّق",
+  "desc": "تأمل موجّه بصوت د. مرفت سرور مدته ١٠ دقائق، يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة.",
+  "ld": "",
+  "noindex": true,
+  "bare": true,
+  "type": "page",
+  "sku": ""
+ },
+ "lp-serenity": {
+  "title": "تأمل السكينة والتنظيف",
+  "desc": "تأمل موجّه بصوت د. مرفت سرور لتنظيف المشاعر السلبية في ثلاث مراحل: التنفّس، التحرّر، الحماية.",
+  "ld": "",
+  "noindex": true,
+  "bare": true,
+  "type": "page",
+  "sku": ""
+ },
+ "morning-priming": {
+  "title": "تمرين Priming الصباح",
+  "desc": "توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم تشافي جسدك. Priming مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين Priming الصباح\", \"description\": \"توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم تشافي جسدك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "morning-priming"
+ },
+ "peace-affirmations": {
+  "title": "توكيدات السلام للتشافي العميق",
+  "desc": "تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي. التشافي مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"توكيدات السلام للتشافي العميق\", \"description\": \"تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "peace-affirmations"
+ },
+ "policies": {
+  "title": "السياسات والشروط",
+  "desc": "الشروط والأحكام، سياسة الخصوصية، سياسة الاسترداد والإلغاء، وسياسة تقديم الخدمة لمنصة د. مرفت سرور.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "privacy": {
+  "title": "سياسة الخصوصية",
+  "desc": "كيف تجمع منصة د. مرفت سرور بياناتك وتستخدمها وتحميها.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "refund": {
+  "title": "سياسة الاسترداد والإلغاء",
+  "desc": "سياسة عدم الاسترداد، والحالات المستثناة، وإلغاء الاشتراكات، وتغيير مواعيد الجلسات على منصة د. مرفت سرور.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "serenity-cleansing-meditation": {
+  "title": "تأمل السكينة والتنظيف",
+  "desc": "تأمل موجّه للتنظيف في ثلاثة أقسام: التنفس، ثم التحرر من المشاعر السلبية، ثم الحماية بنور يغلّف جسدك بالكامل. تأمل مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تأمل السكينة والتنظيف\", \"description\": \"تأمل موجّه للتنظيف في ثلاثة أقسام: التنفس، ثم التحرر من المشاعر السلبية، ثم الحماية بنور يغلّف جسدك بالكامل.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 449, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "product",
+  "sku": "serenity"
+ },
+ "sessions": {
+  "title": "الجلسات الفردية",
+  "desc": "احجز جلسة تعارف أو استشارة أو كوتشينج أونلاين مع د. مرفت سرور. اختر الموعد بتوقيت بلدك، وادفع بالبطاقة أو المحفظة أو PayPal.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "terms": {
+  "title": "الشروط والأحكام",
+  "desc": "شروط استخدام منصة د. مرفت سرور، حماية الحساب، الاستخدام المسموح للأدوات، الدفع، عدم الاسترداد، والإجراءات عند إساءة الاستخدام.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "vip": {
+  "title": "برنامج استيقظ VIP",
+  "desc": "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. جلسات فردية خاصة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Product\", \"name\": \"استيقظ VIP\", \"description\": \"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور\", \"brand\": \"د. مرفت سرور\", \"offers\": [{\"@type\": \"Offer\", \"price\": 2999, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 149, \"priceCurrency\": \"USD\"}]}</script>",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ }
+}

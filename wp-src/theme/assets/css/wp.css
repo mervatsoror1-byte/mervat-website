@@ -1,0 +1,41 @@
+/* WordPress / WooCommerce pages in the site's identity (royal blue, matte gold, cream). */
+.wp-hero{background:radial-gradient(70% 90% at 75% 30%,#3A62A8 0%,#284D92 45%,#1F3F7C 100%);color:#F5F5DC;padding:120px 0 46px;text-align:start}
+.wp-hero .title{color:#F5F5DC;margin:0}
+.wp-body{padding-top:40px}
+.wp-content{max-width:1080px}
+.wp-content a{color:#1F3F7C}
+.admin-bar .site-header{top:32px}
+@media (max-width:782px){.admin-bar .site-header{top:46px}}
+
+/* buttons */
+.woocommerce a.button,.woocommerce button.button,.woocommerce input.button,.woocommerce #respond input#submit,
+.woocommerce a.button.alt,.woocommerce button.button.alt,.woocommerce-page button.button,.wc-block-components-button:not(.is-link){
+  background:linear-gradient(135deg,#E2C68C,#C5A059)!important;color:#1A3670!important;border:0!important;border-radius:999px!important;
+  font-family:inherit!important;font-weight:800!important;padding:12px 26px!important;box-shadow:0 14px 28px -18px rgba(20,35,74,.6)}
+.woocommerce a.button:hover,.woocommerce button.button:hover{filter:brightness(1.04)}
+
+/* forms */
+.woocommerce form .form-row input.input-text,.woocommerce form .form-row textarea,.woocommerce form .form-row select,
+.wc-block-components-text-input input,.wc-block-components-form .wc-block-components-text-input input{
+  border:1px solid #E8DFC6!important;border-radius:12px!important;padding:11px 14px!important;background:#fff;font-family:inherit}
+.woocommerce form .form-row label{font-weight:700;color:#1A3670}
+
+/* tables, notices */
+.woocommerce table.shop_table{border:1px solid #E8DFC6;border-radius:16px;overflow:hidden;background:#fff}
+.woocommerce table.shop_table th{color:#1A3670}
+.woocommerce-message,.woocommerce-info{border-top-color:#C5A059!important;background:#FFFDF7}
+.woocommerce-message::before,.woocommerce-info::before{color:#C5A059!important}
+.woocommerce-error{border-top-color:#9b2c2c!important}
+
+/* my account */
+.woocommerce-MyAccount-navigation ul{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.woocommerce-MyAccount-navigation li a{display:block;padding:10px 16px;border-radius:12px;background:#fff;border:1px solid #E8DFC6;color:#1A3670;font-weight:700;text-decoration:none}
+.woocommerce-MyAccount-navigation li.is-active a{background:#1F3F7C;color:#F5F5DC;border-color:#1F3F7C}
+
+/* prices */
+.woocommerce .price,.woocommerce-Price-amount{color:#1A3670;font-weight:800}
+
+/* block cart/checkout */
+.wc-block-components-sidebar-layout{gap:24px}
+.wc-block-components-totals-wrapper,.wc-block-components-order-summary{font-family:inherit}
+.add.busy{opacity:.6;pointer-events:none}
