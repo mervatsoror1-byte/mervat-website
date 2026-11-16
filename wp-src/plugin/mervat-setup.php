@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.0.7
+ * Version: 1.0.8
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.0.7';
+const MS_SETUP_VERSION = '1.0.8';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -333,6 +333,10 @@ function ms_setup_courses(): void {
         if (!$cid || is_wp_error($cid)) { continue; }
         update_post_meta($cid, '_ms_sku', $p['sku']);
         update_post_meta($cid, '_tutor_course_price_type', 'paid');
+        // access lasts 90 days from purchase
+        $cs = (array)get_post_meta($cid, '_tutor_course_settings', true);
+        $cs['enrollment_expiry'] = 90;
+        update_post_meta($cid, '_tutor_course_settings', $cs);
         update_post_meta($cid, '_tutor_course_product_id', $pid);
         update_post_meta($pid, '_tutor_product', 'yes');
         update_post_meta($pid, '_ms_course', $cid);
