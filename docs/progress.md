@@ -66,3 +66,11 @@
 - SSL active with HTTPS redirect.
 - Plan: custom theme built from this repo (no page builder), content set up by a setup plugin from the same product data, both deployed through the Hostinger API. Two currencies (EGP default, USD for PayPal) with fixed prices per currency, likely via WooCommerce Multilingual & Multicurrency (free).
 - The static site stays live on mervatsror.com until Mervat approves the switch.
+
+## WordPress staging — 2026-11-16
+- PayPal Payments connected by Mervat (OAuth) and enabled; supports automatic renewals. EGP: bank transfer/InstaPay/Vodafone Cash (manual).
+- VIP plans are Flexible Subscriptions products (free plugin): monthly, every 3 months, yearly. Fixed EGP/USD prices via Price Based on Country (fsb-subscription added to supported types). Manual renewal enabled for EGP.
+- Tutor LMS: one course per tool (11), linked to its product; monetize by WooCommerce. Digital orders complete on payment; completed orders enroll the buyer (offers -> granted tool, bundles -> each tool, VIP -> all VIP tools). Course pages redirect non-buyers to the product page.
+- Still to do: lesson content (needs audio/video files), VIP access removal when a subscription ends, Paymob for EGP cards, switch to mervatsror.com.
+- Admin-only status JSON: /wp-admin/?ms_diag=1
+- Hostinger setup plugins (AI website creation, easy onboarding, Reach) deactivated: they hid the PayPal wizard buttons.

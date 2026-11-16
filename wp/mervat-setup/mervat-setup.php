@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.0.4
+ * Version: 1.0.7
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.0.4';
+const MS_SETUP_VERSION = '1.0.7';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -70,6 +70,13 @@ function ms_setup_run(): void {
         'blog_public' => $staging ? '0' : '1',
         'timezone_string' => 'Africa/Cairo',
         'date_format' => 'j F Y',
+        'users_can_register' => '1',
+        'default_role' => 'customer',
+        'woocommerce_email_base_color' => '#1F3F7C',
+        'woocommerce_email_background_color' => '#FBF8EE',
+        'woocommerce_email_body_background_color' => '#FFFFFF',
+        'woocommerce_email_text_color' => '#1A3670',
+        'woocommerce_email_footer_text' => 'د. مرفت سرور · مدربة وعي وتشافي معتمدة من ICF · info@mervatsror.com · واتساب 01095292748',
         'woocommerce_registration_privacy_policy_text' => 'نستخدم بياناتك لإدارة حسابك وطلباتك فقط، كما هو موضّح في [privacy_policy].',
         'woocommerce_checkout_privacy_policy_text' => 'نستخدم بياناتك لإتمام طلبك وإدارة حسابك فقط، كما هو موضّح في [privacy_policy].',
     ];
@@ -100,6 +107,9 @@ function ms_setup_run(): void {
     if (class_exists('WC_Install')) { WC_Install::create_pages(); }
     ms_setup_pages();
     ms_link_policy_pages();
+    ms_email_logo();
+    ms_setup_subscriptions();
+    ms_setup_courses();
     ms_setup_products();
     ms_name_shop_pages();
     ms_install_translations();
@@ -275,3 +285,134 @@ function ms_link_policy_pages(): void {
 /* ---------------------------------------------------------------- quiet cart: the header count is enough */
 add_filter('wc_add_to_cart_message_html', '__return_empty_string');
 add_filter('woocommerce_add_success', function ($message) { return trim(wp_strip_all_tags((string)$message)) === '' ? '' : $message; });
+
+/* ---------------------------------------------------------------- email look */
+function ms_email_logo(): void {
+    $logo = get_theme_root_uri() . '/mervat/assets/brand/logo-gold-transparent.png';
+    update_option('woocommerce_email_header_image', $logo);
+}
+
+/* ---------------------------------------------------------------- VIP as renewing subscriptions (Flexible Subscriptions) */
+function ms_setup_subscriptions(): void {
+    if (!taxonomy_exists('product_type')) { return; }
+    $plans = ['vip-m' => [1, 'M'], 'vip-q' => [3, 'M'], 'vip-y' => [1, 'Y']];   // periods: D, W, M, Y
+    foreach ($plans as $sku => [$interval, $period]) {
+        $id = wc_get_product_id_by_sku($sku);
+        if (!$id) { continue; }
+        wp_set_object_terms($id, 'fsb-subscription', 'product_type');
+        update_post_meta($id, '_fsb_subscription_interval', (string)$interval);
+        update_post_meta($id, '_fsb_subscription_period', $period);
+        update_post_meta($id, '_fsb_total_billing_cycles', '0');
+        update_post_meta($id, '_fsb_subscription_trial_length', '0');
+        update_post_meta($id, '_fsb_subscription_sign_up_fee', '');
+        update_post_meta($id, '_fsb_subscription_one_time_shipping', 'no');
+        wc_delete_product_transients($id);
+    }
+}
+
+/* ---------------------------------------------------------------- one Tutor course per tool, opened after payment */
+function ms_course_for(string $sku): int {
+    $q = get_posts(['post_type' => 'courses', 'post_status' => 'any', 'meta_key' => '_ms_sku', 'meta_value' => $sku, 'numberposts' => 1, 'fields' => 'ids']);
+    return $q ? (int)$q[0] : 0;
+}
+
+function ms_setup_courses(): void {
+    if (!post_type_exists('courses')) { return; }
+    $opt = (array)get_option('tutor_option', []);
+    $opt['monetize_by'] = 'wc';
+    update_option('tutor_option', $opt);
+    foreach (ms_data('products.json') as $p) {
+        if (!in_array($p['kind'] ?? '', ['course', 'exercise', 'book'], true)) { continue; }
+        $pid = wc_get_product_id_by_sku($p['sku']);
+        if (!$pid) { continue; }
+        $cid = ms_course_for($p['sku']);
+        $post = ['post_type' => 'courses', 'post_status' => 'publish', 'post_title' => $p['name'],
+                 'post_name' => 'learn-' . $p['sku'], 'post_excerpt' => $p['short'] ?? ''];
+        if ($cid) { $post['ID'] = $cid; wp_update_post($post); }
+        else { $cid = wp_insert_post($post); }
+        if (!$cid || is_wp_error($cid)) { continue; }
+        update_post_meta($cid, '_ms_sku', $p['sku']);
+        update_post_meta($cid, '_tutor_course_price_type', 'paid');
+        update_post_meta($cid, '_tutor_course_product_id', $pid);
+        update_post_meta($pid, '_tutor_product', 'yes');
+        update_post_meta($pid, '_ms_course', $cid);
+        $thumb = get_post_thumbnail_id($pid);
+        if ($thumb) { set_post_thumbnail($cid, $thumb); }
+    }
+}
+
+/** Courses a purchased product opens: itself, an offer's tool, a bundle's tools, or every VIP tool. */
+function ms_courses_for_product(int $product_id): array {
+    $sku = (string)get_post_meta($product_id, '_sku', true);
+    $all = ms_data('products.json');
+    $by = [];
+    foreach ($all as $p) { $by[$p['sku']] = $p; }
+    $p = $by[$sku] ?? null;
+    if (!$p) { return []; }
+    $skus = [];
+    if (in_array($p['kind'], ['course', 'exercise', 'book'], true)) { $skus[] = $sku; }
+    if ($p['kind'] === 'offer' && !empty($p['grants'])) { $skus[] = $p['grants']; }
+    if ($p['kind'] === 'bundle') { $skus = array_merge($skus, (array)($p['items'] ?? [])); }
+    if ($p['kind'] === 'vip') { foreach ($all as $q) { if (!empty($q['vip'])) { $skus[] = $q['sku']; } } }
+    $ids = [];
+    foreach (array_unique($skus) as $s) { $c = ms_course_for($s); if ($c) { $ids[] = $c; } }
+    return $ids;
+}
+
+/* Digital orders finish on payment, so access opens at once. */
+function ms_order_is_digital($order): bool {
+    foreach ($order->get_items() as $item) {
+        $prod = $item->get_product();
+        if ($prod && !$prod->is_virtual()) { return false; }
+    }
+    return true;
+}
+add_filter('woocommerce_payment_complete_order_status', function ($status, $order_id, $order) {
+    return ($order && ms_order_is_digital($order)) ? 'completed' : $status;
+}, 10, 3);
+add_action('woocommerce_order_status_processing', function ($order_id) {
+    $order = wc_get_order($order_id);
+    if ($order && ms_order_is_digital($order)) { $order->update_status('completed', 'تم تفعيل الطلب تلقائياً لأنه منتج رقمي.'); }
+}, 20);
+
+add_action('woocommerce_order_status_completed', function ($order_id) {
+    if (!function_exists('tutor_utils')) { return; }
+    $order = wc_get_order($order_id);
+    $user = $order ? (int)$order->get_user_id() : 0;
+    if (!$user) { return; }
+    foreach ($order->get_items() as $item) {
+        foreach (ms_courses_for_product((int)$item->get_product_id()) as $cid) {
+            if (!tutor_utils()->is_enrolled($cid, $user)) {
+                $enrol = tutor_utils()->do_enroll($cid, $order_id, $user);
+                if ($enrol) { tutor_utils()->course_enrol_status_change($enrol, 'completed'); }
+            }
+        }
+    }
+}, 30);
+
+/* A course page opens only for people who bought it; everyone else sees the tool's own page. */
+add_action('template_redirect', function () {
+    if (!is_singular('courses') || current_user_can('edit_posts')) { return; }
+    $cid = get_queried_object_id();
+    $uid = get_current_user_id();
+    if ($uid && function_exists('tutor_utils') && tutor_utils()->is_enrolled($cid, $uid)) { return; }
+    $pid = (int)get_post_meta($cid, '_tutor_course_product_id', true);
+    if ($pid) { wp_safe_redirect(get_permalink($pid), 302); exit; }
+});
+
+/* ---------------------------------------------------------------- fixed EGP prices for VIP subscriptions too */
+add_filter('wc_price_based_country_product_types_overriden', function ($types) { $types[] = 'fsb-subscription'; return $types; });
+add_filter('wc_price_based_country_third_party_product_types', function ($types) { $types['fsb-subscription'] = 'Flexible Subscriptions'; return $types; });
+
+/* ---------------------------------------------------------------- admin-only status check: /wp-admin/?ms_diag=1 */
+add_action('admin_init', function () {
+    if (empty($_GET['ms_diag']) || !current_user_can('manage_options')) { return; }
+    $out = ['setup' => get_option('ms_setup_version'), 'gateways' => []];
+    foreach (WC()->payment_gateways()->payment_gateways() as $id => $g) {
+        $out['gateways'][$id] = ['enabled' => $g->enabled, 'subscriptions' => $g->supports('subscriptions'), 'title' => $g->get_title()];
+    }
+    $out['courses'] = count(get_posts(['post_type' => 'courses', 'numberposts' => -1, 'fields' => 'ids']));
+    $out['monetize_by'] = (get_option('tutor_option') ?: [])['monetize_by'] ?? null;
+    $out['email_preview'] = wp_nonce_url(admin_url('?preview_woocommerce_mail=true'), 'preview-mail');
+    wp_send_json($out);
+});

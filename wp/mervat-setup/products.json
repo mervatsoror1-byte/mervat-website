@@ -9,7 +9,9 @@
   "short": "",
   "img": "assets/img/thumb-vip.webp",
   "redirect": "{{H}}/vip/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "vip-q",
@@ -21,7 +23,9 @@
   "short": "",
   "img": "assets/img/thumb-vip.webp",
   "redirect": "{{H}}/vip/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "vip-y",
@@ -33,7 +37,9 @@
   "short": "",
   "img": "assets/img/thumb-vip.webp",
   "redirect": "{{H}}/vip/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "ain-sahia",
@@ -45,7 +51,9 @@
   "short": "كورس الامتنان: كيف تقول «الحمد لله رب العالمين» من قلبك، وتشكر الله بالشكل الصحيح، وترى ما يتغيّر في حياتك حين تمتنّ كل يوم.",
   "img": "assets/img/covers/ain-sahia-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "attach",
@@ -57,7 +65,9 @@
   "short": "تأمل موجّه مدته ١٠ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.",
   "img": "assets/img/covers/attach-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "decode-original",
@@ -69,7 +79,9 @@
   "short": "تمرين تشريحي للعقل اللاواعي، فريد من نوعه: صور مركّبة بطريقة خاصة تخترق طبقات العقل اللاواعي، وتعمل على كشف نسختك الأصلية وإيصالك إليها.",
   "img": "assets/img/covers/decode-original-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "decode-acceptance",
@@ -81,7 +93,9 @@
   "short": "تمرين تشريحي للعقل اللاواعي لقبول الذات: يساعدك على الخروج من جرح الرفض والهجر، وأن تقبل نفسك أولاً حتى يبدأ الناس في الخارج بقبولك.",
   "img": "assets/img/covers/decode-acceptance-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "decode-stagnation",
@@ -93,7 +107,9 @@
   "short": "تمرين تشريحي للعقل اللاواعي يفكّ الركود والخمول: الكسل والتجمّد الذي يمنعك من التحرك نحو أهدافك.",
   "img": "assets/img/covers/decode-stagnation-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "inner-child",
@@ -105,7 +121,9 @@
   "short": "تمرين عميق لتشافي الطفل الداخلي: تدخل في مساحة آمنة معه، تكتشفه، وتتعرّف على ما مرّ به في طفولتك.",
   "img": "assets/img/covers/inner-child-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "heart-coherence",
@@ -117,7 +135,9 @@
   "short": "تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال.",
   "img": "assets/img/covers/breath-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "morning-priming",
@@ -129,7 +149,9 @@
   "short": "توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم تشافي جسدك.",
   "img": "assets/img/covers/morning-priming-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "peace-affirmations",
@@ -141,7 +163,9 @@
   "short": "تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي.",
   "img": "assets/img/covers/peace-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "serenity",
@@ -153,7 +177,9 @@
   "short": "تأمل موجّه للتنظيف في ثلاثة أقسام: التنفس، ثم التحرر من المشاعر السلبية، ثم الحماية بنور يغلّف جسدك بالكامل.",
   "img": "assets/img/covers/serenity-sm.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": true,
+  "items": []
  },
  {
   "sku": "book-ghosts",
@@ -165,7 +191,9 @@
   "short": "عن الموروث العائلي الذي نحمله دون أن نراه، وكيف نتحرر منه بوعي ورحمة.",
   "img": "assets/art/book.webp",
   "redirect": null,
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "lp-serenity",
@@ -177,7 +205,9 @@
   "short": "",
   "img": "assets/img/covers/serenity-sm.webp",
   "redirect": "{{H}}/lp-serenity/",
-  "grants": "serenity"
+  "grants": "serenity",
+  "vip": false,
+  "items": []
  },
  {
   "sku": "lp-attach",
@@ -189,7 +219,9 @@
   "short": "",
   "img": "assets/img/covers/attach-sm.webp",
   "redirect": "{{H}}/lp-attach/",
-  "grants": "attach"
+  "grants": "attach",
+  "vip": false,
+  "items": []
  },
  {
   "sku": "b-original",
@@ -201,7 +233,14 @@
   "short": "",
   "img": "assets/img/covers/decode-original-sm.webp",
   "redirect": "{{H}}/bundles/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": [
+   "heart-coherence",
+   "morning-priming",
+   "serenity",
+   "decode-original"
+  ]
  },
  {
   "sku": "b-acceptance",
@@ -213,7 +252,14 @@
   "short": "",
   "img": "assets/img/covers/decode-acceptance-sm.webp",
   "redirect": "{{H}}/bundles/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": [
+   "heart-coherence",
+   "morning-priming",
+   "serenity",
+   "decode-acceptance"
+  ]
  },
  {
   "sku": "b-stagnation",
@@ -225,7 +271,14 @@
   "short": "",
   "img": "assets/img/covers/decode-stagnation-sm.webp",
   "redirect": "{{H}}/bundles/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": [
+   "heart-coherence",
+   "morning-priming",
+   "serenity",
+   "decode-stagnation"
+  ]
  },
  {
   "sku": "b-peace",
@@ -237,7 +290,14 @@
   "short": "",
   "img": "assets/img/covers/peace-sm.webp",
   "redirect": "{{H}}/bundles/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": [
+   "heart-coherence",
+   "morning-priming",
+   "serenity",
+   "peace-affirmations"
+  ]
  },
  {
   "sku": "b-child",
@@ -249,7 +309,14 @@
   "short": "",
   "img": "assets/img/covers/inner-child-sm.webp",
   "redirect": "{{H}}/bundles/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": [
+   "heart-coherence",
+   "morning-priming",
+   "serenity",
+   "inner-child"
+  ]
  },
  {
   "sku": "b-attach",
@@ -261,7 +328,14 @@
   "short": "",
   "img": "assets/img/covers/attach-sm.webp",
   "redirect": "{{H}}/bundles/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": [
+   "heart-coherence",
+   "morning-priming",
+   "serenity",
+   "attach"
+  ]
  },
  {
   "sku": "s-intro",
@@ -273,7 +347,9 @@
   "short": "",
   "img": "assets/img/thumb-session.webp",
   "redirect": "{{H}}/sessions/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "s-single",
@@ -285,7 +361,9 @@
   "short": "",
   "img": "assets/img/thumb-session.webp",
   "redirect": "{{H}}/sessions/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "s-pack",
@@ -297,7 +375,9 @@
   "short": "",
   "img": "assets/img/thumb-session.webp",
   "redirect": "{{H}}/sessions/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "s-coach",
@@ -309,7 +389,9 @@
   "short": "",
   "img": "assets/img/thumb-session.webp",
   "redirect": "{{H}}/sessions/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  },
  {
   "sku": "serenity-gift",
@@ -321,6 +403,8 @@
   "short": "",
   "img": "assets/art/calm.webp",
   "redirect": "{{H}}/",
-  "grants": null
+  "grants": null,
+  "vip": false,
+  "items": []
  }
 ]

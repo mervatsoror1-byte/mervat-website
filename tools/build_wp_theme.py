@@ -171,7 +171,8 @@ def main():
             target = url_for(pg, product_pages, pages) if pg else None
         prods.append({"sku": p["id"], "name": p["title"], "slug": own or ("ms-" + p["id"]), "eg": p.get("eg"), "us": p.get("us"),
                       "kind": p.get("kind"), "short": p.get("short", ""), "img": (p.get("img") or "").replace("{{T}}/", ""),
-                      "redirect": target, "grants": p.get("grants")})
+                      "redirect": target, "grants": p.get("grants"), "vip": bool(p.get("vipIncluded")),
+                      "items": next((bd["items"] for bd in data.get("bundles", []) if bd["id"] == p["id"]), [])})
     (PLUGIN / "products.json").write_text(json.dumps(prods, ensure_ascii=False, indent=1), encoding="utf-8")
     (PLUGIN / "pages.json").write_text(json.dumps(sorted(pages | {"front"}), ensure_ascii=False), encoding="utf-8")
 
