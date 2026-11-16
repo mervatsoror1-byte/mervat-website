@@ -74,3 +74,5 @@
 - Still to do: lesson content (needs audio/video files), VIP access removal when a subscription ends, Paymob for EGP cards, switch to mervatsror.com.
 - Admin-only status JSON: /wp-admin/?ms_diag=1
 - Hostinger setup plugins (AI website creation, easy onboarding, Reach) deactivated: they hid the PayPal wizard buttons.
+- Access rules (WordPress, mervat-setup 1.0.9): separately bought tools open 90 days; VIP tools open while the VIP subscription is active/pending-cancel; cancelled/expired/on-hold VIP closes VIP-only tools; daily sweep closes expired 90-day tools. Self-test: /wp-admin/?ms_access_test=1 (creates and removes a test customer). Verified: 1 -> 9 -> cancel 1 -> 90 days 0 -> new VIP 9.
+- Policies carry the real business details (CR 16170 Mallawi, tax 725680733, Mallawi/Minya address, Minya courts) and "services delivered online from Cairo".

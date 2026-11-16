@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.0.8
+ * Version: 1.0.9
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.0.8';
+const MS_SETUP_VERSION = '1.0.9';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -333,9 +333,8 @@ function ms_setup_courses(): void {
         if (!$cid || is_wp_error($cid)) { continue; }
         update_post_meta($cid, '_ms_sku', $p['sku']);
         update_post_meta($cid, '_tutor_course_price_type', 'paid');
-        // access lasts 90 days from purchase
         $cs = (array)get_post_meta($cid, '_tutor_course_settings', true);
-        $cs['enrollment_expiry'] = 90;
+        $cs['enrollment_expiry'] = 0;   // access length is managed by ms_access (90 days, or while VIP is active)
         update_post_meta($cid, '_tutor_course_settings', $cs);
         update_post_meta($cid, '_tutor_course_product_id', $pid);
         update_post_meta($pid, '_tutor_product', 'yes');
@@ -379,20 +378,113 @@ add_action('woocommerce_order_status_processing', function ($order_id) {
     if ($order && ms_order_is_digital($order)) { $order->update_status('completed', 'تم تفعيل الطلب تلقائياً لأنه منتج رقمي.'); }
 }, 20);
 
+/* ---------------------------------------------------------------- who can open what, and until when
+   User meta _ms_access = [course_id => ['own_until' => timestamp, 'vip' => bool]]
+   - a tool bought on its own (or in a bundle/offer) stays open 90 days from purchase
+   - VIP tools stay open while the VIP subscription is active
+   A daily check closes anything that is neither. */
+const MS_OWN_DAYS = 90;
+
+function ms_access_get(int $user): array { $v = get_user_meta($user, '_ms_access', true); return is_array($v) ? $v : []; }
+function ms_access_set(int $user, array $a): void { $a ? update_user_meta($user, '_ms_access', $a) : delete_user_meta($user, '_ms_access'); }
+
+function ms_enroll(int $cid, int $user, int $order_id = 0): void {
+    if (!function_exists('tutor_utils') || tutor_utils()->is_enrolled($cid, $user)) { return; }
+    $enrol = tutor_utils()->do_enroll($cid, $order_id, $user);
+    if ($enrol) { tutor_utils()->course_enrol_status_change($enrol, 'completed'); }
+}
+
+function ms_unenroll(int $cid, int $user): void {
+    // Close the enrollment record directly (Tutor's own cancel relies on a per-request cache).
+    global $wpdb;
+    $ids = $wpdb->get_col($wpdb->prepare("SELECT ID FROM {$wpdb->posts} WHERE post_type = 'tutor_enrolled' AND post_parent = %d AND post_author = %d AND post_status = 'completed'", $cid, $user));
+    foreach ($ids as $id) {
+        $wpdb->update($wpdb->posts, ['post_status' => 'cancel'], ['ID' => (int)$id]);
+        clean_post_cache((int)$id);
+    }
+    clean_post_cache($cid);
+    wp_cache_flush_group('tutor');
+    do_action('tutor_enrollment/after/cancel', $cid, $user);
+}
+
+/** Close whatever this person no longer has a reason to open. */
+function ms_access_sweep(int $user): void {
+    $a = ms_access_get($user); $now = time();
+    foreach ($a as $cid => $r) {
+        $open = !empty($r['vip']) || (int)($r['own_until'] ?? 0) > $now;
+        if (!$open) { ms_unenroll((int)$cid, $user); unset($a[$cid]); }
+    }
+    ms_access_set($user, $a);
+}
+
+function ms_is_vip_product(int $product_id): bool {
+    return get_post_meta($product_id, '_ms_kind', true) === 'vip';
+}
+
 add_action('woocommerce_order_status_completed', function ($order_id) {
-    if (!function_exists('tutor_utils')) { return; }
     $order = wc_get_order($order_id);
     $user = $order ? (int)$order->get_user_id() : 0;
     if (!$user) { return; }
+    $a = ms_access_get($user);
     foreach ($order->get_items() as $item) {
-        foreach (ms_courses_for_product((int)$item->get_product_id()) as $cid) {
-            if (!tutor_utils()->is_enrolled($cid, $user)) {
-                $enrol = tutor_utils()->do_enroll($cid, $order_id, $user);
-                if ($enrol) { tutor_utils()->course_enrol_status_change($enrol, 'completed'); }
-            }
+        $pid = (int)$item->get_product_id();
+        $vip = ms_is_vip_product($pid);
+        foreach (ms_courses_for_product($pid) as $cid) {
+            $r = $a[$cid] ?? ['own_until' => 0, 'vip' => false];
+            if ($vip) { $r['vip'] = true; }
+            else { $r['own_until'] = max((int)$r['own_until'], time() + MS_OWN_DAYS * DAY_IN_SECONDS); }
+            $a[$cid] = $r;
+            ms_enroll($cid, $user, (int)$order_id);
         }
     }
+    ms_access_set($user, $a);
 }, 30);
+
+/** Does this person still have another active VIP subscription? */
+function ms_user_has_active_vip(int $user, int $except = 0): bool {
+    if (!function_exists('wc_get_orders')) { return false; }
+    $subs = wc_get_orders(['type' => 'fsb_subscription', 'customer_id' => $user, 'status' => ['wc-active', 'wc-pending-cancel', 'active', 'pending-cancel'], 'limit' => -1]);
+    foreach ($subs as $sub) {
+        if ((int)$sub->get_id() === $except) { continue; }
+        if (!is_object($sub) || $sub->get_type() !== 'fsb_subscription' || !$sub->has_status(['active', 'pending-cancel'])) { continue; }
+        foreach ($sub->get_items() as $it) { if (ms_is_vip_product((int)$it->get_product_id())) { return true; } }
+    }
+    return false;
+}
+
+/* VIP subscription changes: renewed/reactivated -> open; ended/on hold -> close VIP tools (own purchases stay). */
+add_action('fsub/subscription/status/updated', 'ms_on_sub_status', 20, 3);
+function ms_on_sub_status($subscription, $new_status = '', $previous = null): void {
+    if (!is_object($subscription) || !method_exists($subscription, 'get_customer_id')) { return; }
+    $user = (int)$subscription->get_customer_id();
+    if (!$user) { return; }
+    $is_vip = false;
+    foreach ($subscription->get_items() as $it) { if (ms_is_vip_product((int)$it->get_product_id())) { $is_vip = true; break; } }
+    if (!$is_vip) { return; }
+    $a = ms_access_get($user);
+    if (in_array($new_status, ['active', 'pending-cancel'], true)) {
+        foreach (ms_courses_for_product((int)wc_get_product_id_by_sku('vip-m')) as $cid) {
+            $r = $a[$cid] ?? ['own_until' => 0, 'vip' => false];
+            $r['vip'] = true; $a[$cid] = $r;
+            ms_enroll($cid, $user);
+        }
+        ms_access_set($user, $a);
+        return;
+    }
+    if (in_array($new_status, ['cancelled', 'expired', 'on-hold'], true) && !ms_user_has_active_vip($user, (int)$subscription->get_id())) {
+        foreach ($a as $cid => $r) { $a[$cid]['vip'] = false; }
+        ms_access_set($user, $a);
+        ms_access_sweep($user);
+    }
+}
+
+/* Daily: close tools whose 90 days have passed. */
+add_action('init', function () {
+    if (!wp_next_scheduled('ms_access_daily')) { wp_schedule_event(time() + HOUR_IN_SECONDS, 'daily', 'ms_access_daily'); }
+});
+add_action('ms_access_daily', function () {
+    foreach (get_users(['meta_key' => '_ms_access', 'fields' => 'ID', 'number' => -1]) as $uid) { ms_access_sweep((int)$uid); }
+});
 
 /* A course page opens only for people who bought it; everyone else sees the tool's own page. */
 add_action('template_redirect', function () {
@@ -419,4 +511,52 @@ add_action('admin_init', function () {
     $out['monetize_by'] = (get_option('tutor_option') ?: [])['monetize_by'] ?? null;
     $out['email_preview'] = wp_nonce_url(admin_url('?preview_woocommerce_mail=true'), 'preview-mail');
     wp_send_json($out);
+});
+
+/* ---------------------------------------------------------------- admin-only self-test of access rules: /wp-admin/?ms_access_test=1 */
+function ms_test_cleanup(): array {
+    require_once ABSPATH . 'wp-admin/includes/user.php';
+    $n = 0;
+    foreach (get_users(['search' => 'ms_test_*', 'search_columns' => ['user_login'], 'fields' => 'ID']) as $uid) {
+        foreach (wc_get_orders(['customer_id' => (int)$uid, 'limit' => -1, 'type' => 'shop_order']) as $o) { $o->delete(true); }
+        if (function_exists('wc_get_orders')) { foreach (wc_get_orders(['customer_id' => (int)$uid, 'limit' => -1, 'type' => 'fsb_subscription']) as $o) { $o->delete(true); } }
+        foreach (get_posts(['post_type' => 'tutor_enrolled', 'author' => (int)$uid, 'post_status' => 'any', 'numberposts' => -1, 'fields' => 'ids']) as $e) { wp_delete_post($e, true); }
+        wp_delete_user((int)$uid); $n++;
+    }
+    return ['removed test users' => $n];
+}
+add_action('admin_init', function () {
+    if (empty($_GET['ms_access_test']) || !current_user_can('manage_options')) { return; }
+    $log = [ms_test_cleanup()];
+    if ($_GET['ms_access_test'] === 'clean') { wp_send_json($log); }
+    try {
+        $uid = wp_create_user('ms_test_' . wp_generate_password(6, false), wp_generate_password(20), 'ms-test-' . time() . '@example.invalid');
+        if (is_wp_error($uid)) { throw new Exception($uid->get_error_message()); }
+        $mk = function (string $sku) use ($uid) {
+            $o = wc_create_order(['customer_id' => $uid]);
+            $o->add_product(wc_get_product(wc_get_product_id_by_sku($sku)), 1);
+            $o->calculate_totals(); $o->save();
+            $o->update_status('completed');
+            return $o;
+        };
+        $open = function () use ($uid) { global $wpdb; return array_map('intval', $wpdb->get_col($wpdb->prepare("SELECT DISTINCT post_parent FROM {$wpdb->posts} WHERE post_type='tutor_enrolled' AND post_author=%d AND post_status='completed'", $uid))); };
+        $count = function () use ($open) { return count($open()); };
+        $has = function ($cid) use ($open) { return in_array($cid, $open(), true) ? 'yes' : 'no'; };
+        $attach = ms_course_for('attach'); $course = ms_course_for('ain-sahia');
+        $mk('attach');
+        $log[] = 'after buying attach: enrolled=' . $count() . ' attach=' . $has($attach);
+        $o2 = $mk('vip-m');
+        $log[] = 'after VIP: enrolled=' . $count() . ' (course not in VIP enrolled: ' . $has($course) . ')';
+        $log[] = 'other active VIP found: ' . (ms_user_has_active_vip($uid, (int)$o2->get_id()) ? 'yes' : 'no');
+        ms_on_sub_status($o2, 'cancelled', 'active');
+        $log[] = 'after VIP cancelled: enrolled=' . $count() . ' attach kept=' . $has($attach);
+        $a = ms_access_get($uid); foreach ($a as $c => $r) { $a[$c]['own_until'] = time() - 10; } ms_access_set($uid, $a); ms_access_sweep($uid);
+        $log[] = 'after 90 days passed: enrolled=' . $count();
+        $mk('vip-m');
+        $log[] = 'after new VIP: enrolled=' . $count();
+    } catch (\Throwable $e) {
+        $log[] = 'ERROR ' . $e->getMessage() . ' @ ' . basename($e->getFile()) . ':' . $e->getLine();
+    }
+    $log[] = ms_test_cleanup();
+    wp_send_json($log);
 });
