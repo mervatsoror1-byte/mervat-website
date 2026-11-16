@@ -380,10 +380,11 @@ add_action('woocommerce_order_status_processing', function ($order_id) {
 
 /* ---------------------------------------------------------------- who can open what, and until when
    User meta _ms_access = [course_id => ['own_until' => timestamp, 'vip' => bool]]
-   - a tool bought on its own (or in a bundle/offer) stays open 90 days from purchase
+   - a tool bought on its own or in a bundle stays open 365 days; a landing-page offer 90 days
    - VIP tools stay open while the VIP subscription is active
    A daily check closes anything that is neither. */
-const MS_OWN_DAYS = 90;
+const MS_OWN_DAYS = 365;      // regular purchase
+const MS_OFFER_DAYS = 90;     // discounted landing-page offer
 
 function ms_access_get(int $user): array { $v = get_user_meta($user, '_ms_access', true); return is_array($v) ? $v : []; }
 function ms_access_set(int $user, array $a): void { $a ? update_user_meta($user, '_ms_access', $a) : delete_user_meta($user, '_ms_access'); }
@@ -432,7 +433,7 @@ add_action('woocommerce_order_status_completed', function ($order_id) {
         foreach (ms_courses_for_product($pid) as $cid) {
             $r = $a[$cid] ?? ['own_until' => 0, 'vip' => false];
             if ($vip) { $r['vip'] = true; }
-            else { $r['own_until'] = max((int)$r['own_until'], time() + MS_OWN_DAYS * DAY_IN_SECONDS); }
+            else { $days = get_post_meta($pid, '_ms_kind', true) === 'offer' ? MS_OFFER_DAYS : MS_OWN_DAYS; $r['own_until'] = max((int)$r['own_until'], time() + $days * DAY_IN_SECONDS); }
             $a[$cid] = $r;
             ms_enroll($cid, $user, (int)$order_id);
         }
@@ -551,7 +552,7 @@ add_action('admin_init', function () {
         ms_on_sub_status($o2, 'cancelled', 'active');
         $log[] = 'after VIP cancelled: enrolled=' . $count() . ' attach kept=' . $has($attach);
         $a = ms_access_get($uid); foreach ($a as $c => $r) { $a[$c]['own_until'] = time() - 10; } ms_access_set($uid, $a); ms_access_sweep($uid);
-        $log[] = 'after 90 days passed: enrolled=' . $count();
+        $log[] = 'after access period passed: enrolled=' . $count();
         $mk('vip-m');
         $log[] = 'after new VIP: enrolled=' . $count();
     } catch (\Throwable $e) {

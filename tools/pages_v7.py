@@ -59,7 +59,7 @@ def product(p):
     facts = list(p.get("facts") or [["lessons", f"يحتوي على {_n(total)}"], ["clock", f"المدة: {dur.translate(_ar)}"]])
     if p.get("ctype"): facts.append(["layers", f"نوع المادة: {p['ctype']}"])
     if p.get("level"): facts.append(["award", f"المستوى: {p['level']}"])
-    facts += [["cal", "مدة الوصول: ٩٠ يوماً من تاريخ الشراء"], ["devices", "تابع من أي لابتوب أو موبايل"]]
+    facts += [["cal", "مدة الوصول: ٣٦٥ يوماً من تاريخ الشراء"], ["devices", "تابع من أي لابتوب أو موبايل"]]
     facts_html = "".join(f'<li>{ic(i, "icon icon-sm")}<span>{E(t)}</span></li>' for i, t in facts)
     modules_html = "".join(f'<details {"open" if n == 0 else ""}><summary>{E(m["title"])}</summary>' + "".join(f'<div class="pd3-l">{ic("play" if l[2:] else "lock", "icon icon-sm")}<span>{E(l[0])}</span>' + (f'<a href="learn.html#{p["id"]}">استمع مجاناً</a>' if l[2:] else "") + '</div>' for l in m["lessons"]) + '</details>' for n, m in enumerate(p["modules"]))
     page(p["page"], f'{p["title"]}', p["short"] + f' {p["catLabel"]} مع د. مرفت سرور.', f'''
