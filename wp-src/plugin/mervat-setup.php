@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.0.9
+ * Version: 1.1.0
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.0.9';
+const MS_SETUP_VERSION = '1.1.0';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -110,6 +110,7 @@ function ms_setup_run(): void {
     ms_email_logo();
     ms_setup_subscriptions();
     ms_setup_courses();
+    ms_setup_lessons();
     ms_setup_products();
     ms_name_shop_pages();
     ms_install_translations();
@@ -561,3 +562,32 @@ add_action('admin_init', function () {
     $log[] = ms_test_cleanup();
     wp_send_json($log);
 });
+
+/* ---------------------------------------------------------------- lessons from lessons.json (Bunny Stream videos)
+   {"_library": 811029, "<tool sku>": [{"title": "...", "video": "<bunny guid>", "length": "m:ss"}]} */
+function ms_setup_lessons(): void {
+    if (!post_type_exists('lesson') || !post_type_exists('topics')) { return; }
+    $all = ms_data('lessons.json');
+    $lib = (int)($all['_library'] ?? 0);
+    foreach ($all as $sku => $list) {
+        if ($sku === '_library' || !is_array($list)) { continue; }
+        $cid = ms_course_for($sku);
+        if (!$cid) { continue; }
+        $topic = get_posts(['post_type' => 'topics', 'post_parent' => $cid, 'post_status' => 'any', 'numberposts' => 1, 'fields' => 'ids']);
+        $tid = $topic ? (int)$topic[0] : wp_insert_post(['post_type' => 'topics', 'post_parent' => $cid, 'post_status' => 'publish', 'post_title' => 'المحتوى', 'menu_order' => 1]);
+        foreach (array_values($list) as $i => $l) {
+            $found = get_posts(['post_type' => 'lesson', 'post_status' => 'any', 'meta_key' => '_ms_video', 'meta_value' => $l['video'], 'numberposts' => 1, 'fields' => 'ids']);
+            $post = ['post_type' => 'lesson', 'post_parent' => $tid, 'post_status' => 'publish', 'post_title' => $l['title'], 'menu_order' => $i + 1];
+            if ($found) { $post['ID'] = (int)$found[0]; $lid = wp_update_post($post); } else { $lid = wp_insert_post($post); }
+            if (!$lid || is_wp_error($lid)) { continue; }
+            [$m, $s] = array_pad(explode(':', $l['length'] ?? '0:00'), 2, '0');
+            update_post_meta($lid, '_ms_video', $l['video']);
+            update_post_meta($lid, '_tutor_course_id_for_lesson', $cid);
+            update_post_meta($lid, '_video', [
+                'source' => 'bunnynet',
+                'source_bunnynet' => "https://iframe.mediadelivery.net/embed/{$lib}/{$l['video']}",
+                'runtime' => ['hours' => '00', 'minutes' => str_pad((string)(int)$m, 2, '0', STR_PAD_LEFT), 'seconds' => str_pad((string)(int)$s, 2, '0', STR_PAD_LEFT)],
+            ]);
+        }
+    }
+}
