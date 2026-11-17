@@ -36,12 +36,12 @@ PRODUCTS = [
                 {"title":"الوحدة الثانية: الامتنان كل يوم","lessons":[["تمرين الامتنان الصباحي","10:00"],["الامتنان في الأوقات الصعبة","12:00"],["الامتنان في العلاقات","12:00"]]},
                 {"title":"الوحدة الثالثة: ما يتغيّر في حياتك","lessons":[["كيف يغيّر الامتنان نظرتك","12:00"],["خطة ٣٠ يوماً","9:00"],["الختام","6:00"]]}]),
   dict(id="attach", kind="exercise", slug="exercise-detachment", title="تمرين فك التعلّق", cat="free", catLabel="فك التعلّق", img="assets/img/covers/attach-sm.webp", cover="assets/img/covers/attach-sm.webp", coverLg="assets/img/covers/attach.webp", eg=349, us=25, isNew=True, vipIncluded=True,
-       meta="تأمل · ١٠ دقائق", level="مبتدئ", ctype="تأمل", cardMeta="تأمل · ١٠ دقائق",
-       facts=[["play","تأمل موجّه مدته ١٠ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
-       short="تأمل موجّه مدته ١٠ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.",
-       desc=["التعلّق يجعل سلامك الداخلي مرهوناً بشيء خارجك. في هذا التأمل الموجّه مع د. مرفت تلاحظ التعلّق، وتفهم ما يحاول أن يحميه، ثم تحرّره بهدوء.","يبدأ بمقدمة قصيرة تشرح التمرين وطريقته، ثم التأمل نفسه في ١٠ دقائق، ويمكنك تكراره كلما احتجت إليه."],
+       meta="تأمل · ٨ دقائق", level="مبتدئ", ctype="تأمل", cardMeta="تأمل · ٨ دقائق",
+       facts=[["play","تأمل موجّه مدته ٨ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
+       short="تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.",
+       desc=["التعلّق يجعل سلامك الداخلي مرهوناً بشيء خارجك. في هذا التأمل الموجّه مع د. مرفت تلاحظ التعلّق، وتفهم ما يحاول أن يحميه، ثم تحرّره بهدوء.","يبدأ بمقدمة قصيرة تشرح التمرين وطريقته، ثم التأمل نفسه في ٨ دقائق، ويمكنك تكراره كلما احتجت إليه."],
        forWho=["تعلّق بعلاقة انتهت أو لم تبدأ","قلق دائم من فقدان شخص أو شيء","صعوبة في ترك الأمور تسير لحالها","تفكير متكرر لا يتوقف"],
-       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين وطريقته","3:00",True],["تأمل فك التعلّق","10:00"]]}]),
+       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين وطريقته","3:00",True],["تأمل فك التعلّق","8:08"]]}]),
   dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="Decoding النسخة الأصلية", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-original-sm.webp", cover="assets/img/covers/decode-original-sm.webp", coverLg="assets/img/covers/decode-original.webp", level="متقدم", eg=649, us=35, isNew=True, vipIncluded=True,
        meta="تمرين تشريحي للعقل اللاواعي · ٦ دقائق", ctype="Decoding · تمرين تشريحي للعقل اللاواعي", cardMeta="تمرين تشريحي · ٦ دقائق",
        facts=[["play","تمرين تشريحي للعقل اللاواعي مدته ٦ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
@@ -88,14 +88,14 @@ PRODUCTS = [
        forWho=["توتر وقلق مستمر وشعور بالاستنفار","إحساس بالانقباض وثقل الطاقة","صعوبة في الاسترخاء أو النوم","رغبة في رفع مستوى وعيك وطاقتك"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تنفّس الاتزان الداخلي","10:00"]]}]),
   dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/img/covers/morning-priming-sm.webp", cover="assets/img/covers/morning-priming-sm.webp", coverLg="assets/img/covers/morning-priming.webp", eg=249, us=20, vipIncluded=True,
-       meta="توكيدات صباحية · ١٠ دقائق", level="مبتدئ", ctype="توكيدات صباحية · وعي بالجسد", cardMeta="توكيدات صباحية · ١٠ دقائق",
-       facts=[["play","توكيدات صباحية يومية مدتها ١٠ دقائق"],["heart","معظمها يتحدث مع الجسد ويدعم شفاءه"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
+       meta="توكيدات صباحية · ٦ دقائق", level="مبتدئ", ctype="توكيدات صباحية · وعي بالجسد", cardMeta="توكيدات صباحية · ٦ دقائق",
+       facts=[["play","توكيدات صباحية يومية مدتها ٦ دقائق"],["heart","معظمها يتحدث مع الجسد ويدعم شفاءه"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم اتزانك وراحتك.",
        desc=["«Priming الصباح» تمرين توكيدات يومية تسمعه مع بداية يومك، يساعدك على استقبال الصباح بشكل جميل، ويهيّئك ليوم جديد وسعيد.",
              "معظم التوكيدات تتحدث مع الجسد وتدعم الشفاء الجسدي، فتبدأ يومك وأنت في سلام مع جسدك وممتن له.",
              "مع التكرار كل صباح، يصبح عادة تضبط حالتك الداخلية قبل أن يبدأ اليوم."],
        forWho=["تبدأ يومك بقلق أو ثقل","تمرّ بتعب أو ألم جسدي وتريد دعم شفائك","تريد روتيناً صباحياً قصيراً وثابتاً","تحب أن تستقبل يومك بطاقة هادئة وجميلة"],
-       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["توكيدات Priming الصباح","10:00"]]}]),
+       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["توكيدات Priming الصباح","6:06"]]}]),
   dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي العميق", cat="heal", catLabel="التشافي", img="assets/img/covers/peace-sm.webp", cover="assets/img/covers/peace-sm.webp", coverLg="assets/img/covers/peace.webp", level="مبتدئ", eg=249, us=20, vipIncluded=True,
        meta="توكيدات يومية · ساعة ودقيقة", ctype="توكيدات · برمجة العقل اللاواعي", cardMeta="توكيدات يومية · ساعة ودقيقة",
        facts=[["play","توكيدات عن السلام والطمأنينة مدتها ساعة ودقيقة"],["path","للتطبيق اليومي لبرمجة العقل اللاواعي"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
@@ -175,7 +175,7 @@ BOOK_PAGES = [
   "<h2>الفصل الثالث</h2><p>نص تجريبي متاح بعد الشراء فقط.</p>",
 ]
 # Tools whose recordings are on Bunny; everything else shows "قريباً" and can't be bought yet.
-READY = {"decode-original", "heart-coherence", "decode-acceptance", "serenity", "inner-child", "decode-stagnation"}
+READY = {"decode-original", "heart-coherence", "decode-acceptance", "serenity", "inner-child", "decode-stagnation", "morning-priming", "attach"}
 _BITEMS = {b["id"]: b["items"] for b in BUNDLES}
 for _p in PRODUCTS:
     if _p["kind"] in ("course", "exercise", "book"):

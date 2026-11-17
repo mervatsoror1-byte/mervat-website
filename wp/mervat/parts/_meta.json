@@ -109,8 +109,8 @@
  },
  "exercise-detachment": {
   "title": "تمرين فك التعلّق",
-  "desc": "تأمل موجّه مدته ١٠ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك. فك التعلّق مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين فك التعلّق\", \"description\": \"تأمل موجّه مدته ١٠ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 349, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\"}]}</script>",
+  "desc": "تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك. فك التعلّق مع د. مرفت سرور.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين فك التعلّق\", \"description\": \"تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 349, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -163,7 +163,7 @@
  },
  "lp-attach": {
   "title": "تمرين فك التعلّق",
-  "desc": "تأمل موجّه بصوت د. مرفت سرور مدته ١٠ دقائق، يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة.",
+  "desc": "تأمل موجّه بصوت د. مرفت سرور مدته ٨ دقائق، يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة.",
   "ld": "",
   "noindex": true,
   "bare": true,

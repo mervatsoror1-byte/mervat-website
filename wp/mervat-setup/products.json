@@ -66,12 +66,12 @@
   "eg": 349,
   "us": 25,
   "kind": "exercise",
-  "short": "تأمل موجّه مدته ١٠ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.",
+  "short": "تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.",
   "img": "assets/img/covers/attach-sm.webp",
   "redirect": null,
   "grants": null,
   "vip": true,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
@@ -161,7 +161,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
@@ -236,7 +236,7 @@
   "redirect": "{{H}}/lp-attach/",
   "grants": "attach",
   "vip": false,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
@@ -251,7 +251,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
-  "soon": true,
+  "soon": false,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -271,7 +271,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
-  "soon": true,
+  "soon": false,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -291,7 +291,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
-  "soon": true,
+  "soon": false,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -331,7 +331,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
-  "soon": true,
+  "soon": false,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -351,7 +351,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
-  "soon": true,
+  "soon": false,
   "items": [
    "heart-coherence",
    "morning-priming",
