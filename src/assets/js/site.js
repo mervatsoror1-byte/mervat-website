@@ -49,6 +49,16 @@ let S, fresh = false;
 try { const raw = localStorage.getItem(KEY); fresh = !raw; S = Object.assign({}, blank, JSON.parse(raw || "{}")); } catch(e) { S = Object.assign({}, blank); fresh = true; }
 // first visit: choose currency from the visitor's time zone (Egypt → EGP, elsewhere → USD)
 if (fresh){ try { S.region = Intl.DateTimeFormat().resolvedOptions().timeZone === "Africa/Cairo" ? "eg" : "intl"; } catch(e){} }
+// This site has no real accounts: purchases are delivered by email until the WordPress shop goes live.
+// Clear anything the old demo stored in the browser (fake sign-in, "owned" tools, demo orders).
+if (!window.MS_WP){
+  const demo = S.user && /example\.com$/i.test(S.user.email || "");
+  if (S.owned.length || S.vip || S.orders.length || S.bookings.length || demo){
+    S.owned = []; S.vip = null; S.orders = []; S.bookings = []; S.progress = {};
+    if (demo) S.user = null;
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){}
+  }
+}
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
 function ss(k, v){ try { if (v === undefined) return sessionStorage.getItem(k); if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch(e){ return null; } }
 
