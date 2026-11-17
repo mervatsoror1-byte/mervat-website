@@ -174,6 +174,16 @@ BOOK_PAGES = [
   "<h2>الفصل الثاني</h2><p>نص تجريبي متاح بعد الشراء فقط.</p>",
   "<h2>الفصل الثالث</h2><p>نص تجريبي متاح بعد الشراء فقط.</p>",
 ]
+# Tools whose recordings are on Bunny; everything else shows "قريباً" and can't be bought yet.
+READY = {"decode-original", "heart-coherence"}
+_BITEMS = {b["id"]: b["items"] for b in BUNDLES}
+for _p in PRODUCTS:
+    if _p["kind"] in ("course", "exercise", "book"):
+        _p["soon"] = _p["id"] not in READY
+    elif _p["kind"] == "offer":
+        _p["soon"] = _p.get("grants") not in READY
+    elif _p["kind"] == "bundle":
+        _p["soon"] = not all(i in READY for i in _BITEMS.get(_p["id"], []))
 DATA = {"products": PRODUCTS, "bundles": BUNDLES, "countries": COUNTRIES, "bookPages": BOOK_PAGES, "freePages": 3,
         "slots": ["١٠:٠٠ ص","١٢:٠٠ م","٢:٠٠ م","٥:٠٠ م","٧:٠٠ م","٩:٠٠ م"], "defaultLearn": "ain-sahia"}
 

@@ -1790,3 +1790,6 @@ body:has(.lp-hero) .help-c{display:none}
 .pp-buttons{min-height:56px;margin-top:6px}
 .pp-or{display:flex;align-items:center;gap:12px;color:#5A6582;font-weight:700;margin:4px 0}
 .pp-or::before,.pp-or::after{content:"";flex:1;height:1px;background:#E8DFC6}
+
+.is-soon{background:#E8DFC6!important;color:#5A6582!important;box-shadow:none!important;cursor:default;filter:none!important}
+.soon-tag{display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:999px;background:#1F3F7C;color:#E2C68C;font-weight:800;font-size:.85rem;white-space:nowrap}

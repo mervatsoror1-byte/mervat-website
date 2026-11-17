@@ -11,6 +11,7 @@
   "redirect": "{{H}}/vip/",
   "grants": null,
   "vip": false,
+  "soon": false,
   "items": []
  },
  {
@@ -25,6 +26,7 @@
   "redirect": "{{H}}/vip/",
   "grants": null,
   "vip": false,
+  "soon": false,
   "items": []
  },
  {
@@ -39,6 +41,7 @@
   "redirect": "{{H}}/vip/",
   "grants": null,
   "vip": false,
+  "soon": false,
   "items": []
  },
  {
@@ -53,6 +56,7 @@
   "redirect": null,
   "grants": null,
   "vip": false,
+  "soon": true,
   "items": []
  },
  {
@@ -67,6 +71,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": true,
   "items": []
  },
  {
@@ -81,6 +86,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": false,
   "items": []
  },
  {
@@ -95,6 +101,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": true,
   "items": []
  },
  {
@@ -109,6 +116,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": true,
   "items": []
  },
  {
@@ -123,6 +131,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": true,
   "items": []
  },
  {
@@ -137,6 +146,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": false,
   "items": []
  },
  {
@@ -151,6 +161,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": true,
   "items": []
  },
  {
@@ -165,6 +176,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": true,
   "items": []
  },
  {
@@ -179,6 +191,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
+  "soon": true,
   "items": []
  },
  {
@@ -193,6 +206,7 @@
   "redirect": null,
   "grants": null,
   "vip": false,
+  "soon": true,
   "items": []
  },
  {
@@ -207,6 +221,7 @@
   "redirect": "{{H}}/lp-serenity/",
   "grants": "serenity",
   "vip": false,
+  "soon": true,
   "items": []
  },
  {
@@ -221,6 +236,7 @@
   "redirect": "{{H}}/lp-attach/",
   "grants": "attach",
   "vip": false,
+  "soon": true,
   "items": []
  },
  {
@@ -235,6 +251,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
+  "soon": true,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -254,6 +271,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
+  "soon": true,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -273,6 +291,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
+  "soon": true,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -292,6 +311,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
+  "soon": true,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -311,6 +331,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
+  "soon": true,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -330,6 +351,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
+  "soon": true,
   "items": [
    "heart-coherence",
    "morning-priming",
@@ -349,6 +371,7 @@
   "redirect": "{{H}}/sessions/",
   "grants": null,
   "vip": false,
+  "soon": false,
   "items": []
  },
  {
@@ -363,6 +386,7 @@
   "redirect": "{{H}}/sessions/",
   "grants": null,
   "vip": false,
+  "soon": false,
   "items": []
  },
  {
@@ -377,6 +401,7 @@
   "redirect": "{{H}}/sessions/",
   "grants": null,
   "vip": false,
+  "soon": false,
   "items": []
  },
  {
@@ -391,6 +416,7 @@
   "redirect": "{{H}}/sessions/",
   "grants": null,
   "vip": false,
+  "soon": false,
   "items": []
  },
  {
@@ -405,6 +431,7 @@
   "redirect": "{{H}}/",
   "grants": null,
   "vip": false,
+  "soon": false,
   "items": []
  }
 ]

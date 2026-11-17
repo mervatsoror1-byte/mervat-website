@@ -9,6 +9,33 @@ const $$ = (s, r=document) => [...r.querySelectorAll(s)];
 const ar = n => Number(n).toLocaleString("ar-EG");
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
+/* ---------- "coming soon": tools not recorded yet can't be bought ---------- */
+const isSoon = id => !!(P[id] && P[id].soon);
+function paintSoon(root){
+  (root || document).querySelectorAll("[data-buy],[data-add]").forEach(b => {
+    const id = b.dataset.buy || b.dataset.add;
+    if (!isSoon(id) || b.dataset.soonDone) return;
+    b.dataset.soonDone = "1";
+    if (b.dataset.add && !b.dataset.buy){
+      const tag = document.createElement("span"); tag.className = "soon-tag"; tag.textContent = "قريباً";
+      b.replaceWith(tag); return;
+    }
+    b.classList.add("is-soon"); b.setAttribute("aria-disabled", "true");
+    b.innerHTML = "<span>قريباً</span>";
+  });
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-buy],[data-add]");
+  if (b && isSoon(b.dataset.buy || b.dataset.add)){
+    e.preventDefault(); e.stopImmediatePropagation();
+    const t = document.querySelector(".toast") || Object.assign(document.createElement("div"), {className: "toast"});
+    if (!t.parentNode) document.body.appendChild(t);
+    t.textContent = "قريباً بإذن الله. تابعينا لتكوني أول من يعرف."; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 3200);
+  }
+}, true);
+new MutationObserver(() => paintSoon()).observe(document.documentElement, {childList: true, subtree: true});
+document.addEventListener("DOMContentLoaded", () => paintSoon());
+
 /* ---------- state ---------- */
 const KEY = "ms_state_v1";
 const blank = {region:"eg", cart:[], favs:[], user:null, owned:[], vip:null, progress:{}, orders:[], bookings:[], page:{}};

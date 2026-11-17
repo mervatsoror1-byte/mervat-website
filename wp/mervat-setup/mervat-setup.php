@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.1.1';
+const MS_SETUP_VERSION = '1.1.2';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -591,3 +591,14 @@ function ms_setup_lessons(): void {
         }
     }
 }
+
+/* ---------------------------------------------------------------- "coming soon" tools can't be bought */
+function ms_soon_skus(): array {
+    static $s = null;
+    if ($s === null) { $s = []; foreach (ms_data('products.json') as $p) { if (!empty($p['soon'])) { $s[] = $p['sku']; } } }
+    return $s;
+}
+add_filter('woocommerce_is_purchasable', function ($ok, $product) {
+    $sku = $product ? $product->get_sku() : '';
+    return ($sku && in_array($sku, ms_soon_skus(), true)) ? false : $ok;
+}, 20, 2);
