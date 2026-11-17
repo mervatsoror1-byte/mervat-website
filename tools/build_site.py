@@ -52,14 +52,14 @@ PRODUCTS = [
        forWho=["تشعر أنك لا تعيش حياتك أنت","تحمل قناعات قاسية عن نفسك","تريد أن تعرف ماذا تريد فعلاً","تبحث عن هوية أهدأ وأصدق"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين وطريقة مشاهدته","3:00",True],["تمرين Decoding النسخة الأصلية","6:06"]]}]),
   dict(id="decode-acceptance", kind="exercise", slug="decoding-light-of-acceptance", title="Decoding نور القبول", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-acceptance-sm.webp", cover="assets/img/covers/decode-acceptance-sm.webp", coverLg="assets/img/covers/decode-acceptance.webp", level="متقدم", eg=649, us=35, vipIncluded=True,
-       meta="تمرين تشريحي للعقل اللاواعي · ١٠ دقائق", ctype="Decoding · تمرين تشريحي للعقل اللاواعي", cardMeta="تمرين تشريحي · ١٠ دقائق",
-       facts=[["play","تمرين تشريحي للعقل اللاواعي مدته ١٠ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"],["path","أسئلة تفتح مساحة للاوعي ليكتشف جذور الرفض"]],
+       meta="تمرين تشريحي للعقل اللاواعي · ٦ دقائق", ctype="Decoding · تمرين تشريحي للعقل اللاواعي", cardMeta="تمرين تشريحي · ٦ دقائق",
+       facts=[["play","تمرين تشريحي للعقل اللاواعي مدته ٦ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"],["path","أسئلة تفتح مساحة للاوعي ليكتشف جذور الرفض"]],
        short="تمرين تشريحي للعقل اللاواعي لقبول الذات: يساعدك على الخروج من جرح الرفض والهجر، وأن تقبل نفسك أولاً حتى يبدأ الناس في الخارج بقبولك.",
-       desc=["«نور القبول» تمرين Decoding تشريحي للعقل اللاواعي، مدته ١٠ دقائق، يتحدث عن قبول الذات، وكيف تتخلّى عن جرح الرفض والهجر الذي حملته طويلاً.",
+       desc=["«نور القبول» تمرين Decoding تشريحي للعقل اللاواعي، مدته ٦ دقائق، يتحدث عن قبول الذات، وكيف تتخلّى عن جرح الرفض والهجر الذي حملته طويلاً.",
              "الأسئلة داخل التمرين تفتح مساحة للعقل اللاواعي ليبدأ في اكتشاف: من أول شخص رفضك؟ وما الأحداث التي جعلتك تشعر بالرفض؟",
              "حين ترى الجذور بوضوح، تستطيع أن تخرج من جرح الرفض، وأن تقبل نفسك أولاً، فيبدأ الناس في الخارج بقبولك."],
        forWho=["تشعر بالرفض أو الهجر في علاقاتك","تبحث دائماً عن قبول الآخرين","تخاف أن يتركك من تحب","تجد صعوبة في قبول نفسك كما أنت"],
-       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين Decoding نور القبول","10:00"]]}]),
+       modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين Decoding نور القبول","6:06"]]}]),
   dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود والخمول", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-stagnation-sm.webp", cover="assets/img/covers/decode-stagnation-sm.webp", coverLg="assets/img/covers/decode-stagnation.webp", eg=649, us=35, isNew=True, vipIncluded=True,
        meta="تمرين تشريحي للعقل اللاواعي · ١٠ دقائق", ctype="Decoding · تمرين تشريحي للعقل اللاواعي", level="متقدم", cardMeta="تمرين تشريحي · ١٠ دقائق",
        facts=[["play","تمرين تشريحي للعقل اللاواعي مدته ١٠ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
@@ -175,7 +175,7 @@ BOOK_PAGES = [
   "<h2>الفصل الثالث</h2><p>نص تجريبي متاح بعد الشراء فقط.</p>",
 ]
 # Tools whose recordings are on Bunny; everything else shows "قريباً" and can't be bought yet.
-READY = {"decode-original", "heart-coherence"}
+READY = {"decode-original", "heart-coherence", "decode-acceptance"}
 _BITEMS = {b["id"]: b["items"] for b in BUNDLES}
 for _p in PRODUCTS:
     if _p["kind"] in ("course", "exercise", "book"):

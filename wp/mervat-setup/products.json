@@ -101,7 +101,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
