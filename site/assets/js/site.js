@@ -330,9 +330,9 @@ function renderCheckout(){
       : `<label class="check agree-box"><input type="checkbox" id="agreeTerms"><span>قرأت وأوافق على <a href="terms.html" target="_blank">الشروط والأحكام</a> و<a href="refund.html" target="_blank">سياسة الاسترداد والإلغاء</a></span></label>
       <div class="pp-box"><div class="pp-head"><b>الدفع بالبيبال</b><span class="pp-amt">$${usdTotal(items)}</span></div>
         <div id="ppButtons" class="pp-buttons"><span class="muted">جارٍ تحميل زر الدفع…</span></div></div>
-      ${S.region === "eg" ? `<div class="pp-or"><span>أو</span></div>
-      <div class="alert info pay-soon"><b>للدفع بالجنيه المصري:</b> حتى تفعيل الدفع الإلكتروني، يتم الطلب عبر واتساب.</div>
-      <a class="btn btn-line btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}الطلب عبر واتساب (${money(items.reduce((s,c)=>s+P[c.id].eg,0), items.reduce((s,c)=>s+P[c.id].us,0))})</a>` : ""}
+      <div class="pp-or"><span>أو</span></div>
+      <div class="alert info pay-soon"><b>للدفع بالجنيه المصري أو بالتحويل (إنستاباي / فودافون كاش):</b> حتى تفعيل الدفع الإلكتروني بالبطاقة، يتم الطلب عبر واتساب.</div>
+      <a class="btn btn-line btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}الطلب عبر واتساب (${money(items.reduce((s,c)=>s+P[c.id].eg,0), items.reduce((s,c)=>s+P[c.id].us,0))})</a>
       <p class="secure" style="display:block;text-align:center">بإتمام الطلب أنتِ توافقين على <a href="terms.html">الشروط والأحكام</a> و<a href="refund.html">سياسة الاسترداد</a>.</p>`}
     </div>
    </form>
