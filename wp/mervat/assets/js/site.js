@@ -37,8 +37,10 @@ new MutationObserver(() => paintSoon()).observe(document.documentElement, {child
 document.addEventListener("DOMContentLoaded", () => paintSoon());
 
 document.addEventListener("click", e => {
-  const wa = e.target.closest('#checkoutPage a[href*="wa.me"]'); const ok = document.getElementById("agreeTerms");
-  if (wa && ok && !ok.checked){ e.preventDefault(); e.stopImmediatePropagation(); ok.focus(); toast("يرجى الموافقة على الشروط وسياسة الاسترداد أولاً."); }
+  const wa = e.target.closest('#checkoutPage a[href*="wa.me"]');
+  if (!wa) return;
+  if (!checkoutReady()){ e.preventDefault(); e.stopImmediatePropagation(); return; }
+  const items = payItems(); wa.href = waOrderLink(items, totals(items));
 }, true);
 /* ---------- state ---------- */
 const KEY = "ms_state_v1";
@@ -254,7 +256,7 @@ async function initPayPal(items){
     box.innerHTML = "";
     await pp.Buttons({
       style: {layout: "horizontal", color: "white", shape: "pill", label: "paypal", height: 52, tagline: false},
-      onClick: (d, actions) => { const ok = $("#agreeTerms"); if (ok && !ok.checked){ toast("يرجى الموافقة على الشروط وسياسة الاسترداد أولاً."); return actions.reject(); } return actions.resolve(); },
+      onClick: (d, actions) => checkoutReady() ? actions.resolve() : actions.reject(),
       createOrder: (d, actions) => actions.order.create({
         purchase_units: [{amount: {currency_code: "USD", value: (+usd).toFixed(2)}, description: desc}],
         application_context: {shipping_preference: "NO_SHIPPING", brand_name: "Mervat Soror"}
@@ -270,11 +272,11 @@ async function initPayPal(items){
         try {
           const r = await fetch((window.MS_WP ? MS_WP.home + "/" : "") + "api/order.php", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({
             paypal_id: capId, paid, items: items.map(c => ({id: c.id, when: c.when || ""})),
-            name: S.user ? S.user.name : "", email: S.user ? S.user.email : "", payer_email: payer.email_address || ""})});
+            name: buyer().name, email: buyer().email, payer_email: payer.email_address || ""})});
           const j = await r.json(); if (j && j.no) no = j.no;
         } catch(e){}
         S.orders.unshift({no, date: new Date().toLocaleDateString("ar-EG"), items: items.map(c => P[c.id].title), total: "$" + usd, gw: "paypal", status: "قيد التفعيل"});
-        ss("lastOrder", JSON.stringify({no, total: "$" + usd, items: items.map(c => P[c.id].title), email: (S.user && S.user.email) || payer.email_address || "", gw: "paypal"}));
+        ss("lastOrder", JSON.stringify({no, total: "$" + usd, items: items.map(c => P[c.id].title), email: buyer().email || payer.email_address || "", gw: "paypal"}));
         if (single){ S.cart = S.cart.filter(c => c.id !== items[0].id); ss("buynow", null); } else { S.cart = []; }
         save(); location.href = "{{H}}/my-account/orders/";
       },
@@ -286,14 +288,29 @@ async function initPayPal(items){
 
 /* Online payment switch: false until the payment gateway is connected; orders go through WhatsApp meanwhile. */
 const PAY_LIVE = false;
+function buyer(){
+  if (S.user) return {name: S.user.name, email: S.user.email};
+  const n = document.getElementById("buyerName"), e = document.getElementById("buyerEmail");
+  const b = {name: n ? n.value.trim() : "", email: e ? e.value.trim() : ""};
+  if (n || e){ S.buyer = b; save(); }
+  return b;
+}
+function checkoutReady(){
+  const b = buyer();
+  if (!b.name){ toast("اكتبي اسمك أولاً."); const n = document.getElementById("buyerName"); n && n.focus(); return false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(b.email)){ toast("اكتبي بريداً إلكترونياً صحيحاً، فعليه يصلك التمرين."); const e = document.getElementById("buyerEmail"); e && e.focus(); return false; }
+  const ok = document.getElementById("agreeTerms");
+  if (ok && !ok.checked){ toast("يرجى الموافقة على الشروط وسياسة الاسترداد أولاً."); ok.focus(); return false; }
+  return true;
+}
 function waOrderLink(items, t){
   const lines = items.map(c => "• " + P[c.id].title + (c.when ? " (" + c.when + ")" : "")).join("\n");
-  const msg = "مرحباً د. مرفت، أريد إتمام طلبي من الموقع:\n" + lines + "\nالإجمالي: " + fmt(t.total) + (S.user ? "\nالاسم: " + S.user.name + "\nالبريد: " + S.user.email : "");
+  const msg = "مرحباً د. مرفت، أريد إتمام طلبي من الموقع:\n" + lines + "\nالإجمالي: " + fmt(t.total) + (buyer().email ? "\nالاسم: " + buyer().name + "\nالبريد: " + buyer().email : "");
   return "https://wa.me/201095292748?text=" + encodeURIComponent(msg);
 }
 function renderCheckout(){
   const box = $("#checkoutPage"), items = payItems(), single = !!buyNow();
-  if (!S.user){ ss("next", "{{H}}/checkout/"); location.replace("{{H}}/my-account/"); return; }
+  if (!S.user && PAY_LIVE){ ss("next", "{{H}}/checkout/"); location.replace("{{H}}/my-account/"); return; }
   if (!items.length){ box.innerHTML = `<div class="result"><h2>لا يوجد ما تدفعه الآن</h2><a class="btn btn-gold" href="{{H}}/library/">تصفّح الأدوات</a></div>`; return; }
   const t = totals(items), recurring = items.some(c => P[c.id].kind === "vip");
   const gws = GATEWAYS[S.region].filter(g => !recurring || ["paymob-card","nbe-card","paypal"].includes(g.id));
@@ -301,7 +318,9 @@ function renderCheckout(){
   box.innerHTML = `<div class="cart-grid">
    <form class="form" id="payForm" novalidate>
     <div class="card form">
-      <div class="alert info">تشتري باسم <b>${esc(S.user.name)}</b> · ${esc(S.user.email)}</div>
+      ${S.user ? `<div class="alert info">تشتري باسم <b>${esc(S.user.name)}</b> · ${esc(S.user.email)}</div>`
+        : `<div class="row2"><div class="field"><label for="buyerName">الاسم</label><input id="buyerName" autocomplete="name" value="${esc((S.buyer||{}).name||"")}"></div>
+           <div class="field"><label for="buyerEmail">البريد الإلكتروني (يصلك عليه التمرين)</label><input id="buyerEmail" type="email" autocomplete="email" dir="ltr" value="${esc((S.buyer||{}).email||"")}"></div></div>`}
       ${PAY_LIVE ? `<h3>طريقة الدفع</h3>
       ${recurring ? `<div class="alert info">اشتراك متجدد تلقائياً، ويمكنك إلغاء التجديد في أي وقت من «حسابي ← اشتراكاتي».</div>` : ""}
       <div class="pay-opts">${gws.map(g=>`<label class="pay-opt"><input type="radio" name="gw" value="${g.id}" ${g.id===last?"checked":""}><span><b>${g.t}</b><small>${g.s}</small></span><span class="logos">${g.l.map(x=>`<span>${x}</span>`).join("")}</span></label>`).join("")}</div>` : `<h3>إتمام الطلب</h3>`}
@@ -352,7 +371,7 @@ function startBuy(id, extra){ if (window.MS_WP && window.startBuy && window.star
   if (hasAccess(id) && p.learn){ location.href = p.learn; return; }
   ss("buynow", JSON.stringify(Object.assign({id}, extra||{})));
   try { localStorage.setItem("ms_pending_v1", JSON.stringify({id, extra: extra||null, t: Date.now(), shown: 0})); } catch(e){}
-  if (!S.user){ ss("next", "{{H}}/checkout/"); location.href = "{{H}}/my-account/"; return; }
+  if (!S.user && PAY_LIVE){ ss("next", "{{H}}/checkout/"); location.href = "{{H}}/my-account/"; return; }
   location.href = "{{H}}/checkout/";
 }
 
