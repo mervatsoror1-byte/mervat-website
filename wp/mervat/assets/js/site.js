@@ -36,6 +36,10 @@ document.addEventListener("click", e => {
 new MutationObserver(() => paintSoon()).observe(document.documentElement, {childList: true, subtree: true});
 document.addEventListener("DOMContentLoaded", () => paintSoon());
 
+document.addEventListener("click", e => {
+  const wa = e.target.closest('#checkoutPage a[href*="wa.me"]'); const ok = document.getElementById("agreeTerms");
+  if (wa && ok && !ok.checked){ e.preventDefault(); e.stopImmediatePropagation(); ok.focus(); toast("يرجى الموافقة على الشروط وسياسة الاسترداد أولاً."); }
+}, true);
 /* ---------- state ---------- */
 const KEY = "ms_state_v1";
 const blank = {region:"eg", cart:[], favs:[], user:null, owned:[], vip:null, progress:{}, orders:[], bookings:[], page:{}};
@@ -222,8 +226,7 @@ const GATEWAYS = {
   eg: [
     {id:"paymob-card", t:"بطاقة بنكية", s:"فيزا · ماستركارد · ميزة (Paymob)", l:["VISA","MC","ميزة"]},
     {id:"paymob-wallet", t:"محفظة إلكترونية", s:"فودافون كاش وغيرها", l:["محافظ"]},
-    {id:"fawry", t:"فوري / أمان", s:"ادفع نقداً من أقرب منفذ خلال ٤٨ ساعة", l:["فوري"]},
-    {id:"valu", t:"تقسيط", s:"valU وغيرها حسب القيمة", l:["valU"]}],
+  ],
   intl: [
     {id:"nbe-card", t:"بطاقة دولية", s:"Visa · Mastercard بالدولار (البنك الأهلي المصري)", l:["VISA","MC"]},
     {id:"paypal", t:"PayPal", s:"ادفع من رصيدك أو بطاقتك عبر PayPal", l:["PayPal"]}]
@@ -251,6 +254,7 @@ async function initPayPal(items){
     box.innerHTML = "";
     await pp.Buttons({
       style: {layout: "horizontal", color: "white", shape: "pill", label: "paypal", height: 52, tagline: false},
+      onClick: (d, actions) => { const ok = $("#agreeTerms"); if (ok && !ok.checked){ toast("يرجى الموافقة على الشروط وسياسة الاسترداد أولاً."); return actions.reject(); } return actions.resolve(); },
       createOrder: (d, actions) => actions.order.create({
         purchase_units: [{amount: {currency_code: "USD", value: (+usd).toFixed(2)}, description: desc}],
         application_context: {shipping_preference: "NO_SHIPPING", brand_name: "Mervat Soror"}
@@ -304,7 +308,8 @@ function renderCheckout(){
       <div class="alert err" id="payErr" hidden></div>
       ${PAY_LIVE ? `<button class="btn btn-gold btn-block" type="submit">${icon("lock")}ادفع ${fmt(t.total)}</button>
       <p class="secure" style="text-align:center">بالضغط على «ادفع» أنت توافق على <a href="{{H}}/terms/">الشروط والأحكام</a> و<a href="{{H}}/refund/">سياسة الاسترداد</a>، والشراء نهائي.</p>`
-      : `<div class="pp-box"><div class="pp-head"><b>الدفع بالبيبال</b><span class="pp-amt">$${usdTotal(items)}</span></div>
+      : `<label class="check agree-box"><input type="checkbox" id="agreeTerms"><span>قرأت وأوافق على <a href="{{H}}/terms/" target="_blank">الشروط والأحكام</a> و<a href="{{H}}/refund/" target="_blank">سياسة الاسترداد والإلغاء</a></span></label>
+      <div class="pp-box"><div class="pp-head"><b>الدفع بالبيبال</b><span class="pp-amt">$${usdTotal(items)}</span></div>
         <div id="ppButtons" class="pp-buttons"><span class="muted">جارٍ تحميل زر الدفع…</span></div></div>
       ${S.region === "eg" ? `<div class="pp-or"><span>أو</span></div>
       <div class="alert info pay-soon"><b>للدفع بالجنيه المصري:</b> حتى تفعيل الدفع الإلكتروني، يتم الطلب عبر واتساب.</div>
@@ -843,7 +848,7 @@ initSessCards();
     diff: () => `باختصار: <b>التأملات</b> للتهدئة والتحرّر، و<b>Decoding</b> تمارين تشريحية للعقل اللاواعي (متقدمة)، و<b>التوكيدات و Priming</b> للبرمجة اليومية. وإن لم تعرفي من أين تبدئين، ${L("{{H}}/sessions/#booking","جلسة التعارف")} هي الأنسب.`,
     vip: () => `${L("{{H}}/vip/","استيقظ VIP")} هو البرنامج الكامل: جلسات فردية خاصة مع د. مرفت عبر Zoom، وكل التمارين، وخطة يومية ومتابعة شخصية. يبدأ من ${pr("vip-m")} شهرياً.`,
     book: () => `يمكنك الحجز من ${L("{{H}}/sessions/#booking","صفحة الجلسات")}: جلسة تعارف ٣٠ دقيقة (${pr("s-intro")})، أو استشارة فردية (${pr("s-single")})، أو كوتشينج (${pr("s-coach")}).`,
-    pay: () => `داخل مصر: البطاقات، والمحافظ، وفوري. وخارج مصر: البطاقات الدولية و PayPal. تُفتح الأداة في حسابك فوراً بعد الدفع، والوصول ٣٦٥ يوماً.`,
+    pay: () => `داخل مصر: البطاقات البنكية والمحافظ الإلكترونية. وخارج مصر: PayPal. تُفتح الأداة في حسابك فوراً بعد الدفع، والوصول ٣٦٥ يوماً.`,
     human: () => `بكل سرور، تواصلي مع فريق د. مرفت على ${L("https://wa.me/201095292748","واتساب")} أو من ${L("{{H}}/contact/","صفحة التواصل")}.`,
     crisis: () => `أنا آسفة لأنك تمرّين بهذا، ومشاعرك مهمة. لست بديلاً عن المساعدة المتخصصة، فأرجو أن تتواصلي الآن مع شخص تثقين به أو مع خط دعم نفسي. في مصر: الخط الساخن للأمانة العامة للصحة النفسية <b>08008880700</b>، وفي الطوارئ <b>123</b>. إن كنتِ خارج مصر، اتصلي برقم الطوارئ في بلدك.`,
     fallback: () => `لم أفهم سؤالك تماماً. اختاري من الأزرار بالأسفل، أو اكتبي ما تشعرين به بكلمات بسيطة، أو ${L("https://wa.me/201095292748","تواصلي مع الفريق على واتساب")}.`

@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.1.3
+ * Version: 1.1.5
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.1.3';
+const MS_SETUP_VERSION = '1.1.5';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -107,6 +107,7 @@ function ms_setup_run(): void {
     if (class_exists('WC_Install')) { WC_Install::create_pages(); }
     ms_setup_pages();
     ms_link_policy_pages();
+    ms_classic_checkout();
     ms_email_logo();
     ms_setup_subscriptions();
     ms_setup_courses();
@@ -237,6 +238,7 @@ add_action('woocommerce_checkout_create_order_line_item', function ($item, $key,
 add_filter('woocommerce_available_payment_gateways', function ($gateways) {
     if (is_admin() || !function_exists('get_woocommerce_currency')) { return $gateways; }
     if (get_woocommerce_currency() !== 'EGP') { unset($gateways['bacs']); }
+    if (get_woocommerce_currency() === 'EGP') { foreach (array_keys($gateways) as $g) { if (strpos($g, 'ppcp') === 0) { unset($gateways[$g]); } } }
     return $gateways;
 });
 
@@ -602,3 +604,18 @@ add_filter('woocommerce_is_purchasable', function ($ok, $product) {
     $sku = $product ? $product->get_sku() : '';
     return ($sku && in_array($sku, ms_soon_skus(), true)) ? false : $ok;
 }, 20, 2);
+
+/* ---------------------------------------------------------------- checkout with a required "I agree" checkbox (Paymob: refund policy accepted before paying) */
+function ms_classic_checkout(): void {
+    foreach (['checkout' => '[woocommerce_checkout]', 'cart' => '[woocommerce_cart]'] as $key => $code) {
+        $id = wc_get_page_id($key);
+        if ($id > 0) { wp_update_post(['ID' => $id, 'post_content' => '<!-- wp:shortcode -->' . $code . '<!-- /wp:shortcode -->']); }
+    }
+}
+add_filter('woocommerce_get_terms_and_conditions_checkbox_text', function () {
+    $t = get_permalink((int)get_option('woocommerce_terms_page_id'));
+    $r = home_url('/refund/');
+    return 'قرأت وأوافق على <a href="' . esc_url($t) . '" target="_blank">الشروط والأحكام</a> و<a href="' . esc_url($r) . '" target="_blank">سياسة الاسترداد والإلغاء</a>';
+});
+add_filter('woocommerce_checkout_required_field_notice', function ($n) { return $n; });
+add_filter('woocommerce_get_privacy_policy_text', function ($text, $type) { return $type === 'checkout' ? '' : $text; }, 10, 2);

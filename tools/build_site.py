@@ -88,9 +88,9 @@ PRODUCTS = [
        forWho=["توتر وقلق مستمر وشعور بالاستنفار","إحساس بالانقباض وثقل الطاقة","صعوبة في الاسترخاء أو النوم","رغبة في رفع مستوى وعيك وطاقتك"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تنفّس الاتزان الداخلي","10:00"]]}]),
   dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/img/covers/morning-priming-sm.webp", cover="assets/img/covers/morning-priming-sm.webp", coverLg="assets/img/covers/morning-priming.webp", eg=249, us=20, vipIncluded=True,
-       meta="توكيدات صباحية · ١٠ دقائق", level="مبتدئ", ctype="توكيدات صباحية · تشافٍ جسدي", cardMeta="توكيدات صباحية · ١٠ دقائق",
+       meta="توكيدات صباحية · ١٠ دقائق", level="مبتدئ", ctype="توكيدات صباحية · وعي بالجسد", cardMeta="توكيدات صباحية · ١٠ دقائق",
        facts=[["play","توكيدات صباحية يومية مدتها ١٠ دقائق"],["heart","معظمها يتحدث مع الجسد ويدعم شفاءه"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
-       short="توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم تشافي جسدك.",
+       short="توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم اتزانك وراحتك.",
        desc=["«Priming الصباح» تمرين توكيدات يومية تسمعه مع بداية يومك، يساعدك على استقبال الصباح بشكل جميل، ويهيّئك ليوم جديد وسعيد.",
              "معظم التوكيدات تتحدث مع الجسد وتدعم الشفاء الجسدي، فتبدأ يومك وأنت في سلام مع جسدك وممتن له.",
              "مع التكرار كل صباح، يصبح عادة تضبط حالتك الداخلية قبل أن يبدأ اليوم."],
@@ -153,7 +153,7 @@ REVIEWS = [
   ("أميمة", "المغرب", "decode-original", "Decoding النسخة الأصلية", "التمرين رائع، شكراً دكتورة مرفت. مركّز بزاف واخا بسيط، تفكّرت بزاف ديال الذكريات وبقيت كنبكي طول التمرين. الأسئلة قوية بزاف، بحال إلا فتحات جروح قديمة."),
   ("خالدة", "الأردن", "serenity", "تأمل السكينة والتنظيف · استيقظ VIP", "شكراً إلك حبيبتي دكتورة مرفت. تأمل السكينة تأثيره كبير، صرت ألاحظه مع تطبيق البرنامج التدريبي. شكراً من القلب يا دكتورة."),
   ("ليلى", "السعودية", "decode-original", "Decoding النسخة الأصلية", "التمرين مرة قوي، وصوره مرة مؤثرة. الحمد لله إني تعرّفت عليك يا دكتورة."),
-  ("أميرة", "مصر", "vip-m", "برنامج استيقظ VIP", "اتحرّرت كتير من المشاعر، والتطبيق المستمر بجد فرق كتير، حتى الأوجاع والصداع بدأوا يختفوا."),
+  ("أميرة", "مصر", "vip-m", "برنامج استيقظ VIP", "اتحرّرت كتير من المشاعر، والتطبيق المستمر بجد فرق معايا كتير."),
   ("فاطمة", "تونس", "serenity|morning-priming", "تأمل السكينة · Priming الصباح", "تأمل السكينة لطيف برشا، ولّى روتين يومي في حياتي. كل صباح نحس إلّي النهار ما يكملش من غيرو."),
   ("رانا", "الإمارات", "decode-acceptance|inner-child", "Decoding نور القبول · الطفل الداخلي", "التطبيق اليومي للتمرين كأنه لمس أعمق نقطة في كياني."),
   ("أمنية", "الأردن", "b-original", "باقة النسخة الأصلية", "إنتِ مبدعة والله يا دكتورة. استفدت كتير من التمرين، ولسّا بطبّق لحد ما أوصل لهدفي. الله ييسّرلك كل الخير."),
@@ -283,7 +283,9 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
     <div><h4>المساعدة</h4><ul><li><a href="about.html">عن مرفت</a></li><li><a href="articles.html">المقالات</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="contact.html">تواصل معنا</a></li><li><a href="account.html">حسابي</a></li><li><a href="cart.html">السلة</a></li></ul></div>
     <div><h4>تواصل</h4><ul class="f-contact"><li><a href="https://wa.me/201095292748">{ic("chat","icon icon-sm")}01095292748</a></li><li><a href="mailto:info@mervatsror.com">{ic("mail","icon icon-sm")}info@mervatsror.com</a></li><li><span>{ic("pin","icon icon-sm")}ملوي، المنيا، مصر</span></li><li><span>{ic("globe","icon icon-sm")}الخدمة أونلاين من القاهرة</span></li></ul><h4 style="margin-top:18px">السياسات</h4><ul><li><a href="policies.html">كل السياسات</a></li><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
   </div>
-  <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة. · <a href="terms.html" style="color:inherit">الشروط</a> · <a href="privacy.html" style="color:inherit">الخصوصية</a> · <a href="refund.html" style="color:inherit">الاسترداد</a> · <a href="delivery.html" style="color:inherit">تقديم الخدمة</a></span><div class="region foot-cur" role="group" aria-label="عرض الأسعار بـ"><button type="button" data-region="eg">جنيه مصري</button><button type="button" data-region="intl">دولار $</button></div><div class="pays" aria-label="طرق الدفع"><span>VISA</span><span>Mastercard</span><span>ميزة</span><span>فوري</span><span>محافظ</span><span>valU</span><span>PayPal</span></div></div>
+  <div class="pay-row" aria-label="وسائل الدفع المقبولة"><span>وسائل الدفع:</span><i class="pm pm-visa">VISA</i><i class="pm pm-mc"><b></b><b></b>Mastercard</i><i class="pm pm-meeza">Meeza</i><i class="pm">محافظ إلكترونية</i><i class="pm">InstaPay</i><i class="pm pm-pp">PayPal</i></div>
+  <p class="disclaimer">الأدوات والجلسات للتطوير الذاتي والوعي، وليست بديلاً عن التشخيص أو العلاج الطبي أو النفسي.</p>
+  <div class="bottom"><span>© ٢٠٢٦ د. مرفت سرور. جميع الحقوق محفوظة. · <a href="terms.html" style="color:inherit">الشروط</a> · <a href="privacy.html" style="color:inherit">الخصوصية</a> · <a href="refund.html" style="color:inherit">الاسترداد</a> · <a href="delivery.html" style="color:inherit">تقديم الخدمة</a></span><div class="region foot-cur" role="group" aria-label="عرض الأسعار بـ"><button type="button" data-region="eg">جنيه مصري</button><button type="button" data-region="intl">دولار $</button></div></div>
 </div></footer>'''
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Almarai:wght@400;700&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@500;700&family=Cormorant+Garamond:wght@300&display=swap">'
@@ -521,7 +523,7 @@ def build():
     page("failed.html", "لم يكتمل الدفع", "لم يكتمل الدفع.", f'''<section class="band"><div class="wrap"><div class="result"><div class="badge err">{ic("x")}</div><h1 class="title">لم يكتمل الدفع</h1>
   <p class="lead">لم يُخصم أي مبلغ من حسابك. قد يكون السبب رفض البنك، أو رصيداً غير كافٍ، أو انتهاء مهلة الصفحة.</p>
   <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="checkout.html">حاول مرة أخرى</a><a class="btn btn-line" href="contact.html">تواصل مع الدعم</a></div>
-  <p class="muted" style="font-size:.85rem">جرّب طريقة دفع أخرى: إن كنت خارج مصر استخدم PayPal، وداخل مصر جرّب المحفظة أو فوري.</p></div></div></section>''', noindex=True)
+  <p class="muted" style="font-size:.85rem">جرّب طريقة دفع أخرى: إن كنت خارج مصر استخدم PayPal، وداخل مصر جرّب المحفظة الإلكترونية أو بطاقة أخرى.</p></div></div></section>''', noindex=True)
 
     # ---------- legal
     ltabs = lambda cur: '<nav class="ltabs" aria-label="السياسات">' + "".join(f'<a href="{f}" {"aria-current=page" if f==cur else ""}>{t}</a>' for f,t,_,_ in LEGAL) + '</nav>'
@@ -582,7 +584,7 @@ def product_page(p):
     <button class="btn btn-line btn-block" type="button" data-preview="{p["id"]}">{ic("play")}شاهد المعاينة المجانية</button>
     <div class="vip-note">{ic("crown")}<span>مشمول في <a href="vip.html"><b>استيقظ VIP</b></a> مع كل التمارين الأخرى.</span></div>
     <div class="share"><button class="btn btn-ghost btn-sm" type="button" data-fav="{p["id"]}" aria-pressed="false">{ic("heart")}احفظ</button><a class="btn btn-ghost btn-sm" href="contact.html">{ic("gift")}أهدِ لصديق</a></div></div>
-    <p class="secure">{ic("shield")}دفع آمن · بطاقة، محفظة، فوري أو PayPal</p></aside>
+    <p class="secure">{ic("shield")}دفع آمن · بطاقة، محفظة إلكترونية أو PayPal</p></aside>
 </div></section>
 <section class="band tint-blush"><div class="wrap"><div class="head split"><h2 class="title">قد يعجبك أيضاً</h2><a class="btn btn-line btn-sm" href="library.html">كل التمارين</a></div><div class="shelf" data-shelf="related" data-current="{p["id"]}"></div></div></section>''',
          active="course-ain-sahia.html" if is_course else "library.html",
@@ -600,7 +602,7 @@ def book_page():
 
 FAQ = {
  "general":[("هل أحتاج خبرة سابقة في الوعي؟","لا. كل مادة تبدأ بمقدمة وإرشادات واضحة، ويمكنك البدء بأي تمرين."),("هل المحتوى باللغة العربية؟","نعم، كل المحتوى بالعربية، وسنضيف لغات أخرى لاحقاً."),("هل يمكنني الاستماع من الهاتف؟","نعم، الموقع يعمل على الهاتف والكمبيوتر، ويحفظ تقدّمك على كل الأجهزة.")],
- "pay":[("لماذا يختلف السعر داخل مصر عن خارجها؟","نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة."),("ما طرق الدفع المتاحة؟","داخل مصر: البطاقات البنكية وميزة والمحافظ الإلكترونية وفوري والتقسيط. من خارج مصر: البطاقات الدولية وPayPal."),("متى أحصل على المادة بعد الدفع؟","فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول."),("هل يمكنني استرداد المبلغ؟","كل عمليات الشراء نهائية لأن الأدوات تُفتح فور الدفع. نرد المبلغ فقط في حالة الخصم المزدوج أو الخطأ التقني الذي لم يُحل، كما في سياسة الاسترداد والإلغاء.")],
+ "pay":[("لماذا يختلف السعر داخل مصر عن خارجها؟","نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة."),("ما طرق الدفع المتاحة؟","داخل مصر: البطاقات البنكية (فيزا وماستركارد وميزة) والمحافظ الإلكترونية. من خارج مصر: PayPal."),("متى أحصل على المادة بعد الدفع؟","فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول."),("هل يمكنني استرداد المبلغ؟","كل عمليات الشراء نهائية لأن الأدوات تُفتح فور الدفع. نرد المبلغ فقط في حالة الخصم المزدوج أو الخطأ التقني الذي لم يُحل، كما في سياسة الاسترداد والإلغاء.")],
  "vip":[("ما المدة التي يحدث فيها التغيير؟","التغيير الحقيقي يحتاج التزاماً وتطبيقاً يومياً، والمدة المناسبة ثلاثة أشهر على الأقل، ولذلك نرشّح اشتراك ٣ أشهر كبداية."),("ماذا يشمل استيقظ VIP؟","جلسات فردية خاصة بينك وبين د. مرفت فقط، وكل التمارين، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالأدوات بعد الإلغاء؟","الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى متاحاً لك ٣٦٥ يوماً من تاريخ شرائه."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
  "sessions":[("كيف تتم الجلسة؟","أونلاين عبر Zoom أو Google Meet، ويصلك الرابط على بريدك."),("هل يمكن تغيير الموعد؟","نعم، حتى ٢٤ ساعة قبل الجلسة من حسابك دون رسوم."),("بأي توقيت تظهر المواعيد؟","تظهر بتوقيت القاهرة مع تحويلها تلقائياً لتوقيت بلدك في الموقع الفعلي.")],
  "books":[("هل يمكن تحميل الكتاب؟","لا، يُقرأ داخل حسابك فقط حفاظاً على حقوق المحتوى، بنسخة تحمل اسمك."),("هل أستطيع القراءة دون إنترنت؟","القراءة تحتاج اتصالاً بالإنترنت لأن الكتاب محفوظ في حسابك.")],

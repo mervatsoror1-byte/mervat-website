@@ -1793,3 +1793,12 @@ body:has(.lp-hero) .help-c{display:none}
 
 .is-soon{background:#E8DFC6!important;color:#5A6582!important;box-shadow:none!important;cursor:default;filter:none!important}
 .soon-tag{display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:999px;background:#1F3F7C;color:#E2C68C;font-weight:800;font-size:.85rem;white-space:nowrap}
+
+/* accepted payment methods + disclaimer (footer) */
+.pay-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin:22px 0 8px;color:rgba(245,245,220,.8);font-size:.85rem}
+.pm{font-style:normal;display:inline-flex;align-items:center;gap:4px;background:#fff;color:#1A3670;border-radius:6px;padding:4px 10px;font-weight:800;font-size:.78rem;letter-spacing:.02em}
+.pm-visa{color:#1A1F71;font-style:italic;font-weight:900}
+.pm-mc b{width:12px;height:12px;border-radius:50%;display:inline-block;background:#EB001B}.pm-mc b+b{background:#F79E1B;margin-inline-start:-7px;opacity:.9}
+.pm-meeza{color:#0B7A3E}.pm-pp{color:#003087;font-style:italic}
+.disclaimer{text-align:center;color:rgba(245,245,220,.75);font-size:.82rem;margin:4px auto 10px;max-width:760px;line-height:1.8}
+.agree-box{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid #E8DFC6;border-radius:14px;background:#fff;font-weight:700;color:#1A3670}.agree-box a{color:#1F3F7C;text-decoration:underline}

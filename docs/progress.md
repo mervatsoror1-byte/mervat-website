@@ -76,3 +76,10 @@
 - Hostinger setup plugins (AI website creation, easy onboarding, Reach) deactivated: they hid the PayPal wizard buttons.
 - Access rules (WordPress, mervat-setup 1.0.9): separately bought tools open 365 days (landing-page offers 90 days); VIP tools open while the VIP subscription is active/pending-cancel; cancelled/expired/on-hold VIP closes VIP-only tools; daily sweep closes expired 90-day tools. Self-test: /wp-admin/?ms_access_test=1 (creates and removes a test customer). Verified: 1 -> 9 -> cancel 1 -> 90 days 0 -> new VIP 9.
 - Policies carry the real business details (CR 16170 Mallawi, tax 725680733, Mallawi/Minya address, Minya courts) and "services delivered online from Cairo".
+
+## Paymob contract compliance (2026-11-17)
+- Footer on every page: accepted payment methods (Visa, Mastercard, Meeza, wallets, InstaPay, PayPal) and the disclaimer "not a substitute for medical or psychological diagnosis or treatment". Old row with Fawry/valU removed.
+- Terms: new "طبيعة الخدمات" section (disclaimer); payment policy lists only contract methods, no card storage, emailed receipt. Refund policy: refunds only to the original method, requests within 90 days of payment. Delivery policy: Fawry section replaced by transfer.
+- Checkout: required agreement checkbox (terms + refund policy) on both sites; WordPress uses classic checkout. PayPal only for USD, transfer only for EGP.
+- Copy: "تشافٍ جسدي" -> "وعي بالجسد", "تدعم تشافي جسدك" -> "تدعم اتزانك وراحتك"; review by أميرة no longer mentions pain/headache (at Mervat's request).
+- Paymob plugin goes on the WordPress site after the contract is signed (contract 3.2.4: inform Paymob the site moves to a new system on the same domain).
