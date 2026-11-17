@@ -551,6 +551,14 @@ def build():
     _pr = "".join("  " + json.dumps(x["id"]) + " => ['t' => " + json.dumps(x["title"], ensure_ascii=False) + ", 'us' => " + str(x["us"]) + "],\n" for x in PRODUCTS if x.get("us"))
     (OUT/"api/_prices.php").write_text("<?php\nreturn [\n" + _pr + "];\n", encoding="utf-8")
     (OUT/"robots.txt").write_text(f"User-agent: *\nDisallow: /account.html\nDisallow: /cart.html\nDisallow: /checkout.html\nDisallow: /learn.html\nDisallow: /reader.html\nDisallow: /admin/\nDisallow: /api/\nSitemap: {SITE_URL}/sitemap.xml\n", encoding="utf-8")
+    # cache-busting: browsers keep these files for days, so each change gets a new address
+    import hashlib
+    for _asset in ["assets/css/site.css", "assets/js/site.js", "assets/js/data.js"]:
+        _v = hashlib.sha1((OUT/_asset).read_bytes()).hexdigest()[:10]
+        for _f in OUT.glob("*.html"):
+            _t = _f.read_text(encoding="utf-8")
+            if _asset + '"' in _t:
+                _f.write_text(_t.replace(_asset + '"', _asset + "?v=" + _v + '"'), encoding="utf-8")
     print(f"built {len(PAGES)} pages into {OUT}")
 
 # ------------------------------------------------------------------ partials
