@@ -116,7 +116,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
@@ -131,7 +131,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
@@ -191,7 +191,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
@@ -221,7 +221,7 @@
   "redirect": "{{H}}/lp-serenity/",
   "grants": "serenity",
   "vip": false,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
