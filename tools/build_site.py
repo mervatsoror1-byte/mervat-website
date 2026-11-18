@@ -176,7 +176,7 @@ BOOK_PAGES = [
   "<h2>الفصل الثالث</h2><p>نص تجريبي متاح بعد الشراء فقط.</p>",
 ]
 # Tools whose recordings are on Bunny; everything else shows "قريباً" and can't be bought yet.
-READY = {"decode-original", "heart-coherence", "decode-acceptance", "serenity", "inner-child", "decode-stagnation", "morning-priming", "attach"}
+READY = {"decode-original", "heart-coherence", "decode-acceptance", "serenity", "inner-child", "decode-stagnation", "morning-priming", "attach", "peace-affirmations"}
 _BITEMS = {b["id"]: b["items"] for b in BUNDLES}
 for _p in PRODUCTS:
     if _p["kind"] in ("course", "exercise", "book"):

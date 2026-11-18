@@ -176,7 +176,7 @@
   "redirect": null,
   "grants": null,
   "vip": true,
-  "soon": true,
+  "soon": false,
   "items": []
  },
  {
@@ -311,7 +311,7 @@
   "redirect": "{{H}}/bundles/",
   "grants": null,
   "vip": false,
-  "soon": true,
+  "soon": false,
   "items": [
    "heart-coherence",
    "morning-priming",
