@@ -83,3 +83,7 @@
 - Checkout: required agreement checkbox (terms + refund policy) on both sites; WordPress uses classic checkout. PayPal only for USD, transfer only for EGP.
 - Copy: "تشافٍ جسدي" -> "وعي بالجسد", "تدعم تشافي جسدك" -> "تدعم اتزانك وراحتك"; review by أميرة no longer mentions pain/headache (at Mervat's request).
 - Paymob plugin goes on the WordPress site after the contract is signed (contract 3.2.4: inform Paymob the site moves to a new system on the same domain).
+
+## Working preference (Mervat, 2026-11-18)
+- For anything inside Hostinger that I can't do through the API, tell Mervat to ask the **Hostinger Agent** (the "Agent" button at the top of hPanel). It found and set up the email forwarder by itself. Suggest it first, before step-by-step screenshots.
+- info@mervatsror.com forwards to her Gmail (copy kept in the mailbox).
