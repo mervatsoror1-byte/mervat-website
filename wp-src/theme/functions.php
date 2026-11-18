@@ -99,6 +99,12 @@ remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 
 add_action('wp_head', function () {
+    if (!is_admin() && strpos((string)wp_parse_url(home_url(), PHP_URL_HOST), 'new.') !== 0) {
+        echo '<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TWX27WM3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag(\'js\',new Date());</script>' . "\n";
+    }
+}, 0);
+
+add_action('wp_head', function () {
     $meta = ms_meta(); $part = ms_current_part();
     echo '<meta name="theme-color" content="#FDFAF5">' . "\n";
     echo '<link rel="icon" href="' . esc_url(get_template_directory_uri() . '/assets/brand/favicon-32.png') . '" sizes="32x32">' . "\n";

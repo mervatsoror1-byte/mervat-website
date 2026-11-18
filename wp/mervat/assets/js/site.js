@@ -49,6 +49,16 @@ let S, fresh = false;
 try { const raw = localStorage.getItem(KEY); fresh = !raw; S = Object.assign({}, blank, JSON.parse(raw || "{}")); } catch(e) { S = Object.assign({}, blank); fresh = true; }
 // first visit: choose currency from the visitor's time zone (Egypt → EGP, elsewhere → USD)
 if (fresh){ try { S.region = Intl.DateTimeFormat().resolvedOptions().timeZone === "Africa/Cairo" ? "eg" : "intl"; } catch(e){} }
+// This site has no real accounts: purchases are delivered by email until the WordPress shop goes live.
+// Clear anything the old demo stored in the browser (fake sign-in, "owned" tools, demo orders).
+if (!window.MS_WP){
+  const demo = S.user && /example\.com$/i.test(S.user.email || "");
+  if (S.owned.length || S.vip || S.orders.length || S.bookings.length || demo){
+    S.owned = []; S.vip = null; S.orders = []; S.bookings = []; S.progress = {};
+    if (demo) S.user = null;
+    try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){}
+  }
+}
 function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){} }
 function ss(k, v){ try { if (v === undefined) return sessionStorage.getItem(k); if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch(e){ return null; } }
 
@@ -330,9 +340,9 @@ function renderCheckout(){
       : `<label class="check agree-box"><input type="checkbox" id="agreeTerms"><span>قرأت وأوافق على <a href="{{H}}/terms/" target="_blank">الشروط والأحكام</a> و<a href="{{H}}/refund/" target="_blank">سياسة الاسترداد والإلغاء</a></span></label>
       <div class="pp-box"><div class="pp-head"><b>الدفع بالبيبال</b><span class="pp-amt">$${usdTotal(items)}</span></div>
         <div id="ppButtons" class="pp-buttons"><span class="muted">جارٍ تحميل زر الدفع…</span></div></div>
-      ${S.region === "eg" ? `<div class="pp-or"><span>أو</span></div>
-      <div class="alert info pay-soon"><b>للدفع بالجنيه المصري:</b> حتى تفعيل الدفع الإلكتروني، يتم الطلب عبر واتساب.</div>
-      <a class="btn btn-line btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}الطلب عبر واتساب (${money(items.reduce((s,c)=>s+P[c.id].eg,0), items.reduce((s,c)=>s+P[c.id].us,0))})</a>` : ""}
+      <div class="pp-or"><span>أو</span></div>
+      <div class="alert info pay-soon"><b>للدفع بالجنيه المصري أو بالتحويل (إنستاباي / فودافون كاش):</b> حتى تفعيل الدفع الإلكتروني بالبطاقة، يتم الطلب عبر واتساب.</div>
+      <a class="btn btn-line btn-block" href="${waOrderLink(items, t)}" target="_blank" rel="noopener">${icon("chat")}الطلب عبر واتساب (${money(items.reduce((s,c)=>s+P[c.id].eg,0), items.reduce((s,c)=>s+P[c.id].us,0))})</a>
       <p class="secure" style="display:block;text-align:center">بإتمام الطلب أنتِ توافقين على <a href="{{H}}/terms/">الشروط والأحكام</a> و<a href="{{H}}/refund/">سياسة الاسترداد</a>.</p>`}
     </div>
    </form>

@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC, OUT = ROOT / "src", ROOT / "site"
 SITE_URL = "https://mervatsror.com"
+GTAG = '''<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TWX27WM3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());</script>'''   # Google tag (Analytics)
 VOICE_REVIEWS = True    # voice reviews (recorded on the site, published after approval)
 VOICE_HOME = '<div class="vp-head" style="margin:56px 0 26px"><span class="vp-orn" aria-hidden="true">✦</span><h2>استمع إلى آراء عملائنا</h2><p>تجارب حقيقية بأصوات من عاشوها</p></div><div class="vr-pills" data-vr="all"></div>'
 NAME = "د. مرفت سرور"
@@ -293,7 +294,7 @@ FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="p
 def page(file, title, desc, body, active="", schema=None, noindex=False, bare=False):
     full_title = title if NAME in title else f"{title} | {NAME}"
     ld = "".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in (schema or []))
-    head = f'''<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    head = GTAG + f'''<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{E(full_title)}</title><meta name="description" content="{E(desc)}">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="canonical" href="{SITE_URL}/{'' if file=='index.html' else file}">
