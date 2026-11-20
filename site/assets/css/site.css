@@ -1886,3 +1886,4 @@ body:has(.lp-hero) .help-c{display:none}
 .mz-book-ph{object-fit:cover;object-position:50% 25%}
 .mz-hero-img::after{background:linear-gradient(to left,#2B5098 0%,rgba(43,80,152,.75) 10%,rgba(31,63,124,.25) 28%,transparent 45%)}
 .ss-top img.mz-book-ph{width:96px;height:96px;border-radius:18px}
+.mz-book .ss-top{grid-template-columns:96px 1fr}
