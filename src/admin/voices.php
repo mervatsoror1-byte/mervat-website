@@ -18,7 +18,7 @@ $csrfOk = fn() => hash_equals($_SESSION['csrf'], (string)($_POST['csrf'] ?? ''))
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $do = $_POST['do'] ?? '';
     if (!$csrfOk()) { $err = 'انتهت صلاحية الصفحة، أعيدي المحاولة.'; }
-    elseif ($do === 'setup' && !$hasPassword) {
+    elseif ($do === 'setup' && (!$hasPassword || ($_POST['reset'] ?? '') === '1')) {
         if (!rate_ok('login', 5, 900, false)) { $err = 'محاولات كثيرة. انتظري ربع ساعة.'; }
         elseif (!password_verify(implode('-', str_split(substr(preg_replace('/[^A-Z0-9]/', '', strtoupper((string)($_POST['code'] ?? ''))), 0, 12), 4)), $cfg['setup_code_hash'])) { rate_ok('login', 5, 900); $err = 'كود الإعداد غير صحيح.'; }
         elseif (mb_strlen((string)($_POST['pass'] ?? '')) < 10) { $err = 'كلمة السر يجب أن تكون ١٠ أحرف على الأقل.'; }
@@ -121,7 +121,7 @@ button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:9px 18p
 .vt{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.vt span{color:var(--muted);font-size:.9rem}
 audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
 .ok{background:#eef7ee;border:1px solid #b9dcb9;padding:10px 14px;border-radius:12px}.err{background:#fbeeee;border:1px solid #e3b8b8;padding:10px 14px;border-radius:12px}
-.empty{color:var(--muted)}select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}.ck{display:flex;gap:8px;align-items:center;font-weight:700}.up label{margin-top:0}.count{background:var(--gold);color:var(--deep);border-radius:999px;padding:0 10px;font-size:.85rem;margin-inline-start:6px}
+.empty{color:var(--muted)}.pw{position:relative}.pw input{padding-inline-end:48px}.eye{position:absolute;inset-inline-end:6px;top:50%;transform:translateY(-50%);background:none;padding:6px 8px;font-size:1.1rem;line-height:1;color:var(--muted)}a{color:var(--blue)}select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}.ck{display:flex;gap:8px;align-items:center;font-weight:700}.up label{margin-top:0}.count{background:var(--gold);color:var(--deep);border-radius:999px;padding:0 10px;font-size:.85rem;margin-inline-start:6px}
 </style></head><body>
 <header><div class="w"><h1>الآراء الصوتية</h1><?php if ($admin): ?><form method="post"><input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><button class="out" name="do" value="logout">خروج</button></form><?php endif; ?></div></header>
 <main><div class="w">
@@ -129,8 +129,9 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
 <?php if ($doneMsg): ?><p class="ok"><?= $h($doneMsg) ?></p><?php endif; ?>
 <?php if ($err): ?><p class="err"><?= $h($err) ?></p><?php endif; ?>
 
-<?php if (!$hasPassword): ?>
-  <form class="box" method="post" autocomplete="off"><h2 style="margin-top:0">إعداد كلمة السر لأول مرة</h2>
+<?php $reset = $hasPassword && !$admin && isset($_GET['reset']); if (!$hasPassword || $reset): ?>
+  <form class="box" method="post" autocomplete="off"><h2 style="margin-top:0"><?= $reset ? 'تعيين كلمة سر جديدة' : 'إعداد كلمة السر لأول مرة' ?></h2>
+    <?php if ($reset): ?><p class="empty" style="margin:0">اكتبي كود الإعداد الذي أرسله لك Claude، ثم اختاري كلمة سر جديدة.</p><input type="hidden" name="reset" value="1"><?php endif; ?>
     <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="do" value="setup">
     <label for="code">كود الإعداد</label><input id="code" name="code" type="text" required dir="ltr">
     <label for="pass">كلمة سر جديدة (١٠ أحرف على الأقل)</label><input id="pass" name="pass" type="password" required minlength="10" autocomplete="new-password">
@@ -140,7 +141,7 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
   <form class="box" method="post"><h2 style="margin-top:0">دخول</h2>
     <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="do" value="login">
     <label for="pass">كلمة السر</label><input id="pass" name="pass" type="password" required autocomplete="current-password">
-    <p><button class="gold">دخول</button></p></form>
+    <p><button class="gold">دخول</button></p><p style="margin:0"><a href="voices.php?reset=1">نسيت كلمة السر؟</a></p></form>
 <?php else: ?>
   <form class="v up" method="post" enctype="multipart/form-data"><h2 style="margin:0">رفع تسجيل وصلك (واتساب مثلاً)</h2>
     <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="do" value="upload"><input type="hidden" name="len" id="len" value="0">
@@ -149,7 +150,6 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
     <div><label for="pid">عن أي تمرين أو برنامج؟</label><select id="pid" name="pid" required><option value="general">تجربة عامة مع د. مرفت</option><?php foreach (products() as $k => $t) echo '<option value="' . $h($k) . '">' . $h($t) . '</option>'; ?></select></div>
     <label class="ck"><input type="checkbox" name="consent" value="1" required> صاحبة التجربة وافقت على نشر صوتها في الموقع</label>
     <p style="margin:0"><button class="gold">ارفعي وانشري</button></p></form>
-  <script src="voices.js"></script>
   <h2>في انتظار موافقتك<span class="count"><?= count($pending) ?></span></h2>
   <?php if (!$pending): ?><p class="empty">لا توجد تسجيلات جديدة.</p><?php endif; ?>
   <?php foreach ($pending as $v) echo card($v, $h, $fmtLen, $fmtDate, [['approve', 'انشري في الموقع', 'gold'], ['delete', 'احذفي', 'red']]); ?>
@@ -157,4 +157,4 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
   <?php if (!$approved): ?><p class="empty">لم يُنشر أي تسجيل بعد.</p><?php endif; ?>
   <?php foreach ($approved as $v) echo card($v, $h, $fmtLen, $fmtDate, [['hide', 'إخفاء من الموقع', 'ghost'], ['delete', 'احذفي نهائياً', 'red']]); ?>
 <?php endif; ?>
-</div></main></body></html>
+</div></main><script src="voices.js"></script></body></html>

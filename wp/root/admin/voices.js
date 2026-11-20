@@ -1,3 +1,13 @@
+// Show/hide password button on every password field.
+(function () {
+  document.querySelectorAll('input[type=password]').forEach(function (inp) {
+    var wrap = document.createElement('div'); wrap.className = 'pw';
+    inp.parentNode.insertBefore(wrap, inp); wrap.appendChild(inp);
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'eye'; b.textContent = '👁'; b.setAttribute('aria-label', 'إظهار كلمة السر');
+    b.onclick = function () { var show = inp.type === 'password'; inp.type = show ? 'text' : 'password'; b.textContent = show ? '🙈' : '👁'; b.setAttribute('aria-label', show ? 'إخفاء كلمة السر' : 'إظهار كلمة السر'); };
+    wrap.appendChild(b);
+  });
+})();
 // Reads the chosen file's length so the site can show it next to the review.
 (function () {
   var input = document.getElementById('audio'), len = document.getElementById('len'), out = document.getElementById('dur');
