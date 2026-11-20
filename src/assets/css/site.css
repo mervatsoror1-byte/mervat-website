@@ -1887,3 +1887,20 @@ body:has(.lp-hero) .help-c{display:none}
 .mz-hero-img::after{background:linear-gradient(to left,#2B5098 0%,rgba(43,80,152,.75) 10%,rgba(31,63,124,.25) 28%,transparent 45%)}
 .ss-top img.mz-book-ph{width:96px;height:96px;border-radius:18px}
 .mz-book .ss-top{grid-template-columns:96px 1fr}
+
+/* marriage hero: one continuous night sky around the house (no split) */
+.mz-hero{background:radial-gradient(55% 85% at 28% 52%,#1E3E7C 0%,#16305F 45%,#11264E 100%)}
+.mz-hero .sparkle{z-index:2;pointer-events:none}
+.mz-hero .vs-copy{z-index:3}
+.mz-hero-img::after{display:none}
+.mz-hero-img img{object-fit:cover;object-position:50% 55%;
+  -webkit-mask-image:radial-gradient(ellipse 50% 52% at 50% 50%,#000 50%,transparent 96%);
+          mask-image:radial-gradient(ellipse 50% 52% at 50% 50%,#000 50%,transparent 96%)}
+@media (max-width:980px){
+  .mz-hero{background:radial-gradient(90% 60% at 50% 25%,#1E3E7C 0%,#16305F 50%,#11264E 100%)}
+  .mz-hero-img img{-webkit-mask-image:radial-gradient(ellipse 62% 50% at 50% 50%,#000 48%,transparent 96%);mask-image:radial-gradient(ellipse 62% 50% at 50% 50%,#000 48%,transparent 96%)}
+}
+/* closing section: lift the heading above the couple */
+.mz-final{padding-block:clamp(56px,6vw,96px) clamp(230px,26vw,380px)}
+.mz-final-bg{object-position:50% 100%}
+@media (max-width:760px){.mz-final{padding-block:70px 230px}}
