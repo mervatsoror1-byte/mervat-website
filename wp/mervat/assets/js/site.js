@@ -833,7 +833,7 @@ function initSessCards(){
   const today = new Date(); today.setHours(0,0,0,0);
   const OPEN = [0, 1, 2, 3, 4, 5, 6]; // every day is open
   cards.forEach(card => {
-    const id = card.dataset.sess, st = {y: today.getFullYear(), m: today.getMonth(), day: null, slot: null};
+    const st = {y: today.getFullYear(), m: today.getMonth(), day: null, slot: null};
     const daysEl = card.querySelector(".ss-days"), slotsEl = card.querySelector(".ss-slots"), title = card.querySelector(".ss-month");
     function draw(){
       title.textContent = months[st.m] + " " + ar(st.y);
@@ -862,13 +862,29 @@ function initSessCards(){
         if (!st.slot){ toast("اختاري وقت الجلسة"); return; }
         const [y, m, d] = st.day.split("-").map(Number), dt = new Date(y, m - 1, d);
         const names = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
-        startBuy(id, {when: `${names[dt.getDay()]} ${ar(d)} ${months[m-1]} · ${st.slot} (بتوقيت القاهرة)`});
+        startBuy(card.dataset.sess, {when: `${names[dt.getDay()]} ${ar(d)} ${months[m-1]} · ${st.slot} (بتوقيت القاهرة)`});
       }
     });
     draw();
   });
 }
 initSessCards();
+
+/* ---------- marriage counseling: choose the plan for the booking calendar ---------- */
+(function(){
+  const card = $(".mz-book"); if (!card) return;
+  const pick = id => {
+    if (!P[id]) return;
+    card.dataset.sess = id;
+    card.querySelector(".mz-bt").textContent = P[id].title;
+    const pr = card.querySelector(".mz-bp [data-price]"); if (pr){ pr.dataset.price = id; paintPricesOnly(); }
+    $$(".mz-chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.mplan === id)));
+  };
+  document.addEventListener("click", e => {
+    const c = e.target.closest("[data-mplan]"); if (c){ pick(c.dataset.mplan); return; }
+    const a = e.target.closest("[data-mpick]"); if (a) pick(a.dataset.mpick);
+  });
+})();
 
 /* ---------- Nour assistant (prototype: scripted answers) ---------- */
 (function(){

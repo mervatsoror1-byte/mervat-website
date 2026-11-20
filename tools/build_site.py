@@ -129,6 +129,10 @@ PRODUCTS = [
   dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=399, us=25, page="sessions.html"),
   dict(id="s-single", kind="session", title="جلسة استشارة فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=599, us=59, page="sessions.html"),
   dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/thumb-session.webp", eg=1999, us=149, page="sessions.html"),
+  dict(id="m-single", kind="session", title="استشارة زوجية · ٦٠ دقيقة", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=999, us=89, page="marriage.html"),
+  dict(id="m-4", kind="session", title="باقة ٤ جلسات زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=3299, us=299, page="marriage.html"),
+  dict(id="m-8", kind="session", title="باقة ٨ جلسات زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=6199, us=549, page="marriage.html"),
+  dict(id="m-12", kind="session", title="باقة ١٢ جلسة زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=8799, us=779, page="marriage.html"),
   dict(id="s-coach", kind="session", title="جلسة كوتشينج · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=750, us=69, page="sessions.html"),
   dict(id="serenity-gift", kind="gift", title="هدية: مقدمة تأمل السكينة", catLabel="هدية", img="assets/art/calm.webp", eg=0, us=0, page="index.html", learn="learn.html#serenity"),
 ]
@@ -242,7 +246,7 @@ def mega():
     </div></div>'''
 
 
-NAV2 = [("index.html","الرئيسية",""),("MEGA","الأدوات",""),("sessions.html","الاستشارات",""),("vip.html","برنامج استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","nav-contact")]
+NAV2 = [("index.html","الرئيسية",""),("MEGA","الأدوات",""),("sessions.html","الاستشارات",""),("marriage.html","الاستشارات الزوجية",""),("vip.html","برنامج استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","nav-contact")]
 
 def header(active, hero=False):
     def item(h,t,c):
@@ -280,7 +284,7 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
       <p>برامج وتمارين للوعي والتشافي، تعيدك إلى نسختك الأصلية بهدوء.</p><div class="f-news" style="margin-top:14px"><b style="color:#F1DDB0">انضم إلى مجتمع مرفت</b><form data-simple="تم اشتراكك في النشرة."><label class="sr" for="fnEmail">بريدك</label><input id="fnEmail" type="email" required placeholder="بريدك الإلكتروني"><button class="btn btn-pill btn-sm" type="submit">اشترك</button></form><div class="alert" hidden></div></div>
       <div class="social"><a href="https://www.instagram.com/mervatsoror111" target="_blank" rel="noopener" aria-label="إنستغرام"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></a><a href="https://www.youtube.com/@mervatsoror" target="_blank" rel="noopener" aria-label="يوتيوب"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10.5 9.5v5l4-2.5z"/></svg></a><a href="https://www.tiktok.com/@fefesoror" target="_blank" rel="noopener" aria-label="تيك توك"><svg class="icon" viewBox="0 0 24 24"><path d="M14 4v10.5a3.5 3.5 0 1 1-3-3.4M14 4c.4 2.4 2 4 4.5 4.2"/></svg></a><a href="https://www.facebook.com/mrft.srwr" target="_blank" rel="noopener" aria-label="فيسبوك"><svg class="icon" viewBox="0 0 24 24"><path d="M14 8h2.5V4.5H14A3.5 3.5 0 0 0 10.5 8v2.5H8V14h2.5v6H14v-6h2.5l.5-3.5h-3V8z"/></svg></a></div>
     </div>
-    <div><h4>البرامج</h4><ul><li><a href="vip.html">استيقظ VIP</a></li><li><a href="course-ain-sahia.html">عين صاحية</a></li><li><a href="library.html">مكتبة الأدوات</a></li><li><a href="bundles.html">الباقات</a></li><li><a href="books.html">الكتب</a></li><li><a href="sessions.html">الجلسات الفردية</a></li></ul></div>
+    <div><h4>البرامج</h4><ul><li><a href="vip.html">استيقظ VIP</a></li><li><a href="course-ain-sahia.html">عين صاحية</a></li><li><a href="library.html">مكتبة الأدوات</a></li><li><a href="bundles.html">الباقات</a></li><li><a href="books.html">الكتب</a></li><li><a href="sessions.html">الجلسات الفردية</a></li><li><a href="marriage.html">الاستشارات الزوجية</a></li></ul></div>
     <div><h4>المساعدة</h4><ul><li><a href="about.html">عن مرفت</a></li><li><a href="articles.html">المقالات</a></li><li><a href="faq.html">الأسئلة الشائعة</a></li><li><a href="voices.html">آراء صوتية</a></li><li><a href="contact.html">تواصل معنا</a></li><li><a href="account.html">حسابي</a></li><li><a href="cart.html">السلة</a></li></ul></div>
     <div><h4>تواصل</h4><ul class="f-contact"><li><a href="https://wa.me/201095292748">{ic("chat","icon icon-sm")}01095292748</a></li><li><a href="mailto:info@mervatsror.com">{ic("mail","icon icon-sm")}info@mervatsror.com</a></li><li><span>{ic("pin","icon icon-sm")}ملوي، المنيا، مصر</span></li><li><span>{ic("globe","icon icon-sm")}الخدمة أونلاين من القاهرة</span></li></ul><h4 style="margin-top:18px">السياسات</h4><ul><li><a href="policies.html">كل السياسات</a></li><li><a href="terms.html">الشروط والأحكام</a></li><li><a href="privacy.html">سياسة الخصوصية</a></li><li><a href="refund.html">الاسترداد والإلغاء</a></li><li><a href="delivery.html">تقديم الخدمة</a></li></ul></div>
   </div>
@@ -453,6 +457,77 @@ def build():
 </div></section>
 <section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة عن الجلسات</h2></header><div class="vp-faq">{faq_items(FAQ["sessions"])}</div></div></section>''', active="sessions.html")
 
+    # ---------- marriage counseling
+    def mplan(pid, name, n, note, feats, tag="", best=False):
+        P_ = BY[pid]; one = BY["m-single"]
+        AD = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩"); se = str(one["eg"] * n - P_["eg"]).translate(AD)
+        save = (f'<span class="mz-save" data-eg="وفّر {se} ج.م" data-us="وفّر ${one["us"] * n - P_["us"]}">وفّر {se} ج.م</span>' if n > 1 else '<span class="mz-save mz-save-0">نقطة البداية</span>')
+        return (f'<article class="vp-plan mz-plan{" is-best" if best else ""}">' + (f'<span class="vp-tag">{tag}</span>' if tag else '') +
+                f'<h3>{name}</h3><div class="vp-price">{price(pid)}</div>{save}<p class="vp-note">{note}</p><span class="vp-rule" aria-hidden="true"></span>' +
+                f'<ul>{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in feats)}</ul>' +
+                f'<a class="{"btn-safia" if best else "vp-btn"}" href="#booking" data-mpick="{pid}"><span>احجز {"الجلسة" if n == 1 else "الباقة"}</span></a></article>')
+    mplans = '<div class="vp-plans mz-plans">' + \
+        mplan("m-single", "جلسة واحدة", 1, "٦٠ دقيقة أونلاين", ["جلسة خاصة للزوجين أو لطرف واحد", "فهم أوضح لجذر الخلاف", "خطوة عملية تبدآن بها من اليوم"]) + \
+        mplan("m-4", "باقة ٤ جلسات", 4, "جلسة كل أسبوع لمدة شهر", ["كسر دائرة الخلاف المتكرر", "أدوات تواصل تطبقانها بين الجلسات", "متابعة بين الجلسات"]) + \
+        mplan("m-8", "باقة ٨ جلسات", 8, "رحلة شهرين لتحوّل عميق", ["كل ما في باقة ٤ جلسات", "إعادة بناء الثقة والقرب خطوة بخطوة", "تمارين وعي مخصصة لعلاقتكما", "متابعة على واتساب بين الجلسات"], tag="الأكثر اختياراً", best=True) + \
+        mplan("m-12", "باقة ١٢ جلسة", 12, "ثلاثة أشهر لعلاقة جديدة ومستقرة", ["كل ما في باقة ٨ جلسات", "تثبيت التغيير حتى يصبح أسلوب حياة", "خطة واضحة لما بعد انتهاء الجلسات", "أولوية في اختيار المواعيد"], tag="الأوفر") + '</div>'
+    mchips = "".join(f'<button type="button" class="mz-chip" data-mplan="{pid}" aria-pressed="{str(pid == "m-single").lower()}"><b>{t}</b>{price(pid)}</button>'
+                     for pid, t in (("m-single", "جلسة واحدة"), ("m-4", "٤ جلسات"), ("m-8", "٨ جلسات"), ("m-12", "١٢ جلسة")))
+    PAINS = ["خلافات تتكرر على نفس الأشياء، ولا تنتهي أبداً", "صمت طويل وبُعد، وكأنكما غريبان تحت سقف واحد", "كلام يُقال فيُفهم خطأ، فينتهي بجرح",
+             "ثقة اهتزّت ولا تعرفان كيف تُستعاد", "إحساس بالوحدة وأنتما معاً", "خوف على البيت وعلى الأبناء من هذا التوتر"]
+    GAINS = [("chat", "حوار هادئ", "تتعلمان كيف تتكلمان فيُسمع كل منكما، دون أن يتحول الحديث إلى معركة."),
+             ("heart", "قرب ودفء", "تعود المودة التي غطّاها الانشغال والخلاف، ويعود البيت مكاناً للراحة."),
+             ("shield", "أمان وثقة", "خطوات واضحة لإعادة بناء الثقة، ليشعر كل منكما أنه في أمان."),
+             ("path", "فهم الجذور", "تريان ما وراء الخلاف: البرمجات والجروح القديمة التي يحملها كل منكما إلى العلاقة."),
+             ("layers", "أدوات عملية", "أدوات تواصل وتمارين وعي تطبقانها في حياتكما اليومية بين الجلسات."),
+             ("crown", "احترام متبادل", "علاقة يُحترم فيها كل طرف، وتُحفظ فيها كرامة الاثنين.")]
+    STEPS = [("الجلسة الأولى", "نسمع القصة كاملة بهدوء، ونحدد معاً ما تريدانه من علاقتكما."),
+             ("الوعي بالجذور", "نكشف الأنماط المتكررة والبرمجات التي تغذّي الخلاف."),
+             ("أدوات ومهارات", "تتعلمان طرقاً جديدة للتواصل والتعبير عن الاحتياج وحل الخلاف."),
+             ("التطبيق والمتابعة", "تطبّقان بين الجلسات، ونتابع معاً ما تغيّر حتى يثبت.")]
+    strip = "".join("<span>" + " <i>✦</i> ".join(["السكينة", "الحوار", "الأمان", "القرب", "الاحترام", "التفاهم", "المودة"]) + " <i>✦</i></span>" for _ in range(2))
+    pains = "".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in PAINS)
+    gains = "".join(f'<div class="vp-feat"><span class="vp-ico">{ic(i)}</span><h3>{t}</h3><p>{d}</p></div>' for i, t, d in GAINS)
+    steps = "".join(f'<li><span class="mz-n">{"١٢٣٤"[k]}</span><h3>{t}</h3><p>{d}</p></li>' for k, (t, d) in enumerate(STEPS))
+    page("marriage.html", "الاستشارات الزوجية", "استشارات زوجية أونلاين مع د. مرفت سرور، مدربة وعي معتمدة من ICF. جلسات ٦٠ دقيقة للزوجين أو لطرف واحد، في سرية تامة، مع باقات ٤ و٨ و١٢ جلسة.", f'''
+<section class="vip-split mz-hero"><canvas class="sparkle" data-density="1500" aria-hidden="true"></canvas>
+  <div class="vs-copy">{crumbs(("الاستشارات الزوجية", None))}<span class="vs-eyebrow">الاستشارات الزوجية مع د. مرفت</span><h1>بيتٌ يعود <em>سكناً</em></h1>
+    <p>حين يصبح البيت مكاناً للخلاف بدل السكينة، فأنتما لا تحتاجان من يحكم بينكما، بل من يساعدكما أن تريا بعضكما من جديد. مساحة آمنة وسرية، تعيد إليكما الحوار والقرب والأمان.</p>
+    <ul class="mz-facts"><li>{ic("live","icon icon-sm")}أونلاين · ٦٠ دقيقة</li><li>{ic("user","icon icon-sm")}للزوجين أو لطرف واحد</li><li>{ic("shield","icon icon-sm")}سرية تامة</li></ul>
+    <div class="ctas"><a class="btn-safia" href="#booking">احجز جلستك الأولى</a><a class="vs-link" href="#plans">الباقات والأسعار</a></div></div>
+  <figure class="vs-photo"><img src="assets/img/vip-zoom.webp" alt="د. مرفت سرور في جلسة استشارة أونلاين" width="1200" height="1500" fetchpriority="high"></figure></section>
+<div class="vp-strip" aria-hidden="true"><div class="track">{strip}</div></div>
+<section class="vp-sec vp-ivory"><div class="vp-wrap">
+  <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>هل تعيشان شيئاً من هذا؟</h2><p>إن وجدتما نفسيكما في سطر واحد، فهذه المساحة لكما.</p></header>
+  <ul class="mz-pains">{pains}</ul>
+  <p class="mz-turn">الخلاف ليس نهاية العلاقة، بل رسالة أن شيئاً فيها يحتاج أن يُرى ويُفهم.</p></div></section>
+<section class="vp-sec mz-gains"><div class="vp-wrap">
+  <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>ماذا يتغيّر في علاقتكما؟</h2><p>رحلة من التوتر والمسافة، إلى التفاهم والسكينة.</p></header>
+  <div class="vp-feats">{gains}</div></div></section>
+<section class="vp-sec vp-ivory"><div class="vp-wrap">
+  <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>كيف تسير الرحلة؟</h2></header>
+  <ol class="mz-steps">{steps}</ol>
+  <div class="mz-alone"><span class="vp-ico">{ic("heart")}</span><div><h3>شريكك غير مستعد؟ ابدأ وحدك</h3><p>يمكن أن يبدأ طرف واحد الرحلة وحده. حين يتغيّر وعيك وطريقة تواصلك، يتغيّر شكل العلاقة كلها، وكثيراً ما ينضم الطرف الآخر لاحقاً.</p></div></div></div></section>
+<section class="vp-sec vp-royal" id="plans"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap mz-wide">
+  <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>اختارا ما يناسب رحلتكما</h2><p>كل جلسة ٦٠ دقيقة أونلاين. الأسعار بالجنيه داخل مصر وبالدولار خارجها.</p></header>
+  {mplans}</div></section>
+<section class="vp-sec vp-royal mz-bsec" id="booking"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap mz-bwrap">
+  <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>احجز موعد جلستك الأولى</h2><p>اختر الباقة، ثم اليوم والوقت المناسب. مواعيد باقي جلسات الباقة نتفق عليها معاً.</p></header>
+  <div class="mz-chips" role="group" aria-label="اختر الباقة">{mchips}</div>
+  <article class="ss-card mz-book" data-sess="m-single">
+    <div class="ss-top"><img src="assets/img/popup-vip.webp" alt="" width="120" height="120" loading="lazy"><div><h3 class="mz-bt">{E(BY["m-single"]["title"])}</h3><p>جلسة خاصة أونلاين عبر Zoom، للزوجين أو لطرف واحد.</p><span class="mz-bp">{price("m-single")}</span></div></div>
+    <div class="ss-cal"><div class="ss-cal-h"><button type="button" class="ss-nav" data-dir="-1" aria-label="الشهر السابق">›</button><b class="ss-month"></b><button type="button" class="ss-nav" data-dir="1" aria-label="الشهر التالي">‹</button></div>
+      <div class="ss-wd"><span>سبت</span><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span></div>
+      <div class="ss-days"></div><div class="ss-slots"></div></div>
+    <button class="btn-safia ss-go" type="button"><span>أكمل الحجز</span></button>
+  </article></div></section>
+<section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة عن الاستشارات الزوجية</h2></header><div class="vp-faq">{faq_items(FAQ["marriage"])}</div>
+  <p class="mz-note">الاستشارات الزوجية مساحة للوعي والتواصل، وليست بديلاً عن العلاج النفسي أو الطبي. في حالات العنف أو الاضطرابات النفسية يُرجى التوجه إلى طبيب أو مختص.</p></div></section>
+<section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>بيتكما يستحق أن يعود سكناً</h2><a class="btn-safia" href="#booking">احجز جلستك الأولى</a></div></section>''',
+         active="marriage.html", schema=[{"@context": "https://schema.org", "@type": "Service", "name": "الاستشارات الزوجية", "serviceType": "استشارات زوجية أونلاين",
+                                          "provider": {"@type": "Person", "name": NAME}, "areaServed": "Worldwide", "url": f"{SITE_URL}/marriage.html",
+                                          "offers": [{"@type": "Offer", "name": BY[k]["title"], "price": BY[k]["eg"], "priceCurrency": "EGP", "availability": "https://schema.org/InStock"} for k in ("m-single", "m-4", "m-8", "m-12")]}])
+
     # ---------- about
     page("about.html", "عن د. مرفت سرور", "تعرّف على د. مرفت سرور، مدربة وعي وتشافي معتمدة من الاتحاد الدولي للتدريب ICF، ومنهجها في الوعي والتشافي.", page_hero("عن د. مرفت سرور","مدربة وعي وتشافي معتمدة من الاتحاد الدولي للتدريب ICF.") + f'''
 <section class="band"><div class="wrap split"><div class="round-ph"><div class="img"><img src="assets/img/coach-white-square.webp" alt="د. مرفت سرور" width="900" height="900"></div></div>
@@ -620,6 +695,12 @@ FAQ = {
  "pay":[("لماذا يختلف السعر داخل مصر عن خارجها؟","نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة."),("ما طرق الدفع المتاحة؟","داخل مصر: البطاقات البنكية (فيزا وماستركارد وميزة) والمحافظ الإلكترونية. من خارج مصر: PayPal."),("متى أحصل على المادة بعد الدفع؟","فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول."),("هل يمكنني استرداد المبلغ؟","كل عمليات الشراء نهائية لأن الأدوات تُفتح فور الدفع. نرد المبلغ فقط في حالة الخصم المزدوج أو الخطأ التقني الذي لم يُحل، كما في سياسة الاسترداد والإلغاء.")],
  "vip":[("ما المدة التي يحدث فيها التغيير؟","التغيير الحقيقي يحتاج التزاماً وتطبيقاً يومياً، والمدة المناسبة ثلاثة أشهر على الأقل، ولذلك نرشّح اشتراك ٣ أشهر كبداية."),("ماذا يشمل استيقظ VIP؟","جلسات فردية خاصة بينك وبين د. مرفت فقط، وكل التمارين، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالأدوات بعد الإلغاء؟","الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى متاحاً لك ٣٦٥ يوماً من تاريخ شرائه."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
  "sessions":[("كيف تتم الجلسة؟","أونلاين عبر Zoom أو Google Meet، ويصلك الرابط على بريدك."),("هل يمكن تغيير الموعد؟","نعم، حتى ٢٤ ساعة قبل الجلسة من حسابك دون رسوم."),("بأي توقيت تظهر المواعيد؟","تظهر بتوقيت القاهرة مع تحويلها تلقائياً لتوقيت بلدك في الموقع الفعلي.")],
+ "marriage":[("هل يجب أن يحضر الزوجان معاً؟","ليس شرطاً. يمكنكما الحضور معاً، ويمكن أن يبدأ طرف واحد وحده إن كان الطرف الآخر غير مستعد بعد. التغيير في طرف واحد كثيراً ما يغيّر شكل العلاقة كلها."),
+   ("هل ما نقوله في الجلسة سري؟","نعم، سرية تامة. لا يُسجَّل شيء من الجلسة، ولا يُشارك أي تفصيل مع أي طرف، ولا يُنقل كلام أحد الزوجين للآخر إلا بموافقته."),
+   ("كيف تتم الجلسة؟","أونلاين عبر Zoom لمدة ٦٠ دقيقة، من أي مكان في العالم. يصلك رابط الجلسة وتذكير قبل موعدها."),
+   ("كم جلسة نحتاج؟","يختلف حسب كل علاقة. جلسة واحدة تمنحكما وضوحاً وبداية، أما التغيير الثابت فيحتاج عادة من ٨ إلى ١٢ جلسة، ولذلك صُممت الباقات بسعر أوفر."),
+   ("كيف نحجز جلسات الباقة؟","تحجزان الجلسة الأولى الآن من التقويم، ونتفق معاً على مواعيد باقي الجلسات بما يناسبكما، غالباً جلسة كل أسبوع."),
+   ("هل الاستشارة بديل عن العلاج النفسي؟","لا. الاستشارات الزوجية مساحة للوعي والتفاهم وبناء التواصل، وليست علاجاً نفسياً أو طبياً. في حالات العنف أو الاضطرابات النفسية يُنصح بمتابعة طبيب أو مختص.")],
  "books":[("هل يمكن تحميل الكتاب؟","لا، يُقرأ داخل حسابك فقط حفاظاً على حقوق المحتوى، بنسخة تحمل اسمك."),("هل أستطيع القراءة دون إنترنت؟","القراءة تحتاج اتصالاً بالإنترنت لأن الكتاب محفوظ في حسابك.")],
 }
 import sys; sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -679,6 +760,12 @@ def home_body():
   {('<div data-vr-wrap hidden>' + VOICE_HOME + '</div>') if VOICE_REVIEWS else ""}</div></section>
 <section class="ses-banner" aria-label="الجلسات الفردية"><img src="assets/img/sessions-banner.webp" alt="د. مرفت سرور في جلسة أونلاين" width="1672" height="941" loading="lazy">
   <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة استشارة أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html#booking">{ic("cal")}احجز جلستك</a></div></section>
+<section class="mz-home"><canvas class="sparkle" data-density="2400" aria-hidden="true"></canvas><div class="wrap mz-home-in">
+  <span class="vp-orn" aria-hidden="true">✦</span><span class="vb-kicker">الاستشارات الزوجية</span>
+  <h2>بيتٌ يعود <em>سكناً</em></h2>
+  <p>خلافات تتكرر، صمت وبُعد، وثقة اهتزّت؟ مساحة آمنة وسرية مع د. مرفت، تعيد إليكما الحوار والقرب والأمان. للزوجين معاً أو لطرف واحد.</p>
+  <ul class="mz-facts"><li>أونلاين · ٦٠ دقيقة</li><li>جلسة واحدة أو باقات ٤ و٨ و١٢ جلسة</li><li>سرية تامة</li></ul>
+  <a class="btn-safia" href="marriage.html">اكتشف الاستشارات الزوجية</a></div></section>
 <section class="band" style="padding-bottom:0"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر مخفض</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
 <section class="band book-band" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap split">{book3d()}
   <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]}</p>
