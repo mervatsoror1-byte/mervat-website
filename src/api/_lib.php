@@ -4,6 +4,8 @@ if (basename($_SERVER['SCRIPT_FILENAME'] ?? '') === '_lib.php') { http_response_
 
 const VOICE_MAX_BYTES = 4 * 1024 * 1024;   // 4 MB (about 2 minutes)
 const VOICE_MAX_SECONDS = 130;
+const ADMIN_VOICE_MAX_SECONDS = 305;          // reviews Mervat uploads herself
+const ADMIN_VOICE_MAX_BYTES = 25 * 1024 * 1024;
 const SUBMITS_PER_HOUR = 5;                 // per visitor
 const MAX_PENDING = 300;
 const NOTIFY_EMAIL = 'info@mervatsror.com';

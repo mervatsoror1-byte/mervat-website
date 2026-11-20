@@ -3,7 +3,7 @@
 require dirname(__DIR__) . '/api/_lib.php';
 header('X-Robots-Tag: noindex, nofollow');
 header('X-Frame-Options: DENY');
-header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; media-src 'self'; form-action 'self'; frame-ancestors 'none'");
+header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; media-src 'self' blob:; form-action 'self'; frame-ancestors 'none'");
 start_admin_session();
 
 $cfg = require dirname(__DIR__) . '/api/_config.php';
@@ -38,6 +38,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else { rate_ok('login', 5, 900); $err = 'كلمة السر غير صحيحة.'; }
     } elseif ($do === 'logout') {
         $_SESSION = []; session_destroy(); header('Location: voices.php'); exit;
+    } elseif ($do === 'upload' && is_admin()) {
+        // Mervat adds a review she received elsewhere (e.g. WhatsApp) after editing it; it is published right away.
+        $pid = (string)($_POST['pid'] ?? '');
+        $name = clean_text((string)($_POST['name'] ?? ''), 40);
+        $len = min((float)($_POST['len'] ?? 0), ADMIN_VOICE_MAX_SECONDS);
+        $f = $_FILES['audio'] ?? null;
+        if ($pid !== 'general' && !isset(products()[$pid])) { $err = 'اختاري التمرين أو البرنامج.'; }
+        elseif ($name === '') { $err = 'اكتبي اسم صاحبة التجربة كما سيظهر في الموقع.'; }
+        elseif (($_POST['consent'] ?? '') !== '1') { $err = 'لازم تأكيد موافقة صاحبة التجربة على النشر.'; }
+        elseif (!$f || ($f['error'] ?? 1) !== UPLOAD_ERR_OK || !is_uploaded_file($f['tmp_name'])) { $err = ($f && in_array($f['error'] ?? 0, [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE], true)) ? 'الملف أكبر من المسموح. صدّريه كصوت فقط (MP3 أو M4A).' : 'لم يصل الملف، أعيدي المحاولة.'; }
+        elseif ($f['size'] > ADMIN_VOICE_MAX_BYTES) { $err = 'الملف أكبر من ٢٥ ميجا. صدّريه كصوت فقط (MP3 أو M4A).'; }
+        elseif ((float)($_POST['len'] ?? 0) > ADMIN_VOICE_MAX_SECONDS) { $err = 'التسجيل أطول من ٥ دقائق. قصّريه ثم ارفعيه.'; }
+        elseif (!($type = sniff_audio($f['tmp_name']))) { $err = 'نوع الملف غير مدعوم. المسموح: MP3 أو M4A أو WAV أو MP4.'; }
+        else {
+            $id = bin2hex(random_bytes(12));
+            $file = $id . '.' . $type[0];
+            if (!move_uploaded_file($f['tmp_name'], data_dir() . '/voices/' . $file)) { $err = 'تعذّر حفظ الملف.'; }
+            else {
+                @chmod(data_dir() . '/voices/' . $file, 0600);
+                with_index(function ($list) use ($id, $pid, $name, $len, $file, $type) {
+                    $now = gmdate('c');
+                    $list[] = ['id' => $id, 'pid' => $pid, 'name' => $name, 'len' => round(max(0, $len), 1), 'file' => $file, 'mime' => $type[1],
+                               'status' => 'approved', 'created_at' => $now, 'approved_at' => $now, 'consent' => true, 'source' => 'admin'];
+                    return [$list, true];
+                });
+                header('Location: voices.php?done=upload'); exit;
+            }
+        }
     } elseif (in_array($do, ['approve', 'hide', 'delete'], true) && is_admin()) {
         $id = preg_replace('/[^a-f0-9]/', '', (string)($_POST['id'] ?? ''));
         $gone = null;
@@ -56,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $admin = is_admin();
 $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
-$doneMsg = ['approve' => 'نُشر التسجيل في الموقع.', 'hide' => 'أُخفي التسجيل من الموقع.', 'delete' => 'حُذف التسجيل نهائياً.'][$_GET['done'] ?? ''] ?? '';
+$doneMsg = ['upload' => 'تم رفع التسجيل ونشره في الموقع.', 'approve' => 'نُشر التسجيل في الموقع.', 'hide' => 'أُخفي التسجيل من الموقع.', 'delete' => 'حُذف التسجيل نهائياً.'][$_GET['done'] ?? ''] ?? '';
 $list = $admin ? read_index() : [];
 usort($list, fn($a, $b) => strcmp($b['created_at'], $a['created_at']));
 $pending = array_filter($list, fn($v) => $v['status'] === 'pending');
@@ -65,7 +93,7 @@ $fmtLen = fn($s) => floor($s / 60) . ':' . str_pad((string)round(fmod($s, 60)), 
 $fmtDate = fn($d) => date('Y/m/d H:i', strtotime($d) + 2 * 3600);
 
 function card($v, $h, $fmtLen, $fmtDate, $actions) {
-    $title = products()[$v['pid']] ?? $v['pid'];
+    $title = $v['pid'] === 'general' ? 'تجربة عامة' : (products()[$v['pid']] ?? $v['pid']);
     $btns = '';
     foreach ($actions as [$do, $label, $cls]) {
         $confirm = $do === 'delete' ? ' onsubmit="return confirm(\'حذف التسجيل نهائياً؟\')"' : '';
@@ -93,7 +121,7 @@ button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:9px 18p
 .vt{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.vt span{color:var(--muted);font-size:.9rem}
 audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
 .ok{background:#eef7ee;border:1px solid #b9dcb9;padding:10px 14px;border-radius:12px}.err{background:#fbeeee;border:1px solid #e3b8b8;padding:10px 14px;border-radius:12px}
-.empty{color:var(--muted)}.count{background:var(--gold);color:var(--deep);border-radius:999px;padding:0 10px;font-size:.85rem;margin-inline-start:6px}
+.empty{color:var(--muted)}select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}.ck{display:flex;gap:8px;align-items:center;font-weight:700}.up label{margin-top:0}.count{background:var(--gold);color:var(--deep);border-radius:999px;padding:0 10px;font-size:.85rem;margin-inline-start:6px}
 </style></head><body>
 <header><div class="w"><h1>الآراء الصوتية</h1><?php if ($admin): ?><form method="post"><input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><button class="out" name="do" value="logout">خروج</button></form><?php endif; ?></div></header>
 <main><div class="w">
@@ -114,6 +142,14 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
     <label for="pass">كلمة السر</label><input id="pass" name="pass" type="password" required autocomplete="current-password">
     <p><button class="gold">دخول</button></p></form>
 <?php else: ?>
+  <form class="v up" method="post" enctype="multipart/form-data"><h2 style="margin:0">رفع تسجيل وصلك (واتساب مثلاً)</h2>
+    <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="do" value="upload"><input type="hidden" name="len" id="len" value="0">
+    <div><label for="audio">ملف الصوت (MP3 أو M4A، حتى ٥ دقائق)</label><input id="audio" name="audio" type="file" accept="audio/*,.mp3,.m4a,.wav,.mp4" required><small id="dur" class="empty"></small></div>
+    <div><label for="vname">الاسم كما يظهر في الموقع</label><input id="vname" name="name" type="text" maxlength="40" required placeholder="مثلاً: هبة، أو أم يوسف"></div>
+    <div><label for="pid">عن أي تمرين أو برنامج؟</label><select id="pid" name="pid" required><option value="general">تجربة عامة مع د. مرفت</option><?php foreach (products() as $k => $t) echo '<option value="' . $h($k) . '">' . $h($t) . '</option>'; ?></select></div>
+    <label class="ck"><input type="checkbox" name="consent" value="1" required> صاحبة التجربة وافقت على نشر صوتها في الموقع</label>
+    <p style="margin:0"><button class="gold">ارفعي وانشري</button></p></form>
+  <script src="voices.js"></script>
   <h2>في انتظار موافقتك<span class="count"><?= count($pending) ?></span></h2>
   <?php if (!$pending): ?><p class="empty">لا توجد تسجيلات جديدة.</p><?php endif; ?>
   <?php foreach ($pending as $v) echo card($v, $h, $fmtLen, $fmtDate, [['approve', 'انشري في الموقع', 'gold'], ['delete', 'احذفي', 'red']]); ?>
