@@ -33,7 +33,7 @@ def load_data():
 def classify(data):
     """Return (product pages by stem -> product id, plain pages set)."""
     product_pages = {}
-    shared = {"vip.html", "sessions.html", "bundles.html", "books.html", "library.html", "index.html"}
+    shared = {"vip.html", "sessions.html", "marriage.html", "bundles.html", "books.html", "library.html", "index.html"}
     for p in data["products"]:
         page = p.get("page") or ""
         if page and page.endswith(".html") and page not in shared and not page.startswith("lp-"):
