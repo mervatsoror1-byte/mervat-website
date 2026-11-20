@@ -1,0 +1,10 @@
+# Always use the secure address
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://mervatsror.com%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.mervatsror\.com$ [NC]
+RewriteRule ^ https://mervatsror.com%{REQUEST_URI} [L,R=301]
+<IfModule mod_headers.c>
+Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
