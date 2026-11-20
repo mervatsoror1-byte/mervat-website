@@ -276,7 +276,7 @@ def header(active, hero=False):
 <div class="help help-c" id="helpC"><div class="help-panel" id="helpCPanel" hidden><b>كيف يمكننا خدمتك؟</b><span class="muted">نرد عادةً خلال ساعات العمل.</span>
   <a href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat")}واتساب</a><a href="contact.html">{ic("mail")}راسلنا</a><a href="faq.html">{ic("book")}الأسئلة الشائعة</a><a href="sessions.html#booking">{ic("cal")}احجزي جلسة</a></div>
   <button class="help-btn" id="helpCBtn" type="button" aria-expanded="false" aria-controls="helpCPanel"><span class="help-logo"><img src="assets/brand/logo-icon-gold.webp" alt="" width="26" height="32"></span><span class="help-txt">كيف يمكننا خدمتك؟</span></button></div>
-<nav class="tabbar" aria-label="تنقل سريع"><a href="index.html">{ic("home")}<span>الرئيسية</span></a><a href="library.html">{ic("lib")}<span>الأدوات</span></a><a href="vip.html" class="tb-vip">{ic("crown")}<span>VIP</span></a><a href="cart.html">{ic("bag")}<span>السلة</span><i class="count js-cart-count">٠</i></a><a href="account.html">{ic("user")}<span>حسابي</span></a></nav>'''
+<nav class="tabbar" aria-label="تنقل سريع"><a href="index.html">{ic("home")}<span>الرئيسية</span></a><a href="library.html">{ic("lib")}<span>الأدوات</span></a><a href="vip.html" class="tb-vip">{ic("crown")}<span>VIP</span></a><a href="sessions.html">{ic("cal")}<span>الاستشارات</span></a><a href="account.html">{ic("user")}<span>حسابي</span></a></nav>'''
 
 FOOTER = f'''<footer class="site-footer"><div class="wrap">
   <div class="f-grid">
@@ -453,6 +453,7 @@ def build():
     soc = "".join(f'<a href="{h}" target="_blank" rel="noopener" aria-label="{n}"><svg class="icon" viewBox="0 0 24 24">{g}</svg></a>' for h, n, g in SOC)
     page("sessions.html", "الجلسات الفردية", "احجز جلسة تعارف أو استشارة أو كوتشينج أونلاين مع د. مرفت سرور. اختر الموعد بتوقيت بلدك، وادفع بالبطاقة أو المحفظة أو PayPal.", f'''
 <section class="ss-page" id="booking"><canvas class="sparkle" data-density="2000" aria-hidden="true"></canvas><div class="ss-wrap">
+  <a class="ss-mz" href="marriage.html"><img src="assets/img/mz-house.webp" alt="" width="900" height="900" loading="lazy"><span class="ss-mz-t"><small>جديد · الاستشارات الزوجية</small><b>ليعود بيتك سكناً</b><em>جلسات للزوجين أو لطرف واحد، وباقات ٤ و٨ و١٢ جلسة</em></span><span class="ss-mz-go">اكتشف</span></a>
   <div class="ss-grid">{"".join(sess_card(*x) for x in SESS)}</div>
   <aside class="ss-profile"><img src="assets/img/popup-vip.webp" alt="د. مرفت سرور" width="900" height="900">
     <h1>مرفت سرور</h1><p>مدربة وعي وتشافي · معتمدة من ICF بدرجة PCC · رفيقة رحلة العودة إلى الذات</p>
