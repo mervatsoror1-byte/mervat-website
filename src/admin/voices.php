@@ -21,8 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif ($do === 'setup' && (!$hasPassword || ($_POST['reset'] ?? '') === '1')) {
         if (!rate_ok('login', 5, 900, false)) { $err = 'محاولات كثيرة. انتظري ربع ساعة.'; }
         elseif (!password_verify(implode('-', str_split(substr(preg_replace('/[^A-Z0-9]/', '', strtoupper((string)($_POST['code'] ?? ''))), 0, 12), 4)), $cfg['setup_code_hash'])) { rate_ok('login', 5, 900); $err = 'كود الإعداد غير صحيح.'; }
-        elseif (mb_strlen((string)($_POST['pass'] ?? '')) < 10) { $err = 'كلمة السر يجب أن تكون ١٠ أحرف على الأقل.'; }
-        elseif (($_POST['pass'] ?? '') !== ($_POST['pass2'] ?? '')) { $err = 'كلمتا السر غير متطابقتين.'; }
+        elseif (trim((string)($_POST['pass'] ?? '')) === '') { $err = 'اكتبي كلمة السر.'; }
         else {
             file_put_contents($authFile, json_encode(['pass_hash' => password_hash($_POST['pass'], PASSWORD_DEFAULT), 'set_at' => gmdate('c')]), LOCK_EX);
             @chmod($authFile, 0600);
@@ -134,8 +133,7 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
     <?php if ($reset): ?><p class="empty" style="margin:0">اكتبي كود الإعداد الذي أرسله لك Claude، ثم اختاري كلمة سر جديدة.</p><input type="hidden" name="reset" value="1"><?php endif; ?>
     <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="do" value="setup">
     <label for="code">كود الإعداد</label><input id="code" name="code" type="text" required dir="ltr">
-    <label for="pass">كلمة سر جديدة (١٠ أحرف على الأقل)</label><input id="pass" name="pass" type="password" required minlength="10" autocomplete="new-password">
-    <label for="pass2">أعيدي كتابة كلمة السر</label><input id="pass2" name="pass2" type="password" required minlength="10" autocomplete="new-password">
+    <label for="pass">كلمة سر جديدة</label><input id="pass" name="pass" type="password" required autocomplete="new-password">
     <p><button class="gold">حفظ والدخول</button></p></form>
 <?php elseif (!$admin): ?>
   <form class="box" method="post"><h2 style="margin-top:0">دخول</h2>
