@@ -65,6 +65,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: voices.php?done=upload'); exit;
             }
         }
+    } elseif ($do === 'edit' && is_admin()) {
+        $id = preg_replace('/[^a-f0-9]/', '', (string)($_POST['id'] ?? ''));
+        $pid = (string)($_POST['pid'] ?? '');
+        $name = clean_text((string)($_POST['name'] ?? ''), 40);
+        if (($pid === 'general' || isset(products()[$pid])) && $name !== '') {
+            with_index(function ($list) use ($id, $pid, $name) {
+                foreach ($list as $i => $v) { if ($v['id'] === $id) { $list[$i]['pid'] = $pid; $list[$i]['name'] = $name; } }
+                return [$list, true];
+            });
+            header('Location: voices.php?done=edit'); exit;
+        }
+        $err = 'اكتبي الاسم واختاري التمرين أو البرنامج.';
     } elseif (in_array($do, ['approve', 'hide', 'delete'], true) && is_admin()) {
         $id = preg_replace('/[^a-f0-9]/', '', (string)($_POST['id'] ?? ''));
         $gone = null;
@@ -83,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $admin = is_admin();
 $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
-$doneMsg = ['upload' => 'تم رفع التسجيل ونشره في الموقع.', 'approve' => 'نُشر التسجيل في الموقع.', 'hide' => 'أُخفي التسجيل من الموقع.', 'delete' => 'حُذف التسجيل نهائياً.'][$_GET['done'] ?? ''] ?? '';
+$doneMsg = ['edit' => 'تم حفظ التعديل.', 'upload' => 'تم رفع التسجيل ونشره في الموقع.', 'approve' => 'نُشر التسجيل في الموقع.', 'hide' => 'أُخفي التسجيل من الموقع.', 'delete' => 'حُذف التسجيل نهائياً.'][$_GET['done'] ?? ''] ?? '';
 $list = $admin ? read_index() : [];
 usort($list, fn($a, $b) => strcmp($b['created_at'], $a['created_at']));
 $pending = array_filter($list, fn($v) => $v['status'] === 'pending');
@@ -99,7 +111,14 @@ function card($v, $h, $fmtLen, $fmtDate, $actions) {
         $btns .= '<form method="post"' . $confirm . '><input type="hidden" name="csrf" value="' . $h($_SESSION['csrf']) . '"><input type="hidden" name="id" value="' . $h($v['id']) . '"><button class="' . $cls . '" name="do" value="' . $do . '">' . $label . '</button></form>';
     }
     return '<article class="v"><div class="vt"><b>' . $h($v['name']) . '</b><span>' . $h($title) . ' · ' . $fmtLen($v['len']) . ' · ' . $fmtDate($v['created_at']) . '</span></div>'
-         . '<audio controls preload="none" src="/api/voice.php?action=audio&amp;id=' . $h($v['id']) . '"></audio><div class="va">' . $btns . '</div></article>';
+         . '<audio controls preload="none" src="/api/voice.php?action=audio&amp;id=' . $h($v['id']) . '"></audio><div class="va">' . $btns . '</div>'
+         . '<details><summary>تعديل الاسم أو التمرين</summary><form method="post" class="ed"><input type="hidden" name="csrf" value="' . $h($_SESSION['csrf']) . '"><input type="hidden" name="id" value="' . $h($v['id']) . '">'
+         . '<input type="text" name="name" maxlength="40" required value="' . $h($v['name']) . '"><select name="pid">' . pid_options($v['pid'], $h) . '</select><button class="gold" name="do" value="edit">حفظ التعديل</button></form></details></article>';
+}
+function pid_options($sel, $h) {
+    $o = '<option value="general"' . ($sel === 'general' ? ' selected' : '') . '>تجربة عامة مع د. مرفت</option>';
+    foreach (products() as $k => $t) { $o .= '<option value="' . $h($k) . '"' . ($sel === $k ? ' selected' : '') . '>' . $h($t) . '</option>'; }
+    return $o;
 }
 ?><!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
@@ -120,7 +139,7 @@ button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:9px 18p
 .vt{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.vt span{color:var(--muted);font-size:.9rem}
 audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
 .ok{background:#eef7ee;border:1px solid #b9dcb9;padding:10px 14px;border-radius:12px}.err{background:#fbeeee;border:1px solid #e3b8b8;padding:10px 14px;border-radius:12px}
-.empty{color:var(--muted)}.pw{position:relative}.pw input{padding-inline-end:48px}.eye{position:absolute;inset-inline-end:6px;top:50%;transform:translateY(-50%);background:none;padding:6px 8px;font-size:1.1rem;line-height:1;color:var(--muted)}a{color:var(--blue)}select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}.ck{display:flex;gap:8px;align-items:center;font-weight:700}.up label{margin-top:0}.count{background:var(--gold);color:var(--deep);border-radius:999px;padding:0 10px;font-size:.85rem;margin-inline-start:6px}
+.empty{color:var(--muted)}summary{cursor:pointer;color:var(--blue);font-weight:700}.ed{display:grid;gap:8px;margin-top:10px}.pw{position:relative}.pw input{padding-inline-end:48px}.eye{position:absolute;inset-inline-end:6px;top:50%;transform:translateY(-50%);background:none;padding:6px 8px;font-size:1.1rem;line-height:1;color:var(--muted)}a{color:var(--blue)}select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}.ck{display:flex;gap:8px;align-items:center;font-weight:700}.up label{margin-top:0}.count{background:var(--gold);color:var(--deep);border-radius:999px;padding:0 10px;font-size:.85rem;margin-inline-start:6px}
 </style></head><body>
 <header><div class="w"><h1>الآراء الصوتية</h1><?php if ($admin): ?><form method="post"><input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><button class="out" name="do" value="logout">خروج</button></form><?php endif; ?></div></header>
 <main><div class="w">
@@ -145,7 +164,7 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
     <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="do" value="upload"><input type="hidden" name="len" id="len" value="0">
     <div><label for="audio">ملف الصوت (MP3 أو M4A، حتى ٥ دقائق)</label><input id="audio" name="audio" type="file" accept="audio/*,.mp3,.m4a,.wav,.mp4" required><small id="dur" class="empty"></small></div>
     <div><label for="vname">الاسم كما يظهر في الموقع</label><input id="vname" name="name" type="text" maxlength="40" required placeholder="مثلاً: هبة، أو أم يوسف"></div>
-    <div><label for="pid">عن أي تمرين أو برنامج؟</label><select id="pid" name="pid" required><option value="general">تجربة عامة مع د. مرفت</option><?php foreach (products() as $k => $t) echo '<option value="' . $h($k) . '">' . $h($t) . '</option>'; ?></select></div>
+    <div><label for="pid">عن أي تمرين أو برنامج؟</label><select id="pid" name="pid" required><?= pid_options('general', $h) ?></select></div>
     <label class="ck"><input type="checkbox" name="consent" value="1" required> صاحبة التجربة وافقت على نشر صوتها في الموقع</label>
     <p style="margin:0"><button class="gold">ارفعي وانشري</button></p></form>
   <h2>في انتظار موافقتك<span class="count"><?= count($pending) ?></span></h2>
