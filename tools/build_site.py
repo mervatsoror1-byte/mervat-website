@@ -295,7 +295,7 @@ FOOTER = f'''<footer class="site-footer"><div class="wrap">
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Almarai:wght@400;700&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@500;700&family=Cormorant+Garamond:wght@300&display=swap">'
 
-def page(file, title, desc, body, active="", schema=None, noindex=False, bare=False):
+def page(file, title, desc, body, active="", schema=None, noindex=False, bare=False, og="og-share.jpg"):
     full_title = title if NAME in title else f"{title} | {NAME}"
     ld = "".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in (schema or []))
     head = GTAG + f'''<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -303,7 +303,7 @@ def page(file, title, desc, body, active="", schema=None, noindex=False, bare=Fa
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="canonical" href="{SITE_URL}/{'' if file=='index.html' else file}">
 {'<meta name="robots" content="noindex,nofollow">' if noindex else ''}
-<meta property="og:type" content="website"><meta property="og:locale" content="ar_AR"><meta property="og:title" content="{E(full_title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:image" content="{SITE_URL}/assets/img/og-share.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="{SITE_URL}/{'' if file=='index.html' else file}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{SITE_URL}/assets/img/og-share.jpg">
+<meta property="og:type" content="website"><meta property="og:locale" content="ar_AR"><meta property="og:title" content="{E(full_title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:image" content="{SITE_URL}/assets/img/{og}"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:url" content="{SITE_URL}/{'' if file=='index.html' else file}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{SITE_URL}/assets/img/og-share.jpg">
 <meta name="theme-color" content="#FDFAF5"><link rel="icon" href="assets/brand/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="assets/brand/favicon-192.png">
 {FONTS}<link rel="stylesheet" href="assets/css/site.css">{ld}'''
     content = f'''{SPRITE}
@@ -511,7 +511,7 @@ def build():
 <section class="vp-sec vp-ivory"><div class="vp-wrap">
   <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>كيف تسير الرحلة؟</h2></header>
   <ol class="mz-steps">{steps}</ol>
-  <div class="mz-alone"><span class="vp-ico">{ic("heart")}</span><div><h3>شريكك غير مستعد؟ ابدأ وحدك</h3><p>يمكن أن يبدأ طرف واحد الرحلة وحده. حين يتغيّر وعيك وطريقة تواصلك، يتغيّر شكل العلاقة كلها، وكثيراً ما ينضم الطرف الآخر لاحقاً.</p></div></div></div></section>
+  <div class="mz-alone"><img class="mz-alone-img" src="assets/img/mz-candles.webp" alt="شمعتان مضيئتان تميل شعلتاهما إلى بعضهما" width="560" height="560" loading="lazy"><div><h3>شريكك غير مستعد؟ ابدأ وحدك</h3><p>يمكن أن يبدأ طرف واحد الرحلة وحده. حين يتغيّر وعيك وطريقة تواصلك، يتغيّر شكل العلاقة كلها، وكثيراً ما ينضم الطرف الآخر لاحقاً.</p></div></div></div></section>
 <section class="vp-sec vp-royal" id="plans"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap mz-wide">
   <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>اختارا ما يناسب رحلتكما</h2><p>كل جلسة ٦٠ دقيقة أونلاين. الأسعار بالجنيه داخل مصر وبالدولار خارجها.</p></header>
   {mplans}</div></section>
@@ -527,8 +527,8 @@ def build():
   </article></div></section>
 <section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة عن الاستشارات الزوجية</h2></header><div class="vp-faq">{faq_items(FAQ["marriage"])}</div>
   <p class="mz-note">الاستشارات الزوجية مساحة للوعي والتواصل، وليست بديلاً عن العلاج النفسي أو الطبي. في حالات العنف أو الاضطرابات النفسية يُرجى التوجه إلى طبيب أو مختص.</p></div></section>
-<section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>بيتكما يستحق أن يعود سكناً</h2><a class="btn-safia" href="#booking">احجز جلستك الأولى</a></div></section>''',
-         active="marriage.html", schema=[{"@context": "https://schema.org", "@type": "Service", "name": "الاستشارات الزوجية", "serviceType": "استشارات زوجية أونلاين",
+<section class="vp-final mz-final"><img class="mz-final-bg" src="assets/img/mz-sunrise.webp" alt="" width="1731" height="909" loading="lazy"><div class="vp-wrap"><h2>بيتكما يستحق أن يعود سكناً</h2><a class="btn-safia" href="#booking">احجز جلستك الأولى</a></div></section>''',
+         active="marriage.html", og="og-marriage.jpg", schema=[{"@context": "https://schema.org", "@type": "Service", "name": "الاستشارات الزوجية", "serviceType": "استشارات زوجية أونلاين",
                                           "provider": {"@type": "Person", "name": NAME}, "areaServed": "Worldwide", "url": f"{SITE_URL}/marriage.html",
                                           "offers": [{"@type": "Offer", "name": BY[k]["title"], "price": BY[k]["eg"], "priceCurrency": "EGP", "availability": "https://schema.org/InStock"} for k in ("m-single", "m-4", "m-8", "m-12")]}])
 
@@ -764,12 +764,12 @@ def home_body():
   {('<div data-vr-wrap hidden>' + VOICE_HOME + '</div>') if VOICE_REVIEWS else ""}</div></section>
 <section class="ses-banner" aria-label="الجلسات الفردية"><img src="assets/img/sessions-banner.webp" alt="د. مرفت سرور في جلسة أونلاين" width="1672" height="941" loading="lazy">
   <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة استشارة أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html#booking">{ic("cal")}احجز جلستك</a></div></section>
-<section class="mz-home"><canvas class="sparkle" data-density="2400" aria-hidden="true"></canvas><div class="wrap mz-home-in">
+<section class="mz-home"><canvas class="sparkle" data-density="2400" aria-hidden="true"></canvas><div class="wrap mz-home-grid"><figure class="mz-home-img"><img src="assets/img/mz-house.webp" alt="يدان تحملان بيتاً مضيئاً" width="900" height="900" loading="lazy"></figure><div class="mz-home-in">
   <span class="vp-orn" aria-hidden="true">✦</span><span class="vb-kicker">الاستشارات الزوجية</span>
   <h2>ليعود بيتك <em>سكناً</em></h2>
   <p>خلافات تتكرر، صمت وبُعد، وثقة اهتزّت؟ مساحة آمنة وسرية مع د. مرفت، تعيد إليكما الحوار والقرب والأمان. للزوجين معاً أو لطرف واحد.</p>
   <ul class="mz-facts"><li>أونلاين · ٦٠ دقيقة</li><li>جلسة واحدة أو باقات ٤ و٨ و١٢ جلسة</li><li>سرية تامة</li></ul>
-  <a class="btn-safia" href="marriage.html">اكتشف الاستشارات الزوجية</a></div></section>
+  <a class="btn-safia" href="marriage.html">اكتشف الاستشارات الزوجية</a></div></div></section>
 <section class="band" style="padding-bottom:0"><div class="wrap"><div class="head split"><div style="display:grid;gap:10px"><span class="eyebrow">الباقات</span><h2 class="title">مسارات مترابطة بسعر مخفض</h2></div><a class="btn btn-line btn-sm" href="bundles.html">كل الباقات</a></div><div class="bundles" data-bundles></div></div></section>
 <section class="band book-band" style="margin-top:clamp(56px,8vw,110px)"><div class="wrap split">{book3d()}
   <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]}</p>
