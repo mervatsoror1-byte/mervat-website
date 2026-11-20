@@ -27,7 +27,7 @@ PRODUCTS = [
        level="متقدم", ctype="تطوير ذات", cardMeta="كورس صوتي · متقدم",
        facts=[["headphones","كورس صوتي في الامتنان"],["path","تطبيق يومي قصير مع كل درس"],["lessons","عدد الدروس يُعلن قريباً"]],
        meta="كورس صوتي في الامتنان · تطبيق يومي", vipIncluded=False,
-       short="كورس الامتنان: كيف تقول «الحمد لله رب العالمين» من قلبك، وتشكر الله بالشكل الصحيح، وترى ما يتغيّر في حياتك حين تمتنّ كل يوم.",
+       short="كورس «عين صاحية» هو كورس مكثّف هدفه أن يضعك في حالة من الامتنان العميق والتقدير لكل ما هو منير في حياتك.",
        desc=["«عين صاحية» كورس صوتي في الامتنان. يعلّمك كيف ترى النِّعم التي اعتدت عليها حتى لم تعد تراها، وكيف تقول «الحمد لله» بقلب حاضر لا بلسان معتاد.",
              "تتعلّم معنى الشكر الحقيقي وطريقته الصحيحة، وتبني عادة امتنان يومية بسيطة، وتلاحظ بنفسك كيف يتغيّر إحساسك ونظرتك وعلاقاتك حين تمتنّ كل يوم.",
              "تسمعه في وقتك وبالترتيب، ومع كل درس تطبيق قصير. الموقع يحفظ تقدّمك وتكمل من حيث توقفت."],
@@ -670,7 +670,7 @@ def home_body():
   <a class="tile" href="vip.html"><img src="assets/img/vip-bridge.webp" alt="" loading="lazy"><span><b>استيقظ VIP</b><small>البرنامج التدريبي المتكامل</small></span></a>
   <a class="tile tile-ses" href="sessions.html"><img src="assets/img/sessions-banner.webp" alt="" loading="lazy"><span><b>الجلسات الفردية</b><small>مساحة خاصة مع د. مرفت</small></span></a></div></div></section>
 <section class="wrap" style="padding-bottom:clamp(56px,8vw,110px)"><div class="split"><div class="portal-img"><div class="img"><img src="{course["img"]}" alt="" width="600" height="800" loading="lazy"></div><div class="float"><b>كورس صوتي</b>تسمعه في أي وقت ومن أي جهاز</div></div>
-  <div class="split-body"><span class="eyebrow">الكورس</span><h2>عين صاحية</h2><p class="lead">{course["short"]} كورس صوتي مقسّم إلى وحدات، يحفظ لك تقدّمك وتكمل من حيث توقفت.</p>
+  <div class="split-body"><span class="eyebrow">الكورس</span><h2>عين صاحية</h2><p class="lead">{course["short"]}</p>
     <ul class="mods">{mods}</ul>
     <div class="buy">{price("ain-sahia")}<button class="btn btn-gold" type="button" data-buy="ain-sahia"><span>ابدأ الآن</span></button><button class="add" type="button" data-add="ain-sahia" aria-label="أضف عين صاحية للسلة" title="أضف للسلة"></button><a class="btn btn-line" href="{course["page"]}">تفاصيل الكورس</a></div></div></div></section>
 
