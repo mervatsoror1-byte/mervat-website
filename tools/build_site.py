@@ -468,7 +468,7 @@ def build():
                 f'<a class="{"btn-safia" if best else "vp-btn"}" href="#booking" data-mpick="{pid}"><span>احجز {"الجلسة" if n == 1 else "الباقة"}</span></a></article>')
     mplans = '<div class="vp-plans mz-plans">' + \
         mplan("m-single", "جلسة واحدة", 1, "٦٠ دقيقة أونلاين", ["جلسة خاصة للزوجين أو لطرف واحد", "فهم أوضح لجذر الخلاف", "خطوة عملية تبدآن بها من اليوم"]) + \
-        mplan("m-4", "باقة ٤ جلسات", 4, "جلسة كل أسبوع لمدة شهر", ["كسر دائرة الخلاف المتكرر", "أدوات تواصل تطبقانها بين الجلسات", "متابعة بين الجلسات"]) + \
+        mplan("m-4", "باقة ٤ جلسات", 4, "جلسة كل أسبوع لمدة شهر", ["كل ما في الجلسة الفردية", "كسر دائرة الخلاف المتكرر", "أدوات تواصل تطبقانها بين الجلسات"]) + \
         mplan("m-8", "باقة ٨ جلسات", 8, "رحلة شهرين لتحوّل عميق", ["كل ما في باقة ٤ جلسات", "إعادة بناء الثقة والقرب خطوة بخطوة", "تمارين وعي مخصصة لعلاقتكما", "متابعة على واتساب بين الجلسات"], tag="الأكثر اختياراً", best=True) + \
         mplan("m-12", "باقة ١٢ جلسة", 12, "ثلاثة أشهر لعلاقة جديدة ومستقرة", ["كل ما في باقة ٨ جلسات", "تثبيت التغيير حتى يصبح أسلوب حياة", "خطة واضحة لما بعد انتهاء الجلسات", "أولوية في اختيار المواعيد"], tag="الأوفر") + '</div>'
     mchips = "".join(f'<button type="button" class="mz-chip" data-mplan="{pid}" aria-pressed="{str(pid == "m-single").lower()}"><b>{t}</b>{price(pid)}</button>'
@@ -491,7 +491,7 @@ def build():
     steps = "".join(f'<li><span class="mz-n">{"١٢٣٤"[k]}</span><h3>{t}</h3><p>{d}</p></li>' for k, (t, d) in enumerate(STEPS))
     page("marriage.html", "الاستشارات الزوجية", "استشارات زوجية أونلاين مع د. مرفت سرور، مدربة وعي معتمدة من ICF. جلسات ٦٠ دقيقة للزوجين أو لطرف واحد، في سرية تامة، مع باقات ٤ و٨ و١٢ جلسة.", f'''
 <section class="vip-split mz-hero"><canvas class="sparkle" data-density="1500" aria-hidden="true"></canvas>
-  <div class="vs-copy">{crumbs(("الاستشارات الزوجية", None))}<span class="vs-eyebrow">الاستشارات الزوجية مع د. مرفت</span><h1>بيتٌ يعود <em>سكناً</em></h1>
+  <div class="vs-copy">{crumbs(("الاستشارات الزوجية", None))}<span class="vs-eyebrow">الاستشارات الزوجية مع د. مرفت</span><h1>ليعود بيتك <em>سكناً</em></h1>
     <p>حين يصبح البيت مكاناً للخلاف بدل السكينة، فأنتما لا تحتاجان من يحكم بينكما، بل من يساعدكما أن تريا بعضكما من جديد. مساحة آمنة وسرية، تعيد إليكما الحوار والقرب والأمان.</p>
     <ul class="mz-facts"><li>{ic("live","icon icon-sm")}أونلاين · ٦٠ دقيقة</li><li>{ic("user","icon icon-sm")}للزوجين أو لطرف واحد</li><li>{ic("shield","icon icon-sm")}سرية تامة</li></ul>
     <div class="ctas"><a class="btn-safia" href="#booking">احجز جلستك الأولى</a><a class="vs-link" href="#plans">الباقات والأسعار</a></div></div>
@@ -762,7 +762,7 @@ def home_body():
   <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة استشارة أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html#booking">{ic("cal")}احجز جلستك</a></div></section>
 <section class="mz-home"><canvas class="sparkle" data-density="2400" aria-hidden="true"></canvas><div class="wrap mz-home-in">
   <span class="vp-orn" aria-hidden="true">✦</span><span class="vb-kicker">الاستشارات الزوجية</span>
-  <h2>بيتٌ يعود <em>سكناً</em></h2>
+  <h2>ليعود بيتك <em>سكناً</em></h2>
   <p>خلافات تتكرر، صمت وبُعد، وثقة اهتزّت؟ مساحة آمنة وسرية مع د. مرفت، تعيد إليكما الحوار والقرب والأمان. للزوجين معاً أو لطرف واحد.</p>
   <ul class="mz-facts"><li>أونلاين · ٦٠ دقيقة</li><li>جلسة واحدة أو باقات ٤ و٨ و١٢ جلسة</li><li>سرية تامة</li></ul>
   <a class="btn-safia" href="marriage.html">اكتشف الاستشارات الزوجية</a></div></section>
