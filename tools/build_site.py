@@ -499,7 +499,7 @@ def build():
     <p>حين يصبح البيت مكاناً للخلاف بدل السكينة، فأنتما لا تحتاجان من يحكم بينكما، بل من يساعدكما أن تريا بعضكما من جديد. مساحة آمنة وسرية، تعيد إليكما الحوار والقرب والأمان.</p>
     <ul class="mz-facts"><li>{ic("live","icon icon-sm")}أونلاين · ٦٠ دقيقة</li><li>{ic("user","icon icon-sm")}للزوجين أو لطرف واحد</li><li>{ic("shield","icon icon-sm")}سرية تامة</li></ul>
     <div class="ctas"><a class="btn-safia" href="#booking">احجز جلستك الأولى</a><a class="vs-link" href="#plans">الباقات والأسعار</a></div></div>
-  <figure class="vs-photo"><img src="assets/img/vip-zoom.webp" alt="د. مرفت سرور في جلسة استشارة أونلاين" width="1200" height="1500" fetchpriority="high"></figure></section>
+  <figure class="vs-photo mz-hero-img"><img src="assets/img/mz-house-lg.webp" alt="يدان تحملان بيتاً مضيئاً" width="1254" height="1254" fetchpriority="high"></figure></section>
 <div class="vp-strip" aria-hidden="true"><div class="track">{strip}</div></div>
 <section class="vp-sec vp-ivory"><div class="vp-wrap">
   <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>هل تعيشان شيئاً من هذا؟</h2><p>إن وجدتما نفسيكما في سطر واحد، فهذه المساحة لكما.</p></header>
@@ -519,7 +519,7 @@ def build():
   <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>احجز موعد جلستك الأولى</h2><p>اختر الباقة، ثم اليوم والوقت المناسب. مواعيد باقي جلسات الباقة نتفق عليها معاً.</p></header>
   <div class="mz-chips" role="group" aria-label="اختر الباقة">{mchips}</div>
   <article class="ss-card mz-book" data-sess="m-single">
-    <div class="ss-top"><img src="assets/img/popup-vip.webp" alt="" width="120" height="120" loading="lazy"><div><h3 class="mz-bt">{E(BY["m-single"]["title"])}</h3><p>جلسة خاصة أونلاين عبر Zoom، للزوجين أو لطرف واحد.</p><span class="mz-bp">{price("m-single")}</span></div></div>
+    <div class="ss-top"><img class="mz-book-ph" src="assets/img/vip-zoom.webp" alt="د. مرفت سرور" width="120" height="120" loading="lazy"><div><h3 class="mz-bt">{E(BY["m-single"]["title"])}</h3><p>جلسة خاصة أونلاين عبر Zoom، للزوجين أو لطرف واحد.</p><span class="mz-bp">{price("m-single")}</span></div></div>
     <div class="ss-cal"><div class="ss-cal-h"><button type="button" class="ss-nav" data-dir="-1" aria-label="الشهر السابق">›</button><b class="ss-month"></b><button type="button" class="ss-nav" data-dir="1" aria-label="الشهر التالي">‹</button></div>
       <div class="ss-wd"><span>سبت</span><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span></div>
       <div class="ss-days"></div><div class="ss-slots"></div></div>
