@@ -393,7 +393,12 @@ def build():
 <section class="vp-sec vp-ivory" style="padding-bottom:0"><div class="vp-wrap"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>قالوا عن البرنامج</h2></header><div class="reel reel-sm">{"".join(review_card(r, k == 0) for k, r in enumerate([r for r in REVIEWS if "VIP" in r[3] or "vip-m" in r[2].split("|")]))}</div></div></section>
 <section class="vp-sec vp-ivory"><div class="vp-wrap vp-narrow"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>أسئلة عن البرنامج</h2></header><div class="vp-faq">{faq_items(FAQ["vip"])}</div></div></section>
 <section class="vp-final"><canvas class="sparkle" data-density="2600" aria-hidden="true"></canvas><div class="vp-wrap"><h2>اتخذي الآن الخطوة التي تستحقينها</h2><a class="btn-safia" href="#plans">استيقظ VIP</a></div></section>''',
-         active="vip.html", schema=[{"@context":"https://schema.org","@type":"Product","name":"استيقظ VIP","description":"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور","brand":NAME,"offers":[{"@type":"Offer","price":BY["vip-m"]["eg"],"priceCurrency":"EGP"},{"@type":"Offer","price":BY["vip-m"]["us"],"priceCurrency":"USD"}]}])
+         active="vip.html", schema=[{"@context":"https://schema.org","@type":"Product","name":"استيقظ VIP","description":"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور، مع جلسات فردية ومتابعة يومية.","brand":{"@type":"Brand","name":NAME},
+           "image":[f"{SITE_URL}/assets/img/vip-banner.webp", f"{SITE_URL}/assets/img/og-share.jpg"], "url":f"{SITE_URL}/vip.html", "sku":"vip-m",
+           "offers":[{"@type":"Offer","price":BY["vip-m"][cur],"priceCurrency":code,"availability":"https://schema.org/InStock","url":f"{SITE_URL}/vip.html",
+                      "seller":{"@type":"Organization","name":NAME},
+                      "hasMerchantReturnPolicy":{"@type":"MerchantReturnPolicy","applicableCountry":"EG","returnPolicyCategory":"https://schema.org/MerchantReturnNotPermitted"}}
+                     for cur, code in (("eg","EGP"),("us","USD"))]}])
 
     # ---------- library
     page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفّس الاتزان الداخلي، Priming الصباح، توكيدات السلام للتشافي العميق، وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''

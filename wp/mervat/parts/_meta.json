@@ -65,7 +65,7 @@
  "course-ain-sahia": {
   "title": "عين صاحية",
   "desc": "كورس الامتنان: كيف تقول «الحمد لله رب العالمين» من قلبك، وتشكر الله بالشكل الصحيح، وترى ما يتغيّر في حياتك حين تمتنّ كل يوم. كورس صوتي مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"عين صاحية\", \"description\": \"كورس الامتنان: كيف تقول «الحمد لله رب العالمين» من قلبك، وتشكر الله بالشكل الصحيح، وترى ما يتغيّر في حياتك حين تمتنّ كل يوم.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 1499, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 75, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"عين صاحية\", \"description\": \"كورس الامتنان: كيف تقول «الحمد لله رب العالمين» من قلبك، وتشكر الله بالشكل الصحيح، وترى ما يتغيّر في حياتك حين تمتنّ كل يوم.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/ain-sahia.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 1499, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/course-ain-sahia.html\"}, {\"@type\": \"Offer\", \"price\": 75, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/course-ain-sahia.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -74,7 +74,7 @@
  "decoding-energy-stagnation": {
   "title": "Decoding الركود والخمول",
   "desc": "تمرين تشريحي للعقل اللاواعي يفكّ الركود والخمول: الكسل والتجمّد الذي يمنعك من التحرك نحو أهدافك. Decoding مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding الركود والخمول\", \"description\": \"تمرين تشريحي للعقل اللاواعي يفكّ الركود والخمول: الكسل والتجمّد الذي يمنعك من التحرك نحو أهدافك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding الركود والخمول\", \"description\": \"تمرين تشريحي للعقل اللاواعي يفكّ الركود والخمول: الكسل والتجمّد الذي يمنعك من التحرك نحو أهدافك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/decode-stagnation.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/decoding-energy-stagnation.html\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/decoding-energy-stagnation.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -83,7 +83,7 @@
  "decoding-light-of-acceptance": {
   "title": "Decoding نور القبول",
   "desc": "تمرين تشريحي للعقل اللاواعي لقبول الذات: يساعدك على الخروج من جرح الرفض والهجر، وأن تقبل نفسك أولاً حتى يبدأ الناس في الخارج بقبولك. Decoding مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding نور القبول\", \"description\": \"تمرين تشريحي للعقل اللاواعي لقبول الذات: يساعدك على الخروج من جرح الرفض والهجر، وأن تقبل نفسك أولاً حتى يبدأ الناس في الخارج بقبولك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding نور القبول\", \"description\": \"تمرين تشريحي للعقل اللاواعي لقبول الذات: يساعدك على الخروج من جرح الرفض والهجر، وأن تقبل نفسك أولاً حتى يبدأ الناس في الخارج بقبولك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/decode-acceptance.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/decoding-light-of-acceptance.html\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/decoding-light-of-acceptance.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -92,7 +92,7 @@
  "decoding-original-version": {
   "title": "Decoding النسخة الأصلية",
   "desc": "تمرين تشريحي للعقل اللاواعي، فريد من نوعه: صور مركّبة بطريقة خاصة تخترق طبقات العقل اللاواعي، وتعمل على كشف نسختك الأصلية وإيصالك إليها. Decoding مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding النسخة الأصلية\", \"description\": \"تمرين تشريحي للعقل اللاواعي، فريد من نوعه: صور مركّبة بطريقة خاصة تخترق طبقات العقل اللاواعي، وتعمل على كشف نسختك الأصلية وإيصالك إليها.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"Decoding النسخة الأصلية\", \"description\": \"تمرين تشريحي للعقل اللاواعي، فريد من نوعه: صور مركّبة بطريقة خاصة تخترق طبقات العقل اللاواعي، وتعمل على كشف نسختك الأصلية وإيصالك إليها.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/decode-original.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 649, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/decoding-original-version.html\"}, {\"@type\": \"Offer\", \"price\": 35, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/decoding-original-version.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -110,7 +110,7 @@
  "exercise-detachment": {
   "title": "تمرين فك التعلّق",
   "desc": "تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك. فك التعلّق مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين فك التعلّق\", \"description\": \"تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 349, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين فك التعلّق\", \"description\": \"تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/attach.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 349, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/exercise-detachment.html\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/exercise-detachment.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -128,7 +128,7 @@
  "heart-coherence-breathing": {
   "title": "تنفّس الاتزان الداخلي",
   "desc": "تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال. تنفّس مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تنفّس الاتزان الداخلي\", \"description\": \"تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تنفّس الاتزان الداخلي\", \"description\": \"تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/breath.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/heart-coherence-breathing.html\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/heart-coherence-breathing.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -146,7 +146,7 @@
  "inner-child-healing": {
   "title": "تمرين تشافي الطفل الداخلي",
   "desc": "تمرين عميق لتشافي الطفل الداخلي: تدخل في مساحة آمنة معه، تكتشفه، وتتعرّف على ما مرّ به في طفولتك. التشافي مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين تشافي الطفل الداخلي\", \"description\": \"تمرين عميق لتشافي الطفل الداخلي: تدخل في مساحة آمنة معه، تكتشفه، وتتعرّف على ما مرّ به في طفولتك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 449, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين تشافي الطفل الداخلي\", \"description\": \"تمرين عميق لتشافي الطفل الداخلي: تدخل في مساحة آمنة معه، تكتشفه، وتتعرّف على ما مرّ به في طفولتك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/inner-child.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 449, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/inner-child-healing.html\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/inner-child-healing.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -182,7 +182,7 @@
  "morning-priming": {
   "title": "تمرين Priming الصباح",
   "desc": "توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم اتزانك وراحتك. Priming مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين Priming الصباح\", \"description\": \"توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم اتزانك وراحتك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تمرين Priming الصباح\", \"description\": \"توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم اتزانك وراحتك.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/morning-priming.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/morning-priming.html\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/morning-priming.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -191,7 +191,7 @@
  "peace-affirmations": {
   "title": "توكيدات السلام للتشافي العميق",
   "desc": "تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي. التشافي مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"توكيدات السلام للتشافي العميق\", \"description\": \"تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"توكيدات السلام للتشافي العميق\", \"description\": \"تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/peace.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 249, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/peace-affirmations.html\"}, {\"@type\": \"Offer\", \"price\": 20, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/peace-affirmations.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -227,7 +227,7 @@
  "serenity-cleansing-meditation": {
   "title": "تأمل السكينة والتنظيف",
   "desc": "تأمل موجّه للتنظيف في ثلاثة أقسام: التنفس، ثم التحرر من المشاعر السلبية، ثم الحماية بنور يغلّف جسدك بالكامل. تأمل مع د. مرفت سرور.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تأمل السكينة والتنظيف\", \"description\": \"تأمل موجّه للتنظيف في ثلاثة أقسام: التنفس، ثم التحرر من المشاعر السلبية، ثم الحماية بنور يغلّف جسدك بالكامل.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"offers\": [{\"@type\": \"Offer\", \"price\": 449, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Course\", \"name\": \"تأمل السكينة والتنظيف\", \"description\": \"تأمل موجّه للتنظيف في ثلاثة أقسام: التنفس، ثم التحرر من المشاعر السلبية، ثم الحماية بنور يغلّف جسدك بالكامل.\", \"inLanguage\": \"ar\", \"provider\": {\"@type\": \"Person\", \"name\": \"مرفت سرور\"}, \"image\": \"https://mervatsror.com/assets/img/covers/serenity.webp\", \"offers\": [{\"@type\": \"Offer\", \"price\": 449, \"priceCurrency\": \"EGP\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/serenity-cleansing-meditation.html\"}, {\"@type\": \"Offer\", \"price\": 25, \"priceCurrency\": \"USD\", \"category\": \"Paid\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/serenity-cleansing-meditation.html\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "product",
@@ -254,7 +254,7 @@
  "vip": {
   "title": "برنامج استيقظ VIP",
   "desc": "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. جلسات فردية خاصة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.",
-  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Product\", \"name\": \"استيقظ VIP\", \"description\": \"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور\", \"brand\": \"د. مرفت سرور\", \"offers\": [{\"@type\": \"Offer\", \"price\": 2999, \"priceCurrency\": \"EGP\"}, {\"@type\": \"Offer\", \"price\": 149, \"priceCurrency\": \"USD\"}]}</script>",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Product\", \"name\": \"استيقظ VIP\", \"description\": \"برنامج تدريبي في الوعي والتشافي مع د. مرفت سرور، مع جلسات فردية ومتابعة يومية.\", \"brand\": {\"@type\": \"Brand\", \"name\": \"د. مرفت سرور\"}, \"image\": [\"https://mervatsror.com/assets/img/vip-banner.webp\", \"https://mervatsror.com/assets/img/og-share.jpg\"], \"url\": \"https://mervatsror.com/vip.html\", \"sku\": \"vip-m\", \"offers\": [{\"@type\": \"Offer\", \"price\": 2999, \"priceCurrency\": \"EGP\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/vip.html\", \"seller\": {\"@type\": \"Organization\", \"name\": \"د. مرفت سرور\"}, \"hasMerchantReturnPolicy\": {\"@type\": \"MerchantReturnPolicy\", \"applicableCountry\": \"EG\", \"returnPolicyCategory\": \"https://schema.org/MerchantReturnNotPermitted\"}}, {\"@type\": \"Offer\", \"price\": 149, \"priceCurrency\": \"USD\", \"availability\": \"https://schema.org/InStock\", \"url\": \"https://mervatsror.com/vip.html\", \"seller\": {\"@type\": \"Organization\", \"name\": \"د. مرفت سرور\"}, \"hasMerchantReturnPolicy\": {\"@type\": \"MerchantReturnPolicy\", \"applicableCountry\": \"EG\", \"returnPolicyCategory\": \"https://schema.org/MerchantReturnNotPermitted\"}}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "page",

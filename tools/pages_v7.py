@@ -93,7 +93,8 @@ def product(p):
 </div></section>''', active="library.html",
          schema=[{"@context": "https://schema.org", "@type": "Course", "name": p["title"], "description": p["short"], "inLanguage": "ar",
                   "provider": {"@type": "Person", "name": "مرفت سرور"},
-                  "offers": [{"@type": "Offer", "price": p["eg"], "priceCurrency": "EGP"}, {"@type": "Offer", "price": p["us"], "priceCurrency": "USD"}]}])
+                  "image": f"{B.SITE_URL}/" + (p.get("coverLg") or p.get("cover") or "assets/img/og-share.jpg"),
+                  "offers": [{"@type": "Offer", "price": p[k], "priceCurrency": c, "category": "Paid", "availability": "https://schema.org/InStock", "url": f"{B.SITE_URL}/{p['page']}"} for k, c in (("eg", "EGP"), ("us", "USD"))]}])
 
 
 def about():
