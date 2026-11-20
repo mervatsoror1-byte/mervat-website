@@ -655,7 +655,7 @@ def home_body():
 <section class="vip-banner" aria-label="برنامج استيقظ VIP"><div class="vb-img"><img src="assets/img/vip-banner.webp" alt="د. مرفت سرور أمام بوابة النور" width="1672" height="941" loading="lazy"></div>
   <div class="vb-copy"><span class="vb-kicker">البرنامج التدريبي الخاص</span><h2><span class="vb-w">استيقظ</span> <span class="vb-vip">VIP</span></h2>
     <p>ليس مجرد رحلة من الوعي بل رحلة عميقة لتغيير نسخة لم تعد تمثلك</p>
-    <p class="vb-sub">تفتح بوابات الشفاء وتهدم البرمجات القديمة لتولد نسختك الجديدة القوية القادرة على النجاح</p>
+    <p class="vb-sub">تفتح بوابات التشافي العميق وتهدم البرمجات القديمة لتولد نسختك الجديدة القوية القادرة على النجاح</p>
     <a class="btn btn-gold" href="vip.html">احجزي مكانك</a></div></section>
 <section class="band tint-blush"><div class="wrap vip2">
   <div class="copy"><span class="eyebrow">البرنامج التدريبي الأساسي</span><h2><span class="foil-text">استيقظ VIP</span></h2>
@@ -663,7 +663,7 @@ def home_body():
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-q" aria-pressed="false">٣ أشهر</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · شهران مجاناً</button></div>
       <div class="amount" id="vipAmount">٢٩٩٩ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">انضم الآن</a></div>
     <a class="btn btn-line btn-sm" href="vip.html" style="justify-self:start">كل تفاصيل البرنامج</a></div>
-  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات الشفاء، وتتخلّص من البرمجات اللاواعية."),("lib","المكتبة كاملة","كل التمارين مفتوحة طوال اشتراكك."),("path","تمرينات مخصصة ومتابعة يومية","تصميم تمرينات وتدريبات مخصصة لكِ أنتِ، ومتابعة أثرها عليكِ يومياً."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
+  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات التشافي العميق، وتتخلّص من البرمجات اللاواعية."),("lib","المكتبة كاملة","كل التمارين مفتوحة طوال اشتراكك."),("path","تمرينات مخصصة ومتابعة يومية","تصميم تمرينات وتدريبات مخصصة لكِ أنتِ، ومتابعة أثرها عليكِ يومياً."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
 </div></section>
 <section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">ابدأ من هنا</span><h2 class="title">لكل طريق قوته في التحوّل من الداخل</h2></div>
   <div class="tiles"><a class="tile" href="library.html"><img src="assets/art/attach.webp" alt="" loading="lazy"><span><b>التمارين المسجّلة</b><small>Decoding، فك تعلّق، تشافٍ وتأمل</small></span></a>
