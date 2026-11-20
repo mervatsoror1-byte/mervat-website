@@ -748,6 +748,14 @@ async function renderVoices(){
   const all = await vFetch();
   $$("[data-vr]").forEach(el => {
     const id = el.dataset.vr;
+    if (id === "page"){
+      const n2 = k => String(k).padStart(2,"0").replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+      el.innerHTML = all.length ? all.map((v, i) => `<article class="vr-pill"><button class="vr-play" type="button" data-vrplay aria-label="تشغيل رأي ${esc(v.name)}">${icon("play")}</button>
+        <div class="vr-pill-t"><b>${esc(v.name)}</b><small>${P[v.pid] ? esc(P[v.pid].title) + " · " : ""}${vWhen(v.date)}${v.len ? " · " + fmtT(v.len) : ""}</small></div>
+        <span class="vr-listen">استمع <i class="vr-mini"><i></i><i></i><i></i><i></i><i></i></i></span><audio preload="none" src="${vSrc(v.id)}"></audio></article>`).join("")
+        : `<p class="vr-empty">تُنشر الآراء الصوتية هنا قريباً بعد مراجعتها.</p>`;
+      return;
+    }
     if (id === "all"){
       const n2 = k => String(k).padStart(2,"0").replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
       const items = all.filter(v => P[v.pid]).slice(0, 6);

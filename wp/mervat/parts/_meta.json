@@ -259,5 +259,14 @@
   "bare": false,
   "type": "page",
   "sku": ""
+ },
+ "voices": {
+  "title": "آراء صوتية",
+  "desc": "تجارب حقيقية بأصوات عملاء د. مرفت سرور بعد التمارين والجلسات وبرنامج استيقظ VIP.",
+  "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
  }
 }

@@ -1802,3 +1802,10 @@ body:has(.lp-hero) .help-c{display:none}
 .pm-meeza{color:#0B7A3E}.pm-pp{color:#003087;font-style:italic}
 .disclaimer{text-align:center;color:rgba(245,245,220,.75);font-size:.82rem;margin:4px auto 10px;max-width:760px;line-height:1.8}
 .agree-box{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid #E8DFC6;border-radius:14px;background:#fff;font-weight:700;color:#1A3670}.agree-box a{color:#1F3F7C;text-decoration:underline}
+
+/* voice reviews page */
+.vr-more{text-align:center;margin:22px 0 0}
+.vr-all{grid-template-columns:1fr;gap:14px}
+.vr-empty{text-align:center;color:#6B6B6B;padding:30px 0}
+.vr-cta{margin-top:40px;text-align:center;padding:26px;border:1px solid #E8DFC6;border-radius:18px;background:#fff}
+.vr-cta p{margin:0 0 16px;color:#1A3670;line-height:1.9}
