@@ -1919,3 +1919,41 @@ body:has(.lp-hero) .help-c{display:none}
 @media (max-width:820px){.ss-profile{grid-row:1}.ss-mz{grid-row:2}.ss-wrap>.ss-grid{grid-row:3}}
 @media (max-width:480px){.ss-mz{flex-wrap:wrap}.ss-mz img{width:64px;height:64px}.ss-mz-go{width:100%;text-align:center}}
 .ss-profile{align-self:start}
+
+/* ---------- sessions page: light, warm theme (ivory, champagne, blush + gold) ---------- */
+.ss-page{background:radial-gradient(60% 50% at 85% 10%,rgba(226,198,140,.28) 0%,transparent 70%),radial-gradient(55% 45% at 10% 90%,rgba(246,227,232,.9) 0%,transparent 70%),linear-gradient(170deg,#FBF3E4 0%,#FDFAF5 45%,#FBF0F2 100%);color:var(--ink)}
+:is(.ss-page,.mz-bsec) .ss-profile img{box-shadow:0 24px 50px -28px rgba(31,63,124,.45)}
+:is(.ss-page,.mz-bsec) .ss-profile h1{color:var(--ink)}
+:is(.ss-page,.mz-bsec) .ss-profile p{color:var(--text)}
+:is(.ss-page,.mz-bsec) .ss-soc a{border-color:rgba(197,160,89,.6);color:var(--plum);background:#fff}
+:is(.ss-page,.mz-bsec) .ss-soc a:hover{background:#FBF3E4}
+:is(.ss-page,.mz-bsec) .ss-facts{color:var(--gold-deep)}
+:is(.ss-page,.mz-bsec) .ss-card{background:#fff;border:1px solid rgba(197,160,89,.4);backdrop-filter:none;box-shadow:0 26px 50px -36px rgba(31,63,124,.45)}
+:is(.ss-page,.mz-bsec) .ss-top img{border-color:rgba(197,160,89,.5)}
+:is(.ss-page,.mz-bsec) .ss-top h3{color:var(--ink)}
+:is(.ss-page,.mz-bsec) .ss-top p{color:var(--text)}
+:is(.ss-page,.mz-bsec) .ss-top .price{color:var(--plum)}
+:is(.ss-page,.mz-bsec) .was-eg{color:var(--muted)}
+:is(.ss-page,.mz-bsec) .ss-cal{background:linear-gradient(180deg,#FBF7EE,#FDFAF5);border:1px solid rgba(197,160,89,.22)}
+:is(.ss-page,.mz-bsec) .ss-cal-h b{background:#fff;color:var(--ink);border:1px solid rgba(197,160,89,.35)}
+:is(.ss-page,.mz-bsec) .ss-nav{color:var(--plum)}
+:is(.ss-page,.mz-bsec) .ss-wd span{color:var(--gold-deep)}
+:is(.ss-page,.mz-bsec) .ss-d{color:rgba(26,54,112,.28)}
+:is(.ss-page,.mz-bsec) .ss-d.ok{color:var(--ink);background:#fff;border-color:rgba(197,160,89,.55)}
+:is(.ss-page,.mz-bsec) .ss-d.ok:hover{background:#FBF3E4}
+:is(.ss-page,.mz-bsec) .ss-d[aria-pressed="true"]{background:linear-gradient(135deg,#E2C68C,#C5A059);color:#14234A;border-color:#C5A059}
+:is(.ss-page,.mz-bsec) .ss-slots small{color:var(--gold-deep)}
+:is(.ss-page,.mz-bsec) .ss-s{color:var(--ink);border-color:rgba(31,63,124,.3);background:#fff}
+:is(.ss-page,.mz-bsec) .ss-s[aria-pressed="true"]{background:linear-gradient(135deg,#E2C68C,#C5A059);color:#14234A;border-color:#C5A059}
+:is(.ss-page,.mz-bsec) .ss-more summary{color:var(--gold-deep)}
+:is(.ss-page,.mz-bsec) .ss-more li{color:var(--text)}
+.ss-page .cur-mini{color:var(--gold-deep);border-color:rgba(197,160,89,.6)}
+
+.ss-mz{background:radial-gradient(90% 140% at 85% 0%,#3A62A8 0%,#284D92 50%,#1F3F7C 100%)}
+/* marriage booking: warm light section (less blue on the page) */
+.mz-bsec{background:radial-gradient(60% 50% at 85% 10%,rgba(226,198,140,.28) 0%,transparent 70%),linear-gradient(170deg,#FBF3E4 0%,#FDFAF5 50%,#FBF0F2 100%);color:var(--ink)}
+.mz-bsec .mz-book{background:#fff}
+.mz-bsec .mz-chip{background:#fff;border-color:rgba(197,160,89,.45);color:var(--ink)}
+.mz-bsec .mz-chip .price{color:var(--muted)}
+.mz-bsec .mz-chip[aria-pressed="true"]{background:linear-gradient(135deg,#E2C68C,#C5A059);border-color:#C5A059;color:#1A3670}
+.mz-bsec .mz-chip[aria-pressed="true"] .price,.mz-bsec .mz-chip[aria-pressed="true"] .was-eg{color:#1A3670}

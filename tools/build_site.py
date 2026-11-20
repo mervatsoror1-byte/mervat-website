@@ -517,7 +517,7 @@ def build():
   <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>اختارا ما يناسب رحلتكما</h2><p>كل جلسة ٦٠ دقيقة أونلاين. الأسعار بالجنيه داخل مصر وبالدولار خارجها.</p></header>
   {mplans}</div></section>
 <section class="vp-sec vp-royal mz-bsec" id="booking"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap mz-bwrap">
-  <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>احجز موعد جلستك الأولى</h2><p>اختر الباقة، ثم اليوم والوقت المناسب. مواعيد باقي جلسات الباقة نتفق عليها معاً.</p></header>
+  <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>احجز موعد جلستك الأولى</h2><p>اختر الباقة، ثم اليوم والوقت المناسب. مواعيد باقي جلسات الباقة نتفق عليها معاً.</p></header>
   <div class="mz-chips" role="group" aria-label="اختر الباقة">{mchips}</div>
   <article class="ss-card mz-book" data-sess="m-single">
     <div class="ss-top"><img class="mz-book-ph" src="assets/img/vip-zoom.webp" alt="د. مرفت سرور" width="120" height="120" loading="lazy"><div><h3 class="mz-bt">{E(BY["m-single"]["title"])}</h3><p>جلسة خاصة أونلاين عبر Zoom، للزوجين أو لطرف واحد.</p><span class="mz-bp">{price("m-single")}</span></div></div>
