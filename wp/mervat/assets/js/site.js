@@ -104,6 +104,7 @@ function curMini(){
 function paintPrices(){
   $$("[data-price]").forEach(e => { const p = P[e.dataset.price]; if (p) setPriceText(e, money(p.eg, p.us)); });
   $$("[data-eg]").forEach(e => e.textContent = S.region === "eg" ? e.dataset.eg : e.dataset.us);
+  $$("[data-wasof]").forEach(e => { const p = P[e.dataset.wasof]; e.hidden = !(p && p.wasEg && S.region === "eg"); if (!e.hidden && e.tagName === "S") e.textContent = ar(p.wasEg) + " ج.م"; });
   $$("[data-was]").forEach(e => { const [eg, us] = e.dataset.was.split("|"); e.textContent = S.region === "eg" ? ar(eg) + " ج.م" : "$" + us; });
 }
 function paintButtons(){
@@ -877,7 +878,9 @@ initSessCards();
     if (!P[id]) return;
     card.dataset.sess = id;
     card.querySelector(".mz-bt").textContent = P[id].title;
-    const pr = card.querySelector(".mz-bp [data-price]"); if (pr){ pr.dataset.price = id; paintPricesOnly(); }
+    const pr = card.querySelector(".mz-bp [data-price]"); if (pr) pr.dataset.price = id;
+    card.querySelectorAll(".mz-bp [data-wasof]").forEach(e => e.dataset.wasof = id);
+    paintPrices();
     $$(".mz-chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.mplan === id)));
   };
   document.addEventListener("click", e => {

@@ -169,7 +169,7 @@ def main():
         if not own:
             pg = (p.get("page") or "")
             target = url_for(pg, product_pages, pages) if pg else None
-        prods.append({"sku": p["id"], "name": p["title"], "slug": own or ("ms-" + p["id"]), "eg": p.get("eg"), "us": p.get("us"),
+        prods.append({"sku": p["id"], "name": p["title"], "slug": own or ("ms-" + p["id"]), "eg": p.get("eg"), "was": p.get("wasEg"), "us": p.get("us"),
                       "kind": p.get("kind"), "short": p.get("short", ""), "img": (p.get("img") or "").replace("{{T}}/", ""),
                       "redirect": target, "grants": p.get("grants"), "vip": bool(p.get("vipIncluded")), "soon": bool(p.get("soon")),
                       "items": next((bd["items"] for bd in data.get("bundles", []) if bd["id"] == p["id"]), [])})

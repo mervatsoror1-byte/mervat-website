@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.2.1';
+const MS_SETUP_VERSION = '1.2.2';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -187,8 +187,10 @@ function ms_setup_products(): void {
         // fixed Egyptian price
         if ($p['eg'] !== null) {
             update_post_meta($id, '_' . MS_EGYPT_ZONE . '_price_method', 'manual');
-            update_post_meta($id, '_' . MS_EGYPT_ZONE . '_regular_price', (string)$p['eg']);
-            update_post_meta($id, '_' . MS_EGYPT_ZONE . '_sale_price', '');
+            // launch price: the original stays as the struck regular price, the launch price is the sale price
+            $was = !empty($p['was']) ? (string)$p['was'] : '';
+            update_post_meta($id, '_' . MS_EGYPT_ZONE . '_regular_price', $was !== '' ? $was : (string)$p['eg']);
+            update_post_meta($id, '_' . MS_EGYPT_ZONE . '_sale_price', $was !== '' ? (string)$p['eg'] : '');
             update_post_meta($id, '_' . MS_EGYPT_ZONE . '_price', (string)$p['eg']);
             update_post_meta($id, '_' . MS_EGYPT_ZONE . '_sale_price_dates', 'default');
         }

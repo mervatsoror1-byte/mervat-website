@@ -126,14 +126,14 @@ PRODUCTS = [
   dict(id="b-peace", kind="bundle", title="باقة السلام والطمأنينة", catLabel="باقة", img="assets/img/covers/peace-sm.webp", eg=879, us=45, page="bundles.html"),
   dict(id="b-child", kind="bundle", title="باقة تشافي الطفل الداخلي", catLabel="باقة", img="assets/img/covers/inner-child-sm.webp", eg=1039, us=55, page="bundles.html"),
   dict(id="b-attach", kind="bundle", title="باقة فكّ التعلّق", catLabel="باقة", img="assets/img/covers/attach-sm.webp", eg=959, us=49, page="bundles.html"),
-  dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=399, us=25, page="sessions.html"),
-  dict(id="s-single", kind="session", title="جلسة استشارة فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=599, us=59, page="sessions.html"),
-  dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/thumb-session.webp", eg=1999, us=149, page="sessions.html"),
-  dict(id="m-single", kind="session", title="استشارة زوجية · ٦٠ دقيقة", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=999, us=89, page="marriage.html"),
-  dict(id="m-4", kind="session", title="باقة ٤ جلسات زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=3299, us=299, page="marriage.html"),
-  dict(id="m-8", kind="session", title="باقة ٨ جلسات زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=6199, us=549, page="marriage.html"),
-  dict(id="m-12", kind="session", title="باقة ١٢ جلسة زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=8799, us=779, page="marriage.html"),
-  dict(id="s-coach", kind="session", title="جلسة كوتشينج · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=750, us=69, page="sessions.html"),
+  dict(id="s-intro", kind="session", title="جلسة تعارف · ٣٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=279, wasEg=399, us=25, page="sessions.html"),
+  dict(id="s-single", kind="session", title="جلسة استشارة فردية · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=419, wasEg=599, us=59, page="sessions.html"),
+  dict(id="s-pack", kind="session", title="باقة ٤ جلسات", catLabel="جلسات فردية", img="assets/img/thumb-session.webp", eg=1399, wasEg=1999, us=149, page="sessions.html"),
+  dict(id="m-single", kind="session", title="استشارة زوجية · ٦٠ دقيقة", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=699, wasEg=999, us=89, page="marriage.html"),
+  dict(id="m-4", kind="session", title="باقة ٤ جلسات زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=2299, wasEg=3299, us=299, page="marriage.html"),
+  dict(id="m-8", kind="session", title="باقة ٨ جلسات زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=4349, wasEg=6199, us=549, page="marriage.html"),
+  dict(id="m-12", kind="session", title="باقة ١٢ جلسة زوجية", catLabel="استشارات زوجية", img="assets/img/thumb-session.webp", eg=6099, wasEg=8799, us=779, page="marriage.html"),
+  dict(id="s-coach", kind="session", title="جلسة كوتشينج · ٦٠ دقيقة", catLabel="جلسة فردية", img="assets/img/thumb-session.webp", eg=525, wasEg=750, us=69, page="sessions.html"),
   dict(id="serenity-gift", kind="gift", title="هدية: مقدمة تأمل السكينة", catLabel="هدية", img="assets/art/calm.webp", eg=0, us=0, page="index.html", learn="learn.html#serenity"),
 ]
 for p in PRODUCTS:
@@ -322,7 +322,11 @@ def crumbs(*items):
     return f'<ol class="crumbs"><li><a href="index.html">الرئيسية</a></li>{li}</ol>'
 def page_hero(title, lead="", *trail, eyebrow=""):
     return f'<section class="page-hero"><canvas class="sparkle" data-density="2400" aria-hidden="true"></canvas><div class="wrap">{crumbs(*(trail or [(title, None)]))}{f"<span class=eyebrow>{eyebrow}</span>" if eyebrow else ""}<h1 class="display">{title}</h1>{f"<p class=lead>{lead}</p>" if lead else ""}</div></section>'
-def price(pid): p = BY[pid]; return f'<span class="price" data-price="{pid}">{p["eg"]:,} ج.م</span>'.replace(",", "")
+def price(pid, label=True):
+    p = BY[pid]; main = f'<span class="price" data-price="{pid}">{p["eg"]} ج.م</span>'
+    if not p.get("wasEg"): return main
+    return (f'<span class="launch-wrap"><s class="was-eg" data-wasof="{pid}">{p["wasEg"]} ج.م</s>{main}' +
+            (f'<small class="launch-tag" data-wasof="{pid}">سعر الافتتاح</small>' if label else '') + '</span>')
 def tabs(): return '<div class="tabs" role="group" aria-label="تصنيف التمارين">' + "".join(f'<button class="tab" type="button" data-filter="{k}" aria-pressed="{str(k=="all").lower()}">{v}</button>' for k, v in CATS) + "</div>"
 def stage(img, f1=True):
     return f'''<div class="stage"><div class="arch"></div><img class="cut" src="{img}" alt="د. مرفت سرور" width="600" height="900">
@@ -471,7 +475,7 @@ def build():
         mplan("m-4", "باقة ٤ جلسات", 4, "جلسة كل أسبوع لمدة شهر", ["كل ما في الجلسة الفردية", "كسر دائرة الخلاف المتكرر", "أدوات تواصل تطبقانها بين الجلسات"]) + \
         mplan("m-8", "باقة ٨ جلسات", 8, "رحلة شهرين لتحوّل عميق", ["كل ما في باقة ٤ جلسات", "إعادة بناء الثقة والقرب خطوة بخطوة", "تمارين وعي مخصصة لعلاقتكما", "متابعة على واتساب بين الجلسات"], tag="الأكثر اختياراً", best=True) + \
         mplan("m-12", "باقة ١٢ جلسة", 12, "ثلاثة أشهر لعلاقة جديدة ومستقرة", ["كل ما في باقة ٨ جلسات", "تثبيت التغيير حتى يصبح أسلوب حياة", "خطة واضحة لما بعد انتهاء الجلسات", "أولوية في اختيار المواعيد"], tag="الأوفر") + '</div>'
-    mchips = "".join(f'<button type="button" class="mz-chip" data-mplan="{pid}" aria-pressed="{str(pid == "m-single").lower()}"><b>{t}</b>{price(pid)}</button>'
+    mchips = "".join(f'<button type="button" class="mz-chip" data-mplan="{pid}" aria-pressed="{str(pid == "m-single").lower()}"><b>{t}</b>{price(pid, False)}</button>'
                      for pid, t in (("m-single", "جلسة واحدة"), ("m-4", "٤ جلسات"), ("m-8", "٨ جلسات"), ("m-12", "١٢ جلسة")))
     PAINS = ["خلافات تتكرر على نفس الأشياء، ولا تنتهي أبداً", "صمت طويل وبُعد، وكأنكما غريبان تحت سقف واحد", "كلام يُقال فيُفهم خطأ، فينتهي بجرح",
              "ثقة اهتزّت ولا تعرفان كيف تُستعاد", "إحساس بالوحدة وأنتما معاً", "خوف على البيت وعلى الأبناء من هذا التوتر"]
