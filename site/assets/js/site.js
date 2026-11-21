@@ -207,7 +207,7 @@ function lineHTML(c, i, compact){
 }
 function renderCart(){
   const box = $("#cartPage"), t = totals();
-  if (!S.cart.length){ box.innerHTML = `<div class="result"><div class="badge" style="background:var(--blush);color:var(--plum)">${icon("bag")}</div><h2>سلتك فارغة</h2><p class="lead">ابدأ بتمرين قصير، أو انضم إلى استيقظ VIP لتفتح المكتبة كلها.</p><div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="vip.html">استيقظ VIP</a><a class="btn btn-line" href="library.html">تصفّح التمارين</a></div></div>`; return; }
+  if (!S.cart.length){ box.innerHTML = `<div class="result"><div class="badge" style="background:var(--blush);color:var(--plum)">${icon("bag")}</div><h2>سلتك فارغة</h2><p class="lead">ابدأ بتمرين قصير، أو انضم إلى استيقظ VIP لرحلة خاصة مع د. مرفت.</p><div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="vip.html">استيقظ VIP</a><a class="btn btn-line" href="library.html">تصفّح التمارين</a></div></div>`; return; }
   box.innerHTML = `<div class="cart-grid"><div class="lines">${S.cart.map((c,i)=>lineHTML(c,i)).join("")}${upsellHTML()}</div>
     <aside class="card summary"><h3>ملخص الطلب</h3>
       <div class="cur-switch"><span>عملة الدفع</span><div class="region" role="group" aria-label="عملة الدفع"><button type="button" data-region="eg" aria-pressed="${S.region==="eg"}">جنيه مصري</button><button type="button" data-region="intl" aria-pressed="${S.region!=="eg"}">دولار</button></div></div>
@@ -230,7 +230,7 @@ function upsellHTML(){
   // 2) VIP when the cart holds 2+ paid items
   const paid = S.cart.filter(c => ["exercise","course","bundle"].includes(P[c.id].kind));
   if (!hasVip && paid.length){ const v = P["vip-m"];
-    h += `<div class="upsell"><span class="ico">${icon("crown")}</span><div><b>كل المكتبة مع استيقظ VIP</b><p>بدلاً من الشراء واحداً واحداً: كل التمارين وجلسات فردية خاصة بـ ${money(v.eg,v.us)} شهرياً.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>`; }
+    h += `<div class="upsell"><span class="ico">${icon("crown")}</span><div><b>رحلة أعمق مع استيقظ VIP</b><p>جلسات فردية خاصة مع د. مرفت، وتمرينات مخصصة لكِ، ومتابعة يومية، بـ ${money(v.eg,v.us)} شهرياً.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>`; }
   return h;
 }
 
@@ -902,7 +902,7 @@ initSessCards();
     child: () => `للطفولة وجروحها أرشّح لك ${L("inner-child-healing.html","تمرين تشافي الطفل الداخلي")}: تمرين عميق ١٠ دقائق، مستواه متوسط (${pr("inner-child")}).`,
     lazy: () => `إن كنتِ تشعرين بالكسل والتأجيل والتجمّد أمام أهدافك، أرشّح لك ${L("decoding-energy-stagnation.html","Decoding الركود والخمول")} (${pr("decode-stagnation")}).`,
     diff: () => `باختصار: <b>التأملات</b> للتهدئة والتحرّر، و<b>Decoding</b> تمارين لإعادة برمجة العقل اللاواعي (متقدمة)، و<b>التوكيدات و Priming</b> للبرمجة اليومية. وإن لم تعرفي من أين تبدئين، ${L("sessions.html#booking","جلسة التعارف")} هي الأنسب.`,
-    vip: () => `${L("vip.html","استيقظ VIP")} هو البرنامج الكامل: جلسات فردية خاصة مع د. مرفت عبر Zoom، وكل التمارين، وخطة يومية ومتابعة شخصية. يبدأ من ${pr("vip-m")} شهرياً.`,
+    vip: () => `${L("vip.html","استيقظ VIP")} هو البرنامج الكامل: جلسات فردية خاصة مع د. مرفت عبر Zoom، وتمرينات مخصصة لكِ، وخطة يومية ومتابعة شخصية. يبدأ من ${pr("vip-m")} شهرياً.`,
     book: () => `يمكنك الحجز من ${L("sessions.html#booking","صفحة الجلسات")}: جلسة تعارف ٣٠ دقيقة (${pr("s-intro")})، أو استشارة فردية (${pr("s-single")})، أو كوتشينج (${pr("s-coach")}).`,
     pay: () => `داخل مصر: البطاقات البنكية والمحافظ الإلكترونية. وخارج مصر: PayPal. تُفتح الأداة في حسابك فوراً بعد الدفع، والوصول ٣٦٥ يوماً.`,
     human: () => `بكل سرور، تواصلي مع فريق د. مرفت على ${L("https://wa.me/201095292748","واتساب")} أو من ${L("contact.html","صفحة التواصل")}.`,

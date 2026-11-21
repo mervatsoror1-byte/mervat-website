@@ -36,14 +36,14 @@ PRODUCTS = [
                 {"title":"الوحدة الأولى: معنى الحمد الحقيقي","lessons":[["الحمد لله رب العالمين بقلب حاضر","12:00"],["النِّعم التي لم نعد نراها","12:00"],["الشكر بالشكل الصحيح","12:00"]]},
                 {"title":"الوحدة الثانية: الامتنان كل يوم","lessons":[["تمرين الامتنان الصباحي","10:00"],["الامتنان في الأوقات الصعبة","12:00"],["الامتنان في العلاقات","12:00"]]},
                 {"title":"الوحدة الثالثة: ما يتغيّر في حياتك","lessons":[["كيف يغيّر الامتنان نظرتك","12:00"],["خطة ٣٠ يوماً","9:00"],["الختام","6:00"]]}]),
-  dict(id="attach", kind="exercise", slug="exercise-detachment", title="تمرين فك التعلّق", cat="free", catLabel="فك التعلّق", img="assets/img/covers/attach-sm.webp", cover="assets/img/covers/attach-sm.webp", coverLg="assets/img/covers/attach.webp", eg=349, us=25, isNew=True, vipIncluded=True,
+  dict(id="attach", kind="exercise", slug="exercise-detachment", title="تمرين فك التعلّق", cat="free", catLabel="فك التعلّق", img="assets/img/covers/attach-sm.webp", cover="assets/img/covers/attach-sm.webp", coverLg="assets/img/covers/attach.webp", eg=349, us=25, isNew=True, vipIncluded=False,
        meta="تأمل · ٨ دقائق", level="مبتدئ", ctype="تأمل", cardMeta="تأمل · ٨ دقائق",
        facts=[["play","تأمل موجّه مدته ٨ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.",
        desc=["التعلّق يجعل سلامك الداخلي مرهوناً بشيء خارجي. في هذا التأمل الموجّه مع د. مرفت تلاحظ التعلّق، وتفهم ما يحاول أن يحميه فيك، وتفهم أسبابه ولماذا أنت متعلّق، ثم تحرّره بهدوء.","يمكنك تكراره كلما احتجت إليه. ولنتيجة أفضل يمكنك تطبيقه داخل الباقة، كما يمكنك الاشتراك في برنامج استيقظ VIP لتطبيقه مع متابعة مخصّصة لك."],
        forWho=["تعلّق بعلاقة انتهت أو لم تبدأ","قلق دائم من فقدان شخص أو شيء","صعوبة في ترك الأمور تسير لحالها","تفكير متكرر لا يتوقف"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين وطريقته","3:00",True],["تأمل فك التعلّق","8:08"]]}]),
-  dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="Decoding النسخة الأصلية", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-original-sm.webp", cover="assets/img/covers/decode-original-sm.webp", coverLg="assets/img/covers/decode-original.webp", level="متقدم", eg=649, us=35, isNew=True, vipIncluded=True,
+  dict(id="decode-original", kind="exercise", slug="decoding-original-version", title="Decoding النسخة الأصلية", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-original-sm.webp", cover="assets/img/covers/decode-original-sm.webp", coverLg="assets/img/covers/decode-original.webp", level="متقدم", eg=649, us=35, isNew=True, vipIncluded=False,
        meta="تمرين لإعادة برمجة العقل اللاواعي · ٦ دقائق", ctype="Decoding · تمرين لإعادة برمجة العقل اللاواعي", cardMeta="إعادة برمجة اللاواعي · ٦ دقائق",
        facts=[["play","تمرين لإعادة برمجة العقل اللاواعي مدته ٦ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين لإعادة برمجة العقل اللاواعي، فريد من نوعه: صور مركّبة بطريقة خاصة تخترق طبقات العقل اللاواعي، وتعمل على كشف نسختك الأصلية وإيصالك إليها.",
@@ -52,7 +52,7 @@ PRODUCTS = [
              "يبدأ بمقدمة قصيرة تشرح التمرين وطريقة مشاهدته، ثم التمرين نفسه في ٦ دقائق، ويمكنك تكراره لتعميق أثره."],
        forWho=["تشعر أنك لا تعيش حياتك أنت","تحمل قناعات قاسية عن نفسك","تريد أن تعرف ماذا تريد فعلاً","تبحث عن هوية أهدأ وأصدق"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين وطريقة مشاهدته","3:00",True],["تمرين Decoding النسخة الأصلية","6:06"]]}]),
-  dict(id="decode-acceptance", kind="exercise", slug="decoding-light-of-acceptance", title="Decoding نور القبول", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-acceptance-sm.webp", cover="assets/img/covers/decode-acceptance-sm.webp", coverLg="assets/img/covers/decode-acceptance.webp", level="متقدم", eg=649, us=35, vipIncluded=True,
+  dict(id="decode-acceptance", kind="exercise", slug="decoding-light-of-acceptance", title="Decoding نور القبول", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-acceptance-sm.webp", cover="assets/img/covers/decode-acceptance-sm.webp", coverLg="assets/img/covers/decode-acceptance.webp", level="متقدم", eg=649, us=35, vipIncluded=False,
        meta="تمرين لإعادة برمجة العقل اللاواعي · ٦ دقائق", ctype="Decoding · تمرين لإعادة برمجة العقل اللاواعي", cardMeta="إعادة برمجة اللاواعي · ٦ دقائق",
        facts=[["play","تمرين لإعادة برمجة العقل اللاواعي مدته ٦ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"],["path","أسئلة تفتح مساحة للاوعي ليكتشف جذور الرفض"]],
        short="تمرين لإعادة برمجة العقل اللاواعي لقبول الذات: يساعدك على الخروج من جرح الرفض والهجر، وأن تقبل نفسك أولاً حتى يبدأ الناس في الخارج بقبولك.",
@@ -61,7 +61,7 @@ PRODUCTS = [
              "حين ترى الجذور بوضوح، تستطيع أن تخرج من جرح الرفض، وأن تقبل نفسك أولاً، فيبدأ الناس في الخارج بقبولك."],
        forWho=["تشعر بالرفض أو الهجر في علاقاتك","تبحث دائماً عن قبول الآخرين","تخاف أن يتركك من تحب","تجد صعوبة في قبول نفسك كما أنت"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين Decoding نور القبول","6:06"]]}]),
-  dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود والخمول", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-stagnation-sm.webp", cover="assets/img/covers/decode-stagnation-sm.webp", coverLg="assets/img/covers/decode-stagnation.webp", eg=649, us=35, isNew=True, vipIncluded=True,
+  dict(id="decode-stagnation", kind="exercise", slug="decoding-energy-stagnation", title="Decoding الركود والخمول", cat="decode", catLabel="Decoding", img="assets/img/covers/decode-stagnation-sm.webp", cover="assets/img/covers/decode-stagnation-sm.webp", coverLg="assets/img/covers/decode-stagnation.webp", eg=649, us=35, isNew=True, vipIncluded=False,
        meta="تمرين لإعادة برمجة العقل اللاواعي · ١٣ دقيقة", ctype="Decoding · تمرين لإعادة برمجة العقل اللاواعي", level="متقدم", cardMeta="إعادة برمجة اللاواعي · ١٣ دقيقة",
        facts=[["play","تمرين لإعادة برمجة العقل اللاواعي مدته ١٣ دقيقة"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين لإعادة برمجة العقل اللاواعي يفكّ الركود والخمول: الكسل والتجمّد الذي يمنعك من التحرك نحو أهدافك.",
@@ -70,7 +70,7 @@ PRODUCTS = [
              "التمرين يعمل على فكّ هذا الركود من جذوره في العقل اللاواعي، لتعود الطاقة للتدفق، وتستطيع أن تتحرك فعلاً نحو أهدافك."],
        forWho=["تشعر بكسل وخمول دون سبب واضح","تقضي وقتاً طويلاً في التمرير على الموبايل","تعرف أهدافك لكنك لا تتحرك نحوها","تبدأ ثم تتوقف، وتؤجّل باستمرار"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين Decoding الركود والخمول","12:55"]]}]),
-  dict(id="inner-child", kind="exercise", slug="inner-child-healing", title="تمرين تشافي الطفل الداخلي", cat="heal", catLabel="التشافي", img="assets/img/covers/inner-child-sm.webp", cover="assets/img/covers/inner-child-sm.webp", coverLg="assets/img/covers/inner-child.webp", eg=449, us=25, vipIncluded=True,
+  dict(id="inner-child", kind="exercise", slug="inner-child-healing", title="تمرين تشافي الطفل الداخلي", cat="heal", catLabel="التشافي", img="assets/img/covers/inner-child-sm.webp", cover="assets/img/covers/inner-child-sm.webp", coverLg="assets/img/covers/inner-child.webp", eg=449, us=25, vipIncluded=False,
        meta="تمرين عميق · ١٧ دقيقة", level="متوسط", ctype="تشافي الطفل الداخلي", cardMeta="تمرين عميق · ١٧ دقيقة",
        facts=[["play","تمرين عميق مدته ١٧ دقيقة"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين عميق لتشافي الطفل الداخلي: تدخل في مساحة آمنة معه، تكتشفه، وتتعرّف على ما مرّ به في طفولتك.",
@@ -79,7 +79,7 @@ PRODUCTS = [
              "حين ترى ما عاشه هذا الطفل، تبدأ رحلة تشافيه، وتمنحه الأمان الذي احتاجه."],
        forWho=["ردود فعل عاطفية قوية ومفاجئة","ذكريات طفولة مؤلمة أو غير واضحة","احتياج دائم للأمان والقبول","تشعر أن جرحاً قديماً ما زال يؤثر فيك"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تمرين تشافي الطفل الداخلي","17:17"]]}]),
-  dict(id="heart-coherence", kind="exercise", slug="heart-coherence-breathing", title="تنفّس الاتزان الداخلي", cat="breath", catLabel="تنفّس", img="assets/img/covers/breath-sm.webp", cover="assets/img/covers/breath-sm.webp", coverLg="assets/img/covers/breath.webp", eg=249, us=20, vipIncluded=True,
+  dict(id="heart-coherence", kind="exercise", slug="heart-coherence-breathing", title="تنفّس الاتزان الداخلي", cat="breath", catLabel="تنفّس", img="assets/img/covers/breath-sm.webp", cover="assets/img/covers/breath-sm.webp", coverLg="assets/img/covers/breath.webp", eg=249, us=20, vipIncluded=False,
        meta="تمرين تنفّس · ١٠ دقائق", level="متوسط", ctype="تنفّس · تقنية الاتساق القلبي", cardMeta="تمرين تنفّس · ١٠ دقائق",
        facts=[["play","تمرين تنفّس بتقنية الاتساق القلبي مدته ١٠ دقائق"],["heart","يعطي إشارة أمان للعصب الحائر والمخ والقلب"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين تنفّس بتقنية الاتساق القلبي، يخلق توازناً بين موجات الدماغ وإيقاع القلب، وينقلك من الانقباض إلى حالة من التشافي والاتصال.",
@@ -88,7 +88,7 @@ PRODUCTS = [
              "التنفّس يمكن أن يحرّرك من البقاء محبوساً في حالة استنفار بيولوجي ودفاع مستمر. فعن طريق الاتساق القلبي تعطي إشارة أمان للعصب الحائر وللمخ والقلب، فتنتقل إلى حالة من التشافي والاتصال."],
        forWho=["توتر وقلق مستمر وشعور بالاستنفار","إحساس بالانقباض وثقل الطاقة","صعوبة في الاسترخاء أو النوم","رغبة في رفع مستوى وعيك وطاقتك"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["تنفّس الاتزان الداخلي","10:00"]]}]),
-  dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/img/covers/morning-priming-sm.webp", cover="assets/img/covers/morning-priming-sm.webp", coverLg="assets/img/covers/morning-priming.webp", eg=249, us=20, vipIncluded=True,
+  dict(id="morning-priming", kind="exercise", slug="morning-priming", title="تمرين Priming الصباح", cat="priming", catLabel="Priming", img="assets/img/covers/morning-priming-sm.webp", cover="assets/img/covers/morning-priming-sm.webp", coverLg="assets/img/covers/morning-priming.webp", eg=249, us=20, vipIncluded=False,
        meta="توكيدات صباحية · ٦ دقائق", level="مبتدئ", ctype="توكيدات صباحية · وعي بالجسد", cardMeta="توكيدات صباحية · ٦ دقائق",
        facts=[["play","توكيدات صباحية يومية مدتها ٦ دقائق"],["heart","معظمها يتحدث مع الجسد ويدعم شفاءه"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="توكيدات صباحية يومية تساعدك على استقبال يومك بشكل جميل، وتدعم اتزانك وراحتك.",
@@ -97,7 +97,7 @@ PRODUCTS = [
              "مع التكرار كل صباح، يصبح عادة تضبط حالتك الداخلية قبل أن يبدأ اليوم."],
        forWho=["تبدأ يومك بقلق أو ثقل","تمرّ بتعب أو ألم جسدي وتريد دعم شفائك","تريد روتيناً صباحياً قصيراً وثابتاً","تحب أن تستقبل يومك بطاقة هادئة وجميلة"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["توكيدات Priming الصباح","6:06"]]}]),
-  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي العميق", cat="heal", catLabel="التشافي", img="assets/img/covers/peace-sm.webp", cover="assets/img/covers/peace-sm.webp", coverLg="assets/img/covers/peace.webp", level="مبتدئ", eg=249, us=20, vipIncluded=True,
+  dict(id="peace-affirmations", kind="exercise", slug="peace-affirmations", title="توكيدات السلام للتشافي العميق", cat="heal", catLabel="التشافي", img="assets/img/covers/peace-sm.webp", cover="assets/img/covers/peace-sm.webp", coverLg="assets/img/covers/peace.webp", level="مبتدئ", eg=249, us=20, vipIncluded=False,
        meta="توكيدات يومية · ساعة ودقيقة", ctype="توكيدات · برمجة العقل اللاواعي", cardMeta="توكيدات يومية · ساعة ودقيقة",
        facts=[["play","توكيدات عن السلام والطمأنينة مدتها ساعة ودقيقة"],["path","للتطبيق اليومي لبرمجة العقل اللاواعي"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تمرين للتطبيق اليومي: توكيدات عن السلام والطمأنينة لبرمجة العقل اللاواعي.",
@@ -106,7 +106,7 @@ PRODUCTS = [
              "يمكنك الاستماع إليه وأنت مسترخٍ أو قبل النوم."],
        forWho=["قلق وتوتر مستمر","حديث داخلي قاسٍ أو مقلق","صعوبة في الهدوء قبل النوم","رغبة في برمجة يومية للسلام والطمأنينة"],
        modules=[{"title":"التمرين","lessons":[["مقدمة: شرح التمرين","3:00",True],["توكيدات السلام والطمأنينة","61:00"]]}]),
-  dict(id="serenity", kind="exercise", slug="serenity-cleansing-meditation", title="تأمل السكينة والتنظيف", cat="breath", catLabel="تأمل", img="assets/img/covers/serenity-sm.webp", cover="assets/img/covers/serenity-sm.webp", coverLg="assets/img/covers/serenity.webp", level="متقدم", ctype="تأمل للتنظيف والتحرر", eg=449, us=25, vipIncluded=True,
+  dict(id="serenity", kind="exercise", slug="serenity-cleansing-meditation", title="تأمل السكينة والتنظيف", cat="breath", catLabel="تأمل", img="assets/img/covers/serenity-sm.webp", cover="assets/img/covers/serenity-sm.webp", coverLg="assets/img/covers/serenity.webp", level="متقدم", ctype="تأمل للتنظيف والتحرر", eg=449, us=25, vipIncluded=False,
        meta="تأمل للتنظيف · ٣ أقسام", cardMeta="تأمل للتنظيف · ٣ أقسام",
        facts=[["play","تأمل موجّه للتنظيف من المشاعر السلبية"],["layers","٣ أقسام: التنفس، التحرر، الحماية"],["lessons","مع مقدمة قصيرة تشرح التأمل"]],
        short="تأمل موجّه للتنظيف في ثلاثة أقسام: التنفس، ثم التحرر من المشاعر السلبية، ثم الحماية بنور يغلّف جسدك بالكامل.",
@@ -345,7 +345,7 @@ def vip_card():
     <p class="lead">رحلة شهرية متدرّجة مع د. مرفت، تجمع الوعي والتطبيق اليومي والمتابعة. هنا يبدأ التغيير الذي يستمر.</p>
     <ul class="inc">
       <li><span class="ico">{ic("live")}</span><span><b>جلسات خاصة</b>جلسات فردية بينك وبين د. مرفت فقط</span></li>
-      <li><span class="ico">{ic("lib")}</span><span><b>المكتبة كاملة</b>كل التمارين مفتوحة طوال اشتراكك</span></li>
+      <li><span class="ico">{ic("path")}</span><span><b>تمرينات مخصصة</b>تمرينات وتدريبات مصممة لكِ أنتِ حسب رحلتك</span></li>
       <li><span class="ico">{ic("path")}</span><span><b>خطة يومية</b>تطبيق واضح ومتابعة لتقدّمك</span></li>
       <li><span class="ico">{ic("crown")}</span><span><b>مزايا الأعضاء</b>أولوية وخصم على الجلسات الفردية</span></li></ul>
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-q" aria-pressed="false">٣ أشهر</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · شهران مجاناً</button></div>
@@ -381,10 +381,10 @@ def build():
                 f'<h3>{name}</h3><div class="vp-price">{price(pid)}</div><p class="vp-note">{note}</p><span class="vp-rule" aria-hidden="true"></span>' +
                 f'<ul>{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in feats)}</ul>' +
                 f'<button class="{"btn-safia" if best else "vp-btn"}" type="button" data-buy="{pid}"><span>{cta}</span></button></article>')
-    plans = '<div class="vp-plans">' + vplan("vip-m","الاشتراك الشهري","يتجدد شهرياً وتلغينه متى شئت",["جلسات فردية خاصة بينك وبين د. مرفت","كل أدوات الموقع مفتوحة طوال الاشتراك","خطة تطبيق يومية ومتابعة التقدّم"],cta="اشتركي شهرياً") + \
+    plans = '<div class="vp-plans">' + vplan("vip-m","الاشتراك الشهري","يتجدد شهرياً وتلغينه متى شئت",["جلسات فردية خاصة بينك وبين د. مرفت","تمرينات مخصصة لكِ حسب رحلتك","خطة تطبيق يومية ومتابعة التقدّم"],cta="اشتركي شهرياً") + \
         vplan("vip-q","اشتراك ٣ أشهر","كل ٣ أشهر · توفّرين ما يقارب ١٠٪",["كل مزايا الاشتراك الشهري","المدة الأنسب لتحوّل عميق ومستقر","متابعة متصلة لرحلتك دون انقطاع"],tag="الأكثر اختياراً",best=True,cta="اشتركي ٣ أشهر") + \
         vplan("vip-y","الاشتراك السنوي","تدفعين ما يقارب ١٠ أشهر وتحصلين على ١٢",["كل مزايا الاشتراك الشهري","شهران مجاناً","أولوية في حجز المواعيد","هدايا وتمارين حصرية للمشتركات السنويات"],tag="الأوفر · شهران مجاناً",cta="اشتركي سنوياً") + '</div>'
-    page("vip.html", "برنامج استيقظ VIP", "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. جلسات فردية خاصة، كل التمارين، خطة يومية ومتابعة. اشتراك شهري أو سنوي.", f'''
+    page("vip.html", "برنامج استيقظ VIP", "استيقظ VIP: البرنامج التدريبي الأساسي مع د. مرفت سرور. جلسات فردية خاصة، تمرينات مخصصة، خطة يومية ومتابعة. اشتراك شهري أو سنوي.", f'''
 <section class="vip-split"><canvas class="sparkle" data-density="1500" aria-hidden="true"></canvas>
   <div class="vs-copy">{crumbs(("استيقظ VIP", None))}<span class="vs-eyebrow">البرنامج التدريبي الخاص</span><h1>استيقظ <span>VIP</span></h1>
     <p>البرنامج الذي تبدأ منه الرحلة كلها. جلسات فردية خاصة مع د. مرفت أونلاين، تجمع الوعي والتطبيق اليومي والمتابعة، لتستيقظ على نسختك الأصلية وتعيش بها.</p>
@@ -393,7 +393,7 @@ def build():
 <div class="vp-strip" aria-hidden="true"><div class="track"><span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span><span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span></div></div>
 <section class="vp-sec vp-ivory" id="inside"><div class="vp-wrap">
   <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>ماذا تحصلين عليه كعضوة؟</h2><p>كل ما تحتاجينه لرحلتك في مكان واحد.</p></header>
-  <div class="vp-feats"><div class="vp-feat"><span class="vp-ico">{ic("live")}</span><h3>جلسات فردية خاصة</h3><p>جلسات فردية خاصة مع د. مرفت، أونلاين عبر Zoom، في سرية تامة.</p></div><div class="vp-feat"><span class="vp-ico">{ic("lib")}</span><h3>المكتبة كاملة</h3><p>كل التمارين الحالية والجديدة مفتوحة طوال اشتراكك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("path")}</span><h3>تمرينات مخصصة لكِ</h3><p>تصميم تمرينات وتدريبات مخصصة لكِ أنتِ، حسب رحلتك واحتياجك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("chat")}</span><h3>متابعة يومية</h3><p>متابعة يومية لأثر التمرينات عليكِ، ولرحلتك وأسئلتك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("crown")}</span><h3>أولوية وخصم</h3><p>أولوية في حجز الجلسات الفردية وخصم عليها.</p></div><div class="vp-feat"><span class="vp-ico">{ic("gift")}</span><h3>مفاجآت شهرية</h3><p>تمارين وملفات حصرية للعضوات.</p></div></div>
+  <div class="vp-feats"><div class="vp-feat"><span class="vp-ico">{ic("live")}</span><h3>جلسات فردية خاصة</h3><p>جلسات فردية خاصة مع د. مرفت، أونلاين عبر Zoom، في سرية تامة.</p></div><div class="vp-feat"><span class="vp-ico">{ic("shield")}</span><h3>مساحة آمنة وسرية</h3><p>كل ما يدور في جلساتك يبقى بينك وبين د. مرفت فقط.</p></div><div class="vp-feat"><span class="vp-ico">{ic("path")}</span><h3>تمرينات مخصصة لكِ</h3><p>تصميم تمرينات وتدريبات مخصصة لكِ أنتِ، حسب رحلتك واحتياجك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("chat")}</span><h3>متابعة يومية</h3><p>متابعة يومية لأثر التمرينات عليكِ، ولرحلتك وأسئلتك.</p></div><div class="vp-feat"><span class="vp-ico">{ic("crown")}</span><h3>أولوية وخصم</h3><p>أولوية في حجز الجلسات الفردية وخصم عليها.</p></div><div class="vp-feat"><span class="vp-ico">{ic("gift")}</span><h3>مفاجآت شهرية</h3><p>تمارين وملفات حصرية للعضوات.</p></div></div>
   <p class="vp-small">المزايا مقترحة، تُعدّل حسب تفاصيل برنامجك الفعلية</p></div></section>
 <section class="vp-sec vp-royal" id="plans"><canvas class="sparkle" data-density="2200" aria-hidden="true"></canvas><div class="vp-wrap">
   <header class="vp-head on-dark"><span class="vp-orn" aria-hidden="true">✦</span><h2>اختاري ما يناسبك</h2><p>الأسعار بالجنيه داخل مصر وبالدولار خارجها. يمكنك الإلغاء في أي وقت من حسابك.</p></header>
@@ -411,7 +411,7 @@ def build():
     # ---------- library
     page("library.html", "مكتبة الأدوات", "تمارين Decoding، فك التعلق، تشافي الطفل الداخلي، تنفّس الاتزان الداخلي، Priming الصباح، توكيدات السلام للتشافي العميق، وتأمل السكينة مع د. مرفت سرور.", page_hero("مكتبة الأدوات","كل تمرين يُشترى منفصلاً ويبقى في حسابك مدى الحياة، ومعه معاينة مجانية للدرس الأول.", eyebrow="تمارين صوتية ومرئية") + f'''
 <section class="band-sm"><div class="wrap"><div class="search">{ic("search")}<label class="sr" for="q">ابحث في التمارين</label><input id="q" type="search" placeholder="ابحث: تعلّق، تنفّس، طفل داخلي…"></div>{tabs()}<div class="shelf" data-shelf="library"></div></div></section>
-<section class="band" style="padding-top:0"><div class="wrap"><div class="vip-card" style="grid-template-columns:1fr"><div class="vip-body" style="text-align:center;justify-items:center"><h2 style="font-size:clamp(1.6rem,3vw,2.4rem)">كل هذه التمارين مفتوحة مع <span class="foil-text">استيقظ VIP</span></h2><p class="lead">بدلاً من الشراء واحداً واحداً، افتح المكتبة كاملة مع البرنامج.</p><a class="btn btn-gold" href="vip.html">اعرف البرنامج</a></div></div></div></section>''', active="library.html")
+''', active="library.html")
 
     # ---------- bundles
     page("bundles.html", "الباقات", "باقات بنظام يومي متكامل: تنفّس الاتزان الداخلي، وPriming الصباح، وتمرين لموضوع محدد (Decoding، الطفل الداخلي، فك التعلّق، السلام)، بسعر أقل من شرائها منفصلة.", page_hero("الباقات","كل باقة نظام يومي متكامل: تنفّس، وتوكيد صباحي، وتأمل السكينة والتنظيف، وتمرين يعالج موضوعاً محدداً، بسعر أقل من شرائها منفصلة.") + '<section class="band-sm"><div class="wrap"><div class="bundles" data-bundles></div></div></section>' + ('<section class="vp-sec vp-ivory" style="padding-top:0"><div class="vp-wrap"><header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>قالوا عن الباقات</h2></header><div class="reel reel-sm">' + ''.join(review_card(r, False) for r in REVIEWS if any(x.startswith('b-') for x in r[2].split('|'))) + '</div></div></section>' if any(any(x.startswith('b-') for x in r[2].split('|')) for r in REVIEWS) else '') + GIFT)
@@ -605,7 +605,7 @@ def build():
   <p class="lead">رقم طلبك <b id="oNo">—</b> بقيمة <b id="oTotal">—</b>. تصلك طريقة الوصول على <b id="oEmail">بريدك</b>.</p>
   <ul class="facts" id="oItems" style="justify-items:center"></ul>
   <div class="ctas" style="justify-content:center"><a class="btn btn-gold" href="https://wa.me/201095292748" target="_blank" rel="noopener">{ic("chat")}تواصلي معنا على واتساب</a><a class="btn btn-line" href="library.html">تصفّحي الأدوات</a></div>
-  <div class="upsell" id="successUpsell" style="text-align:start"><span class="ico">{ic("crown")}</span><div><b>خطوتك التالية: استيقظ VIP</b><p>افتح كل التمارين، وابدأ رحلتك الخاصة مع د. مرفت.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>
+  <div class="upsell" id="successUpsell" style="text-align:start"><span class="ico">{ic("crown")}</span><div><b>خطوتك التالية: استيقظ VIP</b><p>ابدأ رحلتك الخاصة مع د. مرفت بجلسات فردية ومتابعة يومية.</p></div><a class="btn btn-gold btn-sm" href="vip.html">اعرف البرنامج</a></div>
   <p class="muted" style="font-size:.85rem">احتفظي برقم الطلب. وإن لم تصلك رسالتنا، راجعي مجلد الرسائل غير المرغوبة أو <a href="contact.html">تواصلي معنا</a>.</p></div></div></section>''', noindex=True)
     page("failed.html", "لم يكتمل الدفع", "لم يكتمل الدفع.", f'''<section class="band"><div class="wrap"><div class="result"><div class="badge err">{ic("x")}</div><h1 class="title">لم يكتمل الدفع</h1>
   <p class="lead">لم يُخصم أي مبلغ من حسابك. قد يكون السبب رفض البنك، أو رصيداً غير كافٍ، أو انتهاء مهلة الصفحة.</p>
@@ -677,7 +677,7 @@ def product_page(p):
     <ul class="facts"><li>{ic("layers")}{E(p["meta"])}</li><li>{ic("clock")}وصول لمدة ٣٦٥ يوماً من تاريخ الشراء</li><li>{ic("devices")}على الهاتف والكمبيوتر</li><li>{ic("path")}يحفظ تقدّمك بين الدروس</li></ul>
     <button class="btn btn-gold btn-block" type="button" data-add="{p["id"]}">{ic("bag")}<span>أضف للسلة</span></button>
     <button class="btn btn-line btn-block" type="button" data-preview="{p["id"]}">{ic("play")}شاهد المعاينة المجانية</button>
-    <div class="vip-note">{ic("crown")}<span>مشمول في <a href="vip.html"><b>استيقظ VIP</b></a> مع كل التمارين الأخرى.</span></div>
+    
     <div class="share"><button class="btn btn-ghost btn-sm" type="button" data-fav="{p["id"]}" aria-pressed="false">{ic("heart")}احفظ</button><a class="btn btn-ghost btn-sm" href="contact.html">{ic("gift")}أهدِ لصديق</a></div></div>
     <p class="secure">{ic("shield")}دفع آمن · بطاقة، محفظة إلكترونية أو PayPal</p></aside>
 </div></section>
@@ -698,7 +698,7 @@ def book_page():
 FAQ = {
  "general":[("هل أحتاج خبرة سابقة في الوعي؟","لا. كل مادة تبدأ بمقدمة وإرشادات واضحة، ويمكنك البدء بأي تمرين."),("هل المحتوى باللغة العربية؟","نعم، كل المحتوى بالعربية، وسنضيف لغات أخرى لاحقاً."),("هل يمكنني الاستماع من الهاتف؟","نعم، الموقع يعمل على الهاتف والكمبيوتر، ويحفظ تقدّمك على كل الأجهزة.")],
  "pay":[("لماذا يختلف السعر داخل مصر عن خارجها؟","نقدّم سعراً بالجنيه للمقيمين في مصر وسعراً بالدولار لباقي الدول، ويُحسب السعر النهائي حسب بلد الفاتورة."),("ما طرق الدفع المتاحة؟","داخل مصر: البطاقات البنكية (فيزا وماستركارد وميزة) والمحافظ الإلكترونية. من خارج مصر: PayPal."),("متى أحصل على المادة بعد الدفع؟","فوراً. تُفتح المادة في حسابك ويصلك بريد بالتأكيد وبيانات الدخول."),("هل يمكنني استرداد المبلغ؟","كل عمليات الشراء نهائية لأن الأدوات تُفتح فور الدفع. نرد المبلغ فقط في حالة الخصم المزدوج أو الخطأ التقني الذي لم يُحل، كما في سياسة الاسترداد والإلغاء.")],
- "vip":[("ما المدة التي يحدث فيها التغيير؟","التغيير الحقيقي يحتاج التزاماً وتطبيقاً يومياً، والمدة المناسبة ثلاثة أشهر على الأقل، ولذلك نرشّح اشتراك ٣ أشهر كبداية."),("ماذا يشمل استيقظ VIP؟","جلسات فردية خاصة بينك وبين د. مرفت فقط، وكل التمارين، وخطة يومية، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل أحتفظ بالأدوات بعد الإلغاء؟","الأدوات المفتوحة بالاشتراك تتوقف بعد انتهاء الفترة المدفوعة، أما ما اشتريته منفصلاً فيبقى متاحاً لك ٣٦٥ يوماً من تاريخ شرائه."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
+ "vip":[("ما المدة التي يحدث فيها التغيير؟","التغيير الحقيقي يحتاج التزاماً وتطبيقاً يومياً، والمدة المناسبة ثلاثة أشهر على الأقل، ولذلك نرشّح اشتراك ٣ أشهر كبداية."),("ماذا يشمل استيقظ VIP؟","جلسات فردية خاصة بينك وبين د. مرفت فقط، وتمرينات مخصصة لكِ، وخطة يومية ومتابعة، ومزايا على الجلسات."),("كيف ألغي الاشتراك؟","من حسابك، قسم «اشتراكي»، بضغطة واحدة. يبقى الوصول حتى نهاية الفترة المدفوعة."),("هل يؤثر إلغاء الاشتراك على الأدوات التي اشتريتها؟","لا. الأدوات التي اشتريتها منفصلة تبقى متاحة لك ٣٦٥ يوماً من تاريخ شرائها، ولا تتأثر بإلغاء الاشتراك."),("هل يمكنني مشاركة حسابي مع أحد أفراد عائلتي؟","لا. الحساب شخصي، ويُسمح بالدخول من جهازين فقط في نفس الوقت. مشاركة الحساب تؤدي لإيقافه دون استرداد.")],
  "sessions":[("كيف تتم الجلسة؟","أونلاين عبر Zoom أو Google Meet، ويصلك الرابط على بريدك."),("هل يمكن تغيير الموعد؟","نعم، حتى ٢٤ ساعة قبل الجلسة من حسابك دون رسوم."),("بأي توقيت تظهر المواعيد؟","تظهر بتوقيت القاهرة مع تحويلها تلقائياً لتوقيت بلدك في الموقع الفعلي.")],
  "marriage":[("هل يجب أن يحضر الزوجان معاً؟","ليس شرطاً. يمكنكما الحضور معاً، ويمكن أن يبدأ طرف واحد وحده إن كان الطرف الآخر غير مستعد بعد. التغيير في طرف واحد كثيراً ما يغيّر شكل العلاقة كلها."),
    ("هل ما نقوله في الجلسة سري؟","نعم، سرية تامة. لا يُسجَّل شيء من الجلسة، ولا يُشارك أي تفصيل مع أي طرف، ولا يُنقل كلام أحد الزوجين للآخر إلا بموافقته."),
@@ -750,7 +750,7 @@ def home_body():
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-q" aria-pressed="false">٣ أشهر</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · شهران مجاناً</button></div>
       <div class="amount" id="vipAmount">٢٩٩٩ ج.م <small>/ شهرياً</small></div><a class="btn btn-gold" id="vipJoin" href="cart.html" data-buy="vip-m">انضم الآن</a></div>
     <a class="btn btn-line btn-sm" href="vip.html" style="justify-self:start">كل تفاصيل البرنامج</a></div>
-  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات التشافي العميق، وتتخلّص من البرمجات اللاواعية."),("lib","المكتبة كاملة","كل التمارين مفتوحة طوال اشتراكك."),("path","تمرينات مخصصة ومتابعة يومية","تصميم تمرينات وتدريبات مخصصة لكِ أنتِ، ومتابعة أثرها عليكِ يومياً."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
+  <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات التشافي العميق، وتتخلّص من البرمجات اللاواعية."),("shield","مساحة آمنة وسرية","كل ما يدور في جلساتك يبقى بينك وبين د. مرفت فقط."),("path","تمرينات مخصصة ومتابعة يومية","تصميم تمرينات وتدريبات مخصصة لكِ أنتِ، ومتابعة أثرها عليكِ يومياً."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
 </div></section>
 <section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">ابدأ من هنا</span><h2 class="title">لكل طريق قوته في التحوّل من الداخل</h2></div>
   <div class="tiles"><a class="tile" href="library.html"><img src="assets/art/attach.webp" alt="" loading="lazy"><span><b>التمارين المسجّلة</b><small>Decoding، فك تعلّق، تشافٍ وتأمل</small></span></a>

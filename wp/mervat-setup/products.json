@@ -75,7 +75,7 @@
   "img": "assets/img/covers/attach-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
@@ -91,7 +91,7 @@
   "img": "assets/img/covers/decode-original-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
@@ -107,7 +107,7 @@
   "img": "assets/img/covers/decode-acceptance-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
@@ -123,7 +123,7 @@
   "img": "assets/img/covers/decode-stagnation-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
@@ -139,7 +139,7 @@
   "img": "assets/img/covers/inner-child-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
@@ -155,7 +155,7 @@
   "img": "assets/img/covers/breath-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
@@ -171,7 +171,7 @@
   "img": "assets/img/covers/morning-priming-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
@@ -187,7 +187,7 @@
   "img": "assets/img/covers/peace-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
@@ -203,7 +203,7 @@
   "img": "assets/img/covers/serenity-sm.webp",
   "redirect": null,
   "grants": null,
-  "vip": true,
+  "vip": false,
   "soon": false,
   "items": []
  },
