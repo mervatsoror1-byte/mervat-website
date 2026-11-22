@@ -87,3 +87,13 @@
 ## Working preference (Mervat, 2026-11-18)
 - For anything inside Hostinger that I can't do through the API, tell Mervat to ask the **Hostinger Agent** (the "Agent" button at the top of hPanel). It found and set up the email forwarder by itself. Suggest it first, before step-by-step screenshots.
 - info@mervatsror.com forwards to her Gmail (copy kept in the mailbox).
+
+## قبل الإعلان (checklist — remind Mervat weekly until she says she's ready)
+- [ ] Free intros: get the short intro clips from Mervat, upload to Bunny, make «استمع للمقدمة مجاناً» play real audio/video on mervatsror.com (today the static player is display-only).
+- [ ] Sign-up gift: decide what it is (serenity intro? book chapter is still «قريباً»), name it on register.html, and make it really open/arrive.
+- [ ] Ad landing page: every button on the target page works (buy, WhatsApp, booking); test on a phone.
+- [ ] Test purchase end-to-end (PayPal now; Paymob after contract/API keys).
+- [ ] Sign-ups: confirm the first «تسجيل جديد» email arrives at info@ (api/lead.php → ms_data/leads.json).
+- [ ] Meta Pixel installed (planned).
+- [ ] Ain Sahia course page: real units/lessons from Mervat's recordings (order so far: العشرين عطية والأربعة البور → امسكي طرف الخيط → المحنة والمنحة → رسالة من بعد العاصفة → المراية).
+- [ ] Ideally: move the WordPress site to mervatsror.com so lessons, accounts and access are real.
