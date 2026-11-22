@@ -629,3 +629,16 @@ add_action('woocommerce_created_customer', function ($customer_id) {
     $body = "تسجيل جديد في الموقع\n\nالبريد: {$u->user_email}\nالاسم: " . trim($u->first_name . ' ' . $u->last_name) . "\nإجمالي العملاء المسجلين: {$count}\n";
     wp_mail('info@mervatsror.com', 'تسجيل جديد: ' . $u->user_email, $body, ['Reply-To: ' . $u->user_email]);
 });
+
+/* Customers choose any password they like: no strength meter, no "weak password" block. */
+add_filter('woocommerce_min_password_strength', function () { return 0; });
+add_action('wp_enqueue_scripts', function () {
+    if (!is_admin()) { wp_dequeue_script('wc-password-strength-meter'); wp_deregister_script('wc-password-strength-meter'); }
+}, 100);
+add_action('login_enqueue_scripts', function () {
+    wp_dequeue_script('user-profile'); wp_dequeue_script('password-strength-meter');
+    echo '<style>.pw-weak{display:none!important}#pass-strength-result{display:none!important}</style>';
+});
+add_action('login_footer', function () {
+    echo '<script>(function(){var c=document.getElementById("pw-weak");if(c){c.checked=true;}var b=document.getElementById("wp-submit");if(b){b.disabled=false;}})();</script>';
+});
