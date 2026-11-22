@@ -578,7 +578,7 @@ def build():
   <div><h1 class="title">ابدأ رحلتك</h1><p class="muted">حساب مجاني، ومعه هدية تُفتح فوراً.</p></div>
   <form class="form" id="registerForm" novalidate><div class="field"><label for="name">الاسم</label><input id="name" autocomplete="name" required></div>
     <div class="field"><label for="email">البريد الإلكتروني</label><input id="email" type="email" autocomplete="email" required></div>
-    <div class="field"><label for="password">كلمة المرور</label><input id="password" type="password" autocomplete="new-password" minlength="6" required><span class="hint">٦ أحرف على الأقل</span></div>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label class="check"><input type="checkbox" id="gift" checked><span>أرسل لي هدية مقدمة تأمل السكينة وفصل الكتاب، وجديد د. مرفت على بريدي.</span></label>
     <label class="check"><input type="checkbox" required checked><span>أوافق على <a href="terms.html">الشروط</a> و<a href="privacy.html">سياسة الخصوصية</a>.</span></label>
     <div class="alert" hidden></div><button class="btn btn-gold btn-block" type="submit">{ic("gift")}أنشئ حسابي</button></form>

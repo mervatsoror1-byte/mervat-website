@@ -451,7 +451,7 @@ function initPlayer(){
         <div class="controls"><button class="speed" id="spd" type="button">${speed}×</button><button class="iconbtn" id="back" type="button" aria-label="رجوع ١٥ ثانية">${icon("back")}</button><button class="main" id="pp" type="button" aria-label="${playing?"إيقاف":"تشغيل"}">${icon(playing?"pause":"play")}</button><button class="iconbtn" id="fwd" type="button" aria-label="تقديم ١٥ ثانية">${icon("fwd")}</button></div>
         <button class="btn ${done.includes(cur)?"btn-ghost":"btn-plum"} btn-sm" id="markDone" type="button">${done.includes(cur)?"✓ تم إكمال الدرس":"علّم الدرس كمكتمل"}</button>
         <p class="muted" style="font-size:.8rem">في الموقع الفعلي يُبث الصوت والفيديو من Bunny Stream برابط محمي باسمك.</p>`
-        : `<div class="alert info" style="display:grid;gap:10px;justify-items:center">${icon("lock")}<span>هذا الدرس متاح بعد شراء المادة أو مع عضوية استيقظ VIP.</span><div class="ctas" style="justify-content:center"><button class="btn btn-gold btn-sm" type="button" data-add="${p.id}"><span>اشترِ ${esc(p.title)}</span></button><a class="btn btn-line btn-sm" href="vip.html">استيقظ VIP</a></div></div>`}
+        : `<div class="alert info" style="display:grid;gap:10px;justify-items:center">${icon("lock")}<span>هذا الدرس متاح بعد شراء المادة.</span><div class="ctas" style="justify-content:center"><button class="btn btn-gold btn-sm" type="button" data-add="${p.id}"><span>اشترِ ${esc(p.title)}</span></button><a class="btn btn-line btn-sm" href="vip.html">استيقظ VIP</a></div></div>`}
         <div class="watermark">${S.user ? esc(S.user.email) : ""}</div>
       </div>
       <aside class="outline"><h3>محتوى المادة · ${ar(done.length)}/${ar(lessons.length)}</h3>
@@ -561,7 +561,23 @@ function initForms(){
     const f = e.target;
     if (f.id === "couponForm"){ e.preventDefault(); const v = $("#coupon").value.trim().toUpperCase(); if (COUPONS[v]){ ss("coupon", v); toast("تم تطبيق خصم " + ar(Math.round(COUPONS[v]*100)) + "٪"); } else { ss("coupon", null); toast("كود الخصم غير صحيح"); } renderCart(); return; }
     if (f.id === "payForm"){ e.preventDefault(); submitPay(f); return; }
-    if (f.id === "loginForm" || f.id === "registerForm"){
+    if (f.id === "registerForm"){
+      e.preventDefault();
+      const email = $("#email", f).value.trim(), name = $("#name", f).value.trim(), msg = $(".alert", f), btn = f.querySelector("[type=submit]");
+      if (!name || !/^\S+@\S+\.\S+$/.test(email)){ msg.className = "alert err"; msg.textContent = "اكتب اسمك وبريدك الإلكتروني بشكل صحيح."; msg.hidden = false; return; }
+      const gift = $("#gift", f) ? $("#gift", f).checked : false;
+      if (btn) btn.disabled = true;
+      fetch("api/lead.php", {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({name, email, news: gift, source: document.referrer ? new URL(document.referrer).pathname : "", website: (f.querySelector("[name=website]")||{}).value || ""})})
+        .then(r => { if (!r.ok) throw 0; })
+        .then(() => {
+          S.user = {name, email, since:new Date().toISOString()};
+          if (gift && !S.owned.includes("serenity-gift")) S.owned.push("serenity-gift");
+          save(); const next = ss("next") || "account.html"; ss("next", null); location.href = next;
+        })
+        .catch(() => { if (btn) btn.disabled = false; msg.className = "alert err"; msg.textContent = "تعذّر التسجيل الآن. حاول مرة أخرى بعد قليل، أو راسلنا على واتساب."; msg.hidden = false; });
+      return;
+    }
+    if (f.id === "loginForm"){
       e.preventDefault();
       const email = $("#email", f).value.trim(), pass = $("#password", f).value, name = f.id === "registerForm" ? $("#name", f).value.trim() : "";
       const msg = $(".alert", f);

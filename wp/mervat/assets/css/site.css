@@ -1957,3 +1957,5 @@ body:has(.lp-hero) .help-c{display:none}
 .mz-bsec .mz-chip .price{color:var(--muted)}
 .mz-bsec .mz-chip[aria-pressed="true"]{background:linear-gradient(135deg,#E2C68C,#C5A059);border-color:#C5A059;color:#1A3670}
 .mz-bsec .mz-chip[aria-pressed="true"] .price,.mz-bsec .mz-chip[aria-pressed="true"] .was-eg{color:#1A3670}
+
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}

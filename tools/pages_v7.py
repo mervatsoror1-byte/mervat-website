@@ -180,7 +180,7 @@ def auth():
   <h1>ابدأ رحلتك</h1><p>حساب مجاني، ومعه هدية تُفتح فوراً</p>
   <form class="form" id="registerForm" novalidate><div class="field"><label for="name">الاسم <i>*</i></label><input id="name" autocomplete="name" placeholder="أدخل اسمك" required></div>
     <div class="field"><label for="email">البريد الإلكتروني <i>*</i></label><input id="email" type="email" autocomplete="email" placeholder="أدخل بريدك الإلكتروني" required></div>
-    <div class="field"><label for="password">كلمة المرور <i>*</i></label><input id="password" type="password" autocomplete="new-password" placeholder="٦ أحرف على الأقل" minlength="6" required></div>
+    <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <label class="check"><input type="checkbox" id="gift" checked><span>أرسل لي الهدية وجديد د. مرفت على بريدي</span></label>
     <label class="check"><input type="checkbox" required checked><span>أوافق على <a href="terms.html">الشروط</a> و<a href="privacy.html">الخصوصية</a></span></label>
     <div class="alert" hidden></div><button class="btn btn-gold btn-block" type="submit">إنشاء حسابي</button></form>
