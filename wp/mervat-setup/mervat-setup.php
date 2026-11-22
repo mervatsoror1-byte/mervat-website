@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.2.3
+ * Version: 1.2.4
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.2.3';
+const MS_SETUP_VERSION = '1.2.4';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -621,3 +621,11 @@ add_filter('woocommerce_get_terms_and_conditions_checkbox_text', function () {
 });
 add_filter('woocommerce_checkout_required_field_notice', function ($n) { return $n; });
 add_filter('woocommerce_get_privacy_policy_text', function ($text, $type) { return $type === 'checkout' ? '' : $text; }, 10, 2);
+
+/* New sign-up -> short email to info@ (same as the old site's sign-up notice). */
+add_action('woocommerce_created_customer', function ($customer_id) {
+    $u = get_userdata($customer_id); if (!$u) { return; }
+    $count = count_users()['avail_roles']['customer'] ?? 0;
+    $body = "تسجيل جديد في الموقع\n\nالبريد: {$u->user_email}\nالاسم: " . trim($u->first_name . ' ' . $u->last_name) . "\nإجمالي العملاء المسجلين: {$count}\n";
+    wp_mail('info@mervatsror.com', 'تسجيل جديد: ' . $u->user_email, $body, ['Reply-To: ' . $u->user_email]);
+});

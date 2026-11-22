@@ -97,3 +97,13 @@
 - [ ] Meta Pixel installed (planned).
 - [ ] Ain Sahia course page: real units/lessons from Mervat's recordings (order so far: العشرين عطية والأربعة البور → امسكي طرف الخيط → المحنة والمنحة → رسالة من بعد العاصفة → المراية).
 - [ ] Ideally: move the WordPress site to mervatsror.com so lessons, accounts and access are real.
+
+## 2026-11-22 — WordPress is now live on mervatsror.com (final move)
+- Method (no SSH/exec on the plan): a one-time key-protected PHP script on new.mervatsror.com backed up the DB (`/domains/new.mervatsror.com/db-backup-20261122-070854.sql`) and the static site (`/domains/mervatsror.com/static-site-backup-20261122-070854.zip`), copied the WP files to `/domains/mervatsror.com/public_html_wp`, swapped web roots (old static root kept as `/domains/mervatsror.com/public_html_static`), and replaced new.mervatsror.com → mervatsror.com in the DB (serialized-safe, 214 rows). Script removed afterwards.
+- Rollback if ever needed: rename public_html ↔ public_html_static and set WP home/siteurl back (the script's `rollback` step did this; re-create it from the scratchpad copy if needed).
+- blog_public set to 1 (staging had "discourage search engines"). Sitemap: /wp-sitemap.xml (/sitemap.xml redirects there).
+- .htaccess on main: https + non-www + HSTS, 301s from every old *.html page to its WordPress address, then WordPress rules.
+- new.mervatsror.com now 301-redirects everything to mervatsror.com (still shares the same DB; Hostinger WP installs: 31588510 = staging, 31693369 = main).
+- Deploys: `python3 tools/build_site.py && python3 tools/build_wp_theme.py && python3 tools/deploy_wp.py` (default domain mervatsror.com). `tools/deploy_hostinger.sh` (static) now refuses to run.
+- New sign-ups on WordPress (WooCommerce registration, no password asked) email info@ (mervat-setup 1.2.4).
+- To do with Mervat: PayPal plugin re-check in wp-admin (webhooks on new domain), submit /wp-sitemap.xml in Search Console, tell the Paymob rep the site moved to the new system on the same domain (contract 3.2.4), one real test purchase.

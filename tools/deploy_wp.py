@@ -3,7 +3,7 @@
 
 Only files that changed since the last upload are sent (hashes kept in wp/.deploy-state.json).
 Needs the Hostinger API token saved for developers.hostinger.com (the network proxy adds it).
-Usage: python3 tools/deploy_wp.py [domain]      (default: new.mervatsror.com)
+Usage: python3 tools/deploy_wp.py [domain]      (default: mervatsror.com, the live WordPress site since 2026-11-22)
 """
 import hashlib, json, subprocess, sys
 from pathlib import Path
@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 WP = ROOT / "wp"
 API = "https://developers.hostinger.com/api/hosting/v1"
 USER = "u627037283"
-DOMAIN = sys.argv[1] if len(sys.argv) > 1 else "new.mervatsror.com"
+DOMAIN = sys.argv[1] if len(sys.argv) > 1 else "mervatsror.com"
 STATE = WP / f".deploy-state-{DOMAIN}.json"
 AUTH = ["-H", "Authorization: Bearer proxy-injected"]
 

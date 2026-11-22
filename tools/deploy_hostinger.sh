@@ -2,6 +2,11 @@
 # Build the site, zip it and deploy it to Hostinger (mervatsror.com) through the Hostinger API.
 # Needs the Hostinger API token saved as a network secret for developers.hostinger.com (the proxy adds it).
 set -euo pipefail
+# Since 2026-11-22 mervatsror.com runs WordPress. Deploying the static archive would overwrite it.
+if [ "${ALLOW_STATIC_DEPLOY:-}" != "yes-overwrite-wordpress" ]; then
+  echo "Refusing: mervatsror.com is now the WordPress site. Use: python3 tools/build_site.py && python3 tools/build_wp_theme.py && python3 tools/deploy_wp.py" >&2
+  exit 1
+fi
 cd "$(dirname "$0")/.."
 API=https://developers.hostinger.com/api/hosting/v1; USERN=u627037283; DOMAIN=mervatsror.com
 AUTH=(-H "Authorization: Bearer proxy-injected")
