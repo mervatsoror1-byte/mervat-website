@@ -1959,3 +1959,24 @@ body:has(.lp-hero) .help-c{display:none}
 .mz-bsec .mz-chip[aria-pressed="true"] .price,.mz-bsec .mz-chip[aria-pressed="true"] .was-eg{color:#1A3670}
 
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+
+/* header: consultations dropdown (individual sessions + marriage counseling) */
+.has-sub{position:relative}
+.has-sub .sub-top{display:inline-flex;align-items:center;gap:4px}
+.has-sub .sub-top .icon{transition:transform .25s}
+.has-sub .sub{list-style:none;margin:0;padding:8px;position:absolute;top:calc(100% + 10px);inset-inline-start:50%;transform:translate(50%,6px);min-width:210px;background:#fff;border:1px solid rgba(197,160,89,.35);border-radius:16px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transition:.2s;z-index:60}
+.has-sub .sub::before{content:"";position:absolute;inset-inline:0;top:-12px;height:12px}
+.has-sub .sub a{display:block;padding:9px 14px;border-radius:10px;color:var(--ink)!important;font-weight:700;white-space:nowrap}
+.has-sub .sub a::after{display:none}
+.has-sub .sub a:hover,.has-sub .sub a[aria-current=page]{background:#FBF3E4}
+@media (min-width:901px){
+  .has-sub:hover .sub,.has-sub:focus-within .sub{opacity:1;visibility:visible;transform:translate(50%,0)}
+  .has-sub:hover .sub-top .icon,.has-sub:focus-within .sub-top .icon{transform:rotate(180deg)}
+}
+@media (max-width:900px){
+  .has-sub .sub-top .icon{display:none}
+  .has-sub .sub{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;padding:0 14px 0 0;min-width:0;background:none}
+  .has-sub .sub a{padding:6px 0;font-weight:500;font-size:.95em}
+  .has-sub .sub a::before{content:"– ";color:var(--gold)}
+  .has-sub .sub a:hover,.has-sub .sub a[aria-current=page]{background:none}
+}

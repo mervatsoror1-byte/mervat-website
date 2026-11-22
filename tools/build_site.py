@@ -246,12 +246,17 @@ def mega():
     </div></div>'''
 
 
-NAV2 = [("index.html","الرئيسية",""),("MEGA","الأدوات",""),("sessions.html","الاستشارات",""),("marriage.html","الاستشارات الزوجية",""),("vip.html","برنامج استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","nav-contact")]
+NAV2 = [("index.html","الرئيسية",""),("MEGA","الأدوات",""),("SUB","الاستشارات",""),("vip.html","برنامج استيقظ VIP","vip"),("about.html","عن مرفت",""),("contact.html","اتصل بنا","nav-contact")]
 
 def header(active, hero=False):
     def item(h,t,c):
         if h == "MEGA":
             return f'<li class="has-mega"><button class="mega-btn" id="megaBtn" type="button" aria-expanded="false" aria-controls="mega" {"data-current=1" if active in MEGA_PAGES else ""}>الأدوات<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>{mega()}</li>'
+        if h == "SUB":
+            cur = active in ("sessions.html", "marriage.html")
+            return (f'<li class="has-sub"><a href="sessions.html" class="sub-top" {"aria-current=page" if cur else ""}>{t}<svg class="icon icon-sm" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>'
+                    f'<ul class="sub"><li><a href="sessions.html" {"aria-current=page" if active=="sessions.html" else ""}>الجلسات الفردية</a></li>'
+                    f'<li><a href="marriage.html" {"aria-current=page" if active=="marriage.html" else ""}>الاستشارات الزوجية</a></li></ul></li>')
         return f'<li><a href="{h}" class="{c}" {"aria-current=page" if h==active else ""}>{t}</a></li>'
     items = "".join(item(*n) for n in NAV2)
     return f'''<header class="site-header {"on-hero" if hero else "pill"}"><div class="nav">
