@@ -642,3 +642,19 @@ add_action('login_enqueue_scripts', function () {
 add_action('login_footer', function () {
     echo '<script>(function(){var c=document.getElementById("pw-weak");if(c){c.checked=true;}var b=document.getElementById("wp-submit");if(b){b.disabled=false;}})();</script>';
 });
+
+/* VIP subscriptions: allow PayPal (USD) and transfer (EGP). Renewals are paid by the customer from the renewal email/link
+   until PayPal vaulting (automatic renewals) is approved on the PayPal account. */
+add_filter('fsub/payment/manual_renewal/enabled', '__return_true');
+
+/* PayPal Payments asks WooCommerce Subscriptions whether manual renewals are accepted (WCS_Manual_Renewal_Manager).
+   Flexible Subscriptions does not provide that class, so PayPal hid itself for VIP. Provide it, so a VIP checkout is
+   charged as a normal PayPal payment and each renewal is paid from the renewal email/link. */
+add_action('plugins_loaded', function () {
+    if (class_exists('WCS_Manual_Renewal_Manager', false)) { return; }
+    if (!function_exists('is_plugin_active')) { require_once ABSPATH . 'wp-admin/includes/plugin.php'; }
+    if (is_plugin_active('woocommerce-subscriptions/woocommerce-subscriptions.php')) { return; }
+    if (!class_exists('WCS_Manual_Renewal_Manager', false)) {
+        eval('class WCS_Manual_Renewal_Manager { public static function is_manual_renewal_enabled() { return true; } public static function is_manual_renewal_required() { return false; } }');
+    }
+}, 1);
