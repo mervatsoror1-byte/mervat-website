@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.2.4
+ * Version: 1.2.5
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.2.4';
+const MS_SETUP_VERSION = '1.2.5';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -141,6 +141,7 @@ function ms_theme_meta(): array {
 function ms_setup_pages(): void {
     $meta = ms_theme_meta();
     foreach (ms_data('pages.json') as $slug) {
+        if ($slug === '404') { continue; } // the theme shows its own 404; WordPress cannot keep a page named "404"
         $want = $slug === 'front' ? 'home' : $slug;
         $title = $meta[$slug]['title'] ?? $want;
         if ($slug === 'front') { $title = 'الرئيسية'; }
@@ -159,6 +160,12 @@ function ms_setup_pages(): void {
     // the sample page WordPress creates is not needed
     $sample = get_page_by_path('sample-page', OBJECT, 'page');
     if ($sample) { wp_trash_post($sample->ID); }
+    // clean up: duplicate "404-N" pages made by earlier setup runs, WordPress's sample post, unused duplicate shop pages
+    global $wpdb;
+    foreach ($wpdb->get_col("SELECT ID FROM {$wpdb->posts} WHERE post_type = 'page' AND post_status = 'publish' AND post_name REGEXP '^404(-[0-9]+)?$'") as $pid) { wp_trash_post((int)$pid); }
+    $hello = get_page_by_path('hello-world', OBJECT, 'post'); if ($hello) { wp_trash_post($hello->ID); }
+    $used = array_map('intval', [get_option('woocommerce_cart_page_id'), get_option('woocommerce_checkout_page_id'), get_option('woocommerce_myaccount_page_id'), get_option('woocommerce_shop_page_id')]);
+    foreach (['cart-2', 'checkout-2'] as $dup) { $pg = get_page_by_path($dup, OBJECT, 'page'); if ($pg && !in_array((int)$pg->ID, $used, true)) { wp_trash_post($pg->ID); } }
 }
 
 function ms_setup_products(): void {

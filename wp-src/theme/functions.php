@@ -154,3 +154,27 @@ add_filter('woocommerce_add_to_cart_fragments', function ($f) {
     $f['ms_count'] = $n;
     return $f;
 });
+
+/* ---------- SEO: a clean sitemap with only the real public pages ---------- */
+add_filter('wp_sitemaps_add_provider', function ($provider, $name) { return $name === 'users' ? false : $provider; }, 10, 2);
+add_filter('wp_sitemaps_taxonomies', '__return_empty_array');
+add_filter('wp_sitemaps_post_types', function ($types) { return array_intersect_key($types, ['page' => 1, 'product' => 1]); });
+add_filter('wp_sitemaps_posts_query_args', function ($args, $post_type) {
+    if ($post_type === 'page') {
+        $allow = ['home'];
+        foreach (ms_meta() as $slug => $m) { if (($m['type'] ?? '') === 'page' && empty($m['noindex'])) { $allow[] = $slug; } }
+        $args['post_name__in'] = $allow;
+    }
+    if ($post_type === 'product') {
+        $args['meta_query'] = [['relation' => 'OR', ['key' => '_ms_redirect', 'compare' => 'NOT EXISTS'], ['key' => '_ms_redirect', 'value' => '']]];
+    }
+    return $args;
+}, 10, 2);
+// Private learning pages and author archives stay out of search results; author archives also hide the admin username.
+add_filter('wp_robots', function ($robots) {
+    if (is_singular(['courses', 'lesson', 'tutor_quiz', 'tutor_assignments']) || is_author()) { $robots['noindex'] = true; $robots['nofollow'] = true; }
+    return $robots;
+});
+add_action('template_redirect', function () {
+    if (is_author() || (isset($_GET['author']) && !is_admin())) { wp_safe_redirect(home_url('/'), 301); exit; }
+}, 1);
