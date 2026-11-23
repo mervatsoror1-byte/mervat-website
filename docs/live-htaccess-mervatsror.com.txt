@@ -1,0 +1,79 @@
+# Always use the secure address
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://mervatsror.com%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.mervatsror\.com$ [NC]
+RewriteRule ^ https://mervatsror.com%{REQUEST_URI} [L,R=301]
+<IfModule mod_headers.c>
+Header always set Strict-Transport-Security "max-age=31536000"
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header unset X-Powered-By
+Header always unset X-Powered-By
+</IfModule>
+
+# Security: no XML-RPC (password guessing), no version files
+<Files "xmlrpc.php">
+Require all denied
+</Files>
+<FilesMatch "^(readme\.html|license\.txt|wp-config-sample\.php)$">
+Require all denied
+</FilesMatch>
+
+# Old page addresses (before WordPress) -> new addresses
+RewriteRule ^about\.html$ /about/ [R=301,L]
+RewriteRule ^account\.html$ /my-account/ [R=301,L]
+RewriteRule ^articles\.html$ /articles/ [R=301,L]
+RewriteRule ^book\-ghosts\.html$ /tools/book-ghosts/ [R=301,L]
+RewriteRule ^books\.html$ /books/ [R=301,L]
+RewriteRule ^bundles\.html$ /bundles/ [R=301,L]
+RewriteRule ^cart\.html$ /cart/ [R=301,L]
+RewriteRule ^checkout\.html$ /checkout/ [R=301,L]
+RewriteRule ^contact\.html$ /contact/ [R=301,L]
+RewriteRule ^course\-ain\-sahia\.html$ /tools/course-ain-sahia/ [R=301,L]
+RewriteRule ^decoding\-energy\-stagnation\.html$ /tools/decoding-energy-stagnation/ [R=301,L]
+RewriteRule ^decoding\-light\-of\-acceptance\.html$ /tools/decoding-light-of-acceptance/ [R=301,L]
+RewriteRule ^decoding\-original\-version\.html$ /tools/decoding-original-version/ [R=301,L]
+RewriteRule ^delivery\.html$ /delivery/ [R=301,L]
+RewriteRule ^exercise\-detachment\.html$ /tools/exercise-detachment/ [R=301,L]
+RewriteRule ^failed\.html$ /checkout/ [R=301,L]
+RewriteRule ^faq\.html$ /faq/ [R=301,L]
+RewriteRule ^forgot\.html$ /my-account/lost-password/ [R=301,L]
+RewriteRule ^heart\-coherence\-breathing\.html$ /tools/heart-coherence-breathing/ [R=301,L]
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^inner\-child\-healing\.html$ /tools/inner-child-healing/ [R=301,L]
+RewriteRule ^learn\.html$ /my-account/ [R=301,L]
+RewriteRule ^library\.html$ /library/ [R=301,L]
+RewriteRule ^login\.html$ /my-account/ [R=301,L]
+RewriteRule ^lp\-attach\.html$ /lp-attach/ [R=301,L]
+RewriteRule ^lp\-serenity\.html$ /lp-serenity/ [R=301,L]
+RewriteRule ^marriage\.html$ /marriage/ [R=301,L]
+RewriteRule ^morning\-priming\.html$ /tools/morning-priming/ [R=301,L]
+RewriteRule ^peace\-affirmations\.html$ /tools/peace-affirmations/ [R=301,L]
+RewriteRule ^policies\.html$ /policies/ [R=301,L]
+RewriteRule ^privacy\.html$ /privacy/ [R=301,L]
+RewriteRule ^reader\.html$ /my-account/ [R=301,L]
+RewriteRule ^refund\.html$ /refund/ [R=301,L]
+RewriteRule ^register\.html$ /my-account/ [R=301,L]
+RewriteRule ^serenity\-cleansing\-meditation\.html$ /tools/serenity-cleansing-meditation/ [R=301,L]
+RewriteRule ^sessions\.html$ /sessions/ [R=301,L]
+RewriteRule ^success\.html$ /my-account/orders/ [R=301,L]
+RewriteRule ^terms\.html$ /terms/ [R=301,L]
+RewriteRule ^vip\.html$ /vip/ [R=301,L]
+RewriteRule ^voices\.html$ /voices/ [R=301,L]
+RewriteRule ^sitemap\.xml$ /wp-sitemap.xml [R=301,L]
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

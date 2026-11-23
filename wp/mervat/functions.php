@@ -178,3 +178,10 @@ add_filter('wp_robots', function ($robots) {
 add_action('template_redirect', function () {
     if (is_author() || (isset($_GET['author']) && !is_admin())) { wp_safe_redirect(home_url('/'), 301); exit; }
 }, 1);
+
+/* Security: do not advertise software versions. */
+remove_action('wp_head', 'wp_generator');
+add_filter('the_generator', '__return_empty_string');
+add_action('get_header', function () { remove_action('wp_head', 'wc_generator_tag'); });
+add_filter('get_the_generator_html', '__return_empty_string');
+add_filter('get_the_generator_xhtml', '__return_empty_string');
