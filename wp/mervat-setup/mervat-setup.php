@@ -658,3 +658,39 @@ add_action('plugins_loaded', function () {
         eval('class WCS_Manual_Renewal_Manager { public static function is_manual_renewal_enabled() { return true; } public static function is_manual_renewal_required() { return false; } }');
     }
 }, 1);
+
+/* Arabic wording for the subscription plugin's checkout texts. */
+add_filter('gettext', function ($t, $text, $domain) {
+    if ($domain !== 'flexible-subscriptions' && $domain !== 'woocommerce-paypal-payments') { return $t; }
+    static $ar = [
+        'Sign up now' => 'اشترك الآن', 'Total due today' => 'المطلوب اليوم', 'Details' => 'التفاصيل',
+        'Recurring total every month' => 'يتجدد كل شهر', 'Recurring total every year' => 'يتجدد كل سنة',
+        'Recurring total' => 'قيمة التجديد', 'Recurring totals' => 'قيمة التجديد', 'every month' => 'كل شهر', 'every year' => 'كل سنة',
+        'month' => 'شهر', 'months' => 'أشهر', 'year' => 'سنة', 'years' => 'سنوات', 'Starting: %s' => 'يبدأ: %s', 'Starting' => 'يبدأ',
+        'Pay via PayPal.' => 'ادفع عبر PayPal.', 'Pay via PayPal' => 'ادفع عبر PayPal',
+    ];
+    return $ar[$text] ?? $t;
+}, 20, 3);
+add_filter('ngettext', function ($t, $single, $plural, $n, $domain) {
+    if ($domain !== 'flexible-subscriptions') { return $t; }
+    $map = ['every %s month' => 'كل %s شهر', 'every %s months' => 'كل %s أشهر', 'every %s year' => 'كل %s سنة', 'every %s years' => 'كل %s سنوات',
+            'every month' => 'كل شهر', 'every %d months' => 'كل %d أشهر', 'every year' => 'كل سنة', 'every %d years' => 'كل %d سنوات'];
+    $key = $n == 1 ? $single : $plural;
+    return $map[$key] ?? $t;
+}, 20, 5);
+add_filter('gettext', function ($t, $text, $domain) {
+    if ($domain !== 'flexible-subscriptions') { return $t; }
+    $m = ['%1$s every %2$s' => '%1$s كل %2$s', 'From %1$s every %2$s' => 'من %1$s كل %2$s', 'Recurring total every %s' => 'يتجدد كل %s',
+          'Recurring total (every %s)' => 'قيمة التجديد (كل %s)', '%s due today' => '%s المطلوب اليوم', 'day' => 'يوم', 'week' => 'أسبوع'];
+    return $m[$text] ?? $t;
+}, 21, 3);
+add_filter('ngettext', function ($t, $single, $plural, $n, $domain) {
+    if ($domain !== 'flexible-subscriptions') { return $t; }
+    $m = ['%d month' => ['%d شهر', '%d أشهر'], '%d year' => ['%d سنة', '%d سنوات'], '%d week' => ['%d أسبوع', '%d أسابيع'], '%d day' => ['%d يوم', '%d أيام']];
+    return isset($m[$single]) ? ($n == 1 ? $m[$single][0] : $m[$single][1]) : $t;
+}, 21, 5);
+add_filter('ngettext_with_context', function ($t, $single, $plural, $n, $ctx, $domain) {
+    if ($domain !== 'flexible-subscriptions') { return $t; }
+    $m = ['month' => ['شهر', '%s أشهر'], 'year' => ['سنة', '%s سنوات'], 'week' => ['أسبوع', '%s أسابيع'], 'day' => ['يوم', '%s أيام']];
+    return isset($m[$single]) ? ($n == 1 ? $m[$single][0] : $m[$single][1]) : $t;
+}, 21, 6);
