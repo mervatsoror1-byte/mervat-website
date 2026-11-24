@@ -34,7 +34,7 @@ if ($action === 'submit' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($origin !== '' && strtolower((string)parse_url($origin, PHP_URL_HOST)) !== strtolower(explode(':', $host)[0])) { fail(403, 'origin'); }
 
     $pid = (string)($_POST['pid'] ?? '');
-    if (!isset(products()[$pid])) { fail(400, 'product'); }
+    if ($pid !== 'general' && !isset(products()[$pid])) { fail(400, 'product'); }
     if (($_POST['consent'] ?? '') !== '1') { fail(400, 'consent'); }
     $name = clean_text((string)($_POST['name'] ?? ''), 40);
     if ($name === '') { $name = 'عميلة'; }
@@ -64,7 +64,7 @@ if ($action === 'submit' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$saved) { @unlink(data_dir() . '/voices/' . $file); fail(503, 'full'); }
 
     if (is_file(MS_WP_LOAD)) { if (!defined('WP_USE_THEMES')) { define('WP_USE_THEMES', false); } require_once MS_WP_LOAD; }
-    $title = products()[$pid];
+    $title = $pid === 'general' ? 'تجربة عامة مع د. مرفت' : products()[$pid];
     ms_mail(NOTIFY_EMAIL, 'تسجيل صوتي جديد ينتظر موافقتك', "وصل تسجيل صوتي جديد من «{$name}» عن «{$title}».\nللاستماع والموافقة أو الحذف: https://{$host}/admin/voices.php\n", '', 'موقع د. مرفت سرور');
     send_json(['ok' => true]);
 }

@@ -77,6 +77,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: voices.php?done=edit'); exit;
         }
         $err = 'اكتبي الاسم واختاري التمرين أو البرنامج.';
+    } elseif (in_array($do, ['rapprove', 'rhide', 'rdelete'], true) && ms_voice_admin()) {
+        // written reviews
+        $id = preg_replace('/[^a-f0-9]/', '', (string)($_POST['id'] ?? ''));
+        $path = data_dir() . '/reviews.json';
+        $fh = fopen($path, 'c+'); flock($fh, LOCK_EX);
+        $rl = json_decode((string)stream_get_contents($fh), true) ?: [];
+        foreach ($rl as $i => $r) {
+            if (($r['id'] ?? '') !== $id) continue;
+            if ($do === 'rdelete') { unset($rl[$i]); }
+            else { $rl[$i]['status'] = $do === 'rapprove' ? 'approved' : 'pending'; if ($do === 'rapprove') { $rl[$i]['approved_at'] = gmdate('c'); } }
+        }
+        ftruncate($fh, 0); rewind($fh); fwrite($fh, json_encode(array_values($rl), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        flock($fh, LOCK_UN); fclose($fh); @chmod($path, 0600);
+        header('Location: voices.php?done=' . $do . '#written'); exit;
     } elseif (in_array($do, ['approve', 'hide', 'delete'], true) && ms_voice_admin()) {
         $id = preg_replace('/[^a-f0-9]/', '', (string)($_POST['id'] ?? ''));
         $gone = null;
@@ -95,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $admin = ms_voice_admin();
 $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
-$doneMsg = ['edit' => 'تم حفظ التعديل.', 'upload' => 'تم رفع التسجيل ونشره في الموقع.', 'approve' => 'نُشر التسجيل في الموقع.', 'hide' => 'أُخفي التسجيل من الموقع.', 'delete' => 'حُذف التسجيل نهائياً.'][$_GET['done'] ?? ''] ?? '';
+$doneMsg = ['rapprove' => 'نُشر الرأي المكتوب في الموقع.', 'rhide' => 'أُخفي الرأي المكتوب من الموقع.', 'rdelete' => 'حُذف الرأي المكتوب نهائياً.', 'edit' => 'تم حفظ التعديل.', 'upload' => 'تم رفع التسجيل ونشره في الموقع.', 'approve' => 'نُشر التسجيل في الموقع.', 'hide' => 'أُخفي التسجيل من الموقع.', 'delete' => 'حُذف التسجيل نهائياً.'][$_GET['done'] ?? ''] ?? '';
 $list = $admin ? read_index() : [];
 usort($list, fn($a, $b) => strcmp($b['created_at'], $a['created_at']));
 $pending = array_filter($list, fn($v) => $v['status'] === 'pending');
@@ -122,7 +136,7 @@ function pid_options($sel, $h) {
 }
 ?><!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
-<title>الآراء الصوتية · لوحة مرفت</title>
+<title>آراء العملاء · لوحة مرفت</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{--blue:#1F3F7C;--deep:#1A3670;--gold:#C5A059;--cream:#FBF8EE;--line:#E8DFC6;--muted:#5A6582}
@@ -141,7 +155,7 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
 .ok{background:#eef7ee;border:1px solid #b9dcb9;padding:10px 14px;border-radius:12px}.err{background:#fbeeee;border:1px solid #e3b8b8;padding:10px 14px;border-radius:12px}
 .empty{color:var(--muted)}summary{cursor:pointer;color:var(--blue);font-weight:700}.ed{display:grid;gap:8px;margin-top:10px}.pw{position:relative}.pw input{padding-inline-end:48px}.eye{position:absolute;inset-inline-end:6px;top:50%;transform:translateY(-50%);background:none;padding:6px 8px;font-size:1.1rem;line-height:1;color:var(--muted)}a{color:var(--blue)}select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}.ck{display:flex;gap:8px;align-items:center;font-weight:700}.up label{margin-top:0}.count{background:var(--gold);color:var(--deep);border-radius:999px;padding:0 10px;font-size:.85rem;margin-inline-start:6px}
 </style></head><body>
-<header><div class="w"><h1>الآراء الصوتية</h1><?php if ($admin): ?><form method="post"><input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><button class="out" name="do" value="logout">خروج</button></form><?php endif; ?></div></header>
+<header><div class="w"><h1>آراء العملاء</h1><?php if ($admin): ?><form method="post"><input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><button class="out" name="do" value="logout">خروج</button></form><?php endif; ?></div></header>
 <main><div class="w">
 <?php if ($msg): ?><p class="ok"><?= $h($msg) ?></p><?php endif; ?>
 <?php if ($doneMsg): ?><p class="ok"><?= $h($doneMsg) ?></p><?php endif; ?>
@@ -173,5 +187,28 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
   <h2>منشورة في الموقع<span class="count"><?= count($approved) ?></span></h2>
   <?php if (!$approved): ?><p class="empty">لم يُنشر أي تسجيل بعد.</p><?php endif; ?>
   <?php foreach ($approved as $v) echo card($v, $h, $fmtLen, $fmtDate, [['hide', 'إخفاء من الموقع', 'ghost'], ['delete', 'احذفي نهائياً', 'red']]); ?>
+  <?php
+    $rpath = data_dir() . '/reviews.json';
+    $rl = is_file($rpath) ? (json_decode((string)file_get_contents($rpath), true) ?: []) : [];
+    usort($rl, fn($a, $b) => strcmp($b['created_at'], $a['created_at']));
+    $rcard = function ($r, $actions) use ($h, $fmtDate) {
+        $about = $r['pid'] === 'general' ? 'تجربة عامة' : (products()[$r['pid']] ?? $r['pid']);
+        $b = '';
+        foreach ($actions as [$do, $label, $cls]) {
+            $c = $do === 'rdelete' ? ' onsubmit="return confirm(\'حذف الرأي نهائياً؟\')"' : '';
+            $b .= '<form method="post"' . $c . '><input type="hidden" name="csrf" value="' . $h($_SESSION['csrf']) . '"><input type="hidden" name="id" value="' . $h($r['id']) . '"><button class="' . $cls . '" name="do" value="' . $do . '">' . $label . '</button></form>';
+        }
+        return '<article class="v"><div class="vt"><b>' . $h($r['name']) . '</b><span>' . $h($about) . ' · <span style="color:#C5A059">' . str_repeat('★', (int)$r['stars']) . '</span> · ' . $fmtDate($r['created_at']) . ($r['email'] ? ' · ' . $h($r['email']) : '') . '</span></div>'
+             . '<p style="margin:0;white-space:pre-line">' . $h($r['text']) . '</p><div class="va">' . $b . '</div></article>';
+    };
+    $rp = array_filter($rl, fn($r) => $r['status'] === 'pending'); $ra = array_filter($rl, fn($r) => $r['status'] === 'approved');
+  ?>
+  <h2 id="written" style="margin-top:44px;border-top:1px solid var(--line);padding-top:24px">آراء مكتوبة في انتظار موافقتك<span class="count"><?= count($rp) ?></span></h2>
+  <?php if (!$rp): ?><p class="empty">لا توجد آراء مكتوبة جديدة.</p><?php endif; ?>
+  <?php foreach ($rp as $r) echo $rcard($r, [['rapprove', 'انشري في الموقع', 'gold'], ['rdelete', 'احذفي', 'red']]); ?>
+  <h2>آراء مكتوبة منشورة<span class="count"><?= count($ra) ?></span></h2>
+  <?php if (!$ra): ?><p class="empty">لم يُنشر أي رأي مكتوب بعد.</p><?php endif; ?>
+  <?php foreach ($ra as $r) echo $rcard($r, [['rhide', 'إخفاء من الموقع', 'ghost'], ['rdelete', 'احذفي نهائياً', 'red']]); ?>
+
 <?php endif; ?>
 </div></main><script src="voices.js"></script></body></html>

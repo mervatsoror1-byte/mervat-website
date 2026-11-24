@@ -64,6 +64,7 @@ RewriteRule ^terms\.html$ /terms/ [R=301,L]
 RewriteRule ^vip\.html$ /vip/ [R=301,L]
 RewriteRule ^voices\.html$ /voices/ [R=301,L]
 RewriteRule ^gift\.html$ /gift/ [R=301,L]
+RewriteRule ^review\.html$ /review/ [R=301,L]
 RewriteRule ^sitemap\.xml$ /wp-sitemap.xml [R=301,L]
 
 # BEGIN WordPress

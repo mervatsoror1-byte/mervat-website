@@ -37,7 +37,7 @@ def product(p):
     _written = [r for r in B.REVIEWS if p["id"] in r[2].split("|")]
     _reel = ('<div class="reel reel-sm">' + "".join(B.review_card(r) for r in _written) + '</div>') if _written else ""
     if B.VOICE_REVIEWS:
-        voices_sec = f'<div class="pd3-sec" id="voices"><h2>قالوا عن {_who}</h2>{_reel}<div class="vr-list" data-vr="{p["id"]}"></div><div class="vr-rec" data-vrrec="{p["id"]}"></div></div>'
+        voices_sec = f'<div class="pd3-sec" id="voices"><h2>قالوا عن {_who}</h2>{_reel}<div class="vr-list" data-vr="{p["id"]}"></div><div class="rv-list" data-rv="{p["id"]}"></div><div class="vr-rec" data-vrrec="{p["id"]}"></div><a class="rw-link" href="review.html?about={p["id"]}">أو اكتبي رأيك كتابةً ←</a></div>'
     else:
         import urllib.parse as _u
         _wa = "https://wa.me/201095292748?text=" + _u.quote(f"مرحباً د. مرفت، أريد مشاركة تجربتي بصوتي مع «{p['title']}». سأرسلها الآن رسالة صوتية.")

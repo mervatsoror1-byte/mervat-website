@@ -761,6 +761,7 @@ function voiceCard(v, n){
     <audio preload="none" src="${vSrc(v.id)}"></audio>
   </article>`;
 }
+window.renderVoices = (...a) => renderVoices(...a);
 async function renderVoices(){
   const all = await vFetch();
   $$("[data-vr]").forEach(el => {
@@ -1102,4 +1103,52 @@ document.addEventListener("click", e => {
     });
   }
   if (document.readyState === "complete") setTimeout(setup, 60); else window.addEventListener("load", () => setTimeout(setup, 60));
+})();
+
+/* ---------- written reviews: show approved ones; «شاركينا تجربتك» form ---------- */
+(function(){
+  const RAPI = (window.MS_WP ? MS_WP.home : "") + "/api/review.php";
+  const holders = document.querySelectorAll("[data-rv]");
+  const star = n => "★".repeat(n) + "☆".repeat(5 - n);
+  const esc = t => String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const titles = {}; ((window.SITE_DATA || {}).products || []).forEach(x => titles[x.id] = x.title);
+  const toast = window.toast || (m => alert(m));
+  const nameOf = id => id === "general" ? "" : (titles[id] || "");
+  if (holders.length){
+    fetch(RAPI + "?action=list", {cache: "no-store"}).then(r => r.ok ? r.json() : {reviews: []}).then(j => {
+      const all = j.reviews || [];
+      holders.forEach(el => {
+        const id = el.dataset.rv, list = id === "all" ? all : all.filter(r => r.pid === id);
+        el.innerHTML = list.map(r => `<article class="rv-card"><div class="rv-stars" aria-label="${r.stars} من ٥">${star(r.stars)}</div><p>${esc(r.text)}</p><b>${esc(r.name)}${nameOf(r.pid) ? `<small> · ${esc(nameOf(r.pid))}</small>` : ""}</b></article>`).join("")
+          || (id === "all" ? `<p class="vr-empty">تُنشر الآراء المكتوبة هنا بعد مراجعتها.</p>` : "");
+      });
+    }).catch(() => {});
+  }
+  const app = document.querySelector("[data-review-app]"); if (!app) return;
+  const sel = app.querySelector("#rwAbout"), rec = app.querySelector("[data-vrrec]");
+  const about = new URLSearchParams(location.search).get("about");
+  if (about && sel.querySelector(`option[value="${CSS.escape(about)}"]`)) sel.value = about;
+  const syncRec = () => { rec.dataset.vrrec = sel.value; if (!rec.dataset.state || rec.dataset.state === "idle") { rec.dataset.state = "idle"; if (window.renderVoices) window.renderVoices(); } };
+  sel.addEventListener("change", syncRec); syncRec();
+  let stars = 5;
+  const paint = () => app.querySelectorAll(".rw-star").forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.star <= stars)));
+  app.addEventListener("click", e => {
+    const s = e.target.closest(".rw-star"); if (s){ stars = +s.dataset.star; paint(); return; }
+    const b = e.target.closest("[data-rw-send]"); if (!b) return;
+    const text = app.querySelector("#rwText").value.trim();
+    if (text.length < 10){ toast("اكتبي تجربتك في سطر أو أكثر."); return; }
+    if (!app.querySelector("#rwOk").checked){ toast("ضعي علامة الموافقة على النشر أولاً."); return; }
+    const byCity = app.querySelector("input[name=rwN]:checked").value === "city";
+    const name = byCity ? "عميلة من " + (app.querySelector("#rwCity").value.trim() || "مصر") : (app.querySelector("#rwFirst").value.trim() || "عميلة");
+    b.disabled = true; b.textContent = "جارٍ الإرسال…";
+    fetch(RAPI + "?action=submit", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({pid: sel.value, stars, text, name,
+      email: app.querySelector("#rwEmail").value.trim(), consent: 1, website: (app.querySelector("[name=website]") || {}).value || ""})})
+      .then(r => r.json().then(j => ({ok: r.ok && j.ok, j})))
+      .then(({ok, j}) => {
+        if (ok){ b.hidden = true; app.querySelector(".rw-done").hidden = false; app.querySelector("#rwText").value = ""; return; }
+        b.disabled = false; b.textContent = "أرسلي رأيي";
+        toast(j.error === "limit" ? "أرسلتِ عدة آراء خلال وقت قصير. جرّبي بعد ساعة." : "تعذّر الإرسال. حاولي مرة أخرى.");
+      })
+      .catch(() => { b.disabled = false; b.textContent = "أرسلي رأيي"; toast("تعذّر الإرسال. تأكدي من الاتصال بالإنترنت."); });
+  });
 })();
