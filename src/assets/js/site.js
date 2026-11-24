@@ -1066,3 +1066,36 @@ document.addEventListener("click", e => {
   });
   if (st.step && st.step > 0 && st.step < last && st.email) show(st.step, false);
 })();
+
+/* ---------- motion: reveal sections while scrolling; main buttons pop in and keep breathing ---------- */
+(function(){
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const SEL = [".vp-head", ".vp-feat", ".vp-plan", ".vp-faq details", ".sc", ".tile", ".ss-card", ".ss-mz", ".mz-pains li", ".mz-steps li", ".mz-alone",
+    ".mz-chips", ".gift", ".bundle", ".vr-pill", ".split-body", ".portal-img", ".round-ph", ".perk", ".mine-item", ".c-item",
+    ".gf-card", ".gf-img", ".gf-copy", ".mz-home-in", ".mz-home-img", ".jr-copy", ".head", ".card", ".timeline li", ".gallery figure", ".pd3-sec", ".lp-sec"].join(",");
+  const fold = window.innerHeight * 0.92;
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target; el.classList.add("in"); io.unobserve(el);
+    el.querySelectorAll(".btn-safia,.btn-gold").forEach(popBtn);
+  }), {rootMargin: "0px 0px -8% 0px", threshold: 0.08});
+  function popBtn(b){
+    if (b.dataset.popped) return; b.dataset.popped = 1;
+    b.classList.add("in-pop");
+    b.addEventListener("animationend", function f(ev){ if (ev.animationName !== "msPop") return; b.removeEventListener("animationend", f); b.classList.remove("in-pop"); if (b.classList.contains("btn-safia")) b.classList.add("alive"); });
+  }
+  function setup(root){
+    root.querySelectorAll(SEL).forEach(el => {
+      if (el.classList.contains("rv") || el.closest(".rv") || el.closest(".site-header,.mega,.popup,.tabbar,.nour,.chat")) return;
+      if (el.getBoundingClientRect().top < fold) { el.querySelectorAll(".btn-safia").forEach(b => b.classList.add("alive")); return; }
+      const sib = el.parentElement ? [...el.parentElement.children].filter(c => c.matches(SEL)) : [];
+      const i = Math.max(0, sib.indexOf(el)); el.style.setProperty("--rv-d", Math.min(i, 5) * 0.09 + "s");
+      el.classList.add("rv"); io.observe(el);
+    });
+    // buttons that are not inside a revealed block
+    const bio = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ popBtn(e.target); bio.unobserve(e.target); } }), {threshold: 0.4});
+    root.querySelectorAll(".btn-safia").forEach(b => { if (!b.closest(".rv")) { if (b.getBoundingClientRect().top < fold) b.classList.add("alive"); else bio.observe(b); } });
+  }
+  const go = () => setup(document);
+  if (document.readyState === "complete") setTimeout(go, 60); else window.addEventListener("load", () => setTimeout(go, 60));
+})();
