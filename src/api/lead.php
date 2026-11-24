@@ -25,9 +25,9 @@ foreach ($list as $l) { if (($l['email'] ?? '') === $lead['email']) { $new = fal
 if ($new) { $list[] = $lead; ftruncate($fh, 0); rewind($fh); fwrite($fh, json_encode($list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT)); }
 flock($fh, LOCK_UN); fclose($fh); @chmod($path, 0600);
 
+if (is_file(MS_WP_LOAD)) { if (!defined('WP_USE_THEMES')) { define('WP_USE_THEMES', false); } require_once MS_WP_LOAD; }
 if ($new) {
     $body = "تسجيل جديد في الموقع\n\nالاسم: {$lead['name']}\nالبريد: {$lead['email']}\nيريد الهدية وجديد د. مرفت على بريده: " . ($lead['news'] ? 'نعم' : 'لا') . "\nمن صفحة: {$lead['source']}\n\nإجمالي المسجلين حتى الآن: " . count($list) . "\n";
-    @mail(NOTIFY_EMAIL, '=?UTF-8?B?' . base64_encode('تسجيل جديد: ' . $lead['name']) . '?=', $body,
-          "Content-Type: text/plain; charset=UTF-8\r\nFrom: " . NOTIFY_EMAIL . "\r\nReply-To: {$lead['email']}");
+    ms_mail(NOTIFY_EMAIL, 'تسجيل جديد: ' . $lead['name'], $body, $lead['email'], 'موقع د. مرفت سرور');
 }
 send_json(['ok' => true]);

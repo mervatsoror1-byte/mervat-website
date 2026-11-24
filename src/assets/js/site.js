@@ -1024,3 +1024,45 @@ document.addEventListener("click", e => {
   S.region = S.region === "eg" ? "intl" : "eg"; save(); paintAll(); curMini();
 }, true);
 })();
+
+/* ---------- gift: «أسئلة كشف الهوية» (steps, autosave, send) ---------- */
+(function(){
+  const app = document.querySelector("[data-gift-app]"); if (!app) return;
+  const K = "ms_gift_v1", steps = [...app.querySelectorAll(".gf-step")], last = steps.length - 1;
+  let st = {}; try { st = JSON.parse(localStorage.getItem(K) || "{}"); } catch(e) {}
+  st.answers = st.answers || {};
+  const save = () => { try { localStorage.setItem(K, JSON.stringify(st)); } catch(e) {} };
+  const nameEl = app.querySelector("#gName"), mailEl = app.querySelector("#gEmail"), ok = app.querySelector("#gConsent"), news = app.querySelector("#gNews"), msg = app.querySelector(".alert");
+  if (st.name) nameEl.value = st.name; if (st.email) mailEl.value = st.email; if (st.consent) ok.checked = true;
+  app.querySelectorAll("textarea[data-q]").forEach(t => { t.value = st.answers[t.dataset.q] || ""; t.addEventListener("input", () => { st.answers[t.dataset.q] = t.value; save(); }); });
+  function show(i, scroll){
+    steps.forEach((s, k) => s.hidden = k !== i); st.step = i; save();
+    if (scroll !== false) app.closest("section").scrollIntoView({behavior: "smooth", block: "start"});
+  }
+  const err = t => { msg.className = "alert err"; msg.textContent = t; msg.hidden = false; };
+  app.addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    const cur = steps.findIndex(s => !s.hidden);
+    if (b.hasAttribute("data-gf-start")){
+      const n = nameEl.value.trim(), m = mailEl.value.trim();
+      if (!n){ err("اكتب اسمك."); return; }
+      if (!/^\S+@\S+\.\S+$/.test(m)){ err("اكتب بريدك الإلكتروني بشكل صحيح، فعليه يصلك التحليل."); return; }
+      if (!ok.checked){ err("يرجى الموافقة على اطلاع د. مرفت على إجاباتك لإعداد التحليل."); return; }
+      msg.hidden = true; st.name = n; st.email = m; st.consent = true; st.news = news.checked; show(1); return;
+    }
+    if (b.hasAttribute("data-gf-next")) { show(Math.min(cur + 1, last - 1)); return; }
+    if (b.hasAttribute("data-gf-back")) { show(Math.max(cur - 1, 0)); return; }
+    if (b.hasAttribute("data-gf-send")){
+      const filled = Object.values(st.answers).filter(v => (v || "").trim()).length;
+      if (!filled){ toast("اكتب إجابة سؤال واحد على الأقل، فعلى إجاباتك يُبنى تحليلك."); return; }
+      if (filled < 6 && !confirm("أجبت عن " + String(filled).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]) + " أسئلة فقط. كلما أجبت أكثر كان تحليلك أدق. هل تريد الإرسال الآن؟")) return;
+      b.disabled = true; const old = b.innerHTML; b.textContent = "جارٍ الإرسال…";
+      fetch("/api/gift.php", {method: "POST", headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name: st.name, email: st.email, consent: 1, news: st.news ? 1 : 0, answers: st.answers, website: (app.querySelector("[name=website]") || {}).value || ""})})
+        .then(r => { if (!r.ok) throw 0; return r.json(); })
+        .then(() => { try { localStorage.removeItem(K); } catch(e) {} st = {answers: {}}; show(last); })
+        .catch(() => { b.disabled = false; b.innerHTML = old; toast("تعذّر الإرسال الآن. إجاباتك محفوظة، حاول بعد قليل أو راسلنا على واتساب."); });
+    }
+  });
+  if (st.step && st.step > 0 && st.step < last && st.email) show(st.step, false);
+})();

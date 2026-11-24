@@ -242,7 +242,7 @@ def mega():
       {col("Decoding وتحرّر", ex(("decode","free")))}
       {col("تشافٍ وسكينة و Priming", ex(("heal","breath","priming")))}
       <div class="mcol mfeat"><a class="mcard" href="library.html"><img src="assets/art/decode.webp" alt="" loading="lazy"><span><b>كل الأدوات</b><small>تصفّح الأدوات كاملة</small></span></a>
-        <a class="mlink" href="book-ghosts.html">{ic("book","icon icon-sm")}كتاب: عندما تولد في عائلة من الأشباح</a><a class="mlink" href="register.html">{ic("gift","icon icon-sm")}ابدأ بهدية مجانية</a></div>
+        <a class="mlink" href="book-ghosts.html">{ic("book","icon icon-sm")}كتاب: عندما تولد في عائلة من الأشباح</a><a class="mlink" href="gift.html">{ic("gift","icon icon-sm")}ابدأ بهدية مجانية</a></div>
     </div></div>'''
 
 
@@ -633,6 +633,7 @@ def build():
 
     # ---------- pages rebuilt on the reference layouts (overwrite earlier versions)
     import pages_v7; pages_v7.init(globals()); pages_v7.build_v7()
+    import gift_page; gift_page.build(globals())
 
     # ---------- seo files
     urls = "".join(f"<url><loc>{SITE_URL}/{'' if f=='index.html' else f}</loc></url>" for f, ni in dict(PAGES).items() if not ni)
@@ -777,7 +778,7 @@ def home_body():
   <div class="split-body"><span class="eyebrow">الكتاب</span><h2>عندما تولد في عائلة من الأشباح</h2><p class="lead">{BY["book-ghosts"]["short"]}</p>
     {book_feats()}<div class="buy">{price("book-ghosts")}<button class="btn btn-plum" type="button" data-buy="book-ghosts"><span>اشترِ الكتاب</span></button><a class="btn btn-line" href="reader.html">اقرأ الفصل الأول مجاناً</a></div></div></div></section>
 <section class="journey" aria-label="كل شروق فرصة لتولد من جديد"><img src="assets/img/journey.webp" alt="د. مرفت سرور على شرفة عند الشروق" width="1914" height="822" loading="lazy">
-  <div class="jr-copy"><h2>كل شروق <span class="gold">فرصة</span> لتولد من جديد</h2><p>أنشئ حسابك المجاني واستلم هديتك الأولى فوراً</p></div><div class="jr-cta"><a class="btn btn-gold" href="register.html">{ic("gift")}ابدأ الآن</a></div></section>'''
+  <div class="jr-copy"><h2>كل شروق <span class="gold">فرصة</span> لتولد من جديد</h2><p>هديتك المجانية: أسئلة كشف الهوية، وتحليل شخصي تكتبه د. مرفت بنفسها</p></div><div class="jr-cta"><a class="btn btn-gold" href="gift.html">{ic("gift")}ابدأ بالهدية</a></div></section>'''
 
 if __name__ == "__main__":
     build()

@@ -132,6 +132,22 @@ function start_admin_session(): void {
     session_start();
 }
 
-function is_admin(): bool {
+function ms_voice_admin(): bool {
     return !empty($_SESSION['ms_admin']) && ($_SESSION['ms_admin_until'] ?? 0) > time();
+}
+
+/* Path of WordPress's loader; callers that send mail require it at file scope so WordPress loads correctly. */
+const MS_WP_LOAD = __DIR__ . '/../wp-load.php';
+
+/** Send a plain-text email. Uses WordPress's mailer when the site runs WordPress (it is delivered reliably), else PHP mail(). */
+function ms_mail(string $to, string $subject, string $body, string $reply_to = '', string $from_name = 'د. مرفت سرور'): bool {
+    if (function_exists('wp_mail')) {   // WordPress is loaded at file scope by the caller (see MS_WP_LOAD)
+        $h = ['Content-Type: text/plain; charset=UTF-8'];
+        // notices to info@ keep WordPress's own sender (wordpress@…), which is delivered to the inbox; mails to customers come from info@
+        if (strcasecmp($to, NOTIFY_EMAIL) !== 0) { $h[] = 'From: ' . $from_name . ' <' . NOTIFY_EMAIL . '>'; }
+        if ($reply_to !== '') { $h[] = 'Reply-To: ' . $reply_to; }
+        return (bool)wp_mail($to, $subject, $body, $h);
+    }
+    $enc = fn($s) => '=?UTF-8?B?' . base64_encode($s) . '?=';
+    return @mail($to, $enc($subject), $body, "Content-Type: text/plain; charset=UTF-8\r\nFrom: " . $enc($from_name) . ' <' . NOTIFY_EMAIL . '>' . ($reply_to !== '' ? "\r\nReply-To: {$reply_to}" : ''));
 }

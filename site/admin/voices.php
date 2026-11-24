@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else { rate_ok('login', 5, 900); $err = 'كلمة السر غير صحيحة.'; }
     } elseif ($do === 'logout') {
         $_SESSION = []; session_destroy(); header('Location: voices.php'); exit;
-    } elseif ($do === 'upload' && is_admin()) {
+    } elseif ($do === 'upload' && ms_voice_admin()) {
         // Mervat adds a review she received elsewhere (e.g. WhatsApp) after editing it; it is published right away.
         $pid = (string)($_POST['pid'] ?? '');
         $name = clean_text((string)($_POST['name'] ?? ''), 40);
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: voices.php?done=upload'); exit;
             }
         }
-    } elseif ($do === 'edit' && is_admin()) {
+    } elseif ($do === 'edit' && ms_voice_admin()) {
         $id = preg_replace('/[^a-f0-9]/', '', (string)($_POST['id'] ?? ''));
         $pid = (string)($_POST['pid'] ?? '');
         $name = clean_text((string)($_POST['name'] ?? ''), 40);
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: voices.php?done=edit'); exit;
         }
         $err = 'اكتبي الاسم واختاري التمرين أو البرنامج.';
-    } elseif (in_array($do, ['approve', 'hide', 'delete'], true) && is_admin()) {
+    } elseif (in_array($do, ['approve', 'hide', 'delete'], true) && ms_voice_admin()) {
         $id = preg_replace('/[^a-f0-9]/', '', (string)($_POST['id'] ?? ''));
         $gone = null;
         with_index(function ($list) use ($id, $do, &$gone) {
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$admin = is_admin();
+$admin = ms_voice_admin();
 $h = fn($s) => htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
 $doneMsg = ['edit' => 'تم حفظ التعديل.', 'upload' => 'تم رفع التسجيل ونشره في الموقع.', 'approve' => 'نُشر التسجيل في الموقع.', 'hide' => 'أُخفي التسجيل من الموقع.', 'delete' => 'حُذف التسجيل نهائياً.'][$_GET['done'] ?? ''] ?? '';
 $list = $admin ? read_index() : [];

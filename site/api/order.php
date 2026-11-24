@@ -48,12 +48,12 @@ $list[] = $order;
 ftruncate($fh, 0); rewind($fh); fwrite($fh, json_encode($list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 flock($fh, LOCK_UN); fclose($fh); @chmod($path, 0600);
 
+if (is_file(MS_WP_LOAD)) { if (!defined('WP_USE_THEMES')) { define('WP_USE_THEMES', false); } require_once MS_WP_LOAD; }
 $lines = implode("\n", array_map(fn($i) => "• {$i['title']}" . ($i['when'] ? " ({$i['when']})" : '') . " — \${$i['us']}", $items));
 $body = "طلب جديد مدفوع عبر PayPal\n\nرقم الطلب: {$order['no']}\nرقم عملية PayPal: {$paypalId}\n\n{$lines}\n\nالمبلغ حسب أسعار الموقع: \${$order['expected_usd']}\n"
       . "المبلغ الذي أبلغ عنه المتصفح: {$order['paid_reported']}\n\n"
       . "العميلة: {$order['name']}\nبريدها في الموقع: {$order['email']}\nبريدها في PayPal: {$order['payer_email']}\n\n"
       . "مهم: تأكدي من وصول المبلغ كاملاً في حساب PayPal (بنفس رقم العملية) قبل تفعيل الطلب.\n";
-@mail(NOTIFY_EMAIL, '=?UTF-8?B?' . base64_encode("طلب PayPal جديد {$order['no']}") . '?=', $body,
-      "Content-Type: text/plain; charset=UTF-8\r\nFrom: " . NOTIFY_EMAIL . ($order['email'] ? "\r\nReply-To: {$order['email']}" : ''));
+ms_mail(NOTIFY_EMAIL, "طلب PayPal جديد {$order['no']}", $body, $order['email'], 'موقع د. مرفت سرور');
 
 send_json(['ok' => true, 'no' => $order['no']]);

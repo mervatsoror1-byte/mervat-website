@@ -18,7 +18,7 @@ if ($action === 'audio' && $_SERVER['REQUEST_METHOD'] === 'GET') {
     $id = preg_replace('/[^a-f0-9]/', '', (string)($_GET['id'] ?? ''));
     if (strlen($id) !== 24) { fail(404, 'missing'); }
     $admin = false;
-    if (isset($_COOKIE['ms_admin'])) { start_admin_session(); $admin = is_admin(); session_write_close(); }
+    if (isset($_COOKIE['ms_admin'])) { start_admin_session(); $admin = ms_voice_admin(); session_write_close(); }
     foreach (read_index() as $v) {
         if ($v['id'] === $id && (($v['status'] ?? '') === 'approved' || $admin)) { stream_audio($v); }
     }
@@ -63,10 +63,9 @@ if ($action === 'submit' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     });
     if (!$saved) { @unlink(data_dir() . '/voices/' . $file); fail(503, 'full'); }
 
+    if (is_file(MS_WP_LOAD)) { if (!defined('WP_USE_THEMES')) { define('WP_USE_THEMES', false); } require_once MS_WP_LOAD; }
     $title = products()[$pid];
-    @mail(NOTIFY_EMAIL, '=?UTF-8?B?' . base64_encode('تسجيل صوتي جديد ينتظر موافقتك') . '?=',
-          "وصل تسجيل صوتي جديد من «{$name}» عن «{$title}».\nللاستماع والموافقة أو الحذف: https://{$host}/admin/voices.php\n",
-          "Content-Type: text/plain; charset=UTF-8\r\nFrom: " . NOTIFY_EMAIL);
+    ms_mail(NOTIFY_EMAIL, 'تسجيل صوتي جديد ينتظر موافقتك', "وصل تسجيل صوتي جديد من «{$name}» عن «{$title}».\nللاستماع والموافقة أو الحذف: https://{$host}/admin/voices.php\n", '', 'موقع د. مرفت سرور');
     send_json(['ok' => true]);
 }
 
