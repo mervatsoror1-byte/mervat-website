@@ -10,7 +10,7 @@ const PAGES = ['/', '/library/', '/vip/', '/sessions/', '/marriage/', '/gift/', 
   '/tools/serenity-cleansing-meditation/', '/tools/course-ain-sahia/', '/tools/book-ghosts/', '/lp-attach/', '/lp-serenity/'];
 const IGNORE = /googletagmanager|google-analytics|mediadelivery|b-cdn|facebook|paypal|ERR_TUNNEL|ERR_BLOCKED|net::ERR_ABORTED/i;
 const problems = [], notes = [];
-const bad = (where, what) => problems.push(`${where}: ${what}`);
+const bad = (where, what) => { problems.push(`${where}: ${what}`); console.log('  ✗ ' + where + ': ' + what); };
 
 (async () => {
   const b = await chromium.launch();
@@ -79,11 +79,10 @@ const bad = (where, what) => problems.push(`${where}: ${what}`);
   }
   // site services answer
   for (const [u, want] of [['/api/voice.php?action=list', '"ok":true'], ['/api/review.php?action=list', '"ok":true'], ['/wp-sitemap.xml', '<sitemapindex'], ['/robots.txt', 'Sitemap']]) {
-    const r = await p.request.get(BASE + u).catch(() => null);
-    const t = r ? await r.text() : '';
-    if (!r || r.status() !== 200 || !t.includes(want)) bad('خدمة ' + u, 'لا تعمل كما يجب (كود ' + (r && r.status()) + ')');
+    const r = await p.evaluate(async url => { try { const x = await fetch(url, {cache: 'no-store'}); return {s: x.status, t: await x.text()}; } catch (e) { return {s: 0, t: ''}; } }, BASE + u);
+    if (r.s !== 200 || !r.t.includes(want)) bad('خدمة ' + u, 'لا تعمل كما يجب (كود ' + r.s + ')');
   }
-  const home = await (await p.request.get(BASE + '/')).text();
+  const home = await p.evaluate(async url => { try { return await (await fetch(url)).text(); } catch (e) { return ''; } }, BASE + '/');
   if (/noindex/.test((home.match(/<meta name=.robots[^>]*>/) || [''])[0])) bad('جوجل', 'الصفحة الرئيسية مخفية عن جوجل (noindex)');
   await b.close();
 
