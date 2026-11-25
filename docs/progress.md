@@ -120,4 +120,4 @@
 - Articles now come from docs/articles/*.md (tools/articles_page.py): page per article at /articles/<slug>/ (Article + Breadcrumb schema, author box, cover, share, "اقرئي أيضاً"), real listing on /articles/. Add a new article = new .md with the same header + an EXTRA entry (cover/tag/date).
 - WordPress: pages.json supports "articles/<slug>" (child page of Articles); sitemap picks them up automatically.
 - decode-stagnation lesson now plays the 1080p video a29a8b6b…; ms_setup_lessons reuses the lesson in the same topic when a video GUID changes (no duplicates). Setup version 1.2.9.
-- Old 4K video 27d063f6… still in Bunny, delete only after Mervat confirms.
+- Old 4K video 27d063f6… deleted from Bunny on 2026-11-25 (Mervat confirmed).
