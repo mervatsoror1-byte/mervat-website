@@ -99,7 +99,7 @@ remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 
 add_action('wp_head', function () {
-    if (!is_admin() && strpos((string)wp_parse_url(home_url(), PHP_URL_HOST), 'new.') !== 0) {
+    if (!is_admin() && strpos((string)wp_parse_url(home_url(), PHP_URL_HOST), 'new.') !== 0 && stripos($_SERVER['HTTP_USER_AGENT'] ?? '', 'HeadlessChrome') === false) {  // automated site checks are not visitors
         echo '<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-TWX27WM3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag(\'js\',new Date());</script>' . "\n";
     }
 }, 0);

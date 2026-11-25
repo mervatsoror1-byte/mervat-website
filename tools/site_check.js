@@ -10,12 +10,15 @@ const PAGES = ['/', '/library/', '/vip/', '/sessions/', '/marriage/', '/gift/', 
   '/tools/serenity-cleansing-meditation/', '/tools/course-ain-sahia/', '/tools/book-ghosts/', '/lp-attach/', '/lp-serenity/'];
 const IGNORE = /googletagmanager|google-analytics|mediadelivery|b-cdn|facebook|paypal|ERR_TUNNEL|ERR_BLOCKED|net::ERR_ABORTED/i;
 const problems = [], notes = [];
+// the check must not count as visits in Google Analytics
+const noStats = ctx => ctx.route(/googletagmanager\.com|google-analytics\.com|analytics\.google\.com/, r => r.abort());
 const bad = (where, what) => { problems.push(`${where}: ${what}`); console.log('  ✗ ' + where + ': ' + what); };
 
 (async () => {
   const b = await chromium.launch();
   for (const [label, ctxOpts] of [['موبايل', {...devices['Pixel 7']}], ['كمبيوتر', {viewport: {width: 1366, height: 900}}]]) {
     const c = await b.newContext(ctxOpts);
+    await noStats(c);
     await c.addInitScript(() => { try { localStorage.setItem('ms_state_v1', JSON.stringify({popSeen: 1})); } catch (e) {} });
     const p = await c.newPage();
     for (const path of PAGES) {
@@ -52,7 +55,7 @@ const bad = (where, what) => { problems.push(`${where}: ${what}`); console.log('
   }
 
   // buying works: each product type reaches checkout with a payment method, in USD and EGP
-  const c = await b.newContext({viewport: {width: 1280, height: 900}}); const p = await c.newPage();
+  const c = await b.newContext({viewport: {width: 1280, height: 900}}); await noStats(c); const p = await c.newPage();
   for (const [country, cur] of [['US', 'دولار'], ['EG', 'جنيه']]) {
     for (const [page, sel, name] of [['/tools/exercise-detachment/', '[data-buy="attach"]', 'تمرين'], ['/vip/', '[data-buy="vip-m"]', 'VIP شهري'],
       ['/vip/', '[data-buy="vip-y"]', 'VIP سنوي'], ['/bundles/', '[data-buy^="b-"]', 'باقة'], ['/marriage/', null, 'استشارة زوجية'], ['/sessions/', null, 'جلسة فردية']]) {
