@@ -19,7 +19,7 @@
  },
  "articles": {
   "title": "المقالات",
-  "desc": "مقالات د. مرفت سرور عن الوعي الذاتي، التشافي، فك التعلّق، الطفل الداخلي والـ Decoding.",
+  "desc": "مقالات د. مرفت سرور عن الوعي الذاتي، الامتنان، التشافي، فك التعلّق، الطفل الداخلي والـ Decoding.",
   "ld": "",
   "noindex": false,
   "bare": false,
@@ -129,6 +129,15 @@
   "title": "هدية: أسئلة كشف الهوية",
   "desc": "هدية مجانية من د. مرفت سرور: شاهد فيديو أسئلة كشف الهوية، أجب بقلبك، ويصلك تحليل شخصي لهويتك والأقنعة التي تعيش بها تكتبه د. مرفت بنفسها.",
   "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "hardship-and-gift": {
+  "title": "المحنة والمنحة: كيف ترين النور في الحكاية التي أوجعتك؟",
+  "desc": "حكاية فيها ألم وخير معاً؟ د. مرفت سرور تشرح كيف يسكن الوجع القديم الجسد، وكيف ترين المنحة داخل المحنة دون أن تنكري وجعك، مع تمرين «رسالة من بعد العاصفة».",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"المحنة والمنحة: كيف ترين النور في الحكاية التي أوجعتك؟\", \"description\": \"حكاية فيها ألم وخير معاً؟ د. مرفت سرور تشرح كيف يسكن الوجع القديم الجسد، وكيف ترين المنحة داخل المحنة دون أن تنكري وجعك، مع تمرين «رسالة من بعد العاصفة».\", \"inLanguage\": \"ar\", \"datePublished\": \"2026-11-25\", \"dateModified\": \"2026-11-25\", \"author\": {\"@type\": \"Person\", \"name\": \"د. مرفت سرور\", \"url\": \"https://mervatsror.com/about/\", \"jobTitle\": \"مدربة وعي وتشافٍ معتمدة من ICF\"}, \"publisher\": {\"@type\": \"Organization\", \"name\": \"د. مرفت سرور\", \"logo\": {\"@type\": \"ImageObject\", \"url\": \"https://mervatsror.com/wp-content/themes/mervat/assets/brand/favicon-192.png\"}}, \"image\": \"https://mervatsror.com/wp-content/themes/mervat/assets/img/covers/decode-acceptance.webp\", \"mainEntityOfPage\": \"https://mervatsror.com/articles/hardship-and-gift/\", \"keywords\": \"المحنة والمنحة, إزاي أتخطى موقف صعب, إزاي أشوف الخير في اللي حصل, الوجع القديم في الجسد, الهوية المبنية على الجرح, رسالة لنفسي بعد أزمة\"}</script><script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"الرئيسية\", \"item\": \"https://mervatsror.com/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"المقالات\", \"item\": \"https://mervatsror.com/articles/\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"المحنة والمنحة: كيف ترين النور في الحكاية التي أوجعتك؟\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "page",
@@ -291,6 +300,15 @@
   "title": "آراء العملاء",
   "desc": "تجارب حقيقية مكتوبة وبأصوات عملاء د. مرفت سرور بعد التمارين والجلسات وبرنامج استيقظ VIP.",
   "ld": "",
+  "noindex": false,
+  "bare": false,
+  "type": "page",
+  "sku": ""
+ },
+ "why-we-see-what-is-missing": {
+  "title": "ليه عينك بتشوف الناقص في حياتك؟ سرّ العشرين عطية والأربعة البور",
+  "desc": "لماذا يحضر الوجع فوراً وتغيب النِّعم؟ د. مرفت سرور تشرح كيف يبرمج العقل اللاواعي عينك على النقص، وكيف يصبح الامتنان حالة يعيشها الجسد والروح لا جملة يرددها اللسان.",
+  "ld": "<script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"ليه عينك بتشوف الناقص في حياتك؟ سرّ العشرين عطية والأربعة البور\", \"description\": \"لماذا يحضر الوجع فوراً وتغيب النِّعم؟ د. مرفت سرور تشرح كيف يبرمج العقل اللاواعي عينك على النقص، وكيف يصبح الامتنان حالة يعيشها الجسد والروح لا جملة يرددها اللسان.\", \"inLanguage\": \"ar\", \"datePublished\": \"2026-11-25\", \"dateModified\": \"2026-11-25\", \"author\": {\"@type\": \"Person\", \"name\": \"د. مرفت سرور\", \"url\": \"https://mervatsror.com/about/\", \"jobTitle\": \"مدربة وعي وتشافٍ معتمدة من ICF\"}, \"publisher\": {\"@type\": \"Organization\", \"name\": \"د. مرفت سرور\", \"logo\": {\"@type\": \"ImageObject\", \"url\": \"https://mervatsror.com/wp-content/themes/mervat/assets/brand/favicon-192.png\"}}, \"image\": \"https://mervatsror.com/wp-content/themes/mervat/assets/img/covers/ain-sahia.webp\", \"mainEntityOfPage\": \"https://mervatsror.com/articles/why-we-see-what-is-missing/\", \"keywords\": \"ليه دايماً بشوف الناقص, الامتنان الحقيقي, العقل اللاواعي, قانون الجذب والامتنان, إعادة برمجة العقل, العيش في اللحظة الحالية\"}</script><script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"BreadcrumbList\", \"itemListElement\": [{\"@type\": \"ListItem\", \"position\": 1, \"name\": \"الرئيسية\", \"item\": \"https://mervatsror.com/\"}, {\"@type\": \"ListItem\", \"position\": 2, \"name\": \"المقالات\", \"item\": \"https://mervatsror.com/articles/\"}, {\"@type\": \"ListItem\", \"position\": 3, \"name\": \"ليه عينك بتشوف الناقص في حياتك؟ سرّ العشرين عطية والأربعة البور\"}]}</script>",
   "noindex": false,
   "bare": false,
   "type": "page",
