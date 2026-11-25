@@ -192,7 +192,7 @@ def auth():
 
 
 def build_v7():
-    library(); about(); contact(); faq(); articles(); auth(); landings()
+    library(); about(); contact(); faq(); auth(); landings()
     for p in PRODUCTS:
         if p["kind"] in ("course", "exercise"):
             product(p)

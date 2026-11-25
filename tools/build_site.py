@@ -635,6 +635,7 @@ def build():
     import pages_v7; pages_v7.init(globals()); pages_v7.build_v7()
     import gift_page; gift_page.build(globals())
     import review_page; review_page.build(globals())
+    import articles_page; articles_page.build(globals())
 
     # ---------- seo files
     urls = "".join(f"<url><loc>{SITE_URL}/{'' if f=='index.html' else f}</loc></url>" for f, ni in dict(PAGES).items() if not ni)

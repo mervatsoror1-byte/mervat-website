@@ -4,7 +4,7 @@
 const { chromium, devices } = require('playwright');
 const BASE = (process.argv[2] || 'https://mervatsror.com').replace(/\/$/, '');
 const PAGES = ['/', '/library/', '/vip/', '/sessions/', '/marriage/', '/gift/', '/review/', '/voices/', '/bundles/', '/books/', '/about/',
-  '/contact/', '/faq/', '/articles/', '/policies/', '/terms/', '/privacy/', '/refund/', '/delivery/', '/my-account/', '/cart/',
+  '/contact/', '/faq/', '/articles/', '/articles/why-we-see-what-is-missing/', '/articles/hardship-and-gift/', '/policies/', '/terms/', '/privacy/', '/refund/', '/delivery/', '/my-account/', '/cart/',
   '/tools/exercise-detachment/', '/tools/decoding-original-version/', '/tools/decoding-light-of-acceptance/', '/tools/decoding-energy-stagnation/',
   '/tools/inner-child-healing/', '/tools/heart-coherence-breathing/', '/tools/morning-priming/', '/tools/peace-affirmations/',
   '/tools/serenity-cleansing-meditation/', '/tools/course-ain-sahia/', '/tools/book-ghosts/', '/lp-attach/', '/lp-serenity/'];

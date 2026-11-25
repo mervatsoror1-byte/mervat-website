@@ -25,6 +25,10 @@ WOO = {"cart": "cart/", "checkout": "checkout/", "account": "my-account/", "logi
 PRODUCT_BASE = "tools"
 
 
+import articles_page
+ARTICLE_SLUGS = {a["slug"] for a in articles_page.load()}
+
+
 def load_data():
     raw = (SITE / "assets/js/data.js").read_text(encoding="utf-8")
     return json.loads(raw[raw.index("=") + 1:].rstrip().rstrip(";"))
@@ -63,6 +67,8 @@ def url_for(href, product_pages, pages):
         return "{{H}}/%s/%s/%s" % (PRODUCT_BASE, stem, rest)
     if stem in WOO:
         return "{{H}}/" + WOO[stem] + rest
+    if stem in ARTICLE_SLUGS:
+        return "{{H}}/articles/%s/%s" % (stem, rest)
     if stem in pages:
         return "{{H}}/%s/%s" % (stem, rest)
     return href
@@ -174,7 +180,7 @@ def main():
                       "redirect": target, "grants": p.get("grants"), "vip": bool(p.get("vipIncluded")), "soon": bool(p.get("soon")),
                       "items": next((bd["items"] for bd in data.get("bundles", []) if bd["id"] == p["id"]), [])})
     (PLUGIN / "products.json").write_text(json.dumps(prods, ensure_ascii=False, indent=1), encoding="utf-8")
-    (PLUGIN / "pages.json").write_text(json.dumps(sorted(pages | {"front"}), ensure_ascii=False), encoding="utf-8")
+    (PLUGIN / "pages.json").write_text(json.dumps(sorted((pages - ARTICLE_SLUGS) | {"front"}) + ["articles/" + x for x in sorted(ARTICLE_SLUGS)], ensure_ascii=False), encoding="utf-8")
 
     # voice/order PHP API, shared with the static site
     shutil.copytree(SITE / "api", WP / "root/api", dirs_exist_ok=True)

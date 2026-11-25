@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Mervat Setup
  * Description: Sets up the shop from the site's own data: pages, products with EGP/USD prices, currencies, payments and session dates. Safe to run again; it updates instead of duplicating.
- * Version: 1.2.7
+ * Version: 1.2.9
  * Author: Mervat Soror
  * Requires Plugins: woocommerce
  */
 if (!defined('ABSPATH')) { exit; }
 
-const MS_SETUP_VERSION = '1.2.7';
+const MS_SETUP_VERSION = '1.2.9';
 const MS_EGYPT_ZONE = 'egypt';
 
 /* ---------------------------------------------------------------- run setup once per version */
@@ -143,11 +143,13 @@ function ms_setup_pages(): void {
     foreach (ms_data('pages.json') as $slug) {
         if ($slug === '404') { continue; } // the theme shows its own 404; WordPress cannot keep a page named "404"
         $want = $slug === 'front' ? 'home' : $slug;
-        $title = $meta[$slug]['title'] ?? $want;
+        $name = basename($want); $parent = 0;   // "articles/<slug>" = a page under the Articles page
+        if ($name !== $want) { $pp = get_page_by_path(dirname($want), OBJECT, 'page'); if (!$pp) { continue; } $parent = $pp->ID; }
+        $title = $meta[$name]['title'] ?? $name;
         if ($slug === 'front') { $title = 'الرئيسية'; }
         $page = get_page_by_path($want, OBJECT, 'page');
         if (!$page) {
-            $id = wp_insert_post(['post_type' => 'page', 'post_status' => 'publish', 'post_name' => $want, 'post_title' => $title, 'post_content' => '']);
+            $id = wp_insert_post(['post_type' => 'page', 'post_status' => 'publish', 'post_name' => $name, 'post_parent' => $parent, 'post_title' => $title, 'post_content' => '']);
         } else {
             $id = $page->ID;
             if ($page->post_title !== $title) { wp_update_post(['ID' => $id, 'post_title' => $title]); }
@@ -588,6 +590,10 @@ function ms_setup_lessons(): void {
         $tid = $topic ? (int)$topic[0] : wp_insert_post(['post_type' => 'topics', 'post_parent' => $cid, 'post_status' => 'publish', 'post_title' => 'المحتوى', 'menu_order' => 1]);
         foreach (array_values($list) as $i => $l) {
             $found = get_posts(['post_type' => 'lesson', 'post_status' => 'any', 'meta_key' => '_ms_video', 'meta_value' => $l['video'], 'numberposts' => 1, 'fields' => 'ids']);
+            if (!$found) {   // video replaced (e.g. re-uploaded compressed): reuse the lesson in the same place instead of adding a second one
+                $found = get_posts(['post_type' => 'lesson', 'post_status' => 'any', 'post_parent' => $tid, 'title' => $l['title'], 'numberposts' => 1, 'fields' => 'ids']);
+                if (!$found) { $found = get_posts(['post_type' => 'lesson', 'post_status' => 'any', 'post_parent' => $tid, 'menu_order' => $i + 1, 'numberposts' => 1, 'fields' => 'ids']); }
+            }
             $post = ['post_type' => 'lesson', 'post_parent' => $tid, 'post_status' => 'publish', 'post_title' => $l['title'], 'menu_order' => $i + 1];
             if ($found) { $post['ID'] = (int)$found[0]; $lid = wp_update_post($post); } else { $lid = wp_insert_post($post); }
             if (!$lid || is_wp_error($lid)) { continue; }
