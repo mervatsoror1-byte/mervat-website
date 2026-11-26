@@ -119,7 +119,7 @@ def about():
 def contact():
     items = [("chat", "01095292748", "https://wa.me/201095292748"), ("mail", "info@mervatsror.com", "mailto:info@mervatsror.com"),
              ("play", "يوتيوب", "https://www.youtube.com/@mervatsoror"), ("heart", "إنستغرام", "https://www.instagram.com/mervatsoror111"),
-             ("user", "فيسبوك", "https://www.facebook.com/mrft.srwr"), ("globe", "تيك توك", "https://www.tiktok.com/@fefesoror")]
+             ("user", "فيسبوك", "https://www.facebook.com/mrft.srwr"), ("globe", "تيك توك", "https://www.tiktok.com/@fefesoror"), ("linkedin", "لينكد إن", "https://www.linkedin.com/in/mervatsoror")]
     page("contact.html", "اتصل بنا", "تواصل مع فريق د. مرفت سرور: واتساب 01095292748، أو أرسل رسالتك من النموذج.", f'''
 {B.page_hero("مساحة آمنة لاستفساراتك", "شاركني ما يدور في خاطرك، ويسعدني مرافقتك.", ("اتصل بنا", None))}
 <section class="pg"><div class="wrap ct-grid">
