@@ -2163,3 +2163,7 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .msp:-webkit-full-screen{width:100%;height:100%}
 @media (max-width:560px){.msp-big{width:62px;height:62px}.msp-big svg{width:28px;height:28px}.msp-bar{left:6px;right:6px;bottom:6px;gap:2px;padding:4px 6px}
   .msp-b{width:32px;height:32px}.msp-time{min-width:0;font-size:.72rem}.msp-menu{right:6px;bottom:52px}}
+/* tool page: «عن التمرين» sits right under the video on desktop (buy card spans both rows) */
+@media (min-width:901px){.pd3{grid-template-areas:"media buy" "about buy";grid-template-rows:auto 1fr}.pd3>.pd3-media,.pd3>.pd3-player{grid-area:media}.pd3>.pd3-buy{grid-area:buy}.pd3>.pd3-about{grid-area:about;align-self:start;margin-top:clamp(6px,1.4vw,16px)}}
+.pd3>.pd3-about{margin-bottom:0}
+.pd3-intro .pd3-play{background:#C5A059;border:0;color:#1B3468;box-shadow:0 10px 30px rgba(13,22,51,.45),0 0 0 6px rgba(197,160,89,.28);backdrop-filter:none}

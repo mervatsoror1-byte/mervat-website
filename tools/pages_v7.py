@@ -87,9 +87,9 @@ def product(p):
       <div class="pd3-links"><button type="button" data-fav="{p["id"]}" aria-pressed="false">{ic("heart","icon icon-sm")}احفظ</button><a href="contact.html">{ic("gift","icon icon-sm")}إهداء</a><a href="contact.html">{ic("share","icon icon-sm")}مشاركة</a></div>
       {"<p class=pd3-vip>" + ic("crown","icon icon-sm") + "مشمول في برنامج استيقظ VIP</p>" if p.get("vipIncluded") else ""}
     </aside>
+    <div class="pd3-sec pd3-about"><h2>عن {kind}</h2><div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div></div>
   </div>
   <div class="pd3-body">
-    <div class="pd3-sec"><h2>عن {kind}</h2><div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div></div>
     <div class="pd3-sec rt-box" data-rate-box="{p["id"]}"></div>
     {voices_sec}
     <div class="pd3-sec"><h2>مناسب لك إذا كنت…</h2><ul class="pd3-for">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in p["forWho"])}</ul></div>
