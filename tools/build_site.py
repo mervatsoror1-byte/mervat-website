@@ -765,7 +765,7 @@ def home_body():
   <a class="tile" href="vip.html"><img src="assets/img/vip-bridge.webp" alt="" loading="lazy"><span><b>استيقظ VIP</b><small>البرنامج التدريبي المتكامل</small></span></a>
   <a class="tile tile-ses" href="sessions.html"><img src="assets/img/sessions-banner.webp" alt="" loading="lazy"><span><b>الجلسات الفردية</b><small>مساحة خاصة مع د. مرفت</small></span></a></div></div></section>
 
-<section class="band"><div class="wrap"><div class="head center"><h2 class="title">قالوا عنا</h2><p class="lead">من رسائل عميلاتنا</p></div><div class="reel" tabindex="0" aria-label="آراء العملاء">{reel}</div>
+<section class="band"><div class="wrap"><div class="head center"><h2 class="title">قالوا عنا</h2><p class="lead">من رسائل عميلاتنا</p></div><div class="reel" data-rv-reel tabindex="0" aria-label="آراء العملاء">{reel}</div>
   {('<div data-vr-wrap hidden>' + VOICE_HOME + '</div>') if VOICE_REVIEWS else ""}</div></section>
 <section class="ses-banner" aria-label="الجلسات الفردية"><img src="assets/img/sessions-banner.webp" alt="د. مرفت سرور في جلسة أونلاين" width="1672" height="941" loading="lazy">
   <div class="sb-copy"><span class="vb-kicker">الجلسات الفردية</span><h2>عمل مباشر مع مرفت في مساحة خاصة بك</h2><p>جلسة استشارة أونلاين تختار موعدها بتوقيت بلدك ويصلك التأكيد والرابط والتذكير تلقائياً</p><a class="btn btn-gold" href="sessions.html#booking">{ic("cal")}احجز جلستك</a></div></section>

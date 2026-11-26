@@ -123,3 +123,4 @@
 - Old 4K video 27d063f6… deleted from Bunny on 2026-11-25 (Mervat confirmed).
 - Analytics: automated checks no longer count as visits (site_check blocks GA requests; theme skips GTM for HeadlessChrome user agents). No page cache on Hostinger (x-hcdn-cache-status: DYNAMIC), so real visitors always get the tag.
 - VIP page now shows approved written reviews for vip-m/q/y (data-rv accepts several ids) + a «شاركينا تجربتك» link. First real review (أميرة, VIP) approved 2026-11-26.
+- Home «قالوا عنا» reel now starts with approved written reviews (up to 8); the slider waits for them (window.msReel).
