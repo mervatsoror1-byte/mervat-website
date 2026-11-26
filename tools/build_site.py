@@ -36,7 +36,7 @@ PRODUCTS = [
                 {"title":"الوحدة الأولى: معنى الحمد الحقيقي","lessons":[["الحمد لله رب العالمين بقلب حاضر","12:00"],["النِّعم التي لم نعد نراها","12:00"],["الشكر بالشكل الصحيح","12:00"]]},
                 {"title":"الوحدة الثانية: الامتنان كل يوم","lessons":[["تمرين الامتنان الصباحي","10:00"],["الامتنان في الأوقات الصعبة","12:00"],["الامتنان في العلاقات","12:00"]]},
                 {"title":"الوحدة الثالثة: ما يتغيّر في حياتك","lessons":[["كيف يغيّر الامتنان نظرتك","12:00"],["خطة ٣٠ يوماً","9:00"],["الختام","6:00"]]}]),
-  dict(id="attach", kind="exercise", slug="exercise-detachment", title="تمرين فك التعلّق", cat="free", catLabel="فك التعلّق", img="assets/img/covers/attach-sm.webp", cover="assets/img/covers/attach-sm.webp", coverLg="assets/img/covers/attach.webp", eg=349, us=25, isNew=True, vipIncluded=False,
+  dict(id="attach", intro="fdcdd2e8-52e9-4337-92a6-28d745bd160d", kind="exercise", slug="exercise-detachment", title="تمرين فك التعلّق", cat="free", catLabel="فك التعلّق", img="assets/img/covers/attach-sm.webp", cover="assets/img/covers/attach-sm.webp", coverLg="assets/img/covers/attach.webp", eg=349, us=25, isNew=True, vipIncluded=False,
        meta="تأمل · ٨ دقائق", level="مبتدئ", ctype="تأمل", cardMeta="تأمل · ٨ دقائق",
        facts=[["play","تأمل موجّه مدته ٨ دقائق"],["lessons","مع مقدمة قصيرة تشرح التمرين"]],
        short="تأمل موجّه مدته ٨ دقائق يساعدك على تحرير التعلّق بشخص أو موقف أو نتيجة، والعودة إلى مركزك.",

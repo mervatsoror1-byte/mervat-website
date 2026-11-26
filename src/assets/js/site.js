@@ -1162,3 +1162,23 @@ document.addEventListener("click", e => {
       .catch(() => { b.disabled = false; b.textContent = "أرسلي رأيي"; toast("تعذّر الإرسال. تأكدي من الاتصال بالإنترنت."); });
   });
 })();
+
+/* ---------- free intro video on a tool page: the cover turns into the player ---------- */
+(function(){
+  const box = document.querySelector("[data-intro]"); if (!box) return;
+  const play = (auto) => {
+    if (box.dataset.on) return; box.dataset.on = 1;
+    const f = document.createElement("iframe");
+    f.src = "https://iframe.mediadelivery.net/embed/811029/" + box.dataset.intro + "?autoplay=" + (auto ? "true" : "false") + "&preload=true&responsive=true";
+    f.title = box.getAttribute("aria-label") || "المقدمة";
+    f.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+    f.loading = "eager"; box.classList.add("is-on"); box.replaceChildren(f);
+    if (window.gtag) gtag("event", "intro_play", {item: box.dataset.intro});
+  };
+  box.addEventListener("click", () => play(true));
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-intro-open]"); if (!a) return;
+    e.preventDefault(); box.scrollIntoView({behavior: "smooth", block: "center"}); play(true);
+  });
+  if (location.hash === "#intro") { setTimeout(() => { box.scrollIntoView({block: "center"}); play(false); }, 300); }
+})();

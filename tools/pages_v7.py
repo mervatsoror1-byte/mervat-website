@@ -54,6 +54,15 @@ def product(p):
     axes = "".join(f"<li><b>{E(m['title'])}</b></li>" for m in p["modules"])
     lessons = "".join(f'<div class="lrow">{ic("play","icon icon-sm pl")}<span>{E(l[0])}</span>' + (f'<a href="learn.html#{p["id"]}">شاهد مجاناً</a>' if l[2:] else ic("lock","icon icon-sm lk")) + '</div>' for m in p["modules"] for l in m["lessons"])
     kind = "الكورس" if is_course else "التمرين"
+    _img = f'<img src="{p.get("coverLg") or p.get("cover") or "assets/brand/logo-icon-gold.webp"}" alt="{E(p["title"])}" width="1600" height="900">'
+    if p.get("intro"):   # free intro video plays right here (Bunny Stream)
+        media = (f'<button type="button" id="intro" class="pd3-media pd3-intro{" has-cover" if p.get("cover") else ""}" data-intro="{p["intro"]}" aria-label="شاهدي مقدمة {E(p["title"])} مجاناً">'
+                 f'{_img}<span class="pd3-play">{ic("play")}</span><span class="pd3-free">شاهدي المقدمة مجاناً</span></button>')
+        free_href = "#intro"
+    else:
+        media = (f'<a class="pd3-media{" has-cover" if p.get("cover") else ""}" href="learn.html#{p["id"]}" aria-label="استمع لمقدمة {E(p["title"])} مجاناً">'
+                 f'{_img}<span class="pd3-play">{ic("play")}</span><span class="pd3-free">المقدمة مجاناً</span></a>')
+        free_href = f"learn.html#{p['id']}"
     _ar = str.maketrans("0123456789", "٠١٢٣٤٥٦٧٨٩")
     def _n(k): return str(k).translate(_ar) + " " + ("درس" if k == 1 else "درسان" if k == 2 else "دروس")
     facts = list(p.get("facts") or [["lessons", f"يحتوي على {_n(total)}"], ["clock", f"المدة: {dur.translate(_ar)}"]])
@@ -61,14 +70,12 @@ def product(p):
     if p.get("level"): facts.append(["award", f"المستوى: {p['level']}"])
     facts += [["cal", "مدة الوصول: ٣٦٥ يوماً من تاريخ الشراء"], ["devices", "تابع من أي لابتوب أو موبايل"]]
     facts_html = "".join(f'<li>{ic(i, "icon icon-sm")}<span>{E(t)}</span></li>' for i, t in facts)
-    modules_html = "".join(f'<details {"open" if n == 0 else ""}><summary>{E(m["title"])}</summary>' + "".join(f'<div class="pd3-l">{ic("play" if l[2:] else "lock", "icon icon-sm")}<span>{E(l[0])}</span>' + (f'<a href="learn.html#{p["id"]}">استمع مجاناً</a>' if l[2:] else "") + '</div>' for l in m["lessons"]) + '</details>' for n, m in enumerate(p["modules"]))
+    modules_html = "".join(f'<details {"open" if n == 0 else ""}><summary>{E(m["title"])}</summary>' + "".join(f'<div class="pd3-l">{ic("play" if l[2:] else "lock", "icon icon-sm")}<span>{E(l[0])}</span>' + (f'<a href="{free_href}" data-intro-open>{"شاهدي مجاناً" if p.get("intro") else "استمع مجاناً"}</a>' if l[2:] else "") + '</div>' for l in m["lessons"]) + '</details>' for n, m in enumerate(p["modules"]))
     page(p["page"], f'{p["title"]}', p["short"] + f' {p["catLabel"]} مع د. مرفت سرور.', f'''
 <section class="pg"><div class="wrap">
   {crumbs(("الأدوات","library.html"), (p["title"], None))}
   <div class="pd3">
-    <a class="pd3-media{" has-cover" if p.get("cover") else ""}" href="learn.html#{p["id"]}" aria-label="استمع لمقدمة {E(p["title"])} مجاناً">
-      <img src="{p.get("coverLg") or p.get("cover") or "assets/brand/logo-icon-gold.webp"}" alt="{E(p["title"])}" width="1600" height="900">
-      <span class="pd3-play">{ic("play")}</span><span class="pd3-free">المقدمة مجاناً</span></a>
+    {media}
     <aside class="pd3-buy">
       <h1>{E(p["title"])}</h1>
       <div class="rt-sum" data-rate-sum="{p["id"]}"></div>
@@ -231,9 +238,11 @@ def landing(L):
     pid = L["offer"]
     pr = f'<span class="price" data-price="{pid}">{off["eg"]} ج.م</span>'
     was = f'<s class="lp-was" data-was="{base["eg"]}|{base["us"]}">{base["eg"]} ج.م</s>'
+    free = (f'<a class="lp-free" href="{base["page"]}#intro">{ic("play","icon icon-sm")}شاهدي المقدمة مجاناً</a>' if base.get("intro")
+            else f'<a class="lp-free" href="learn.html#{base["id"]}">{ic("play","icon icon-sm")}استمع للمقدمة مجاناً</a>')
     buy = (f'<div class="lp-buy"><div class="lp-price">{pr}{was}<em class="lp-tag">سعر خاص لفترة محدودة</em></div>'
            f'<button class="btn-safia" type="button" data-buy="{pid}"><span>{L["cta"]}</span></button>'
-           f'<div class="lp-links"><a class="lp-free" href="learn.html#{base["id"]}">{ic("play","icon icon-sm")}استمع للمقدمة مجاناً</a>'
+           f'<div class="lp-links">{free}'
            f'<a class="lp-all" href="library.html">تعرّف على كل الأدوات ←</a></div></div>')
     nums = "١٢٣"
     page(L["file"], L["title"], L["desc"], f"""
