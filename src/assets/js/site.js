@@ -1118,7 +1118,7 @@ document.addEventListener("click", e => {
     fetch(RAPI + "?action=list", {cache: "no-store"}).then(r => r.ok ? r.json() : {reviews: []}).then(j => {
       const all = j.reviews || [];
       holders.forEach(el => {
-        const id = el.dataset.rv, list = id === "all" ? all : all.filter(r => r.pid === id);
+        const id = el.dataset.rv, ids = id.split(/\s+/), list = id === "all" ? all : all.filter(r => ids.includes(r.pid));
         el.innerHTML = list.map(r => `<article class="rv-card"><div class="rv-stars" aria-label="${r.stars} من ٥">${star(r.stars)}</div><p>${esc(r.text)}</p><b>${esc(r.name)}${nameOf(r.pid) ? `<small> · ${esc(nameOf(r.pid))}</small>` : ""}</b></article>`).join("")
           || (id === "all" ? `<p class="vr-empty">تُنشر الآراء المكتوبة هنا بعد مراجعتها.</p>` : "");
       });

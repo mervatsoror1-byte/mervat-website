@@ -122,3 +122,4 @@
 - decode-stagnation lesson now plays the 1080p video a29a8b6b…; ms_setup_lessons reuses the lesson in the same topic when a video GUID changes (no duplicates). Setup version 1.2.9.
 - Old 4K video 27d063f6… deleted from Bunny on 2026-11-25 (Mervat confirmed).
 - Analytics: automated checks no longer count as visits (site_check blocks GA requests; theme skips GTM for HeadlessChrome user agents). No page cache on Hostinger (x-hcdn-cache-status: DYNAMIC), so real visitors always get the tag.
+- VIP page now shows approved written reviews for vip-m/q/y (data-rv accepts several ids) + a «شاركينا تجربتك» link. First real review (أميرة, VIP) approved 2026-11-26.
