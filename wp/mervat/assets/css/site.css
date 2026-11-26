@@ -1430,7 +1430,7 @@ main:has(> .co-body:last-child)+.site-footer{margin-top:0}
 .pd3-facts li{display:flex;gap:10px;align-items:center;color:#25304D;font-weight:600}
 .pd3-facts .icon{color:#A9843F;flex:none}
 .pd3-price .sc-price{font-family:"Noto Naskh Arabic",serif;font-size:clamp(1.9rem,2.8vw,2.4rem);font-weight:800;color:#1F3F7C}
-.pd3-cta{width:100%;min-width:0;border:0;cursor:pointer}
+.pd3-cta{display:flex;width:86%;margin-inline:auto;min-width:0;border:0;cursor:pointer;font-size:1.15rem;padding:9px 40px}
 .pd3-add{max-width:none;color:#1F3F7C !important}
 .pd3-add span{color:#1F3F7C}
 .pd3-add:hover,.pd3-add:hover span{color:#14234A !important}
