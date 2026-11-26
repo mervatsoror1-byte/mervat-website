@@ -1,7 +1,7 @@
 """Gift page: «أسئلة كشف الهوية» — video, then the questions in short steps; answers go to Dr. Mervat by email."""
 import json
 
-GIFT_VIDEO = "https://iframe.mediadelivery.net/embed/811029/275d6897-fd8b-4a41-9e7d-aacf2a743d2b?autoplay=false&preload=true&responsive=true"
+GIFT_GUID = "275d6897-fd8b-4a41-9e7d-aacf2a743d2b"   # Bunny Stream video, played by window.msPlayer (site.js)
 
 INSTRUCTIONS = ["اجلس في مكان هادئ.", "أجب عن الأسئلة بهدوء ودون ضغط.", "لا توجد إجابة صحيحة ولا خاطئة.",
                 "ركّز على الجسد وما يرسله لك من مشاعر، وأين توجد هذه المشاعر."]
@@ -73,7 +73,7 @@ def build(g):
       <div class="alert" hidden></div><button type="button" class="btn btn-gold btn-block" data-gf-start>{ic("gift", "icon icon-sm")}ابدأ الهدية</button></div></div>
   <div class="gf-step" data-step="1" hidden>
     <header class="vp-head"><span class="vp-orn" aria-hidden="true">✦</span><h2>شاهد الفيديو أولاً</h2><p>خذ نفساً عميقاً، وشاهد الفيديو بهدوء قبل أن تبدأ الإجابة.</p></header>
-    <div class="gf-video"><iframe src="{GIFT_VIDEO}" loading="lazy" title="أسئلة كشف الهوية" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen></iframe></div>
+    <div class="gf-video" data-msp="{GIFT_GUID}" data-poster="https://vz-d470dd2c-1fa.b-cdn.net/{GIFT_GUID}/thumbnail_c8f834f3.jpg" aria-label="أسئلة كشف الهوية"></div>
     <div class="gf-card"><h3>تعليمات مهمة</h3><ol class="gf-ins">{"".join(f"<li>{E(x)}</li>" for x in INSTRUCTIONS)}</ol></div>
     <div class="gf-nav"><button type="button" class="btn btn-line" data-gf-back>السابق</button><button type="button" class="btn btn-gold" data-gf-next>ابدأ الإجابة</button></div></div>
   {steps_html}

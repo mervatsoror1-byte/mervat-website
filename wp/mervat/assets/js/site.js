@@ -1163,22 +1163,78 @@ document.addEventListener("click", e => {
   });
 })();
 
+/* ---------- brand video player (Bunny MP4, our own gold/royal controls) ---------- */
+window.msPlayer = (host, guid, auto) => {
+  const CDN = "https://vz-d470dd2c-1fa.b-cdn.net/" + guid + "/";
+  const svg = d => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '"/></svg>';
+  const I = {play: "M8 5.2v13.6a.8.8 0 0 0 1.2.7l10.6-6.8a.8.8 0 0 0 0-1.4L9.2 4.5A.8.8 0 0 0 8 5.2z", pause: "M7 5h3.4v14H7zM13.6 5H17v14h-3.4z",
+    vol: "M4 9h4l5-4v14l-5-4H4zM16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12", mute: "M4 9h4l5-4v14l-5-4H4zM16.5 9.5l5 5M21.5 9.5l-5 5",
+    fs: "M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5", fsx: "M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"};
+  host.classList.add("msp"); host.setAttribute("dir", "ltr");
+  host.innerHTML = '<video playsinline preload="metadata" poster="' + (host.dataset.poster || "") + '"></video>' +
+    '<button type="button" class="msp-big" aria-label="تشغيل">' + svg(I.play) + '</button>' +
+    '<div class="msp-bar"><button type="button" class="msp-b msp-pp" aria-label="تشغيل">' + svg(I.play) + '</button>' +
+    '<div class="msp-track" role="slider" aria-label="التقدم" tabindex="0"><i class="msp-buf"></i><i class="msp-fill"></i><b class="msp-knob"></b></div>' +
+    '<span class="msp-time">0:00</span>' +
+    '<button type="button" class="msp-b msp-spd" aria-label="السرعة">1×</button>' +
+    '<button type="button" class="msp-b msp-vol" aria-label="الصوت">' + svg(I.vol) + '</button>' +
+    '<button type="button" class="msp-b msp-fs" aria-label="ملء الشاشة">' + svg(I.fs) + '</button></div>';
+  const v = host.querySelector("video"), q = c => host.querySelector(c);
+  const src = r => CDN + "play_" + r + ".mp4";
+  const sizes = ["720p", "480p", "360p"]; let si = 0;
+  v.src = src(sizes[0]);
+  v.addEventListener("error", () => { if (++si < sizes.length) { const t = v.currentTime; v.src = src(sizes[si]); v.currentTime = t; v.play().catch(() => {}); } });
+  const fmt = t => { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0"); };
+  const toggle = () => v.paused ? v.play().catch(() => {}) : v.pause();
+  let hideT; const wake = () => { host.classList.add("msp-awake"); clearTimeout(hideT); if (!v.paused) hideT = setTimeout(() => host.classList.remove("msp-awake"), 2600); };
+  const sync = () => { const on = !v.paused; host.classList.toggle("msp-playing", on); q(".msp-pp").innerHTML = svg(on ? I.pause : I.play);
+    q(".msp-pp").setAttribute("aria-label", on ? "إيقاف مؤقت" : "تشغيل"); wake(); };
+  v.addEventListener("play", () => { host.classList.add("msp-started"); sync(); if (window.gtag && !host.dataset.ga) { host.dataset.ga = 1; gtag("event", "video_play", {item: guid}); } });
+  v.addEventListener("pause", sync);
+  v.addEventListener("timeupdate", () => { const p = v.duration ? v.currentTime / v.duration : 0;
+    q(".msp-fill").style.width = q(".msp-knob").style.left = (p * 100) + "%";
+    q(".msp-time").textContent = fmt(v.currentTime) + " / " + fmt(v.duration); });
+  v.addEventListener("progress", () => { try { if (v.duration && v.buffered.length) q(".msp-buf").style.width = (v.buffered.end(v.buffered.length - 1) / v.duration * 100) + "%"; } catch (e) {} });
+  v.addEventListener("loadedmetadata", () => { q(".msp-time").textContent = "0:00 / " + fmt(v.duration); });
+  v.addEventListener("ended", () => host.classList.add("msp-awake"));
+  v.addEventListener("click", toggle); q(".msp-big").addEventListener("click", toggle); q(".msp-pp").addEventListener("click", toggle);
+  host.addEventListener("pointermove", wake); host.addEventListener("touchstart", wake, {passive: true});
+  const tr = q(".msp-track");
+  const seek = e => { const r = tr.getBoundingClientRect(); const x = e.clientX - r.left;
+    if (v.duration) v.currentTime = Math.min(1, Math.max(0, x / r.width)) * v.duration; };
+  tr.addEventListener("pointerdown", e => { seek(e); tr.setPointerCapture(e.pointerId); const mv = ev => seek(ev);
+    tr.addEventListener("pointermove", mv); tr.addEventListener("pointerup", () => tr.removeEventListener("pointermove", mv), {once: true}); });
+  tr.addEventListener("keydown", e => { if (e.key === "ArrowRight") v.currentTime += 5; if (e.key === "ArrowLeft") v.currentTime -= 5; });
+  const speeds = [1, 1.25, 1.5, 0.75]; let sp = 0;
+  q(".msp-spd").addEventListener("click", e => { sp = (sp + 1) % speeds.length; v.playbackRate = speeds[sp]; e.currentTarget.textContent = speeds[sp] + "×"; });
+  q(".msp-vol").addEventListener("click", e => { v.muted = !v.muted; e.currentTarget.innerHTML = svg(v.muted ? I.mute : I.vol); });
+  q(".msp-fs").addEventListener("click", () => {
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else if (host.requestFullscreen) host.requestFullscreen().catch(() => {});
+    else if (host.webkitRequestFullscreen) host.webkitRequestFullscreen();
+    else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); });
+  ["fullscreenchange", "webkitfullscreenchange"].forEach(ev => document.addEventListener(ev, () => {
+    q(".msp-fs").innerHTML = svg((document.fullscreenElement || document.webkitFullscreenElement) === host ? I.fsx : I.fs); }));
+  if (auto) v.play().catch(() => {});
+  return v;
+};
+document.querySelectorAll("[data-msp]").forEach(el => window.msPlayer(el, el.dataset.msp, false));
+
 /* ---------- free intro video on a tool page: the cover turns into the player ---------- */
 (function(){
   const box = document.querySelector("[data-intro]"); if (!box) return;
   const play = (auto) => {
     if (box.dataset.on) return; box.dataset.on = 1;
-    const f = document.createElement("iframe");
-    f.src = "https://iframe.mediadelivery.net/embed/811029/" + box.dataset.intro + "?autoplay=" + (auto ? "true" : "false") + "&preload=true&responsive=true";
-    f.title = box.getAttribute("aria-label") || "المقدمة";
-    f.allow = "accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
-    f.loading = "eager"; box.classList.add("is-on"); box.replaceChildren(f);
-    if (window.gtag) gtag("event", "intro_play", {item: box.dataset.intro});
+    const img = box.querySelector("img"), host = document.createElement("div");
+    host.className = "pd3-player"; host.dataset.poster = img ? img.currentSrc || img.src : "";
+    host.setAttribute("aria-label", box.getAttribute("aria-label") || "المقدمة");
+    box.removeAttribute("id"); box.replaceWith(host); host.id = "intro";
+    window.msPlayer(host, box.dataset.intro, auto);
   };
   box.addEventListener("click", () => play(true));
   document.addEventListener("click", e => {
     const a = e.target.closest("[data-intro-open]"); if (!a) return;
-    e.preventDefault(); box.scrollIntoView({behavior: "smooth", block: "center"}); play(true);
+    e.preventDefault(); (document.getElementById("intro") || box).scrollIntoView({behavior: "smooth", block: "center"}); play(true);
   });
-  if (location.hash === "#intro") { setTimeout(() => { box.scrollIntoView({block: "center"}); play(false); }, 300); }
+  if (location.hash === "#intro") { setTimeout(() => { (document.getElementById("intro") || box).scrollIntoView({block: "center"}); play(false); }, 300); }
 })();
