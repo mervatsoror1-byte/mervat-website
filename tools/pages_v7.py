@@ -88,12 +88,12 @@ def product(p):
       {"<p class=pd3-vip>" + ic("crown","icon icon-sm") + "مشمول في برنامج استيقظ VIP</p>" if p.get("vipIncluded") else ""}
     </aside>
     <div class="pd3-sec pd3-about"><h2>عن {kind}</h2><div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div></div>
+    <div class="pd3-sec pd3-content"><h2>محتوى {kind}</h2><div class="vp-faq">{modules_html}</div>{"<p class=vp-small>أسماء الدروس مبدئية وتُحدَّث قريباً</p>" if p.get("facts") else ""}</div>
   </div>
   <div class="pd3-body">
     <div class="pd3-sec rt-box" data-rate-box="{p["id"]}"></div>
     {voices_sec}
     <div class="pd3-sec"><h2>مناسب لك إذا كنت…</h2><ul class="pd3-for">{"".join(f"<li><i class=vp-dot></i>{E(x)}</li>" for x in p["forWho"])}</ul></div>
-    <div class="pd3-sec"><h2>محتوى {kind}</h2><div class="vp-faq">{modules_html}</div>{"<p class=vp-small>أسماء الدروس مبدئية وتُحدَّث قريباً</p>" if p.get("facts") else ""}</div>
   </div>
   <div class="vp-head" style="margin:clamp(50px,7vw,90px) 0 30px"><span class="vp-orn" aria-hidden="true">✦</span><h2>أدوات قد تعجبك</h2></div>
   <div class="shelf" data-shelf="related" data-current="{p["id"]}"></div>
