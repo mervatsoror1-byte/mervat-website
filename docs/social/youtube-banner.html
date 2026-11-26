@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;700&family=Great+Vibes&family=Cormorant+Garamond:wght@300&family=El+Messiri:wght@600&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0}
+  .b{position:relative;width:2560px;height:1440px;overflow:hidden;
+     background:radial-gradient(60% 75% at 62% 45%,#3A62A8 0%,#284D92 40%,#1F3F7C 70%,#1A3670 100%)}
+  canvas{position:absolute;inset:0}
+  /* YouTube "safe area" (shows on every device): 1546 x 423 in the centre */
+  .safe{position:absolute;left:507px;top:508px;width:1546px;height:423px}
+  .glow{position:absolute;left:1460px;top:470px;width:640px;height:640px;border-radius:50%;
+        background:radial-gradient(circle at 50% 40%,rgba(226,198,140,.34),rgba(197,160,89,.10) 52%,transparent 72%)}
+  .photo{position:absolute;left:1490px;top:532px;width:560px;
+         -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,#000 72%,transparent 100%);
+         filter:drop-shadow(0 30px 40px rgba(20,5,15,.45))}
+  .wm{position:absolute;left:470px;top:440px;direction:ltr;line-height:.8;color:rgba(255,240,230,.08);display:grid}
+  .wm .s{font-family:"Great Vibes",cursive;font-size:250px}
+  .wm .r{font-family:"Cormorant Garamond",serif;font-weight:300;font-size:220px;margin-left:1.1em;margin-top:-.12em}
+  .copy{position:absolute;left:560px;width:880px;top:508px;height:423px;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right}
+  h1{margin:0;font-family:"Noto Naskh Arabic",serif;font-weight:700;font-size:62px;line-height:1.55;color:#F5F5DC}
+  h1 .g{color:#D9B46A}
+  .sig{margin-top:22px;display:flex;gap:22px;align-items:center;font-family:"El Messiri",serif;font-size:36px;color:#E3C98A}
+  .sig i{font-style:normal;color:rgba(245,245,220,.55)}
+  .sig b{font-family:"Cormorant Garamond",serif;font-weight:300;letter-spacing:2px;color:#F5F5DC;direction:ltr}
+  .guide .zone{position:absolute;border:4px dashed rgba(255,80,80,.9)}
+</style></head><body>
+<div class="b">
+  <canvas id="c" width="2560" height="1440"></canvas>
+  <div class="wm" aria-hidden="true"><span class="s">Mervat</span><span class="r">Soror</span></div>
+  <div class="glow"></div>
+  <img class="photo" src="file:///home/user/mervat-website/site/assets/img/coach-seated-cut.webp" alt="">
+  <div class="copy">
+    <h1>لديك الآن رفيق حقيقي في الرحلة<br><span class="g">يحمل شعلة نور</span><br>ويمسك بيدك حتى تصل للجانب الآخر</h1>
+    <div class="sig"><span>د. مرفت سرور</span><i>✦</i><b>mervatsror.com</b></div>
+  </div>
+  <div class="guide" id="guide" hidden>
+    <div class="zone" style="left:507px;top:508px;width:1546px;height:423px"></div>
+    <div class="zone" style="left:352px;top:508px;width:1855px;height:423px;border-color:rgba(255,200,0,.9)"></div>
+    <div class="zone" style="left:0;top:508px;width:2560px;height:423px;border-color:rgba(0,255,120,.9)"></div>
+  </div>
+</div>
+<script>
+  // gold stars like the site's hero
+  const c = document.getElementById('c').getContext('2d'); let s = 7;
+  const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 900; i++) {
+    const x = rnd() * 2560, y = rnd() * 1440, r = rnd() < .9 ? rnd() * 1.8 + .6 : rnd() * 3 + 2.5, a = rnd() * .6 + .3;
+    c.fillStyle = `rgba(240,205,120,${a})`;
+    if (r > 2.5) { c.beginPath(); c.moveTo(x, y - r * 3); c.lineTo(x + r * .5, y - r * .5); c.lineTo(x + r * 3, y); c.lineTo(x + r * .5, y + r * .5); c.lineTo(x, y + r * 3); c.lineTo(x - r * .5, y + r * .5); c.lineTo(x - r * 3, y); c.lineTo(x - r * .5, y - r * .5); c.fill(); }
+    else { c.beginPath(); c.arc(x, y, r, 0, 7); c.fill(); }
+  }
+  if (location.hash === '#guide') document.getElementById('guide').hidden = false;
+</script>
+</body></html>
