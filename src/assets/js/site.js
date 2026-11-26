@@ -959,8 +959,7 @@ initSessCards();
 })();
 
 /* ---------- testimonial slider: arrows, dots, autoplay ---------- */
-window.msReel = reel => {
-  if (reel.dataset.ready) return; reel.dataset.ready = 1;
+$$(".reel").forEach(reel => {
   const cards = [...reel.children]; if (cards.length < 2) return;
   const wrap = document.createElement("div"); wrap.className = "slider";
   reel.parentNode.insertBefore(wrap, reel); wrap.appendChild(reel);
@@ -987,9 +986,7 @@ window.msReel = reel => {
   wrap.addEventListener("mouseenter", () => paused = true); wrap.addEventListener("mouseleave", () => paused = false);
   reel.addEventListener("touchstart", () => { paused = true; }, {passive: true}); reel.addEventListener("touchend", () => { setTimeout(() => paused = false, 4000); }, {passive: true});
   paint(); restart();
-};
-// a reel that waits for approved reviews (home page) is started by the reviews code
-$$(".reel:not([data-rv-reel])").forEach(window.msReel);
+});
 
 /* ---------- star ratings (prototype: kept in this browser) ---------- */
 const RKEY = "ms_ratings_v1", RMIN = 3;
@@ -1117,13 +1114,6 @@ document.addEventListener("click", e => {
   const titles = {}; ((window.SITE_DATA || {}).products || []).forEach(x => titles[x.id] = x.title);
   const toast = window.toast || (m => alert(m));
   const nameOf = id => id === "general" ? "" : (titles[id] || "");
-  const reels = document.querySelectorAll("[data-rv-reel]");
-  if (reels.length){   // approved written reviews also lead the «قالوا عنا» strip on the home page
-    fetch(RAPI + "?action=list", {cache: "no-store"}).then(r => r.ok ? r.json() : {reviews: []}).then(j => {
-      const cards = (j.reviews || []).slice(0, 8).map(r => `<div class="voice"><span class="av">${esc(r.name.charAt(0))}</span><span class="qm">“</span><p>${esc(r.text)}</p><b>${esc(r.name)}</b><small class="vo-p">${esc(nameOf(r.pid) || "تجربة مع د. مرفت")}</small></div>`).join("");
-      if (cards) reels.forEach(el => el.insertAdjacentHTML("afterbegin", cards));
-    }).catch(() => {}).finally(() => reels.forEach(el => window.msReel(el)));
-  }
   if (holders.length){
     fetch(RAPI + "?action=list", {cache: "no-store"}).then(r => r.ok ? r.json() : {reviews: []}).then(j => {
       const all = j.reviews || [];
