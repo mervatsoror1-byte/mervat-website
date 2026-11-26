@@ -1169,16 +1169,20 @@ window.msPlayer = (host, guid, auto) => {
   const svg = d => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '"/></svg>';
   const I = {play: "M8 5.2v13.6a.8.8 0 0 0 1.2.7l10.6-6.8a.8.8 0 0 0 0-1.4L9.2 4.5A.8.8 0 0 0 8 5.2z", pause: "M7 5h3.4v14H7zM13.6 5H17v14h-3.4z",
     vol: "M4 9h4l5-4v14l-5-4H4zM16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12", mute: "M4 9h4l5-4v14l-5-4H4zM16.5 9.5l5 5M21.5 9.5l-5 5",
-    fs: "M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5", fsx: "M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"};
+    fs: "M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5", gear: "M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zM19.4 13.5l1.7 1.3-1.8 3.1-2-.8a7.6 7.6 0 0 1-1.9 1.1l-.3 2.1h-3.6l-.3-2.1a7.6 7.6 0 0 1-1.9-1.1l-2 .8-1.8-3.1 1.7-1.3a7.7 7.7 0 0 1 0-2.9L2.9 9.2l1.8-3.1 2 .8a7.6 7.6 0 0 1 1.9-1.1l.3-2.1h3.6l.3 2.1a7.6 7.6 0 0 1 1.9 1.1l2-.8 1.8 3.1-1.7 1.3a7.7 7.7 0 0 1 0 2.9z", fsx: "M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5"};
   host.classList.add("msp"); host.setAttribute("dir", "ltr");
   host.innerHTML = '<video playsinline preload="metadata" poster="' + (host.dataset.poster || "") + '"></video>' +
     '<button type="button" class="msp-big" aria-label="تشغيل">' + svg(I.play) + '</button>' +
     '<div class="msp-bar"><button type="button" class="msp-b msp-pp" aria-label="تشغيل">' + svg(I.play) + '</button>' +
     '<div class="msp-track" role="slider" aria-label="التقدم" tabindex="0"><i class="msp-buf"></i><i class="msp-fill"></i><b class="msp-knob"></b></div>' +
     '<span class="msp-time">0:00</span>' +
-    '<button type="button" class="msp-b msp-spd" aria-label="السرعة">1×</button>' +
+    '<button type="button" class="msp-b msp-set" aria-label="الإعدادات" aria-expanded="false">' + svg(I.gear) + '</button>' +
     '<button type="button" class="msp-b msp-vol" aria-label="الصوت">' + svg(I.vol) + '</button>' +
-    '<button type="button" class="msp-b msp-fs" aria-label="ملء الشاشة">' + svg(I.fs) + '</button></div>';
+    '<button type="button" class="msp-b msp-fs" aria-label="ملء الشاشة">' + svg(I.fs) + '</button></div>' +
+    '<div class="msp-menu" dir="rtl" hidden><b>السرعة</b><div class="msp-opts" data-k="spd">' +
+    [0.75, 1, 1.25, 1.5, 2].map(x => '<button type="button" data-v="' + x + '"' + (x === 1 ? ' class="on"' : '') + '>' + (x === 1 ? "عادية" : x + "×") + '</button>').join("") +
+    '</div><b>الجودة</b><div class="msp-opts" data-k="q">' +
+    [["720p", "عالية"], ["480p", "متوسطة"], ["360p", "منخفضة"]].map(([r, t], i) => '<button type="button" data-v="' + r + '"' + (i ? "" : ' class="on"') + '>' + t + '</button>').join("") + '</div></div>';
   const v = host.querySelector("video"), q = c => host.querySelector(c);
   const src = r => CDN + "play_" + r + ".mp4";
   const sizes = ["720p", "480p", "360p"]; let si = 0;
@@ -1186,7 +1190,7 @@ window.msPlayer = (host, guid, auto) => {
   v.addEventListener("error", () => { if (++si < sizes.length) { const t = v.currentTime; v.src = src(sizes[si]); v.currentTime = t; v.play().catch(() => {}); } });
   const fmt = t => { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0"); };
   const toggle = () => v.paused ? v.play().catch(() => {}) : v.pause();
-  let hideT; const wake = () => { host.classList.add("msp-awake"); clearTimeout(hideT); if (!v.paused) hideT = setTimeout(() => host.classList.remove("msp-awake"), 2600); };
+  let hideT; const wake = () => { host.classList.add("msp-awake"); clearTimeout(hideT); if (!v.paused) hideT = setTimeout(() => { if (!host.classList.contains("msp-menu-on")) host.classList.remove("msp-awake"); }, 2600); };
   const sync = () => { const on = !v.paused; host.classList.toggle("msp-playing", on); q(".msp-pp").innerHTML = svg(on ? I.pause : I.play);
     q(".msp-pp").setAttribute("aria-label", on ? "إيقاف مؤقت" : "تشغيل"); wake(); };
   v.addEventListener("play", () => { host.classList.add("msp-started"); sync(); if (window.gtag && !host.dataset.ga) { host.dataset.ga = 1; gtag("event", "video_play", {item: guid}); } });
@@ -1205,8 +1209,18 @@ window.msPlayer = (host, guid, auto) => {
   tr.addEventListener("pointerdown", e => { seek(e); tr.setPointerCapture(e.pointerId); const mv = ev => seek(ev);
     tr.addEventListener("pointermove", mv); tr.addEventListener("pointerup", () => tr.removeEventListener("pointermove", mv), {once: true}); });
   tr.addEventListener("keydown", e => { if (e.key === "ArrowRight") v.currentTime += 5; if (e.key === "ArrowLeft") v.currentTime -= 5; });
-  const speeds = [1, 1.25, 1.5, 0.75]; let sp = 0;
-  q(".msp-spd").addEventListener("click", e => { sp = (sp + 1) % speeds.length; v.playbackRate = speeds[sp]; e.currentTarget.textContent = speeds[sp] + "×"; });
+  const menu = q(".msp-menu"), setB = q(".msp-set");
+  const openMenu = on => { menu.hidden = !on; setB.setAttribute("aria-expanded", on ? "true" : "false"); host.classList.toggle("msp-menu-on", on); };
+  setB.addEventListener("click", e => { e.stopPropagation(); openMenu(menu.hidden); });
+  document.addEventListener("click", e => { if (!menu.hidden && !menu.contains(e.target)) openMenu(false); });
+  menu.addEventListener("click", e => {
+    const b = e.target.closest("button[data-v]"); if (!b) return; e.stopPropagation();
+    b.parentNode.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
+    if (b.parentNode.dataset.k === "spd") v.playbackRate = +b.dataset.v;
+    else { const t = v.currentTime, was = !v.paused, rate = v.playbackRate; si = sizes.indexOf(b.dataset.v); v.src = src(b.dataset.v);
+      v.addEventListener("loadedmetadata", () => { v.currentTime = t; v.playbackRate = rate; if (was) v.play().catch(() => {}); }, {once: true}); }
+    openMenu(false);
+  });
   q(".msp-vol").addEventListener("click", e => { v.muted = !v.muted; e.currentTarget.innerHTML = svg(v.muted ? I.mute : I.vol); });
   q(".msp-fs").addEventListener("click", () => {
     if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
