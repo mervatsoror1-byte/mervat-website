@@ -11,7 +11,7 @@ const css = `
 html,body{margin:0;background:transparent}
 #b{width:1500px;height:520px;display:flex;align-items:center;justify-content:center;text-align:center;direction:rtl}
 .t{color:#F5F5DC;text-shadow:0 3px 16px rgba(10,14,50,.85),0 0 4px rgba(10,14,50,.7),0 0 30px rgba(20,24,90,.45)}
-.n{font-family:Taj;font-size:98px;line-height:1.45}
+.n{font-family:Taj;font-size:98px;line-height:1.45;max-width:1120px;text-wrap:balance}
 .g{font-family:Mes;font-size:168px;line-height:1.2;color:#E2B866}
 .s{font-family:TajM;font-size:70px;line-height:1.4}
 .t b{color:#E2B866;font-weight:inherit}
