@@ -166,3 +166,4 @@ Mervat keeps all website work in one thread for history, but may open «محاد
 - 2026-11-26: Video player: time numbers gold; settings gear (السرعة 0.75–2×, الجودة عالية/متوسطة/منخفضة = 720p/480p/360p) replaces the old 1× button.
 - 2026-11-26: Tool pages: «عن التمرين/الكورس» (.pd3-about) moved inside .pd3 so on desktop it sits right under the video (buy card spans both rows); on phones it follows the buy card. Intro cover play button is gold.
 - 2026-11-26: «محتوى التمرين/الكورس» (.pd3-content) also moved into .pd3, right under «عن» (desktop: same column as the video).
+- 2026-11-26: Mervat: no commercial register / tax card for now. Removed from the site: CR 16170, tax no., Mallawi/Minya address (footer, contact, terms); address = «القاهرة، مصر», courts = Cairo. Old values kept as a comment in tools/legal_content.py — put them back when the Paymob requirements are complete.
