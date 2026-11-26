@@ -2149,7 +2149,7 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .msp-buf{background:rgba(245,245,220,.35);width:0}
 .msp-fill{background:var(--bgold,#C5A059);width:0}
 .msp-knob{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#E2C68C;box-shadow:0 0 0 3px rgba(197,160,89,.35);left:0}
-.msp-time{font:600 .8rem/1 system-ui,sans-serif;color:#F5F5DC;white-space:nowrap;min-width:74px;text-align:center}
+.msp-time{font:700 .8rem/1 system-ui,sans-serif;color:var(--bgold,#C5A059);white-space:nowrap;min-width:74px;text-align:center}
 .msp:fullscreen{aspect-ratio:auto;width:100%;height:100%}
 .msp:-webkit-full-screen{width:100%;height:100%}
 @media (max-width:560px){.msp-big{width:62px;height:62px}.msp-big svg{width:28px;height:28px}.msp-bar{left:6px;right:6px;bottom:6px;gap:2px;padding:4px 6px}
