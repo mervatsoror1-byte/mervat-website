@@ -88,7 +88,7 @@ def product(p):
       {"<p class=pd3-vip>" + ic("crown","icon icon-sm") + "مشمول في برنامج استيقظ VIP</p>" if p.get("vipIncluded") else ""}
     </aside>
     <div class="pd3-sec pd3-about"><h2>عن {kind}</h2><div class="prose">{"".join(f"<p>{E(x)}</p>" for x in p["desc"])}</div></div>
-    <div class="pd3-sec pd3-content"><h2>محتوى {kind}</h2><div class="vp-faq">{modules_html}</div>{"<p class=vp-small>أسماء الدروس مبدئية وتُحدَّث قريباً</p>" if p.get("facts") else ""}</div>
+    <div class="pd3-sec pd3-content"><h2>محتوى {kind}</h2><div class="vp-faq">{modules_html}</div></div>
   </div>
   <div class="pd3-body">
     <div class="pd3-sec rt-box" data-rate-box="{p["id"]}"></div>
