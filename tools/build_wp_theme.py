@@ -74,6 +74,13 @@ def url_for(href, product_pages, pages):
     return href
 
 
+def fix_ld(ld, product_pages, pages):
+    """Google data (JSON-LD) uses absolute static-site links: point them at the real WordPress addresses."""
+    ld = ld.replace(B.SITE_URL + "/assets/", "{{T}}/assets/")
+    ld = re.sub(re.escape(B.SITE_URL) + r"/([a-z0-9-]+\.html(?:#[a-z-]*)?)", lambda m: url_for(m.group(1), product_pages, pages), ld)
+    return ld.replace(B.SITE_URL + "/wp-content/themes/mervat/assets/", "{{T}}/assets/")
+
+
 def rewrite_html(html, product_pages, pages):
     html = re.sub(r'(href|src|poster)="([^"]*)"', lambda m: '%s="%s"' % (m.group(1), url_for(m.group(2), product_pages, pages)), html)
     html = re.sub(r"url\((['\"]?)assets/", r"url(\1{{T}}/assets/", html)
@@ -129,7 +136,7 @@ def main():
         name = "front" if stem == "index" else stem
         (THEME / "parts" / (name + ".html")).write_text(rw(info["main"]), encoding="utf-8")
         bare = "<header class=\"site-header" not in info["before"]
-        meta[name] = {"title": re.sub(r"\s*\|.*$", "", info["title"]), "desc": info["desc"], "ld": info["ld"],
+        meta[name] = {"title": re.sub(r"\s*\|.*$", "", info["title"]), "desc": info["desc"], "ld": fix_ld(info["ld"], product_pages, pages),
                       "noindex": info["noindex"], "bare": bare,
                       "type": "front" if stem == "index" else ("product" if stem in product_pages else "page"),
                       "sku": product_pages.get(stem, "")}

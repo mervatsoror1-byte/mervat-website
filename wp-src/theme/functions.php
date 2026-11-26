@@ -116,7 +116,7 @@ add_action('wp_head', function () {
         echo '<meta property="og:title" content="' . esc_attr(wp_get_document_title()) . '"><meta property="og:description" content="' . esc_attr($m['desc']) . '">';
         echo '<meta property="og:image" content="' . esc_url(get_template_directory_uri() . '/assets/img/og-share.jpg') . '"><meta property="og:locale" content="ar_AR"><meta name="twitter:card" content="summary_large_image">' . "\n";
         if (!empty($m['noindex'])) { echo '<meta name="robots" content="noindex,nofollow">' . "\n"; }
-        if (!empty($m['ld'])) { echo str_replace('{{H}}', untrailingslashit(home_url()), $m['ld']) . "\n"; }
+        if (!empty($m['ld'])) { echo str_replace(['{{H}}', '{{T}}'], [untrailingslashit(home_url()), get_template_directory_uri()], $m['ld']) . "\n"; }
     }
 }, 1);
 
