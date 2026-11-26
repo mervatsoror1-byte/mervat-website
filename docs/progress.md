@@ -148,3 +148,16 @@ Still to do:
 3. Mervat pastes this one-liner into the Facebook, Instagram, YouTube and TikTok bios (Metricool cannot edit bios): «البرنامج التدريبي استيقظ VIP: رحلة تشافٍ من تصميم د. مرفت سرور، بمتابعة شخصية منها وتمارين مصمّمة لكل عضوة.»
 - 2026-11-26: LinkedIn https://www.linkedin.com/in/mervatsoror added (footer icons, contact page, VIP/sessions social list, Person+Organization sameAs). YouTube banner in docs/social (download link for Mervat: /media/youtube-banner.php, because the Hostinger CDN shrinks plain .jpg to 1600px).
 - 2026-11-26: Bunny funded by Mervat: billing info saved (Individual, Egypt, 0% tax), $10 recharged by Mastercard (PayPal not allowed in Egypt). Trial usage $0.22. Auto-recharge NOT enabled by choice; the twice-daily email check watches for Bunny low-balance emails and tells her to recharge $10 the same way.
+
+## START HERE in a new conversation (handoff, 2026-11-26)
+Mervat keeps all website work in one thread for history, but may open «محادثة الموقع ٢، ٣…» to save usage. A new conversation must read this file first. Standing rules from her:
+- Talk to her in simple Egyptian Arabic, short, step by step; when she's lost in a dashboard, ask for ONE screenshot and say exactly which button. She types Arabic with the keyboard in English layout sometimes (e.g. «ugd» = «علي») — decode it.
+- Never ask for/accept passwords, card numbers, OTP codes or keys in chat. Never pay, change billing or plans. Never send/reply to emails for her (Gmail is read-only for us). Keep her email private from outside services.
+- Never fabricate reviews. Articles: her voice only, inspired by her teachers but NEVER name or quote anyone.
+- Program name stays «البرنامج التدريبي استيقظ VIP»; «متابعة شخصية» (never «يومية»), no result promises, feminine address on the site.
+- After site changes: python3 tools/build_site.py && python3 tools/build_wp_theme.py && python3 tools/deploy_wp.py, then node tools/site_check.js (background, ~12 min), commit + push to main.
+- Hostinger-only tasks: tell her to use the Hostinger Agent in hPanel.
+- Scheduled tasks (fire into the ORIGINAL thread): email check 10:13 & 19:13 Cairo (trig_011uHg8gBUrurLhULqDnyvbW); weekly Thursday check (trig_01TR6NPC7btA7FVZZQgWJMp1). If she moves to a new thread for good, offer to point them at the new session.
+- Accounts: Bunny funded (\$10, card; PayPal doesn't work in Egypt). Bios updated on TikTok (business account now), Facebook, Instagram; YouTube banner+links done; LinkedIn = https://www.linkedin.com/in/mervatsoror (on site + Google data).
+- Video captions tool: tools/video/make_cues.py (lines, timings from her SRT, *gold* words, kind g = big gold word) + tools/video/render.js (browser-rendered Arabic PNGs) → ffmpeg overlay; fonts from Google Fonts (Tajawal ExtraBold/Medium, El Messiri). Brand style: ivory lines, gold key words, centred (900,500) on her navy/sunrise video, closing card «أهلاً وسهلاً بيك في / تمرين فك التعلّق / وأنوي لك التشافي بكل حب». Outputs go to exports/ (gitignored).
+- OPEN: «مقدمة فك التعلّق» v2 sent (exports/مقدمة-فك-التعلق-نسخة2.mp4) — waiting her OK («اعتمد»), then upload to Bunny and show it as the free intro on /tools/exercise-detachment/. More intros coming (same style). Pre-ad checklist above still open: free intros, real test purchase, Meta Pixel, Ain Sahia lessons.
