@@ -155,7 +155,7 @@ Mervat keeps all website work in one thread for history, but may open «محاد
 - Never ask for/accept passwords, card numbers, OTP codes or keys in chat. Never pay, change billing or plans. Never send/reply to emails for her (Gmail is read-only for us). Keep her email private from outside services.
 - Never fabricate reviews. Articles: her voice only, inspired by her teachers but NEVER name or quote anyone.
 - Program name stays «البرنامج التدريبي استيقظ VIP»; «متابعة شخصية» (never «يومية»), no result promises, feminine address on the site.
-- After site changes: python3 tools/build_site.py && python3 tools/build_wp_theme.py && python3 tools/deploy_wp.py, then node tools/site_check.js (background, ~12 min), commit + push to main.
+- After site changes: python3 tools/build_site.py && python3 tools/build_wp_theme.py && python3 tools/deploy_wp.py, then node tools/site_check.js (background, ~12 min) after EVERY site change — Mervat confirmed 2026-11-26 she wants this kept (it costs little usage); then commit + push to main.
 - Hostinger-only tasks: tell her to use the Hostinger Agent in hPanel.
 - Scheduled tasks (fire into the ORIGINAL thread): email check 10:13 & 19:13 Cairo (trig_011uHg8gBUrurLhULqDnyvbW); weekly Thursday check (trig_01TR6NPC7btA7FVZZQgWJMp1). If she moves to a new thread for good, offer to point them at the new session.
 - Accounts: Bunny funded (\$10, card; PayPal doesn't work in Egypt). Bios updated on TikTok (business account now), Facebook, Instagram; YouTube banner+links done; LinkedIn = https://www.linkedin.com/in/mervatsoror (on site + Google data).
