@@ -177,7 +177,7 @@ def auth():
   <div class="or">أو المتابعة باستخدام</div><div class="social-login"><button class="btn au-sso" type="button" onclick="this.textContent='يُفعّل في الموقع الفعلي'">Google</button><button class="btn au-sso dark" type="button" onclick="this.textContent='يُفعّل في الموقع الفعلي'">Apple</button></div>
   <p class="au-alt">ليس لديك حساب؟ <a href="register.html">انضم إلينا الآن</a></p>{social}</div></div></div>''', bare=True, noindex=True)
     page("register.html", "إنشاء حساب", "أنشئ حسابك المجاني واحصل على هدية.", f'''<div class="au">{spark}{art}<div class="au-panel">{back}<div class="au-in">
-  <h1>ابدأ رحلتك</h1><p>حساب مجاني، ومعه هدية تُفتح فوراً</p>
+  <h1>ابدأ رحلتك</h1><p>حساب مجاني، ومعه هديتك: أسئلة كشف الهوية</p>
   <form class="form" id="registerForm" novalidate><div class="field"><label for="name">الاسم <i>*</i></label><input id="name" autocomplete="name" placeholder="أدخل اسمك" required></div>
     <div class="field"><label for="email">البريد الإلكتروني <i>*</i></label><input id="email" type="email" autocomplete="email" placeholder="أدخل بريدك الإلكتروني" required></div>
     <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">

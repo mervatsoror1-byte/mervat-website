@@ -336,10 +336,10 @@ def tabs(): return '<div class="tabs" role="group" aria-label="تصنيف الت
 def stage(img, f1=True):
     return f'''<div class="stage"><div class="arch"></div><img class="cut" src="{img}" alt="د. مرفت سرور" width="600" height="900">
       {'<div class="float f2"><span><span class="dot"></span>التسجيل مفتوح</span><b>استيقظ VIP</b></div><div class="float f1"><b>د. مرفت سرور</b>معتمدة من الاتحاد الدولي للتدريب</div>' if f1 else ''}</div>'''
-GIFT = f'''<section class="wrap"><div class="gift"><div class="gift-copy"><span class="eyebrow">هدية لك</span><h2>ابدأ بهدية: مقدمة تأمل السكينة وفصل من الكتاب</h2>
-  <p class="lead">أنشئ حسابك المجاني ببريدك، وتُفتح لك الهدية فوراً في مكتبتك.</p>
-  <div class="ctas"><a class="btn btn-gold" href="register.html">{ic("gift")}أنشئ حسابي واستلم الهدية</a></div></div>
-  <div class="fan" aria-hidden="true"><img src="assets/art/calm.webp" alt=""><img src="assets/art/book.webp" alt=""><img src="assets/art/morning.webp" alt=""></div></div></section>'''
+GIFT = f'''<section class="wrap"><div class="gift"><div class="gift-copy"><span class="eyebrow">هدية لك</span><h2>ابدئي بهدية: أسئلة كشف الهوية</h2>
+  <p class="lead">أسئلة عميقة تقرّبك من نفسك، وتحليل شخصي تكتبه د. مرفت بنفسها لإجاباتك. مجاناً.</p>
+  <div class="ctas"><a class="btn btn-gold" href="gift.html">{ic("gift")}استلمي هديتك الآن</a></div></div>
+  <div class="fan" aria-hidden="true"><img src="assets/img/gift-mask.webp" alt=""><img src="assets/art/decode.webp" alt=""><img src="assets/art/calm.webp" alt=""></div></div></section>'''
 MARQUEE = '<div class="vp-strip" aria-hidden="true"><div class="track">' + ('<span>الوعي <i>✦</i> التشافي <i>✦</i> السكينة <i>✦</i> القبول <i>✦</i> التحرّر من التعلّق <i>✦</i> الطفل الداخلي <i>✦</i> النسخة الأصلية <i>✦</i></span>' * 2) + '</div></div>'
 ORG = {"@context":"https://schema.org","@type":"Organization","name":NAME,"url":SITE_URL,"logo":f"{SITE_URL}/assets/brand/logo-gold-transparent.png","sameAs":["https://www.facebook.com/mrft.srwr","https://www.instagram.com/mervatsoror111","https://www.youtube.com/@mervatsoror","https://www.tiktok.com/@fefesoror"]}
 PERSON = {"@context":"https://schema.org","@type":"Person","name":"مرفت سرور","jobTitle":"مدربة وعي وتشافي معتمدة من ICF","url":f"{SITE_URL}/about.html","image":f"{SITE_URL}/assets/img/whois-library.webp","memberOf":{"@type":"Organization","name":"International Coaching Federation (ICF)"},"description":"مدربة وعي وتشافٍ معتمدة من ICF، صمّمت البرنامج التدريبي «استيقظ VIP»، وهو نظام تشافٍ يجمع تمارين متناسقة تتعامل مع العقل اللاواعي.","sameAs":["https://www.facebook.com/mrft.srwr","https://www.instagram.com/mervatsoror111","https://www.youtube.com/@mervatsoror","https://www.tiktok.com/@fefesoror"]}
@@ -589,7 +589,7 @@ def build():
   <p class="muted" style="text-align:center">ليس لديك حساب؟ <a href="register.html">أنشئ حساباً مجانياً</a></p></div></div></div>''', bare=True, noindex=True)
     page("register.html", "إنشاء حساب", "أنشئ حسابك المجاني واحصل على هدية: مقدمة تأمل السكينة والفصل الأول من الكتاب.", f'''<div class="auth-wrap">{auth_side}<div class="auth-form"><div class="inner">
   <a class="brand" href="index.html"><img src="assets/brand/logo-icon-gold.webp" alt="" width="38" height="48"><span><b>د. مرفت سرور</b></span></a>
-  <div><h1 class="title">ابدأ رحلتك</h1><p class="muted">حساب مجاني، ومعه هدية تُفتح فوراً.</p></div>
+  <div><h1 class="title">ابدأ رحلتك</h1><p class="muted">حساب مجاني، ومعه هديتك: أسئلة كشف الهوية.</p></div>
   <form class="form" id="registerForm" novalidate><div class="field"><label for="name">الاسم</label><input id="name" autocomplete="name" required></div>
     <div class="field"><label for="email">البريد الإلكتروني</label><input id="email" type="email" autocomplete="email" required></div>
     <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">

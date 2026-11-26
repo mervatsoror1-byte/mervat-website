@@ -90,13 +90,13 @@
 
 ## قبل الإعلان (checklist — remind Mervat weekly until she says she's ready)
 - [ ] Free intros: get the short intro clips from Mervat, upload to Bunny, make «استمع للمقدمة مجاناً» play real audio/video on mervatsror.com (today the static player is display-only).
-- [ ] Sign-up gift: decide what it is (serenity intro? book chapter is still «قريباً»), name it on register.html, and make it really open/arrive.
+- [x] Sign-up gift = «أسئلة كشف الهوية» (/gift/), Mervat decided 2026-11-26: on the sign-up form, the account dashboard, header link and the bundles gift block.
 - [ ] Ad landing page: every button on the target page works (buy, WhatsApp, booking); test on a phone.
 - [ ] Test purchase end-to-end (PayPal now; Paymob after contract/API keys).
-- [ ] Sign-ups: confirm the first «تسجيل جديد» email arrives at info@ (api/lead.php → ms_data/leads.json).
+- [x] Sign-ups: first real «تسجيل جديد» email arrived at info@ (Nov 2026).
 - [ ] Meta Pixel installed (planned).
 - [ ] Ain Sahia course page: real units/lessons from Mervat's recordings (order so far: العشرين عطية والأربعة البور → امسكي طرف الخيط → المحنة والمنحة → رسالة من بعد العاصفة → المراية).
-- [ ] Ideally: move the WordPress site to mervatsror.com so lessons, accounts and access are real.
+- [x] WordPress is live on mervatsror.com (2026-11-22).
 
 ## 2026-11-22 — WordPress is now live on mervatsror.com (final move)
 - Method (no SSH/exec on the plan): a one-time key-protected PHP script on new.mervatsror.com backed up the DB (`/domains/new.mervatsror.com/db-backup-20261122-070854.sql`) and the static site (`/domains/mervatsror.com/static-site-backup-20261122-070854.zip`), copied the WP files to `/domains/mervatsror.com/public_html_wp`, swapped web roots (old static root kept as `/domains/mervatsror.com/public_html_static`), and replaced new.mervatsror.com → mervatsror.com in the DB (serialized-safe, 214 rows). Script removed afterwards.

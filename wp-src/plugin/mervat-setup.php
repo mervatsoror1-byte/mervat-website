@@ -643,6 +643,13 @@ add_action('woocommerce_created_customer', function ($customer_id) {
     wp_mail('info@mervatsror.com', 'تسجيل جديد: ' . $u->user_email, $body, ['Reply-To: ' . $u->user_email]);
 });
 
+/* Sign-up gift = «أسئلة كشف الهوية» (/gift/): promised on the sign-up form, offered on the account dashboard. */
+function ms_gift_card(string $lead): string {
+    return '<div class="ms-gift-note"><span aria-hidden="true">🎁</span><div><b>' . esc_html($lead) . '</b><span>أسئلة عميقة تقرّبك من نفسك، وتحليل شخصي تكتبه د. مرفت بنفسها لإجاباتك.</span></div><a class="btn btn-gold btn-sm" href="' . esc_url(home_url('/gift/')) . '">ابدئي الآن</a></div>';
+}
+add_action('woocommerce_register_form_start', function () { echo ms_gift_card('مع حسابك المجاني: هدية «أسئلة كشف الهوية»'); });
+add_action('woocommerce_account_dashboard', function () { echo ms_gift_card('هديتك في انتظارك: «أسئلة كشف الهوية»'); });
+
 /* Customers choose any password they like: no strength meter, no "weak password" block. */
 add_filter('woocommerce_min_password_strength', function () { return 0; });
 add_action('wp_enqueue_scripts', function () {

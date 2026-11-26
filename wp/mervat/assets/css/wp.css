@@ -39,3 +39,8 @@
 .wc-block-components-sidebar-layout{gap:24px}
 .wc-block-components-totals-wrapper,.wc-block-components-order-summary{font-family:inherit}
 .add.busy{opacity:.6;pointer-events:none}
+.ms-gift-note{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:linear-gradient(135deg,#FBF3E4,#F7F1FA);border:1px solid #E9DCC0;border-radius:18px;padding:14px 16px;margin:0 0 18px}
+.ms-gift-note>span{font-size:1.6rem}
+.ms-gift-note div{flex:1;min-width:200px}
+.ms-gift-note b{display:block;color:#1F3F7C}
+.ms-gift-note div span{display:block;color:#7A7390;font-size:.92rem;line-height:1.7}
