@@ -45,7 +45,8 @@ function ms_current_part(): string {
 
 add_action('wp_enqueue_scripts', function () {
     $t = get_template_directory_uri();
-    $v = wp_get_theme()->get('Version') . '.' . (string)@filemtime(get_template_directory() . '/assets/css/site.css');
+    // changes whenever any of the design files changes, so browsers fetch the new copy
+    $v = wp_get_theme()->get('Version') . '.' . (string)max(array_map(fn($f) => (int)@filemtime(get_template_directory() . '/assets/' . $f), ['css/site.css', 'css/wp.css', 'js/site.js', 'js/data.js', 'js/wp-bridge.js']));
     wp_enqueue_style('ms-fonts', 'https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Almarai:wght@400;700&family=El+Messiri:wght@500;600;700&family=Amiri:ital@0;1&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@500;700&family=Cormorant+Garamond:wght@300&display=swap', [], null);
     wp_enqueue_style('ms-site', $t . '/assets/css/site.css', [], $v);
     wp_enqueue_style('ms-wp', $t . '/assets/css/wp.css', ['ms-site'], $v);

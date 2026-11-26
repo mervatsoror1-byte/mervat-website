@@ -1116,11 +1116,11 @@ document.addEventListener("click", e => {
   const esc = t => String(t).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const titles = {}; ((window.SITE_DATA || {}).products || []).forEach(x => titles[x.id] = x.title);
   const toast = window.toast || (m => alert(m));
-  const nameOf = id => id === "general" ? "" : (titles[id] || "");
+  const nameOf = id => id === "general" ? "" : (titles[id] || "").replace(/ · /g, " – ");   // «·» next to a digit reads like the Arabic zero (٣٠)
   const reels = document.querySelectorAll("[data-rv-reel]");
   if (reels.length){   // approved written reviews also lead the «قالوا عنا» strip on the home page
     fetch(RAPI + "?action=list", {cache: "no-store"}).then(r => r.ok ? r.json() : {reviews: []}).then(j => {
-      const cards = (j.reviews || []).slice(0, 8).map(r => `<div class="voice"><span class="av">${esc(r.name.charAt(0))}</span><span class="qm">“</span><p>${esc(r.text)}</p><b>${esc(r.name)}</b><small class="vo-p">${esc(nameOf(r.pid) || "تجربة مع د. مرفت")}</small></div>`).join("");
+      const cards = (j.reviews || []).slice(0, 8).map(r => `<div class="voice"><span class="av">${esc(r.name.charAt(0))}</span><span class="qm">“</span><span class="vo-stars" aria-label="${r.stars} من ٥">${star(r.stars)}</span><p>${esc(r.text)}</p><b>${esc(r.name)}</b><small class="vo-p">${esc(nameOf(r.pid) || "تجربة مع د. مرفت")}</small></div>`).join("");
       if (cards) reels.forEach(el => el.insertAdjacentHTML("afterbegin", cards));
     }).catch(() => {}).finally(() => reels.forEach(el => window.msReel(el)));
   }

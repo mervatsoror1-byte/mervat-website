@@ -2112,3 +2112,4 @@ body:has(.lp-hero) .help-c{display:none}
 .ar-ex{padding:0 12px;color:var(--muted);font-size:.95rem;line-height:1.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .ar-soon{text-align:center;color:var(--muted);margin-top:30px;display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap}
 @media (max-width:700px){.ar-shelf{grid-template-columns:1fr}.ar-cover{aspect-ratio:4/3;border-radius:18px}.ar-body p,.ar-body li{font-size:1.06rem}.ar-btn{min-width:0;width:100%}}
+.voice .vo-stars{display:block;color:#D9AE48;font-size:1.25rem;letter-spacing:3px;direction:ltr;text-align:center;margin:2px 0 4px;line-height:1}
