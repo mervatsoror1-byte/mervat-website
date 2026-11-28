@@ -50,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
         $html = ms_reply_html(['name' => $draft['name'], 'title' => $draft['title'], 'body' => $draft['body']]);
         if ($do === 'test') {
             $ok = ms_send_reply_html(NOTIFY_EMAIL, '[تجربة] ' . $draft['subject'], $html, false);
-            $msg = $ok ? 'أُرسلت نسخة تجريبية إلى info@mervatsror.com (تصل إلى Gmail خلال دقيقة).' : ''; if (!$ok) { $err = 'تعذّر إرسال النسخة التجريبية.'; }
+            if ($ok) { header('Location: replies.php?id=' . $id . '&done=test'); exit; }
+            $err = 'تعذّر إرسال النسخة التجريبية.';
         } elseif ($do === 'send') {
             if (!filter_var($draft['email'], FILTER_VALIDATE_EMAIL)) { $err = 'البريد الإلكتروني غير صحيح.'; }
             elseif (trim($draft['body']) === '') { $err = 'اكتبي نص الرد أولاً.'; }
@@ -64,11 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
                 }
                 $err = 'تعذّر الإرسال. حاولي مرة أخرى بعد دقيقة.';
             }
-        } else { $msg = $do === 'preview' ? 'تم حفظ المسودة وتحديث المعاينة تحت.' : 'تم حفظ المسودة.'; }
+        } else { header('Location: replies.php?id=' . $id . '&done=' . ($do === 'preview' ? 'preview#preview' : 'saved')); exit; }
         $replies = $withReplies();
     }
 }
-if (($_GET['done'] ?? '') === 'sent') { $msg = 'تم إرسال الرد ✓ ووصلتك نسخة منه على info@mervatsror.com.'; }
+// after every save we redirect back here (so refreshing the page never re-sends the form)
+$msg = $msg ?: (['sent' => 'تم إرسال الرد ✓ ووصلتك نسخة منه على info@mervatsror.com.', 'saved' => 'تم حفظ المسودة ✓',
+                 'preview' => 'تم حفظ المسودة ✓ والمعاينة تحت محدّثة.', 'test' => 'أُرسلت نسخة تجريبية إلى info@mervatsror.com ✓ (تصل إلى Gmail خلال دقيقة).'][$_GET['done'] ?? ''] ?? '');
 
 $questions = (function () { $f = dirname(__DIR__) . '/api/_gift_questions.php'; return is_file($f) ? require $f : []; })();
 $status = function ($gid) use ($replies) {
@@ -145,7 +148,7 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
       </div>
     </section>
     <section>
-      <form class="panel" method="post" action="replies.php?id=<?= $h($id) ?>">
+      <form class="panel" id="form" method="post" action="replies.php?id=<?= $h($id) ?>">
         <h2 style="margin-top:0">الرد</h2>
         <?php if (!empty($seeded)): ?><p class="ok" style="margin:0 0 8px">هذا الرد جهّزه لكِ Claude بالتنسيق. راجعيه، ثم دوسي «احفظي المسودة» أو أرسليه.</p><?php endif; ?>
         <?php foreach (($r['sent'] ?? []) as $s): ?><p class="sent-log">✓ أُرسل إلى <?= $h($s['to']) ?> في <?= $fmtDate($s['at']) ?></p><?php endforeach; ?>
@@ -169,7 +172,7 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
         <label class="ck"><input type="checkbox" name="sure" value="1"> راجعتُ الرد وأريد إرساله</label>
         <div class="acts"><button class="gold" name="do" value="send" id="sendBtn">أرسلي الرد لـ<?= $h($v['name'] ?: 'العميلة') ?></button></div>
       </form>
-      <h2>المعاينة (هكذا يظهر لها)</h2>
+      <h2 id="preview">المعاينة (هكذا يظهر لها)</h2>
       <iframe title="معاينة الإيميل" srcdoc="<?= $h($preview) ?>"></iframe>
     </section>
   </div>
