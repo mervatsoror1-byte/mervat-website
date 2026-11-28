@@ -123,6 +123,12 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
   <?php endforeach; ?>
 <?php else:
   $r = $replies[$id] ?? [];
+  // Replies Claude prepared for Mervat: uploaded straight to the server (never in the public code), used until she saves her own draft.
+  if (empty($r['body']) && is_file(__DIR__ . '/_seed_drafts.php')) {
+      foreach ((array)(require __DIR__ . '/_seed_drafts.php') as $sd) {
+          if (!empty($sd['match']) && mb_stripos($gift['name'] . ' ' . $gift['email'], $sd['match']) !== false) { $r = array_merge($sd, $r); $seeded = true; break; }
+      }
+  }
   $first = trim(explode(' ', trim($gift['name']))[0] ?? '');
   $v = ['name' => $r['name'] ?? $first, 'email' => $r['email'] ?? $gift['email'], 'subject' => $r['subject'] ?? $DEF_SUBJECT, 'title' => $r['title'] ?? $DEF_TITLE, 'body' => $r['body'] ?? ''];
   $preview = ms_reply_html(['name' => $v['name'], 'title' => $v['title'], 'body' => $v['body']]);
@@ -141,6 +147,7 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
     <section>
       <form class="panel" method="post" action="replies.php?id=<?= $h($id) ?>">
         <h2 style="margin-top:0">الرد</h2>
+        <?php if (!empty($seeded)): ?><p class="ok" style="margin:0 0 8px">هذا الرد جهّزه لكِ Claude بالتنسيق. راجعيه، ثم دوسي «احفظي المسودة» أو أرسليه.</p><?php endif; ?>
         <?php foreach (($r['sent'] ?? []) as $s): ?><p class="sent-log">✓ أُرسل إلى <?= $h($s['to']) ?> في <?= $fmtDate($s['at']) ?></p><?php endforeach; ?>
         <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="id" value="<?= $h($id) ?>">
         <div class="row">

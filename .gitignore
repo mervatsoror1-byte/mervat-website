@@ -1,3 +1,6 @@
 __pycache__/
 wp/.deploy-state-*.json
 exports/
+src/admin/_seed_drafts.php
+site/admin/_seed_drafts.php
+wp/root/admin/_seed_drafts.php
