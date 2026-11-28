@@ -37,6 +37,18 @@ $list[] = $rec;
 ftruncate($fh, 0); rewind($fh); fwrite($fh, json_encode($list, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 flock($fh, LOCK_UN); fclose($fh); @chmod($path, 0600);
 
+// Said yes to «جديد د. مرفت»: add to the subscribers list (leads.json), once per email.
+if ($rec['news']) {
+    $lp = data_dir() . '/leads.json';
+    $lh = fopen($lp, 'c+'); flock($lh, LOCK_EX);
+    $leads = json_decode((string)stream_get_contents($lh), true) ?: [];
+    if (!in_array($rec['email'], array_column($leads, 'email'), true)) {
+        $leads[] = ['name' => $name, 'email' => $rec['email'], 'news' => true, 'source' => 'هدية أسئلة كشف الهوية', 'created_at' => $rec['created_at']];
+        ftruncate($lh, 0); rewind($lh); fwrite($lh, json_encode($leads, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    }
+    flock($lh, LOCK_UN); fclose($lh); @chmod($lp, 0600);
+}
+
 if (is_file(MS_WP_LOAD)) { if (!defined('WP_USE_THEMES')) { define('WP_USE_THEMES', false); } require_once MS_WP_LOAD; }
 $enc = fn($s) => '=?UTF-8?B?' . base64_encode($s) . '?=';
 $lines = '';

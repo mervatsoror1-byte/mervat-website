@@ -150,6 +150,7 @@ Still to do:
 - 2026-11-26: Bunny funded by Mervat: billing info saved (Individual, Egypt, 0% tax), $10 recharged by Mastercard (PayPal not allowed in Egypt). Trial usage $0.22. Auto-recharge NOT enabled by choice; the twice-daily email check watches for Bunny low-balance emails and tells her to recharge $10 the same way.
 
 ## START HERE in a new conversation (handoff, 2026-11-26)
+- **ALWAYS `git pull origin main` BEFORE building or deploying.** Two conversations can work on the site; on 2026-11-28 the old thread deployed a stale build over 10 commits from the new thread (fixed within minutes by rebuilding on top of origin/main and redeploying). Only one conversation should change the site at a time.
 Mervat keeps all website work in one thread for history, but may open «محادثة الموقع ٢، ٣…» to save usage. A new conversation must read this file first. Standing rules from her:
 - Talk to her in simple Egyptian Arabic, short, step by step; when she's lost in a dashboard, ask for ONE screenshot and say exactly which button. She types Arabic with the keyboard in English layout sometimes (e.g. «ugd» = «علي») — decode it.
 - Never ask for/accept passwords, card numbers, OTP codes or keys in chat. Never pay, change billing or plans. Never send/reply to emails for her (Gmail is read-only for us). Keep her email private from outside services.
@@ -167,3 +168,4 @@ Mervat keeps all website work in one thread for history, but may open «محاد
 - 2026-11-26: Tool pages: «عن التمرين/الكورس» (.pd3-about) moved inside .pd3 so on desktop it sits right under the video (buy card spans both rows); on phones it follows the buy card. Intro cover play button is gold.
 - 2026-11-26: «محتوى التمرين/الكورس» (.pd3-content) also moved into .pd3, right under «عن» (desktop: same column as the video).
 - 2026-11-26: Mervat: no commercial register / tax card for now. Removed from the site: CR 16170, tax no., Mallawi/Minya address (footer, contact, terms); address = «القاهرة، مصر», courts = Cairo. Old values kept as a comment in tools/legal_content.py — put them back when the Paymob requirements are complete.
+- 2026-11-28: gift «أسئلة كشف الهوية» answers with «يريد جديد د. مرفت = نعم» are now added to the subscribers list ms_data/leads.json (source «هدية أسئلة كشف الهوية»); backfilled خديجة (first real gift answer, G-2A09C4, 26 Nov). She has no WP account (the gift needs none).
