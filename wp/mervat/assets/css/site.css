@@ -2175,7 +2175,8 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .vo-more{border:0;background:none;color:var(--gold-deep,#A8843F);font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;padding:0;margin-top:-6px;text-decoration:underline;text-underline-offset:3px}
 .voice.hl .vo-more{color:#E2C68C}
 /* ===== home «قالوا عنا»: compact white cards on royal blue, 4 across on desktop ===== */
-.rv-band{background:radial-gradient(circle at 12% 20%,rgba(226,198,140,.10) 0 2px,transparent 3px) 0 0/46px 46px,radial-gradient(circle at 70% 60%,rgba(226,198,140,.08) 0 1.5px,transparent 2.5px) 0 0/62px 62px,linear-gradient(160deg,#1F3F7C,#1A3670 60%,#16305F)}
+.rv-band{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(70% 90% at 20% 10%,#3A62A8 0%,#284D92 45%,#1F3F7C 100%)}
+.rv-band .sparkle{z-index:0}.rv-band>.wrap{position:relative;z-index:1}
 .rv-band .head .title{color:#F5F5DC}.rv-band .head .lead{color:#E2C68C}
 .rv-band .reel{grid-auto-columns:calc((100% - 3*16px)/4);gap:16px;padding:14px 2px 18px;scroll-snap-type:x mandatory}
 .rv-band .slider .reel{padding-inline:2px}
@@ -2199,3 +2200,8 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .rv-band .sl-dots button{background:rgba(245,245,220,.45)}
 .rv-band .sl-dots button[aria-current=true]{background:#E2C68C}
 .rv-band .vp-head h2{color:#F5F5DC}.rv-band .vp-head p{color:#E2C68C}
+/* voice reviews on the blue band: gold pills */
+.rv-band .vr-pill{background:linear-gradient(135deg,#E9D29C,#C5A059 60%,#AE8945);border-color:rgba(255,241,181,.6);box-shadow:0 16px 30px -18px rgba(0,0,0,.55)}
+.rv-band .vr-pill .vr-play{background:#1A3670;color:#E2C68C;box-shadow:0 0 0 5px rgba(26,54,112,.18)}
+.rv-band .vr-pill-t b{color:#14234A}.rv-band .vr-pill-t small{color:#3B3320}
+.rv-band .vr-listen{color:#14234A}.rv-band .vr-mini i{background:#14234A}
