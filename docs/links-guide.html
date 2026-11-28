@@ -48,6 +48,15 @@ button.done{border-color:var(--ok);color:var(--ok);background:transparent}
 .q .reply{background:var(--gold-soft);border-radius:12px;padding:10px 12px;font-size:.95rem;white-space:pre-line}
 .tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.02em;background:var(--chip);color:var(--muted);border-radius:999px;padding:1px 10px;margin-inline-start:6px;vertical-align:middle}
 .empty{color:var(--muted);text-align:center;padding:20px}
+.dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.dcard{display:grid;gap:4px;padding:18px;border-radius:18px;text-decoration:none;background:linear-gradient(135deg,#1F3F7C,#2E5AA6);color:#fff;border:1px solid var(--gold);box-shadow:0 10px 24px -16px rgba(31,63,124,.6)}
+.dcard b{font-family:var(--display);font-size:1.3rem;color:#F1DDAE}
+.dcard span{font-size:.95rem;color:#E4E9F7}
+.dcard i{font-style:normal;font-weight:700;color:#F1DDAE;margin-top:6px}
+.dcard:hover{filter:brightness(1.08)}
+.dcard:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.dnote{margin:10px 0 0;color:var(--muted);font-size:.9rem}
+.dnote a{color:var(--ink);font-weight:700}
 footer{color:var(--muted);font-size:.85rem;text-align:center}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -58,6 +67,14 @@ footer{color:var(--muted);font-size:.85rem;text-align:center}
     <p>ابحثي عن سؤال العميلة أو اسم الصفحة، وانسخي الرد الجاهز أو الرابط وابعتيه على واتساب أو ماسنجر، أو دوسي «افتحي» عشان تدخلي الصفحة على طول.</p>
     <div class="wa"><span>واتساب الموقع: <b dir="ltr">01095292748</b></span><span>البريد: <b dir="ltr">info@mervatsror.com</b></span></div>
   </header>
+
+  <section class="mine"><h2>لوحتك الخاصة</h2>
+    <div class="dash">
+      <a class="dcard" href="https://mervatsror.com/admin/voices.php" target="_blank" rel="noopener"><b>المراجعات</b><span>توافقي على الآراء الصوتية والمكتوبة</span><i>افتحي ↗</i></a>
+      <a class="dcard" href="https://mervatsror.com/admin/replies.php" target="_blank" rel="noopener"><b>إجابات كشف الهوية</b><span>تقري الإجابات وتبعتي التحليل</span><i>افتحي ↗</i></a>
+    </div>
+    <p class="dnote">بنفس كلمة السر · ولوحة WordPress (الطلبات والمنتجات): <a href="https://mervatsror.com/wp-admin/" target="_blank" rel="noopener">افتحي ↗</a></p>
+  </section>
 
   <div class="search">
     <input id="q" type="search" placeholder="اكتبي: حجز، سعر، الدفع، نسيت كلمة السر، التعلّق…" aria-label="ابحثي في الروابط والأسئلة" autocomplete="off">
@@ -139,9 +156,6 @@ const PAGES = [
  ["سياسة الخصوصية","إزاي بنحافظ على بيانات العميلات","/privacy/","السياسات","خصوصية"],
  ["الاسترداد والإلغاء","قواعد استرجاع الفلوس والإلغاء","/refund/","السياسات","استرداد"],
  ["سياسة تقديم الخدمة","إمتى وإزاي التمرين بيوصل","/delivery/","السياسات","توصيل"],
- ["لوحة آراء العملاء","ليكِ بس: توافقي على المراجعات الصوتية والمكتوبة (بكلمة السر)","/admin/voices.php","لوحتك الخاصة","لوحة تحكم مراجعات موافقة ادمن"],
- ["ردود كشف الهوية","ليكِ بس: إجابات الهدية وإرسال التحليل (بكلمة السر)","/admin/replies.php","لوحتك الخاصة","لوحة تحكم ردود تحليل كشف الهوية ادمن"],
- ["لوحة WordPress","ليكِ بس: الطلبات والمنتجات والإعدادات","/wp-admin/","لوحتك الخاصة","ووردبريس طلبات ادمن"],
 ];
 const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const norm = t => String(t).toLowerCase().replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه").replace(/[ًٌٍَُِّْـ]/g,"");
@@ -169,7 +183,7 @@ const q = document.getElementById("q"), count = document.getElementById("count")
 function filter(){
   const words = norm(q.value).split(/\s+/).filter(Boolean); let shown = 0;
   document.querySelectorAll("[data-s]").forEach(el => { const ok = words.every(w => el.dataset.s.includes(w)); el.hidden = !ok; if (ok) shown++; });
-  document.querySelectorAll("section").forEach(s => s.hidden = !s.querySelector("[data-s]:not([hidden])"));
+  document.querySelectorAll("section:not(.mine)").forEach(s => s.hidden = !s.querySelector("[data-s]:not([hidden])"));
   none.hidden = shown > 0;
   count.textContent = q.value ? `${shown} نتيجة` : `${FAQ.length} سؤال بردّ جاهز · ${PAGES.length} صفحة`;
 }
