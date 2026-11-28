@@ -49,7 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
         $withReplies(function ($all) use ($id, $draft) { $all[$id] = array_merge($all[$id] ?? [], $draft); return $all; });
         $html = ms_reply_html(['name' => $draft['name'], 'title' => $draft['title'], 'body' => $draft['body']]);
         if ($do === 'test') {
-            $ok = ms_send_reply_html(NOTIFY_EMAIL, '[تجربة ' . date('H:i', time() + 2 * 3600) . '] ' . $draft['subject'], $html, false);
+            $tto = strtolower(trim((string)($_POST['test_to'] ?? '')));
+            $tto = filter_var($tto, FILTER_VALIDATE_EMAIL) ? $tto : NOTIFY_EMAIL;
+            $_SESSION['test_to'] = $tto === NOTIFY_EMAIL ? '' : $tto;
+            $ok = ms_send_reply_html($tto, '[تجربة ' . date('H:i', time() + 2 * 3600) . '] ' . $draft['subject'], $html, $tto !== NOTIFY_EMAIL);
             if ($ok) { header('Location: replies.php?id=' . $id . '&done=test'); exit; }
             $err = 'تعذّر إرسال النسخة التجريبية.';
         } elseif ($do === 'send') {
@@ -71,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
 }
 // after every save we redirect back here (so refreshing the page never re-sends the form)
 $msg = $msg ?: (['sent' => 'تم إرسال الرد ✓ ووصلتك نسخة منه على info@mervatsror.com.', 'saved' => 'تم حفظ المسودة ✓',
-                 'preview' => 'تم حفظ المسودة ✓ والمعاينة تحت محدّثة.', 'test' => 'أُرسلت نسخة تجريبية إلى info@mervatsror.com ✓ (تصل إلى Gmail خلال دقيقة).'][$_GET['done'] ?? ''] ?? '');
+                 'preview' => 'تم حفظ المسودة ✓ والمعاينة تحت محدّثة.', 'test' => 'أُرسلت نسخة تجريبية إلى ' . (($_SESSION['test_to'] ?? '') ?: 'info@mervatsror.com') . ' ✓ (تصل خلال دقيقة). افتحي الإيميل الجديد، عنوانه فيه الساعة.'][$_GET['done'] ?? ''] ?? '');
 
 $questions = (function () { $f = dirname(__DIR__) . '/api/_gift_questions.php'; return is_file($f) ? require $f : []; })();
 $status = function ($gid) use ($replies) {
@@ -168,6 +171,7 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
           <button class="ghost" name="do" value="save">احفظي المسودة</button>
           <button class="blue" name="do" value="preview">حدّثي المعاينة</button>
           <button class="ghost" name="do" value="test">جرّبي على إيميلي</button>
+          <input name="test_to" type="email" dir="ltr" placeholder="إيميل آخر للتجربة (اختياري)" value="<?= $h($_SESSION['test_to'] ?? '') ?>" style="flex:1;min-width:200px">
         </div>
         <label class="ck"><input type="checkbox" name="sure" value="1"> راجعتُ الرد وأريد إرساله</label>
         <div class="acts"><button class="gold" name="do" value="send" id="sendBtn">أرسلي الرد لـ<?= $h($v['name'] ?: 'العميلة') ?></button></div>
