@@ -118,6 +118,7 @@ def about():
 <section class="pg"><div class="wrap">
   <div class="ab-row ab-main"><div class="ab-ph"><img src="assets/img/mervat-about.webp" alt="مرفت سرور" width="900" height="1012"></div>
     <div class="ab-tx"><h2>مرفت سرور</h2>{bio}
+        <p class="ab-cv"><a class="btn btn-line" href="assets/docs/Mervat-Soror-CV.pdf" target="_blank" rel="noopener" download>{ic("award","icon icon-sm")}تحميل السيرة الذاتية (PDF)</a></p>
       </div></div>
   <div class="center-cta"><a class="btn btn-gold" href="vip.html">ابدأ معي في برنامج استيقظ VIP</a></div>
 </div></section>''', active="about.html", schema=[B.PERSON])

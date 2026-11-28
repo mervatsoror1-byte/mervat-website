@@ -193,6 +193,7 @@ def main():
     shutil.copytree(SITE / "api", WP / "root/api", dirs_exist_ok=True)
     shutil.copytree(SITE / "admin", WP / "root/admin", dirs_exist_ok=True)
     shutil.copytree(SITE / "assets/email", WP / "root/assets/email", dirs_exist_ok=True)   # images used in branded emails
+    shutil.copytree(SITE / "assets/docs", WP / "root/assets/docs", dirs_exist_ok=True)     # downloadable files (CV)
     print("theme:", sum(1 for _ in THEME.rglob("*") if _.is_file()), "files;", len(meta), "parts;", len(prods), "products")
 
 

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Tajawal",sans-serif;color:#25304D;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;display:grid;grid-template-columns:68mm 1fr;overflow:hidden;page-break-after:always}
+.page:last-child{page-break-after:auto}
+.side{background:linear-gradient(170deg,#284D92,#1B3468 65%,#162C58);color:#E9ECF6;padding:16mm 9mm 12mm;display:flex;flex-direction:column;gap:7mm;position:relative}
+.side::after{content:"";position:absolute;inset:0 auto 0 0;width:2.2mm;background:linear-gradient(#E6BE57,#A8843F,#E6BE57)}
+.ltr .side::after{inset:0 0 0 auto}
+.photo{width:42mm;height:42mm;border-radius:50%;border:1.2mm solid #C5A059;object-fit:cover;align-self:center}
+.side h3{font-family:"El Messiri",serif;color:#E2C68C;font-size:12.5pt;border-bottom:.3mm solid rgba(226,198,140,.5);padding-bottom:1.5mm;margin-bottom:2.5mm}
+.side p,.side li{font-size:9.6pt;line-height:1.7}
+.side ul{list-style:none;display:grid;gap:1.3mm}
+.side li::before{content:"✦ ";color:#C5A059}
+.side .c{direction:ltr;text-align:start;word-break:break-all}
+.rtl .side .c{text-align:right}
+.logo{width:30mm;align-self:center;margin-top:auto;opacity:.95}
+.main{padding:16mm 13mm 12mm;display:flex;flex-direction:column;gap:6mm;background:#FFFEFB}
+h1{font-family:"El Messiri",serif;color:#1B3468;font-size:28pt;line-height:1.15}
+.role{color:#A8843F;font-weight:800;font-size:12.5pt;margin-top:1.5mm}
+.cred{display:inline-block;margin-top:3mm;background:#F5ECD8;color:#1B3468;border:.3mm solid #C5A059;border-radius:99px;padding:1mm 4mm;font-weight:700;font-size:9.5pt}
+h2{font-family:"El Messiri",serif;color:#1B3468;font-size:14pt;display:flex;align-items:center;gap:2.5mm;margin-bottom:2.5mm}
+h2::before{content:"✦";color:#C5A059;font-size:11pt}
+h2::after{content:"";flex:1;height:.3mm;background:#E6D3A6}
+.main p{font-size:10.6pt;line-height:1.85}
+.item{display:grid;grid-template-columns:24mm 1fr;gap:3mm;margin-bottom:3mm}
+.item .yr{color:#A8843F;font-weight:800;font-size:10pt}
+.item b{color:#1B3468;font-size:11pt}
+.item p{font-size:10pt;line-height:1.7}
+.pills{display:flex;flex-wrap:wrap;gap:2mm}
+.pills span{background:#EEF1F8;color:#1B3468;border-radius:99px;padding:1mm 3.2mm;font-size:9.4pt;font-weight:700}
+.rtl{direction:rtl}.ltr{direction:ltr}
+.item p.v{direction:ltr;unicode-bidi:isolate;color:#8A93AE;font-size:8.6pt;line-height:1.4}.rtl .item p.v{text-align:right}
+.item b{display:block;line-height:1.45}
+.main{gap:4.2mm;padding-top:13mm;padding-bottom:10mm}.main p{line-height:1.7}.item{margin-bottom:2mm}h1{font-size:25pt}h2{margin-bottom:2mm}.item p{font-size:9.6pt}
+.ltr .main{gap:3.6mm}.ltr .main p{line-height:1.6;font-size:10pt}.ltr .item{margin-bottom:1.6mm}.ltr .item p{font-size:9.3pt}.ltr .pills span{font-size:8.8pt;padding:.8mm 2.8mm}
+.ltr .main,.ltr .side{text-align:left}
+</style></head><body>
+
+<!-- Arabic -->
+<section class="page rtl">
+  <aside class="side">
+    <img class="photo" src="cv-photo.jpg" alt="">
+    <div><h3>التواصل</h3>
+      <p class="c">info@mervatsror.com</p>
+      <p class="c">mervatsror.com</p>
+      <p>واتساب: <bdi dir="ltr">&#x2066;+20 109 529 2748&#x2069;</bdi></p>
+      <p>القاهرة، مصر · جلسات أونلاين</p></div>
+    <div><h3>الاعتماد</h3>
+      <ul><li>الاتحاد الدولي للتدريب ICF</li><li>درجة PCC: Professional Certified Coach</li></ul></div>
+    <div><h3>الحسابات</h3>
+      <p class="c">linkedin.com/in/mervatsoror</p>
+      <p class="c">facebook.com/mrft.srwr</p>
+      <p class="c">instagram.com/mervatsoror111</p>
+      <p class="c">youtube.com/@mervatsoror</p></div>
+    <img class="logo" src="cv-logo.png" alt="">
+  </aside>
+  <main class="main">
+    <header><h1>د. مرفت سرور</h1><div class="role">مدربة وعي وتشافي</div><span class="cred">ICF · PCC Professional Certified Coach</span></header>
+    <section><h2>نبذة</h2>
+      <p>مدربة وعي وتشافي معتمدة من الاتحاد الدولي للتدريب ICF بدرجة PCC. بدأت رحلتها منذ عام 2019 بدراسة علوم الوعي، وطبّقت ما تعلّمته على نفسها أولاً ثم مع أكثر من 100 عميل، ومن هذه التجربة صمّمت البرنامج التدريبي «استيقظ VIP»: نظام تشافٍ يجمع جلسات فردية خاصة وتمارين مصمّمة لكل شخص، تتعامل مع العقل اللاواعي، بمتابعة شخصية منها طوال الرحلة.</p></section>
+    <section><h2>التعليم والتدريب</h2>
+      <div class="item"><span class="yr">ICF</span><div><b>الاعتماد الدولي في الكوتشينج، درجة PCC</b><p>الاتحاد الدولي للتدريب (International Coaching Federation)</p></div></div>
+      <div class="item"><span class="yr">أغسطس 2025</span><div><b>De-Mystifying Mindfulness</b><p>جامعة لايدن الهولندية (Universiteit Leiden) عبر Coursera</p><p class="v">coursera.org/verify/MBYKX2DP87L6</p></div></div>
+      <div class="item"><span class="yr">يناير 2025</span><div><b>Positive Psychology: Martin E. P. Seligman’s Visionary Science</b><p>جامعة بنسلفانيا (University of Pennsylvania) عبر Coursera</p><p class="v">coursera.org/verify/U822U7NQ7T6H</p></div></div>
+      <div class="item"><span class="yr">أكتوبر 2024</span><div><b>Foundations of Career Navigating and Coaching</b><p>Goodwill Industries International عبر Coursera</p><p class="v">coursera.org/verify/UDQBIINQG4AG</p></div></div>
+      <div class="item"><span class="yr">منذ 2019</span><div><b>دراسة علوم الوعي</b><p>على يد معلّمين متخصصين في الوعي والتشافي</p></div></div></section>
+    <section><h2>الخبرة</h2>
+      <div class="item"><span class="yr">منذ 2019</span><div><b>مدربة وعي وتشافي</b><p>جلسات فردية أونلاين مع أكثر من 100 عميل من مصر والعالم العربي.</p></div></div>
+      <div class="item"><span class="yr">مؤسِّسة</span><div><b>البرنامج التدريبي «استيقظ VIP»</b><p>تصميم نظام تشافٍ متكامل: جلسات فردية خاصة، وتمارين مخصّصة، ومتابعة شخصية.</p></div></div>
+      <div class="item"><span class="yr">منصّة</span><div><b>mervatsror.com</b><p>كورسات وتمارين رقمية (Decoding، Priming، تأمل موجّه، تنفّس)، واستشارات فردية وزوجية.</p></div></div></section>
+    <section><h2>مجالات العمل</h2>
+      <div class="pills"><span>التشافي المشاعري</span><span>العقل اللاواعي</span><span>الطفل الداخلي</span><span>فك التعلّق</span><span>العار والتأنيب</span><span>اليقظة الذهنية</span><span>الوعي بالذات</span><span>العلاقات الزوجية</span><span>التأمل الموجّه</span><span>علم النفس الإيجابي</span></div></section>
+  </main>
+</section>
+
+<!-- English -->
+<section class="page ltr">
+  <aside class="side">
+    <img class="photo" src="cv-photo.jpg" alt="">
+    <div><h3>Contact</h3>
+      <p class="c">info@mervatsror.com</p>
+      <p class="c">mervatsror.com</p>
+      <p class="c">WhatsApp: +20 109 529 2748</p>
+      <p>Cairo, Egypt · Online sessions</p></div>
+    <div><h3>Credential</h3>
+      <ul><li>International Coaching Federation (ICF)</li><li>PCC: Professional Certified Coach</li></ul></div>
+    <div><h3>Social</h3>
+      <p class="c">linkedin.com/in/mervatsoror</p>
+      <p class="c">facebook.com/mrft.srwr</p>
+      <p class="c">instagram.com/mervatsoror111</p>
+      <p class="c">youtube.com/@mervatsoror</p></div>
+    <img class="logo" src="cv-logo.png" alt="">
+  </aside>
+  <main class="main">
+    <header><h1>Dr. Mervat Soror</h1><div class="role">Consciousness &amp; Healing Coach</div><span class="cred">ICF · PCC Professional Certified Coach</span></header>
+    <section><h2>Profile</h2>
+      <p>ICF-certified consciousness and healing coach (PCC). Since 2019 she has studied consciousness work, applied it to her own life and then with more than 100 clients, and designed the "Awaken VIP" coaching program: private one-to-one sessions and exercises tailored to each client, working with the subconscious mind, with her personal follow-up throughout the journey.</p></section>
+    <section><h2>Education &amp; Training</h2>
+      <div class="item"><span class="yr">ICF</span><div><b>Professional Certified Coach (PCC)</b><p>International Coaching Federation</p></div></div>
+      <div class="item"><span class="yr">Aug 2025</span><div><b>De-Mystifying Mindfulness</b><p>Universiteit Leiden, via Coursera</p><p class="v">coursera.org/verify/MBYKX2DP87L6</p></div></div>
+      <div class="item"><span class="yr">Jan 2025</span><div><b>Positive Psychology: Martin E. P. Seligman’s Visionary Science</b><p>University of Pennsylvania, via Coursera</p><p class="v">coursera.org/verify/U822U7NQ7T6H</p></div></div>
+      <div class="item"><span class="yr">Oct 2024</span><div><b>Foundations of Career Navigating and Coaching</b><p>Goodwill Industries International, via Coursera</p><p class="v">coursera.org/verify/UDQBIINQG4AG</p></div></div>
+      <div class="item"><span class="yr">Since 2019</span><div><b>Consciousness studies</b><p>With teachers specialised in consciousness and healing</p></div></div></section>
+    <section><h2>Experience</h2>
+      <div class="item"><span class="yr">Since 2019</span><div><b>Consciousness &amp; Healing Coach</b><p>Online one-to-one sessions with more than 100 clients from Egypt and the Arab world.</p></div></div>
+      <div class="item"><span class="yr">Founder</span><div><b>Awaken VIP coaching program</b><p>A complete healing system: private sessions, tailored exercises and personal follow-up.</p></div></div>
+      <div class="item"><span class="yr">Platform</span><div><b>mervatsror.com</b><p>Digital courses and exercises (Decoding, Priming, guided meditation, breathing), individual and couples counselling.</p></div></div></section>
+    <section><h2>Areas of Work</h2>
+      <div class="pills"><span>Emotional Healing</span><span>Subconscious Mind</span><span>Inner Child</span><span>Attachment &amp; Letting Go</span><span>Shame &amp; Guilt</span><span>Mindfulness</span><span>Self-Awareness</span><span>Couples</span><span>Guided Meditation</span><span>Positive Psychology</span></div></section>
+  </main>
+</section>
+</body></html>
