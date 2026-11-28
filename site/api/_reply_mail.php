@@ -110,6 +110,7 @@ function ms_reply_html(array $r): string {
     $title = htmlspecialchars($r['title'] ?? 'رسالة من د. مرفت سرور', ENT_QUOTES, 'UTF-8');
     $pre = htmlspecialchars($r['preheader'] ?? ('تحليلك الشخصي من د. مرفت سرور'), ENT_QUOTES, 'UTF-8');
     $body = ms_mail_blocks((string)($r['body'] ?? ''));
+    $uniq = '<span style="display:none;font-size:0;line-height:0;max-height:0;overflow:hidden;opacity:0">' . bin2hex(random_bytes(6)) . date('His') . '</span>';
     $f = MS_MAIL_FONT; $royal = MS_MAIL_ROYAL; $gold = MS_MAIL_GOLD; $text = MS_MAIL_TEXT;
     $social = '';
     foreach ([['فيسبوك', 'https://facebook.com/mrft.srwr'], ['إنستجرام', 'https://instagram.com/mervatsoror111'], ['يوتيوب', 'https://youtube.com/@mervatsoror'],
@@ -153,13 +154,13 @@ function ms_reply_html(array $r): string {
       <td valign="middle" style="padding-top:22px;font-family:{$f};text-align:right">
         <div style="font-size:15px;color:{$gold};font-weight:bold">أنوي لكِ التشافي بكل حب</div>
         <div style="font-size:18px;color:{$royal};font-weight:bold;margin-top:2px">د. مرفت سرور</div>
-        <div style="font-size:13px;color:#6B7390;margin-top:2px">مدربة وعي معتمدة من الاتحاد الدولي للتدريب ICF</div>
+        <div style="font-size:13px;color:#6B7390;margin-top:2px">مدربة وعي معتمدة من الاتحاد الدولي للتدريب ICF{$uniq}</div>
       </td></tr></table>
   </td></tr>
   <tr><td align="center" bgcolor="{$royal}" style="background:{$royal};padding:24px 24px 26px;font-family:{$f}">
     <div style="font-size:14px;line-height:2">{$social}</div>
     <div style="font-size:13px;color:#C9D3EC;margin-top:8px"><a href="{$base}" style="color:#FFFFFF;text-decoration:none;font-weight:bold">mervatsror.com</a> &nbsp;·&nbsp; <a href="mailto:info@mervatsror.com" style="color:#C9D3EC;text-decoration:none">info@mervatsror.com</a></div>
-    <div style="font-size:11.5px;color:#9FB0D6;line-height:1.9;margin-top:12px">هذه الرسالة شخصية ومُرسلة إليكِ وحدكِ ردّاً على إجاباتك.<br>المحتوى للتطوير الذاتي والوعي، وليس بديلاً عن التشخيص أو العلاج الطبي أو النفسي.</div>
+    <div style="font-size:11.5px;color:#9FB0D6;line-height:1.9;margin-top:12px">هذه الرسالة شخصية ومُرسلة إليكِ وحدكِ ردّاً على إجاباتك.<br>المحتوى للتطوير الذاتي والوعي، وليس بديلاً عن التشخيص أو العلاج الطبي أو النفسي.{$uniq}</div>
   </td></tr>
 </table>
 </td></tr></table>

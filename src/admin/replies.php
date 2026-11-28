@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
         $withReplies(function ($all) use ($id, $draft) { $all[$id] = array_merge($all[$id] ?? [], $draft); return $all; });
         $html = ms_reply_html(['name' => $draft['name'], 'title' => $draft['title'], 'body' => $draft['body']]);
         if ($do === 'test') {
-            $ok = ms_send_reply_html(NOTIFY_EMAIL, '[تجربة] ' . $draft['subject'], $html, false);
+            $ok = ms_send_reply_html(NOTIFY_EMAIL, '[تجربة ' . date('H:i', time() + 2 * 3600) . '] ' . $draft['subject'], $html, false);
             if ($ok) { header('Location: replies.php?id=' . $id . '&done=test'); exit; }
             $err = 'تعذّر إرسال النسخة التجريبية.';
         } elseif ($do === 'send') {
