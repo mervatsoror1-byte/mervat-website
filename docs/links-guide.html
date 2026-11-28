@@ -1,0 +1,170 @@
+<title>دليل روابط الموقع</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600;700&family=Tajawal:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: a working desk card — search on top, then "ready replies" for customer questions, then every page grouped; one column, RTL */
+:root{
+  --bg:#FBF8F1; --surface:#FFFFFF; --ink:#1F3F7C; --text:#2E2A40; --muted:#6F6A85; --line:#E8E0CC;
+  --gold:#B38A3E; --gold-soft:#F5EAD2; --chip:#EEF1F8; --ok:#2F8A5E;
+  --display:"El Messiri","Tajawal",Georgia,serif; --body:"Tajawal","Segoe UI",Tahoma,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1730; --surface:#172246; --ink:#E9D7A8; --text:#ECE8F4; --muted:#A9A6C2; --line:#2A3866;
+  --gold:#E2B866; --gold-soft:#2A2F4F; --chip:#1F2B55; --ok:#5FC293; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1730; --surface:#172246; --ink:#E9D7A8; --text:#ECE8F4; --muted:#A9A6C2; --line:#2A3866;
+  --gold:#E2B866; --gold-soft:#2A2F4F; --chip:#1F2B55; --ok:#5FC293; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;direction:rtl;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 60px}
+.wrap{max-width:860px;margin-inline:auto;display:grid;gap:26px}
+header h1{font-family:var(--display);color:var(--ink);font-size:clamp(1.7rem,4vw,2.3rem);margin:0;line-height:1.3;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--muted)}
+.wa{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:12px;font-size:.95rem}
+.wa b{color:var(--ink)}
+.search{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:8px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.search input{width:100%;font:inherit;font-size:1.05rem;padding:13px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);color:var(--text)}
+.search input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+.search small{display:block;color:var(--muted);margin-top:4px;padding-inline:4px}
+h2{font-family:var(--display);color:var(--ink);font-size:1.35rem;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.list{display:grid;gap:10px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:grid;gap:6px;min-width:0}
+.item .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.item b{color:var(--ink);font-size:1.05rem}
+.item .what{color:var(--muted);font-size:.95rem}
+.url{direction:ltr;text-align:left;font-size:.85rem;color:var(--gold);word-break:break-all;font-variant-numeric:tabular-nums}
+.btns{display:flex;gap:6px;flex-wrap:wrap}
+button{font:inherit;font-size:.88rem;font-weight:700;border-radius:999px;padding:6px 14px;cursor:pointer;border:1.5px solid var(--gold);background:transparent;color:var(--ink);white-space:nowrap}
+button.main{background:var(--gold);color:#fff;border-color:var(--gold)}
+button:focus-visible{outline:3px solid var(--gold-soft);outline-offset:2px}
+button.done{border-color:var(--ok);color:var(--ok);background:transparent}
+.q .reply{background:var(--gold-soft);border-radius:12px;padding:10px 12px;font-size:.95rem;white-space:pre-line}
+.tag{display:inline-block;font-size:.75rem;font-weight:700;letter-spacing:.02em;background:var(--chip);color:var(--muted);border-radius:999px;padding:1px 10px;margin-inline-start:6px;vertical-align:middle}
+.empty{color:var(--muted);text-align:center;padding:20px}
+footer{color:var(--muted);font-size:.85rem;text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>دليل روابط موقع د. مرفت سرور</h1>
+    <p>ابحثي عن سؤال العميلة أو اسم الصفحة، وانسخي الرد الجاهز أو الرابط وابعتيه على واتساب أو ماسنجر.</p>
+    <div class="wa"><span>واتساب الموقع: <b dir="ltr">01095292748</b></span><span>البريد: <b dir="ltr">info@mervatsror.com</b></span></div>
+  </header>
+
+  <div class="search">
+    <input id="q" type="search" placeholder="اكتبي: حجز، سعر، الدفع، نسيت كلمة السر، التعلّق…" aria-label="ابحثي في الروابط والأسئلة" autocomplete="off">
+    <small id="count"></small>
+  </div>
+
+  <section><h2>أسئلة العميلات وردود جاهزة</h2><div class="list" id="faq"></div></section>
+  <section><h2>كل صفحات الموقع</h2><div class="list" id="pages"></div></section>
+  <p class="empty" id="none" hidden>مفيش نتيجة. جرّبي كلمة تانية، زي «جلسة» أو «تمرين».</p>
+  <footer>آخر تحديث: ٢٨ نوفمبر ٢٠٢٦ · الروابط كلها على mervatsror.com</footer>
+</div>
+
+<script>
+const S = "https://mervatsror.com";
+// [question, ready reply (her voice, to the client), path, search words]
+const FAQ = [
+ ["أبدأ منين؟ أول مرة أتعرّف عليكِ", "أهلاً بيكِ 🌸 أحسن بداية هديتي ليكِ: «أسئلة كشف الهوية»، تجاوبي عليها وأكتبلك تحليلك الشخصي بنفسي:", "/gift/", "بداية ابدأ هدية مجاني جديد"],
+ ["الهدية المجانية فين؟", "هديتك هنا يا حبيبتي، أسئلة عميقة تقرّبك من نفسك، وأنا بكتبلك التحليل بنفسي:", "/gift/", "هدية مجانا ببلاش كشف الهوية"],
+ ["عايزة أعرف عن برنامج استيقظ VIP", "ده البرنامج التدريبي استيقظ VIP، رحلة تشافٍ من تصميمي بمتابعة شخصية مني وتمارين مصمّمة لكل عضوة. كل التفاصيل والاشتراك هنا:", "/vip/", "vip برنامج اشتراك استيقظ متابعة سعر"],
+ ["عايزة أحجز جلسة فردية", "تقدري تختاري الميعاد اللي يناسبك بتوقيت بلدك وتحجزي من هنا، وهيوصلك التأكيد والرابط على طول:", "/sessions/#booking", "حجز جلسة موعد ميعاد استشارة فردية"],
+ ["عندنا مشكلة في الجواز، فيه استشارة زوجية؟", "أيوه في استشارات زوجية، وتقدري تحجزي من هنا:", "/marriage/", "زوج زوجة جواز زواج استشارة زوجية علاقة"],
+ ["حاسة إني متعلّقة بحد ومش قادرة أفك", "ده بالظبط اللي معمول له تمرين فك التعلّق، وتقدري تشوفي المقدمة مجاناً الأول:", "/tools/exercise-detachment/#intro", "تعلق فك متعلقة حب علاقة"],
+ ["عايزة أشوف المقدمة المجانية لفك التعلّق", "اتفضلي المقدمة مجاناً، اضغطي على الصورة وهتشتغل:", "/tools/exercise-detachment/#intro", "مقدمة مجانا فيديو فك التعلق"],
+ ["إيه الأدوات والتمارين اللي عندك؟", "كل الأدوات والتمارين موجودة هنا، وكل واحدة مكتوب عليها مناسبة لمين:", "/library/", "تمارين ادوات كورسات decoding priming تأمل"],
+ ["فيه باقات أو خصم لو اشتريت أكتر من حاجة؟", "أيوه، الباقات بسعر أقل من شراء كل تمرين لوحده:", "/bundles/", "خصم باقة عرض توفير سعر"],
+ ["بكام؟ الأسعار إيه؟", "الأسعار ظاهرة على كل صفحة بالجنيه للي في مصر وبالدولار لبرّه مصر. كل الأدوات بأسعارها هنا:", "/library/", "سعر بكام اسعار تكلفة فلوس"],
+ ["إزاي أدفع؟", "الدفع من صفحة الشراء نفسها بعد ما تضغطي «ابدأ الآن». ولو عندك أي سؤال عن الدفع، الإجابات هنا:", "/faq/", "دفع ادفع فيزا كارت باي بال تحويل انستاباي محفظة"],
+ ["اشتريت ومش لاقية التمرين", "ادخلي على حسابك بنفس الإيميل اللي اشتريتي بيه، هتلاقي التمرين في «دوراتي» على طول:", "/my-account/", "اشتريت مش لاقية فين التمرين حسابي دخول"],
+ ["نسيت كلمة السر", "مفيش مشكلة، اكتبي إيميلك هنا وهيوصلك رابط تعملي كلمة سر جديدة:", "/my-account/lost-password/", "نسيت كلمة السر باسورد دخول"],
+ ["عايزة أعمل حساب / أسجّل", "تقدري تعملي حسابك مجاناً من هنا، ومعاه هديتك «أسئلة كشف الهوية»:", "/my-account/", "تسجيل حساب جديد اشتراك"],
+ ["ينفع أسترجع فلوسي؟", "كل تفاصيل الاسترداد والإلغاء مكتوبة هنا بوضوح:", "/refund/", "استرجاع استرداد فلوس الغاء رجوع"],
+ ["الكورس/التمرين بيوصل إزاي وإمتى؟", "بيتفتح في حسابك فوراً بعد الدفع، وتفاصيل تقديم الخدمة هنا:", "/delivery/", "توصيل امتى يوصل وصول مدة"],
+ ["عايزة أكتب رأيي أو أسجّله بصوتي", "يسعدني جداً 💛 تقدري تكتبي تجربتك أو تسجّليها بصوتك من هنا:", "/review/", "رأي تقييم تجربة صوت اكتب"],
+ ["عايزة أشوف آراء الناس", "اتفضلي آراء العميلات، مكتوبة وبصوتهم:", "/voices/", "اراء تجارب عملاء شهادات"],
+ ["عندك كتب؟", "اتفضلي كتابي «عندما تولد في عائلة من الأشباح»:", "/tools/book-ghosts/", "كتاب كتب قراءة اشباح عائلة"],
+ ["حاسة إني دايماً شايفة الناقص", "كتبت مقال عن ده بالظبط، هيفيدك جداً:", "/articles/why-we-see-what-is-missing/", "ناقص امتنان شكر مقال"],
+ ["عدّيت بحاجة صعبة ومش قادرة أتخطاها", "اقري المقال ده، وفيه تمرين بسيط «رسالة من بعد العاصفة»:", "/articles/hardship-and-gift/", "محنة صعبة الم وجع حكاية مقال"],
+ ["مين د. مرفت؟", "دي حكايتي وشهادتي ومشواري:", "/about/", "مين مرفت شهادة خبرة icf"],
+ ["عايزة أتواصل معاكِ", "تقدري تكلّميني واتساب على 01095292748، أو تبعتي رسالة من هنا:", "/contact/", "تواصل كلم رقم واتساب رسالة"],
+];
+// [name, where it goes, path, group, words]
+const PAGES = [
+ ["الصفحة الرئيسية","أول صفحة في الموقع: التعريف والأدوات وآراء العميلات","/","الصفحات الأساسية","رئيسية"],
+ ["عن مرفت","حكايتك وشهادة ICF PCC والخبرة","/about/","الصفحات الأساسية","عن"],
+ ["اتصل بنا","واتساب والبريد ونموذج رسالة","/contact/","الصفحات الأساسية","تواصل"],
+ ["الأسئلة الشائعة","إجابات عن الدفع والحساب والتمارين","/faq/","الصفحات الأساسية","اسئلة"],
+ ["آراء العملاء","الآراء المكتوبة والصوتية","/voices/","الصفحات الأساسية","اراء"],
+ ["شاركينا تجربتك","العميلة تكتب رأيها أو تسجّله بصوتها","/review/","الصفحات الأساسية","رأي"],
+ ["الهدية: أسئلة كشف الهوية","هدية مجانية، والتحليل منك بالإيميل","/gift/","الصفحات الأساسية","هدية"],
+ ["البرنامج التدريبي استيقظ VIP","البرنامج الأساسي: المميزات والخطط والاشتراك","/vip/","البرامج والجلسات","vip"],
+ ["الجلسات الفردية","حجز جلسة تعارف أو استشارة فردية","/sessions/","البرامج والجلسات","جلسة"],
+ ["حجز جلسة (على طول)","بيفتح جزء اختيار الميعاد مباشرة","/sessions/#booking","البرامج والجلسات","حجز"],
+ ["الاستشارات الزوجية","حجز استشارة زوجية","/marriage/","البرامج والجلسات","زوجية"],
+ ["مكتبة الأدوات","كل التمارين والكورسات","/library/","الأدوات","ادوات"],
+ ["الباقات","مجموعات تمارين بسعر أقل","/bundles/","الأدوات","باقة"],
+ ["كورس عين صاحية","كورس الامتنان والرضا","/tools/course-ain-sahia/","الأدوات","عين صاحية امتنان"],
+ ["تمرين فك التعلّق","التمرين ومعاه المقدمة المجانية","/tools/exercise-detachment/","الأدوات","تعلق"],
+ ["مقدمة فك التعلّق (مجاناً)","بيفتح الصفحة على الفيديو المجاني مباشرة","/tools/exercise-detachment/#intro","الأدوات","مقدمة"],
+ ["Decoding النسخة الأصلية","تمرين Decoding","/tools/decoding-original-version/","الأدوات","decoding"],
+ ["Decoding نور القبول","تمرين Decoding","/tools/decoding-light-of-acceptance/","الأدوات","decoding قبول"],
+ ["Decoding الركود والخمول","تمرين Decoding","/tools/decoding-energy-stagnation/","الأدوات","decoding خمول كسل"],
+ ["تشافي الطفل الداخلي","تمرين الطفل الداخلي","/tools/inner-child-healing/","الأدوات","طفل داخلي"],
+ ["تنفّس الاتزان الداخلي","تمرين تنفّس","/tools/heart-coherence-breathing/","الأدوات","تنفس"],
+ ["Priming الصباح","تمرين الصباح","/tools/morning-priming/","الأدوات","priming صباح"],
+ ["توكيدات السلام","توكيدات للتشافي العميق","/tools/peace-affirmations/","الأدوات","توكيدات سلام"],
+ ["تأمل السكينة والتنظيف","تأمل موجّه","/tools/serenity-cleansing-meditation/","الأدوات","تأمل سكينة"],
+ ["الكتب","صفحة الكتب الإلكترونية","/books/","الأدوات","كتب"],
+ ["كتاب: عندما تولد في عائلة من الأشباح","صفحة الكتاب","/tools/book-ghosts/","الأدوات","كتاب اشباح"],
+ ["المقالات","كل المقالات","/articles/","المقالات","مقالات"],
+ ["ليه عينك بتشوف الناقص؟","مقال عن الامتنان والعشرين عطية","/articles/why-we-see-what-is-missing/","المقالات","ناقص امتنان"],
+ ["المحنة والمنحة","مقال عن رؤية النور في الحكاية المؤلمة","/articles/hardship-and-gift/","المقالات","محنة"],
+ ["صفحة إعلان فك التعلّق","صفحة مخصوصة للإعلانات بسعر خاص","/lp-attach/","صفحات الإعلانات","اعلان تعلق"],
+ ["صفحة إعلان تأمل السكينة","صفحة مخصوصة للإعلانات بسعر خاص","/lp-serenity/","صفحات الإعلانات","اعلان سكينة"],
+ ["حسابي","دخول العميلة لتمارينها وطلباتها","/my-account/","الحساب والشراء","حساب دخول"],
+ ["نسيت كلمة السر","رابط تعيين كلمة سر جديدة","/my-account/lost-password/","الحساب والشراء","كلمة سر"],
+ ["السلة","الحاجات اللي اختارتها قبل الدفع","/cart/","الحساب والشراء","سلة"],
+ ["كل السياسات","السياسات الأربعة في مكان واحد","/policies/","السياسات","سياسات"],
+ ["الشروط والأحكام","شروط استخدام الموقع","/terms/","السياسات","شروط"],
+ ["سياسة الخصوصية","إزاي بنحافظ على بيانات العميلات","/privacy/","السياسات","خصوصية"],
+ ["الاسترداد والإلغاء","قواعد استرجاع الفلوس والإلغاء","/refund/","السياسات","استرداد"],
+ ["سياسة تقديم الخدمة","إمتى وإزاي التمرين بيوصل","/delivery/","السياسات","توصيل"],
+];
+const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = t => String(t).toLowerCase().replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه").replace(/[ًٌٍَُِّْـ]/g,"");
+function copy(btn, text){
+  const ok = () => { const t = btn.textContent; btn.textContent = "اتنسخ ✓"; btn.classList.add("done"); setTimeout(() => { btn.textContent = t; btn.classList.remove("done"); }, 1600); };
+  const fallback = () => { const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); ok(); } catch (e) {} ta.remove(); };
+  try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+}
+const faqEl = document.getElementById("faq"), pagesEl = document.getElementById("pages");
+faqEl.innerHTML = FAQ.map(([q, r, p, w], i) => `<div class="item q" data-s="${esc(norm(q+" "+r+" "+w+" "+p))}">
+  <div class="top"><b>${esc(q)}</b><div class="btns"><button class="main" type="button" data-copy="r${i}">انسخي الرد</button><button type="button" data-copy="u${i}">الرابط بس</button></div></div>
+  <div class="reply">${esc(r)}\n${S}${esc(p)}</div></div>`).join("");
+let lastGroup = "";
+pagesEl.innerHTML = PAGES.map(([n, d, p, g, w], i) => `<div class="item" data-s="${esc(norm(n+" "+d+" "+g+" "+w+" "+p))}">
+  <div class="top"><b>${esc(n)}<span class="tag">${esc(g)}</span></b><div class="btns"><button class="main" type="button" data-copy="p${i}">انسخي الرابط</button></div></div>
+  <span class="what">${esc(d)}</span><span class="url">${S}${esc(p)}</span></div>`).join("");
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-copy]"); if (!b) return;
+  const k = b.dataset.copy, i = +k.slice(1);
+  if (k[0] === "r") copy(b, FAQ[i][1] + "\n" + S + FAQ[i][2]);
+  if (k[0] === "u") copy(b, S + FAQ[i][2]);
+  if (k[0] === "p") copy(b, S + PAGES[i][2]);
+});
+const q = document.getElementById("q"), count = document.getElementById("count"), none = document.getElementById("none");
+function filter(){
+  const words = norm(q.value).split(/\s+/).filter(Boolean); let shown = 0;
+  document.querySelectorAll("[data-s]").forEach(el => { const ok = words.every(w => el.dataset.s.includes(w)); el.hidden = !ok; if (ok) shown++; });
+  document.querySelectorAll("section").forEach(s => s.hidden = !s.querySelector("[data-s]:not([hidden])"));
+  none.hidden = shown > 0;
+  count.textContent = q.value ? `${shown} نتيجة` : `${FAQ.length} سؤال بردّ جاهز · ${PAGES.length} صفحة`;
+}
+q.addEventListener("input", filter); filter();
+</script>
