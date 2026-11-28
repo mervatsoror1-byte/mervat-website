@@ -107,11 +107,15 @@ function ms_reply_html(array $r): string {
         $social .= ($i ? '<span style="color:#5C77B0">&nbsp;·&nbsp;</span>' : '') . '<a href="' . $u . '" style="color:' . MS_MAIL_GOLD . ';text-decoration:none">' . $t . '</a>';
     }
     $uniq = '<span style="display:none;font-size:0;line-height:0;max-height:0;overflow:hidden;opacity:0">' . bin2hex(random_bytes(6)) . date('His') . '</span>';
+    $bodyText = (string)($r['body'] ?? '');
+    if (($r['review'] ?? true) !== false) {   // closing invitation to leave a voice or written review
+        $bodyText .= "\n\n## رأيكِ يهمّني\n\n> إن كان هذا التحليل قد لامس شيئاً بداخلكِ أو أفادكِ، يسعدني أن تتركي رأيكِ **بصوتكِ أو بكلماتكِ**؛ فربما تكون تجربتكِ نوراً لامرأة أخرى تبحث عن طريقها.\n\n[زرار: شاركينا تجربتك | review/?about=general]";
+    }
     return strtr((string)file_get_contents(__DIR__ . '/_reply_shell.html'), [
         '%%TITLE%%' => $e($r['title'] ?? 'رسالة من د. مرفت سرور'),
         '%%PRE%%' => $e($r['preheader'] ?? 'تحليلك الشخصي من د. مرفت سرور'),
         '%%NAME%%' => $e($r['name'] ?? ''),
-        '%%BODY%%' => '<div dir="rtl" style="direction:rtl;text-align:right">' . ms_mail_blocks((string)($r['body'] ?? '')) . '</div>',
+        '%%BODY%%' => '<div dir="rtl" style="direction:rtl;text-align:right">' . ms_mail_blocks($bodyText) . '</div>',
         '%%SOCIAL%%' => $social,
         '%%UNIQ%%' => $uniq,
     ]);

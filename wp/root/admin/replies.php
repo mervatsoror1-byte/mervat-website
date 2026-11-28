@@ -52,10 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
             'subject' => clean_text((string)($_POST['subject'] ?? ''), 120) ?: $DEF_SUBJECT,
             'title' => clean_text((string)($_POST['title'] ?? ''), 90) ?: $DEF_TITLE,
             'body' => mb_substr(str_replace(["\r", '\\'], '', (string)($_POST['body'] ?? '')), 0, 30000),
+            'review' => !empty($_POST['review']),
             'updated_at' => gmdate('c'),
         ];
         $withReplies(function ($all) use ($id, $draft) { $all[$id] = array_merge($all[$id] ?? [], $draft); return $all; });
-        $html = ms_reply_html(['name' => $draft['name'], 'title' => $draft['title'], 'body' => $draft['body']]);
+        $html = ms_reply_html(['name' => $draft['name'], 'title' => $draft['title'], 'body' => $draft['body'], 'review' => $draft['review']]);
         if ($do === 'test') {
             $raw = strtolower(preg_replace('/\s+/u', '', (string)($_POST['test_to'] ?? '')) ?? '');
             $tto = $raw === '' ? NOTIFY_EMAIL : (filter_var($raw, FILTER_VALIDATE_EMAIL) ?: '');
@@ -148,8 +149,8 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
   }
   if ($seed && empty($r['body'])) { $r = array_merge($seed, $r); $seeded = true; }
   $first = trim(explode(' ', trim($gift['name']))[0] ?? '');
-  $v = ['name' => $r['name'] ?? $first, 'email' => $r['email'] ?? $gift['email'], 'subject' => $r['subject'] ?? $DEF_SUBJECT, 'title' => $r['title'] ?? $DEF_TITLE, 'body' => $r['body'] ?? ''];
-  $preview = ms_reply_html(['name' => $v['name'], 'title' => $v['title'], 'body' => $v['body']]);
+  $v = ['name' => $r['name'] ?? $first, 'email' => $r['email'] ?? $gift['email'], 'subject' => $r['subject'] ?? $DEF_SUBJECT, 'title' => $r['title'] ?? $DEF_TITLE, 'body' => $r['body'] ?? '', 'review' => $r['review'] ?? true];
+  $preview = ms_reply_html(['name' => $v['name'], 'title' => $v['title'], 'body' => $v['body'], 'review' => $v['review']]);
 ?>
   <p><a href="replies.php">← كل الإجابات</a></p>
   <div class="grid">
@@ -179,6 +180,7 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
         </div>
         <label for="body">نص الرد</label>
         <textarea id="body" name="body" placeholder="اكتبي التحليل هنا…"><?= $h($v['body']) ?></textarea>
+        <label class="ck" style="font-weight:400"><input type="checkbox" name="review" value="1"<?= $v['review'] ? ' checked' : '' ?>> أضيفي في آخر الإيميل دعوة لترك مراجعة صوتية أو مكتوبة</label>
         <details><summary>علامات التنسيق</summary><div class="help"><?= $h($help) ?></div></details>
         <div class="acts">
           <button class="ghost" name="do" value="save">احفظي المسودة</button>
