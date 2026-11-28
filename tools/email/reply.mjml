@@ -1,0 +1,65 @@
+<!--
+  Branded reply email (Dr. Mervat). Source for src/api/_reply_shell.html.
+  Rebuild after editing:  npx mjml@4.15.3 tools/email/reply.mjml -o src/api/_reply_shell.html
+  then: sed -i 's/text-align:right;/text-align:right;direction:rtl;/g; s/text-align:center;/text-align:center;direction:rtl;/g' src/api/_reply_shell.html
+  Placeholders filled by api/_reply_mail.php: %%TITLE%% %%PRE%% %%NAME%% %%BODY%% %%UNIQ%%
+-->
+<mjml lang="ar" dir="rtl">
+  <mj-head>
+    <mj-title>%%TITLE%%</mj-title>
+    <mj-preview>%%PRE%%</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="Tahoma, 'Segoe UI', Arial, sans-serif" />
+      <mj-text align="right" color="#25304D" font-size="16px" line-height="1.95" padding="0px" />
+      <mj-section direction="rtl" padding="0px" />
+      <mj-column padding="0px" />
+    </mj-attributes>
+    <mj-style inline="inline">
+      .ms-body p { margin: 0 0 16px; }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#EEF0F6" width="600px">
+    <mj-wrapper padding="16px 0px 16px 0px" css-class="ms-wrap">
+      <mj-section background-color="#1B3468" padding="28px 16px 24px 16px" direction="rtl">
+        <mj-column>
+          <mj-image src="https://mervatsror.com/assets/email/logo-gold.png" alt="د. مرفت سرور" width="130px" padding="0px 0px 12px 0px" />
+          <mj-text align="center" color="#E2C68C" font-size="13px" letter-spacing="2px" line-height="1.4">✦ &nbsp;✦ &nbsp;✦</mj-text>
+          <mj-text align="center" color="#FFFFFF" font-size="21px" font-weight="bold" line-height="1.6" padding="8px 0px 0px 0px">%%TITLE%%</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#C5A059" padding="0px">
+        <mj-column>
+          <mj-spacer height="4px" />
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#FFFFFF" padding="26px 20px 6px 20px" direction="rtl">
+        <mj-column>
+          <mj-text color="#1B3468" font-size="18px" font-weight="bold" padding="0px 0px 16px 0px">عزيزتي %%NAME%%،</mj-text>
+          <mj-text css-class="ms-body">%%BODY%%</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section background-color="#FFFFFF" padding="4px 20px 26px 20px" direction="rtl">
+        <mj-column>
+          <mj-divider border-color="#E6D3A6" border-width="1px" padding="0px 0px 20px 0px" />
+        </mj-column>
+        <mj-group direction="rtl">
+          <mj-column width="24%" vertical-align="middle">
+            <mj-image src="https://mervatsror.com/assets/email/mervat.jpg" alt="د. مرفت سرور" width="64px" height="64px" border-radius="32px" border="2px solid #C5A059" padding="0px" />
+          </mj-column>
+          <mj-column width="76%" vertical-align="middle">
+            <mj-text font-size="14px" color="#C5A059" font-weight="bold" line-height="1.6" padding="0px 10px 0px 0px">أنوي لكِ التشافي بكل حب</mj-text>
+            <mj-text font-size="17px" color="#1B3468" font-weight="bold" line-height="1.6" padding="0px 10px 0px 0px">د. مرفت سرور</mj-text>
+            <mj-text font-size="12.5px" color="#6B7390" line-height="1.6" padding="0px 10px 0px 0px">مدربة وعي معتمدة من الاتحاد الدولي للتدريب ICF%%UNIQ%%</mj-text>
+          </mj-column>
+        </mj-group>
+      </mj-section>
+      <mj-section background-color="#1B3468" padding="22px 16px 24px 16px" direction="rtl">
+        <mj-column>
+          <mj-text align="center" font-size="14px" line-height="2" color="#C5A059">%%SOCIAL%%</mj-text>
+          <mj-text align="center" font-size="13px" color="#C9D3EC" line-height="2" padding="8px 0px 0px 0px"><a href="https://mervatsror.com" style="color:#FFFFFF;text-decoration:none;font-weight:bold">mervatsror.com</a> &nbsp;·&nbsp; <a href="mailto:info@mervatsror.com" style="color:#C9D3EC;text-decoration:none">info@mervatsror.com</a></mj-text>
+          <mj-text align="center" font-size="11.5px" color="#9FB0D6" line-height="1.9" padding="12px 0px 0px 0px">هذه الرسالة شخصية ومُرسلة إليكِ وحدكِ ردّاً على إجاباتك.<br>المحتوى للتطوير الذاتي والوعي، وليس بديلاً عن التشخيص أو العلاج الطبي أو النفسي.%%UNIQ%%</mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+  </mj-body>
+</mjml>
