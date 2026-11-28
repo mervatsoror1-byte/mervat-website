@@ -52,7 +52,7 @@ function ms_mail_blocks(string $text): string {
             $cols = max(array_map('count', $rows));
             $out .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 22px;border-collapse:separate;border-spacing:0;border:1px solid #E2CFA0;border-radius:14px;overflow:hidden">';
             foreach ($rows as $i => $r) {
-                $out .= '<tr>';
+                $out .= $i === 0 ? '<tr class="ms-thr">' : '<tr>';
                 for ($c = 0; $c < $cols; $c++) {
                     $v = ms_mail_inline($r[$c] ?? '');
                     if ($i === 0) {
@@ -60,8 +60,9 @@ function ms_mail_blocks(string $text): string {
                               . ($c ? 'border-right:1px solid #2E4E8C;' : '') . 'font-family:' . MS_MAIL_FONT . '">' . $v . '</th>';
                     } else {
                         $bg = $i % 2 ? '#FFFFFF' : MS_MAIL_CREAM;
-                        $out .= '<td valign="top" style="background:' . $bg . ';border-top:1px solid #EADCB8;' . ($c ? 'border-right:1px solid #EADCB8;' : '')
-                              . 'padding:12px 14px;font-size:15px;line-height:1.85;color:' . ($c === 0 ? MS_MAIL_ROYAL . ';font-weight:bold' : MS_MAIL_TEXT) . ';font-family:' . MS_MAIL_FONT . '">' . $v . '</td>';
+                        $lbl = $c > 0 && isset($rows[0][$c]) && $rows[0][$c] !== '' ? '<span class="ms-lbl" style="display:none;font-size:12.5px;color:' . MS_MAIL_GOLD_DEEP . ';font-weight:bold">' . ms_mail_inline($rows[0][$c]) . '</span>' : '';
+                        $out .= '<td valign="top" class="ms-tc' . ($c === 0 ? ' ms-tc0' : ' ms-tcn') . '" style="background:' . $bg . ';border-top:1px solid #EADCB8;' . ($c ? 'border-right:1px solid #EADCB8;' : '')
+                              . 'padding:12px 14px;font-size:15px;line-height:1.85;color:' . ($c === 0 ? MS_MAIL_ROYAL . ';font-weight:bold' : MS_MAIL_TEXT) . ';font-family:' . MS_MAIL_FONT . '">' . $lbl . $v . '</td>';
                     }
                 }
                 $out .= '</tr>';
@@ -118,22 +119,35 @@ function ms_reply_html(array $r): string {
     return <<<HTML
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light">
-<title>{$title}</title></head>
+<title>{$title}</title>
+<style>
+@media only screen and (max-width:620px){
+  .ms-outer{padding:0!important}
+  .ms-card{border-radius:0!important;box-shadow:none!important}
+  .ms-px{padding-left:18px!important;padding-right:18px!important}
+  .ms-thr{display:none!important}
+  .ms-tc{display:block!important;width:auto!important;border-right:0!important;padding:4px 14px 10px!important;font-size:15.5px!important}
+  .ms-tc0{padding-top:12px!important;font-size:16px!important}
+  .ms-tcn{border-top:0!important}
+  .ms-lbl{display:block!important}
+  .ms-title{font-size:20px!important}
+}
+</style></head>
 <body style="margin:0;padding:0;background:#EEF0F6;direction:rtl">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">{$pre}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EEF0F6"><tr><td align="center" style="padding:28px 12px">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#FFFFFF;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(27,52,104,.45)" dir="rtl">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EEF0F6"><tr><td align="center" class="ms-outer" style="padding:28px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="ms-card" style="width:100%;max-width:600px;background:#FFFFFF;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(27,52,104,.45)" dir="rtl">
   <tr><td align="center" bgcolor="{$royal}" style="background:{$royal};background-image:radial-gradient(120% 140% at 50% 0%,#2E5AA6 0%,#1B3468 62%);padding:34px 24px 28px">
     <img src="{$base}/assets/email/logo-gold.png" width="150" alt="د. مرفت سرور" style="display:block;width:150px;max-width:150px;height:auto;border:0;margin:0 auto 14px">
     <div style="font-family:{$f};font-size:13px;letter-spacing:2px;color:#E2C68C">✦ &nbsp;✦ &nbsp;✦</div>
-    <div style="font-family:{$f};font-size:22px;font-weight:bold;color:#FFFFFF;margin-top:10px;line-height:1.6">{$title}</div>
+    <div class="ms-title" style="font-family:{$f};font-size:22px;font-weight:bold;color:#FFFFFF;margin-top:10px;line-height:1.6">{$title}</div>
   </td></tr>
   <tr><td style="height:4px;line-height:4px;font-size:0;background:{$gold};background-image:linear-gradient(90deg,#A8843F,#E6BE57,#FFF1B5,#E6BE57,#A8843F)">&nbsp;</td></tr>
-  <tr><td style="padding:34px 34px 10px;font-family:{$f};text-align:right" dir="rtl">
+  <tr><td class="ms-px" style="padding:34px 34px 10px;font-family:{$f};text-align:right" dir="rtl">
     <p style="margin:0 0 18px;font-size:19px;font-weight:bold;color:{$royal}">عزيزتي {$name}،</p>
     {$body}
   </td></tr>
-  <tr><td style="padding:6px 34px 30px;font-family:{$f}" dir="rtl">
+  <tr><td class="ms-px" style="padding:6px 34px 30px;font-family:{$f}" dir="rtl">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #E6D3A6"><tr>
       <td width="84" valign="middle" style="padding-top:22px"><img src="{$base}/assets/email/mervat.jpg" width="72" height="72" alt="د. مرفت سرور" style="display:block;width:72px;height:72px;border-radius:50%;border:2px solid {$gold}"></td>
       <td valign="middle" style="padding-top:22px;font-family:{$f};text-align:right">
