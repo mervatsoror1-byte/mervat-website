@@ -152,3 +152,14 @@ function ms_reply_html(array $r): string {
 </body></html>
 HTML;
 }
+
+/** Send the branded HTML email. Customer copy comes From info@ (Reply-To info@); Mervat's copy uses WordPress's own sender so it reaches her Gmail. */
+function ms_send_reply_html(string $to, string $subject, string $html, bool $to_customer): bool {
+    if (!function_exists('wp_mail')) {
+        $enc = fn($s) => '=?UTF-8?B?' . base64_encode($s) . '?=';
+        return @mail($to, $enc($subject), $html, "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\nFrom: " . $enc('د. مرفت سرور') . ' <' . NOTIFY_EMAIL . ">\r\nReply-To: " . NOTIFY_EMAIL);
+    }
+    $h = ['Content-Type: text/html; charset=UTF-8'];
+    if ($to_customer) { $h[] = 'From: د. مرفت سرور <' . NOTIFY_EMAIL . '>'; $h[] = 'Reply-To: ' . NOTIFY_EMAIL; }
+    return (bool)wp_mail($to, $subject, $html, $h);
+}

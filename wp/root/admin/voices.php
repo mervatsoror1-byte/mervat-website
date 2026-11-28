@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         elseif (password_verify((string)($_POST['pass'] ?? ''), $auth['pass_hash'])) {
             session_regenerate_id(true);
             $_SESSION['ms_admin'] = 1; $_SESSION['ms_admin_until'] = time() + 8 * 3600;
+            if (($_GET['next'] ?? '') === 'replies') { header('Location: replies.php'); exit; }
         } else { rate_ok('login', 5, 900); $err = 'كلمة السر غير صحيحة.'; }
     } elseif ($do === 'logout') {
         $_SESSION = []; session_destroy(); header('Location: voices.php'); exit;
@@ -155,7 +156,7 @@ audio{width:100%}.va{display:flex;gap:8px;flex-wrap:wrap}.va form{margin:0}
 .ok{background:#eef7ee;border:1px solid #b9dcb9;padding:10px 14px;border-radius:12px}.err{background:#fbeeee;border:1px solid #e3b8b8;padding:10px 14px;border-radius:12px}
 .empty{color:var(--muted)}summary{cursor:pointer;color:var(--blue);font-weight:700}.ed{display:grid;gap:8px;margin-top:10px}.pw{position:relative}.pw input{padding-inline-end:48px}.eye{position:absolute;inset-inline-end:6px;top:50%;transform:translateY(-50%);background:none;padding:6px 8px;font-size:1.1rem;line-height:1;color:var(--muted)}a{color:var(--blue)}select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;background:#fff}.ck{display:flex;gap:8px;align-items:center;font-weight:700}.up label{margin-top:0}.count{background:var(--gold);color:var(--deep);border-radius:999px;padding:0 10px;font-size:.85rem;margin-inline-start:6px}
 </style></head><body>
-<header><div class="w"><h1>آراء العملاء</h1><?php if ($admin): ?><form method="post"><input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><button class="out" name="do" value="logout">خروج</button></form><?php endif; ?></div></header>
+<header><div class="w"><h1>آراء العملاء</h1><?php if (ms_voice_admin()): ?><a href="replies.php" style="color:#E2C68C;font-weight:700">ردود كشف الهوية ←</a><?php endif; ?><?php if ($admin): ?><form method="post"><input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><button class="out" name="do" value="logout">خروج</button></form><?php endif; ?></div></header>
 <main><div class="w">
 <?php if ($msg): ?><p class="ok"><?= $h($msg) ?></p><?php endif; ?>
 <?php if ($doneMsg): ?><p class="ok"><?= $h($doneMsg) ?></p><?php endif; ?>
