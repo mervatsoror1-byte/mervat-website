@@ -47,27 +47,21 @@ function ms_mail_blocks(string $text): string {
             $quote = [];
         }
         if ($table) {
+            // Shown as stacked cards (one per row) on every screen: Gmail on phones has no reliable way to fit side-by-side columns.
             $rows = array_map(fn($l) => array_map('trim', explode('|', trim(trim($l), '|'))), $table);
             $rows = array_values(array_filter($rows, fn($r) => !preg_match('/^[\s:\-|]*$/u', implode('', $r))));   // drop |---| rows
-            $cols = max(array_map('count', $rows));
-            $out .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:6px 0 22px;border-collapse:separate;border-spacing:0;border:1px solid #E2CFA0;border-radius:14px;overflow:hidden">';
-            foreach ($rows as $i => $r) {
-                $out .= $i === 0 ? '<tr class="ms-thr">' : '<tr>';
-                for ($c = 0; $c < $cols; $c++) {
-                    $v = ms_mail_inline($r[$c] ?? '');
-                    if ($i === 0) {
-                        $out .= '<th align="right" style="background:' . MS_MAIL_ROYAL . ';color:' . MS_MAIL_GOLD . ';font-size:14.5px;font-weight:bold;padding:12px 14px;'
-                              . ($c ? 'border-right:1px solid #2E4E8C;' : '') . 'font-family:' . MS_MAIL_FONT . '">' . $v . '</th>';
-                    } else {
-                        $bg = $i % 2 ? '#FFFFFF' : MS_MAIL_CREAM;
-                        $lbl = $c > 0 && isset($rows[0][$c]) && $rows[0][$c] !== '' ? '<span class="ms-lbl" style="display:none;font-size:12.5px;color:' . MS_MAIL_GOLD_DEEP . ';font-weight:bold">' . ms_mail_inline($rows[0][$c]) . '</span>' : '';
-                        $out .= '<td valign="top" class="ms-tc' . ($c === 0 ? ' ms-tc0' : ' ms-tcn') . '" style="background:' . $bg . ';border-top:1px solid #EADCB8;' . ($c ? 'border-right:1px solid #EADCB8;' : '')
-                              . 'padding:12px 14px;font-size:15px;line-height:1.85;color:' . ($c === 0 ? MS_MAIL_ROYAL . ';font-weight:bold' : MS_MAIL_TEXT) . ';font-family:' . MS_MAIL_FONT . '">' . $lbl . $v . '</td>';
-                    }
+            $head = count($rows) > 1 ? array_shift($rows) : [];
+            foreach ($rows as $r) {
+                $out .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 12px;border:1px solid #E2CFA0;border-right:4px solid ' . MS_MAIL_GOLD . ';background:' . MS_MAIL_CREAM . '">'
+                      . '<tr><td style="padding:12px 14px 4px;font-family:' . MS_MAIL_FONT . ';font-size:16px;font-weight:bold;line-height:1.7;color:' . MS_MAIL_ROYAL . ';text-align:right">' . ms_mail_inline($r[0] ?? '') . '</td></tr>';
+                for ($c = 1; $c < count($r); $c++) {
+                    if (($r[$c] ?? '') === '') continue;
+                    $lbl = ($head[$c] ?? '') !== '' ? '<span style="display:block;font-size:13px;font-weight:bold;color:' . MS_MAIL_GOLD_DEEP . '">' . ms_mail_inline($head[$c]) . '</span>' : '';
+                    $out .= '<tr><td style="padding:4px 14px ' . ($c === count($r) - 1 ? '12px' : '6px') . ';font-family:' . MS_MAIL_FONT . ';font-size:15px;line-height:1.85;color:' . MS_MAIL_TEXT . ';text-align:right">' . $lbl . ms_mail_inline($r[$c]) . '</td></tr>';
                 }
-                $out .= '</tr>';
+                $out .= '</table>';
             }
-            $out .= '</table>'; $table = [];
+            $out .= '<div style="height:10px;line-height:10px;font-size:0">&nbsp;</div>'; $table = [];
         }
     };
     foreach ($lines as $raw) {
@@ -78,7 +72,7 @@ function ms_mail_blocks(string $text): string {
         switch ($kind) {
             case 'h':
                 $out .= '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:26px 0 12px"><tr>'
-                      . '<td style="font-size:20px;font-weight:bold;color:' . MS_MAIL_ROYAL . ';font-family:' . MS_MAIL_FONT . ';padding-bottom:8px;border-bottom:1px solid #E6D3A6">'
+                      . '<td style="font-size:18px;font-weight:bold;color:' . MS_MAIL_ROYAL . ';font-family:' . MS_MAIL_FONT . ';padding-bottom:8px;border-bottom:1px solid #E6D3A6">'
                       . '<span style="color:' . MS_MAIL_GOLD . '">✦</span>&nbsp; ' . ms_mail_inline(trim(ltrim($l, '#'))) . '</td></tr></table>';
                 break;
             case 'table': $table[] = $l; break;
@@ -89,7 +83,7 @@ function ms_mail_blocks(string $text): string {
                     $url = preg_match('~^https?://~', $m[2]) ? $m[2] : 'https://mervatsror.com/' . ltrim($m[2], '/');
                     $out .= '<table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin:10px auto 24px"><tr>'
                           . '<td align="center" bgcolor="' . MS_MAIL_GOLD . '" style="border-radius:999px;background:' . MS_MAIL_GOLD . ';background-image:linear-gradient(135deg,#E2C68C,#C5A059 55%,#AE8945)">'
-                          . '<a href="' . htmlspecialchars($url, ENT_QUOTES) . '" style="display:inline-block;padding:13px 38px;font-size:16px;font-weight:bold;color:' . MS_MAIL_ROYAL
+                          . '<a href="' . htmlspecialchars($url, ENT_QUOTES) . '" style="display:inline-block;padding:12px 28px;font-size:15.5px;font-weight:bold;color:' . MS_MAIL_ROYAL
                           . ';text-decoration:none;border-radius:999px;font-family:' . MS_MAIL_FONT . '">' . ms_mail_inline($m[1]) . '</a></td></tr></table>';
                 } else { $para[] = $l; }
                 break;
@@ -120,50 +114,39 @@ function ms_reply_html(array $r): string {
     return <<<HTML
 <!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light">
-<title>{$title}</title>
-<style>
-@media only screen and (max-width:620px){
-  .ms-outer{padding:0!important}
-  .ms-card{border-radius:0!important;box-shadow:none!important}
-  .ms-px{padding-left:18px!important;padding-right:18px!important}
-  .ms-thr{display:none!important}
-  .ms-tc{display:block!important;width:auto!important;border-right:0!important;padding:4px 14px 10px!important;font-size:15.5px!important}
-  .ms-tc0{padding-top:12px!important;font-size:16px!important}
-  .ms-tcn{border-top:0!important}
-  .ms-lbl{display:block!important}
-  .ms-title{font-size:20px!important}
-}
-</style></head>
-<body style="margin:0;padding:0;background:#EEF0F6;direction:rtl">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0">{$pre}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EEF0F6"><tr><td align="center" class="ms-outer" style="padding:28px 12px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="ms-card" style="width:100%;max-width:600px;background:#FFFFFF;border-radius:22px;overflow:hidden;box-shadow:0 18px 40px -24px rgba(27,52,104,.45)" dir="rtl">
-  <tr><td align="center" bgcolor="{$royal}" style="background:{$royal};background-image:radial-gradient(120% 140% at 50% 0%,#2E5AA6 0%,#1B3468 62%);padding:34px 24px 28px">
-    <img src="{$base}/assets/email/logo-gold.png" width="150" alt="د. مرفت سرور" style="display:block;width:150px;max-width:150px;height:auto;border:0;margin:0 auto 14px">
+<title>{$title}</title></head>
+<body style="margin:0;padding:0;background:#EEF0F6;direction:rtl;-webkit-text-size-adjust:100%;text-size-adjust:100%">
+<div style="display:none;font-size:1px;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden">{$pre}</div>
+<div dir="rtl" style="background:#EEF0F6;padding:16px 8px;direction:rtl">
+<div style="max-width:600px;margin:0 auto;background:#FFFFFF">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%">
+  <tr><td align="center" bgcolor="{$royal}" style="background-color:{$royal};padding:28px 16px 24px;text-align:center">
+    <img src="{$base}/assets/email/logo-gold.png" width="130" alt="د. مرفت سرور" style="display:block;width:130px;max-width:130px;height:auto;border:0;margin:0 auto 12px">
     <div style="font-family:{$f};font-size:13px;letter-spacing:2px;color:#E2C68C">✦ &nbsp;✦ &nbsp;✦</div>
-    <div class="ms-title" style="font-family:{$f};font-size:22px;font-weight:bold;color:#FFFFFF;margin-top:10px;line-height:1.6">{$title}</div>
+    <div style="font-family:{$f};font-size:21px;font-weight:bold;color:#FFFFFF;margin-top:8px;line-height:1.6">{$title}</div>
   </td></tr>
-  <tr><td style="height:4px;line-height:4px;font-size:0;background:{$gold};background-image:linear-gradient(90deg,#A8843F,#E6BE57,#FFF1B5,#E6BE57,#A8843F)">&nbsp;</td></tr>
-  <tr><td class="ms-px" style="padding:34px 34px 10px;font-family:{$f};text-align:right" dir="rtl">
-    <p style="margin:0 0 18px;font-size:19px;font-weight:bold;color:{$royal}">عزيزتي {$name}،</p>
+  <tr><td bgcolor="{$gold}" style="height:4px;line-height:4px;font-size:0;background-color:{$gold}">&nbsp;</td></tr>
+  <tr><td dir="rtl" style="padding:26px 20px 6px;font-family:{$f};text-align:right;direction:rtl">
+    <p style="margin:0 0 16px;font-size:18px;font-weight:bold;color:{$royal}">عزيزتي {$name}،</p>
     {$body}
   </td></tr>
-  <tr><td class="ms-px" style="padding:6px 34px 30px;font-family:{$f}" dir="rtl">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #E6D3A6"><tr>
-      <td width="84" valign="middle" style="padding-top:22px"><img src="{$base}/assets/email/mervat.jpg" width="72" height="72" alt="د. مرفت سرور" style="display:block;width:72px;height:72px;border-radius:50%;border:2px solid {$gold}"></td>
-      <td valign="middle" style="padding-top:22px;font-family:{$f};text-align:right">
-        <div style="font-size:15px;color:{$gold};font-weight:bold">أنوي لكِ التشافي بكل حب</div>
-        <div style="font-size:18px;color:{$royal};font-weight:bold;margin-top:2px">د. مرفت سرور</div>
-        <div style="font-size:13px;color:#6B7390;margin-top:2px">مدربة وعي معتمدة من الاتحاد الدولي للتدريب ICF{$uniq}</div>
+  <tr><td dir="rtl" style="padding:4px 20px 26px;font-family:{$f};direction:rtl">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;border-top:1px solid #E6D3A6"><tr>
+      <td width="76" valign="middle" style="width:76px;padding-top:20px"><img src="{$base}/assets/email/mervat.jpg" width="64" height="64" alt="د. مرفت سرور" style="display:block;width:64px;height:64px;border-radius:50%;border:2px solid {$gold}"></td>
+      <td valign="middle" style="padding-top:20px;font-family:{$f};text-align:right">
+        <div style="font-size:14px;color:{$gold};font-weight:bold">أنوي لكِ التشافي بكل حب</div>
+        <div style="font-size:17px;color:{$royal};font-weight:bold;margin-top:2px">د. مرفت سرور</div>
+        <div style="font-size:12.5px;color:#6B7390;margin-top:2px">مدربة وعي معتمدة من الاتحاد الدولي للتدريب ICF{$uniq}</div>
       </td></tr></table>
   </td></tr>
-  <tr><td align="center" bgcolor="{$royal}" style="background:{$royal};padding:24px 24px 26px;font-family:{$f}">
+  <tr><td align="center" bgcolor="{$royal}" style="background-color:{$royal};padding:22px 16px 24px;font-family:{$f};text-align:center">
     <div style="font-size:14px;line-height:2">{$social}</div>
     <div style="font-size:13px;color:#C9D3EC;margin-top:8px"><a href="{$base}" style="color:#FFFFFF;text-decoration:none;font-weight:bold">mervatsror.com</a> &nbsp;·&nbsp; <a href="mailto:info@mervatsror.com" style="color:#C9D3EC;text-decoration:none">info@mervatsror.com</a></div>
     <div style="font-size:11.5px;color:#9FB0D6;line-height:1.9;margin-top:12px">هذه الرسالة شخصية ومُرسلة إليكِ وحدكِ ردّاً على إجاباتك.<br>المحتوى للتطوير الذاتي والوعي، وليس بديلاً عن التشخيص أو العلاج الطبي أو النفسي.{$uniq}</div>
   </td></tr>
 </table>
-</td></tr></table>
+</div>
+</div>
 </body></html>
 HTML;
 }
