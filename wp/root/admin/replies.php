@@ -4,6 +4,10 @@
 require dirname(__DIR__) . '/api/_lib.php';
 require dirname(__DIR__) . '/api/_reply_mail.php';
 if (is_file(MS_WP_LOAD)) { if (!defined('WP_USE_THEMES')) { define('WP_USE_THEMES', false); } require_once MS_WP_LOAD; }
+// WordPress adds a backslash before every quote in $_POST ("magic quotes"); undo it, or each save doubles them.
+if (function_exists('wp_unslash')) { $_POST = wp_unslash($_POST); }
+// Mervat's texts never need a backslash: also clean drafts saved before this fix.
+$noSlash = fn($s) => is_string($s) ? str_replace('\\', '', $s) : $s;
 header('X-Robots-Tag: noindex, nofollow');
 header('X-Frame-Options: DENY');
 header("Content-Security-Policy: default-src 'self'; img-src 'self' https://mervatsror.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; form-action 'self'; frame-ancestors 'none'");
@@ -38,12 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
     if (!hash_equals($_SESSION['csrf'], (string)($_POST['csrf'] ?? ''))) { $err = 'انتهت صلاحية الصفحة، أعيدي المحاولة.'; }
     else {
         $do = (string)($_POST['do'] ?? 'save');
+        if ($do === 'reseed') {   // drop her draft text so the version Claude prepared shows again
+            $withReplies(function ($all) use ($id) { unset($all[$id]['body']); return $all; });
+            header('Location: replies.php?id=' . $id); exit;
+        }
         $draft = [
             'name' => clean_text((string)($_POST['name'] ?? ''), 60),
             'email' => strtolower(trim((string)($_POST['email'] ?? ''))),
             'subject' => clean_text((string)($_POST['subject'] ?? ''), 120) ?: $DEF_SUBJECT,
             'title' => clean_text((string)($_POST['title'] ?? ''), 90) ?: $DEF_TITLE,
-            'body' => mb_substr(str_replace("\r", '', (string)($_POST['body'] ?? '')), 0, 30000),
+            'body' => mb_substr(str_replace(["\r", '\\'], '', (string)($_POST['body'] ?? '')), 0, 30000),
             'updated_at' => gmdate('c'),
         ];
         $withReplies(function ($all) use ($id, $draft) { $all[$id] = array_merge($all[$id] ?? [], $draft); return $all; });
@@ -130,13 +138,15 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
       <a class="btn gold" href="replies.php?id=<?= $h($g['id']) ?>"><?= $st === 'new' ? 'اكتبي الرد' : 'افتحي' ?></a></div>
   <?php endforeach; ?>
 <?php else:
-  $r = $replies[$id] ?? [];
+  $r = array_map($noSlash, $replies[$id] ?? []);
   // Replies Claude prepared for Mervat: uploaded straight to the server (never in the public code), used until she saves her own draft.
-  if (empty($r['body']) && is_file(__DIR__ . '/_seed_drafts.php')) {
+  $seed = null;
+  if (is_file(__DIR__ . '/_seed_drafts.php')) {
       foreach ((array)(require __DIR__ . '/_seed_drafts.php') as $sd) {
-          if (!empty($sd['match']) && mb_stripos($gift['name'] . ' ' . $gift['email'], $sd['match']) !== false) { $r = array_merge($sd, $r); $seeded = true; break; }
+          if (!empty($sd['match']) && mb_stripos($gift['name'] . ' ' . $gift['email'], $sd['match']) !== false) { $seed = $sd; break; }
       }
   }
+  if ($seed && empty($r['body'])) { $r = array_merge($seed, $r); $seeded = true; }
   $first = trim(explode(' ', trim($gift['name']))[0] ?? '');
   $v = ['name' => $r['name'] ?? $first, 'email' => $r['email'] ?? $gift['email'], 'subject' => $r['subject'] ?? $DEF_SUBJECT, 'title' => $r['title'] ?? $DEF_TITLE, 'body' => $r['body'] ?? ''];
   $preview = ms_reply_html(['name' => $v['name'], 'title' => $v['title'], 'body' => $v['body']]);
@@ -155,6 +165,7 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
     <section>
       <form class="panel" id="form" method="post" novalidate action="replies.php?id=<?= $h($id) ?>">
         <h2 style="margin-top:0">الرد</h2>
+        <?php if ($seed && empty($seeded)): ?><p style="margin:0 0 8px;font-size:.9rem"><button class="ghost" name="do" value="reseed" style="padding:4px 12px;font-size:.85rem">استرجعي النسخة اللي جهّزها Claude</button></p><?php endif; ?>
         <?php if (!empty($seeded)): ?><p class="ok" style="margin:0 0 8px">هذا الرد جهّزه لكِ Claude بالتنسيق. راجعيه، ثم دوسي «احفظي المسودة» أو أرسليه.</p><?php endif; ?>
         <?php foreach (($r['sent'] ?? []) as $s): ?><p class="sent-log">✓ أُرسل إلى <?= $h($s['to']) ?> في <?= $fmtDate($s['at']) ?></p><?php endforeach; ?>
         <input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="id" value="<?= $h($id) ?>">
