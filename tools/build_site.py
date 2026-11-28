@@ -764,7 +764,7 @@ def home_body():
     <p>ليس مجرد رحلة من الوعي بل رحلة عميقة لتغيير نسخة لم تعد تمثلك</p>
     <p class="vb-sub">تفتح بوابات التشافي العميق وتهدم البرمجات القديمة لتولد نسختك الجديدة القوية القادرة على النجاح</p>
     <a class="btn btn-gold" href="vip.html">احجزي مكانك</a></div></section>
-<section class="band tint-blush"><div class="wrap vip2">
+<section class="band tint-blush band-vip"><div class="wrap vip2">
   <div class="copy"><span class="eyebrow">البرنامج التدريبي الأساسي</span><h2><span class="foil-text">استيقظ VIP</span></h2>
     <p class="lead">استيقظ VIP ليس تمرينًا تسمعينه وتمضين، بل رحلة تشافٍ تُقاد معكِ. هو نظام تشافٍ صمّمته د. مرفت سرور، وتتابعه معكِ بنفسها. تصلكِ تمارين مصمّمة لكِ أنتِ، تعمل كلها داخل مسار واحد مترابط، وتتعامل مع العقل اللاواعي وتعيد برمجته. وهدف المسار أن تنتقلي خطوة بعد خطوة من العار والتأنيب والخوف والحزن إلى مساحة من السلام والطمأنينة، تقدرين فيها على احتواء مشاعركِ.</p>
     <div class="plans-bar"><div class="toggle" role="group" aria-label="مدة الاشتراك"><button type="button" data-plan="vip-m" aria-pressed="true">شهري</button><button type="button" data-plan="vip-q" aria-pressed="false">٣ أشهر</button><button type="button" data-plan="vip-y" aria-pressed="false">سنوي · شهران مجاناً</button></div>
@@ -772,7 +772,7 @@ def home_body():
     <a class="btn btn-line btn-sm" href="vip.html" style="justify-self:start">كل تفاصيل البرنامج</a></div>
   <div class="perks">{"".join(f'<div class="perk">{ic(i)}<b>{t}</b><span>{d}</span></div>' for i,t,d in [("live","جلسات فردية خاصة","رحلة خاصة بينك وبين د. مرفت فقط: تفتح بوابات التشافي العميق، وتتخلّص من البرمجات اللاواعية."),("shield","مساحة آمنة وسرية","كل ما يدور في جلساتك يبقى بينك وبين د. مرفت فقط."),("path","تمارين مخصصة ومتابعة شخصية","تصميم تمارين وتدريبات مخصصة لكِ أنتِ، ومتابعة أثرها عليكِ."),("crown","أولوية الأعضاء","أولوية وخصم على الجلسات الفردية والبرامج الجديدة.")])}</div>
 </div></section>
-<section class="band"><div class="wrap"><div class="head center"><span class="eyebrow center">ابدأ من هنا</span><h2 class="title">لكل طريق قوته في التحوّل من الداخل</h2></div>
+<section class="band band-paths"><div class="wrap"><div class="head center"><span class="eyebrow center">ابدأ من هنا</span><h2 class="title">لكل طريق قوته في التحوّل من الداخل</h2></div>
   <div class="tiles"><a class="tile" href="library.html"><img src="assets/art/attach.webp" alt="" loading="lazy"><span><b>التمارين المسجّلة</b><small>Decoding، فك تعلّق، تشافٍ وتأمل</small></span></a>
   <a class="tile" href="vip.html"><img src="assets/img/vip-bridge.webp" alt="" loading="lazy"><span><b>استيقظ VIP</b><small>البرنامج التدريبي المتكامل</small></span></a>
   <a class="tile tile-ses" href="sessions.html"><img src="assets/img/sessions-banner.webp" alt="" loading="lazy"><span><b>الجلسات الفردية</b><small>مساحة خاصة مع د. مرفت</small></span></a></div></div></section>

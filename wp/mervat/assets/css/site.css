@@ -2213,3 +2213,5 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .rv-band .vp-head{margin:clamp(26px,3.4vw,40px) 0 clamp(14px,2vw,22px)!important;gap:6px}
 .rv-band .vp-head h2{font-size:clamp(1.5rem,2.6vw,2.1rem)}
 .rv-band .vr-more{margin:16px 0 0}
+/* home: no big empty gap between the VIP block and «لكل طريق قوته» */
+.band-vip{padding-bottom:clamp(24px,3vw,40px)}.band-paths{padding-top:clamp(24px,3vw,40px)}
