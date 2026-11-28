@@ -35,7 +35,11 @@ h2::after{content:"";flex:1;height:1px;background:var(--line)}
 .item .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
 .item b{color:var(--ink);font-size:1.05rem}
 .item .what{color:var(--muted);font-size:.95rem}
-.url{direction:ltr;text-align:left;font-size:.85rem;color:var(--gold);word-break:break-all;font-variant-numeric:tabular-nums}
+.url{direction:ltr;text-align:left;font-size:.85rem;color:var(--gold);word-break:break-all;font-variant-numeric:tabular-nums;text-decoration:underline;text-underline-offset:3px}
+a.open{font-size:.88rem;font-weight:700;border-radius:999px;padding:6px 14px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;white-space:nowrap;display:inline-block}
+a.open:hover{background:var(--chip)}
+a.open:focus-visible{outline:3px solid var(--gold-soft);outline-offset:2px}
+.reply a{color:var(--ink);font-weight:700;word-break:break-all}
 .btns{display:flex;gap:6px;flex-wrap:wrap}
 button{font:inherit;font-size:.88rem;font-weight:700;border-radius:999px;padding:6px 14px;cursor:pointer;border:1.5px solid var(--gold);background:transparent;color:var(--ink);white-space:nowrap}
 button.main{background:var(--gold);color:#fff;border-color:var(--gold)}
@@ -51,7 +55,7 @@ footer{color:var(--muted);font-size:.85rem;text-align:center}
 <div class="wrap">
   <header>
     <h1>دليل روابط موقع د. مرفت سرور</h1>
-    <p>ابحثي عن سؤال العميلة أو اسم الصفحة، وانسخي الرد الجاهز أو الرابط وابعتيه على واتساب أو ماسنجر.</p>
+    <p>ابحثي عن سؤال العميلة أو اسم الصفحة، وانسخي الرد الجاهز أو الرابط وابعتيه على واتساب أو ماسنجر، أو دوسي «افتحي» عشان تدخلي الصفحة على طول.</p>
     <div class="wa"><span>واتساب الموقع: <b dir="ltr">01095292748</b></span><span>البريد: <b dir="ltr">info@mervatsror.com</b></span></div>
   </header>
 
@@ -135,6 +139,9 @@ const PAGES = [
  ["سياسة الخصوصية","إزاي بنحافظ على بيانات العميلات","/privacy/","السياسات","خصوصية"],
  ["الاسترداد والإلغاء","قواعد استرجاع الفلوس والإلغاء","/refund/","السياسات","استرداد"],
  ["سياسة تقديم الخدمة","إمتى وإزاي التمرين بيوصل","/delivery/","السياسات","توصيل"],
+ ["لوحة آراء العملاء","ليكِ بس: توافقي على المراجعات الصوتية والمكتوبة (بكلمة السر)","/admin/voices.php","لوحتك الخاصة","لوحة تحكم مراجعات موافقة ادمن"],
+ ["ردود كشف الهوية","ليكِ بس: إجابات الهدية وإرسال التحليل (بكلمة السر)","/admin/replies.php","لوحتك الخاصة","لوحة تحكم ردود تحليل كشف الهوية ادمن"],
+ ["لوحة WordPress","ليكِ بس: الطلبات والمنتجات والإعدادات","/wp-admin/","لوحتك الخاصة","ووردبريس طلبات ادمن"],
 ];
 const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const norm = t => String(t).toLowerCase().replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه").replace(/[ًٌٍَُِّْـ]/g,"");
@@ -145,12 +152,12 @@ function copy(btn, text){
 }
 const faqEl = document.getElementById("faq"), pagesEl = document.getElementById("pages");
 faqEl.innerHTML = FAQ.map(([q, r, p, w], i) => `<div class="item q" data-s="${esc(norm(q+" "+r+" "+w+" "+p))}">
-  <div class="top"><b>${esc(q)}</b><div class="btns"><button class="main" type="button" data-copy="r${i}">انسخي الرد</button><button type="button" data-copy="u${i}">الرابط بس</button></div></div>
-  <div class="reply">${esc(r)}\n${S}${esc(p)}</div></div>`).join("");
+  <div class="top"><b>${esc(q)}</b><div class="btns"><button class="main" type="button" data-copy="r${i}">انسخي الرد</button><button type="button" data-copy="u${i}">الرابط بس</button><a class="open" href="${S}${esc(p)}" target="_blank" rel="noopener">افتحي ↗</a></div></div>
+  <div class="reply">${esc(r)}\n<a href="${S}${esc(p)}" target="_blank" rel="noopener" dir="ltr">${S}${esc(p)}</a></div></div>`).join("");
 let lastGroup = "";
 pagesEl.innerHTML = PAGES.map(([n, d, p, g, w], i) => `<div class="item" data-s="${esc(norm(n+" "+d+" "+g+" "+w+" "+p))}">
-  <div class="top"><b>${esc(n)}<span class="tag">${esc(g)}</span></b><div class="btns"><button class="main" type="button" data-copy="p${i}">انسخي الرابط</button></div></div>
-  <span class="what">${esc(d)}</span><span class="url">${S}${esc(p)}</span></div>`).join("");
+  <div class="top"><b>${esc(n)}<span class="tag">${esc(g)}</span></b><div class="btns"><button class="main" type="button" data-copy="p${i}">انسخي الرابط</button><a class="open" href="${S}${esc(p)}" target="_blank" rel="noopener">افتحي ↗</a></div></div>
+  <span class="what">${esc(d)}</span><a class="url" href="${S}${esc(p)}" target="_blank" rel="noopener">${S}${esc(p)}</a></div>`).join("");
 document.addEventListener("click", e => {
   const b = e.target.closest("[data-copy]"); if (!b) return;
   const k = b.dataset.copy, i = +k.slice(1);
