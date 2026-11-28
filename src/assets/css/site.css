@@ -2215,3 +2215,9 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .rv-band .vr-more{margin:16px 0 0}
 /* home: no big empty gap between the VIP block and «لكل طريق قوته» */
 .band-vip{padding-bottom:clamp(24px,3vw,40px)}.band-paths{padding-top:clamp(24px,3vw,40px)}
+/* ===== site-wide: calmer spacing between sections (two paddings used to stack into ~240px of empty space) ===== */
+.band{padding-block:clamp(40px,5.2vw,72px)}
+.vp-sec{padding-block:clamp(46px,5.6vw,80px)}
+.vp-head{margin-bottom:clamp(24px,3.4vw,40px)}
+.head{margin-bottom:clamp(20px,3vw,34px)}
+.mz-home{margin-top:0;padding:clamp(48px,6vw,84px) 0}
