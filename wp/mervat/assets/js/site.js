@@ -769,7 +769,7 @@ async function renderVoices(){
     if (id === "page"){
       const n2 = k => String(k).padStart(2,"0").replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
       el.innerHTML = all.length ? all.map((v, i) => `<article class="vr-pill"><button class="vr-play" type="button" data-vrplay aria-label="تشغيل رأي ${esc(v.name)}">${icon("play")}</button>
-        <div class="vr-pill-t"><b>${esc(v.name)}</b><small>${P[v.pid] ? esc(P[v.pid].title) + " · " : ""}${vWhen(v.date)}${v.len ? " · " + fmtT(v.len) : ""}</small></div>
+        <div class="vr-pill-t"><b>${esc(v.name)}</b><small>${P[v.pid] ? esc(P[v.pid].title.replace(/ · /g, " – ")) + " · " : ""}${vWhen(v.date)}${v.len ? " · " + fmtT(v.len) : ""}</small></div>
         <span class="vr-listen">استمع <i class="vr-mini"><i></i><i></i><i></i><i></i><i></i></i></span><audio preload="none" src="${vSrc(v.id)}"></audio></article>`).join("")
         : `<p class="vr-empty">تُنشر الآراء الصوتية هنا قريباً بعد مراجعتها.</p>`;
       return;
@@ -778,7 +778,7 @@ async function renderVoices(){
       const n2 = k => String(k).padStart(2,"0").replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
       const items = all.slice(0, 6);
       el.innerHTML = items.map((v, i) => `<article class="vr-pill"><button class="vr-play" type="button" data-vrplay aria-label="تشغيل رأي عملائنا ${n2(i+1)}">${icon("play")}</button>
-        <div class="vr-pill-t"><b>رأي عملائنا ${n2(i+1)}</b><small>${esc(v.name)}${P[v.pid] ? " · " + esc(P[v.pid].title) : ""}</small></div>
+        <div class="vr-pill-t"><b>رأي عملائنا ${n2(i+1)}</b><small>${esc(v.name)}${P[v.pid] ? " · " + esc(P[v.pid].title.replace(/ · /g, " – ")) : ""}</small></div>
         <span class="vr-listen">استمع <i class="vr-mini"><i></i><i></i><i></i><i></i><i></i></i></span><audio preload="none" src="${vSrc(v.id)}"></audio></article>`).join("");
       const wrap = el.closest("[data-vr-wrap]"); if (wrap) wrap.hidden = !items.length;
       return;
