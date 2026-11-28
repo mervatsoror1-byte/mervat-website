@@ -2198,3 +2198,4 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .rv-band .voice .vo-more,.rv-band .voice.hl .vo-more{color:#A8843F;align-self:flex-start;margin-top:-4px}
 .rv-band .sl-dots button{background:rgba(245,245,220,.45)}
 .rv-band .sl-dots button[aria-current=true]{background:#E2C68C}
+.rv-band .vp-head h2{color:#F5F5DC}.rv-band .vp-head p{color:#E2C68C}
