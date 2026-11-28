@@ -2168,3 +2168,9 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .pd3>.pd3-about{margin-bottom:0}
 .pd3>.pd3-content{margin-top:6px}
 .pd3-intro .pd3-play{background:#C5A059;border:0;color:#1B3468;box-shadow:0 10px 30px rgba(13,22,51,.45),0 0 0 6px rgba(197,160,89,.28);backdrop-filter:none}
+/* review cards in sliders: long text cut to 7 lines, «اقرئي المزيد» opens it */
+.reel .voice > p{display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.reel .voice > p.open{display:block;-webkit-line-clamp:unset;overflow:visible}
+
+.vo-more{border:0;background:none;color:var(--gold-deep,#A8843F);font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;padding:0;margin-top:-6px;text-decoration:underline;text-underline-offset:3px}
+.voice.hl .vo-more{color:#E2C68C}

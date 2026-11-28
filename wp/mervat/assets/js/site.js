@@ -961,6 +961,13 @@ initSessCards();
 /* ---------- testimonial slider: arrows, dots, autoplay ---------- */
 window.msReel = reel => {
   if (reel.dataset.ready) return; reel.dataset.ready = 1;
+  // long reviews are cut to a few lines (so one long review doesn't stretch every card) with «اقرئي المزيد»
+  requestAnimationFrame(() => reel.querySelectorAll(".voice > p").forEach(p => {
+    if (p.scrollHeight <= p.clientHeight + 4 || p.nextElementSibling?.classList.contains("vo-more")) return;
+    const m = document.createElement("button"); m.type = "button"; m.className = "vo-more"; m.textContent = "اقرئي المزيد";
+    m.addEventListener("click", () => { const open = p.classList.toggle("open"); m.textContent = open ? "إخفاء" : "اقرئي المزيد"; });
+    p.after(m);
+  }));
   const cards = [...reel.children]; if (cards.length < 2) return;
   const wrap = document.createElement("div"); wrap.className = "slider";
   reel.parentNode.insertBefore(wrap, reel); wrap.appendChild(reel);
