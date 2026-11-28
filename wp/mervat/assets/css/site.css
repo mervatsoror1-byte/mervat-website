@@ -2205,3 +2205,11 @@ button.pd3-media{width:100%;padding:0;margin:0;font:inherit;color:inherit;cursor
 .rv-band .vr-pill .vr-play{background:#1A3670;color:#E2C68C;box-shadow:0 0 0 5px rgba(26,54,112,.18)}
 .rv-band .vr-pill-t b{color:#14234A}.rv-band .vr-pill-t small{color:#3B3320}
 .rv-band .vr-listen{color:#14234A}.rv-band .vr-mini i{background:#14234A}
+/* home «قالوا عنا»: tighter vertical spacing */
+.rv-band{padding-block:clamp(34px,4.5vw,58px)}
+.rv-band .head{gap:4px;margin-bottom:clamp(8px,1.4vw,16px)}
+.rv-band .reel{padding-top:8px;padding-bottom:12px}
+.rv-band .sl-dots{margin-top:0}
+.rv-band .vp-head{margin:clamp(26px,3.4vw,40px) 0 clamp(14px,2vw,22px)!important;gap:6px}
+.rv-band .vp-head h2{font-size:clamp(1.5rem,2.6vw,2.1rem)}
+.rv-band .vr-more{margin:16px 0 0}
