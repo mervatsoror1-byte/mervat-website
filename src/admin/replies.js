@@ -6,3 +6,7 @@
     if (!confirm('إرسال الرد إلى ' + to + '؟')) e.preventDefault();
   });
 })();
+// Ask before deleting a submission.
+document.querySelectorAll('form.del').forEach(function (f) {
+  f.addEventListener('submit', function (e) { if (!confirm('حذف إجابات هذه العميلة نهائياً؟')) e.preventDefault(); });
+});

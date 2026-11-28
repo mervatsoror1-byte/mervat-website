@@ -42,6 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
     if (!hash_equals($_SESSION['csrf'], (string)($_POST['csrf'] ?? ''))) { $err = 'انتهت صلاحية الصفحة، أعيدي المحاولة.'; }
     else {
         $do = (string)($_POST['do'] ?? 'save');
+        if ($do === 'delete') {   // remove a submission (tests, duplicates); a backup copy of gift.json is kept
+            $gp = data_dir() . '/gift.json';
+            @copy($gp, data_dir() . '/gift.backup-' . gmdate('Ymd-His') . '.json');
+            $fh = fopen($gp, 'c+'); flock($fh, LOCK_EX);
+            $gl = json_decode((string)stream_get_contents($fh), true) ?: [];
+            $gl = array_values(array_filter($gl, fn($g) => ($g['id'] ?? '') !== $id));
+            ftruncate($fh, 0); rewind($fh); fwrite($fh, json_encode($gl, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+            flock($fh, LOCK_UN); fclose($fh); @chmod($gp, 0600);
+            $withReplies(function ($all) use ($id) { unset($all[$id]); return $all; });
+            header('Location: replies.php?done=deleted'); exit;
+        }
         if ($do === 'reseed') {   // drop her draft text so the version Claude prepared shows again
             $withReplies(function ($all) use ($id) { unset($all[$id]['body']); return $all; });
             header('Location: replies.php?id=' . $id); exit;
@@ -85,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
 }
 // after every save we redirect back here (so refreshing the page never re-sends the form)
 $msg = $msg ?: (['sent' => 'تم إرسال الرد ✓ ووصلتك نسخة منه على info@mervatsror.com.', 'saved' => 'تم حفظ المسودة ✓',
-                 'preview' => 'تم حفظ المسودة ✓ والمعاينة تحت محدّثة.', 'test' => 'أُرسلت نسخة تجريبية إلى ' . (($_SESSION['test_to'] ?? '') ?: 'info@mervatsror.com') . ' ✓ (تصل خلال دقيقة). افتحي الإيميل الجديد، عنوانه فيه الساعة.'][$_GET['done'] ?? ''] ?? '');
+                 'preview' => 'تم حفظ المسودة ✓ والمعاينة تحت محدّثة.', 'deleted' => 'تم حذف الإجابات ✓', 'test' => 'أُرسلت نسخة تجريبية إلى ' . (($_SESSION['test_to'] ?? '') ?: 'info@mervatsror.com') . ' ✓ (تصل خلال دقيقة). افتحي الإيميل الجديد، عنوانه فيه الساعة.'][$_GET['done'] ?? ''] ?? '');
 
 $questions = (function () { $f = dirname(__DIR__) . '/api/_gift_questions.php'; return is_file($f) ? require $f : []; })();
 $status = function ($gid) use ($replies) {
@@ -136,7 +147,8 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
   <?php foreach ($gifts as $g): [$st, $label] = $status($g['id']); ?>
     <div class="card"><div><b><?= $h($g['name']) ?></b><span class="tag <?= $st ?>"><?= $label ?></span><br>
       <span><?= $h($g['email']) ?> · <?= $fmtDate($g['created_at']) ?> · أجابت عن <?= (int)$g['answered'] ?> سؤالاً · <?= $h($g['id']) ?></span></div>
-      <a class="btn gold" href="replies.php?id=<?= $h($g['id']) ?>"><?= $st === 'new' ? 'اكتبي الرد' : 'افتحي' ?></a></div>
+      <div style="display:flex;gap:8px;align-items:center"><a class="btn gold" href="replies.php?id=<?= $h($g['id']) ?>"><?= $st === 'new' ? 'اكتبي الرد' : 'افتحي' ?></a>
+      <form method="post" action="replies.php?id=<?= $h($g['id']) ?>" class="del" style="margin:0"><input type="hidden" name="csrf" value="<?= $h($_SESSION['csrf']) ?>"><input type="hidden" name="id" value="<?= $h($g['id']) ?>"><button class="ghost" name="do" value="delete" style="color:#9b2c2c;border-color:#e3b8b8">احذفي</button></form></div></div>
   <?php endforeach; ?>
 <?php else:
   $r = array_map($noSlash, $replies[$id] ?? []);
