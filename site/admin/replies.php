@@ -49,8 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
         $withReplies(function ($all) use ($id, $draft) { $all[$id] = array_merge($all[$id] ?? [], $draft); return $all; });
         $html = ms_reply_html(['name' => $draft['name'], 'title' => $draft['title'], 'body' => $draft['body']]);
         if ($do === 'test') {
-            $tto = strtolower(trim((string)($_POST['test_to'] ?? '')));
-            $tto = filter_var($tto, FILTER_VALIDATE_EMAIL) ? $tto : NOTIFY_EMAIL;
+            $raw = strtolower(preg_replace('/\s+/u', '', (string)($_POST['test_to'] ?? '')) ?? '');
+            $tto = $raw === '' ? NOTIFY_EMAIL : (filter_var($raw, FILTER_VALIDATE_EMAIL) ?: '');
+            if ($tto === '') { $err = 'الإيميل المكتوب في خانة التجربة غير صحيح: «' . $raw . '». صحّحيه أو امسحيه.'; goto done_post; }
             $_SESSION['test_to'] = $tto === NOTIFY_EMAIL ? '' : $tto;
             $ok = ms_send_reply_html($tto, '[تجربة ' . date('H:i', time() + 2 * 3600) . '] ' . $draft['subject'], $html, $tto !== NOTIFY_EMAIL);
             if ($ok) { header('Location: replies.php?id=' . $id . '&done=test'); exit; }
@@ -69,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $gift) {
                 $err = 'تعذّر الإرسال. حاولي مرة أخرى بعد دقيقة.';
             }
         } else { header('Location: replies.php?id=' . $id . '&done=' . ($do === 'preview' ? 'preview#preview' : 'saved')); exit; }
+        done_post:
         $replies = $withReplies();
     }
 }
@@ -151,7 +153,7 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
       </div>
     </section>
     <section>
-      <form class="panel" id="form" method="post" action="replies.php?id=<?= $h($id) ?>">
+      <form class="panel" id="form" method="post" novalidate action="replies.php?id=<?= $h($id) ?>">
         <h2 style="margin-top:0">الرد</h2>
         <?php if (!empty($seeded)): ?><p class="ok" style="margin:0 0 8px">هذا الرد جهّزه لكِ Claude بالتنسيق. راجعيه، ثم دوسي «احفظي المسودة» أو أرسليه.</p><?php endif; ?>
         <?php foreach (($r['sent'] ?? []) as $s): ?><p class="sent-log">✓ أُرسل إلى <?= $h($s['to']) ?> في <?= $fmtDate($s['at']) ?></p><?php endforeach; ?>
@@ -171,7 +173,7 @@ iframe{width:100%;height:1200px;border:1px solid var(--line);border-radius:18px;
           <button class="ghost" name="do" value="save">احفظي المسودة</button>
           <button class="blue" name="do" value="preview">حدّثي المعاينة</button>
           <button class="ghost" name="do" value="test">جرّبي على إيميلي</button>
-          <input name="test_to" type="email" dir="ltr" placeholder="إيميل آخر للتجربة (اختياري)" value="<?= $h($_SESSION['test_to'] ?? '') ?>" style="flex:1;min-width:200px">
+          <input name="test_to" type="text" inputmode="email" autocomplete="email" dir="ltr" placeholder="إيميل آخر للتجربة (اختياري)" value="<?= $h($_SESSION['test_to'] ?? '') ?>" style="flex:1;min-width:200px">
         </div>
         <label class="ck"><input type="checkbox" name="sure" value="1"> راجعتُ الرد وأريد إرساله</label>
         <div class="acts"><button class="gold" name="do" value="send" id="sendBtn">أرسلي الرد لـ<?= $h($v['name'] ?: 'العميلة') ?></button></div>
